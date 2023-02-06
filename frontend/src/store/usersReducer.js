@@ -16,15 +16,16 @@ export const removeUser = (userId) => ({
 });
 
 // THUNK ACTION CREATORS
-export const loginUser = (user) => async (dispatch) => {
-	debugger
+export const loginUser = (user, closeModalFunc) => async (dispatch) => {
 	let res = await csrfFetch("/api/session", {
 		method: "POST",
 		body: JSON.stringify(user),
 	});
+
+	debugger;
 	let data = await res.json();
 	sessionStorage.setItem("currentUser", JSON.stringify(data.user));
-	debugger;
+	closeModalFunc();
 	dispatch(receiveUser(data.user));
 };
 
@@ -33,7 +34,7 @@ export const logoutUser = (userId) => async (dispatch) => {
 		method: "DELETE",
 	});
 	sessionStorage.setItem("currentUser", null);
-        debugger
+	debugger;
 	dispatch(removeUser(userId));
 };
 

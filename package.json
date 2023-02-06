@@ -21,7 +21,12 @@
   },
   "homepage": "https://github.com/M8825/Villow#readme",
   "dependencies": {
+    "bootstrap": "^5.3.0-alpha1",
     "focus-trap-react": "^10.0.2",
-    "react-onclickoutside": "^6.12.2"
+    "react-onclickoutside": "^6.12.2",
+    "react-tabs": "^6.0.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "^2.4.9"
   }
 }

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 // import * as sessionActions from '../../store/session';
 import { loginUser, logoutUser, createuser } from "../../store/usersReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Input, Button } from "@chakra-ui/react";
 
-const LoginForm = () => {
+const LoginForm = ({ closeModalFunc }) => {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => {
 		const valueArray = Object.values(state.user);
@@ -17,7 +17,6 @@ const LoginForm = () => {
 	});
 
 
-
 	const [username, setCredential] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -26,7 +25,8 @@ const LoginForm = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		return dispatch(loginUser({ username, password })).catch(
+		debugger
+		return dispatch(loginUser({ username, password }), closeModalFunc()).catch(
 			async (res) => {
 				let data;
 				try {
@@ -51,7 +51,7 @@ const LoginForm = () => {
 			</ul>
 			<label>
 				Email
-				<input
+				<Input
 					type="text"
 					value={username}
 					onChange={(e) =>
@@ -62,7 +62,7 @@ const LoginForm = () => {
 			</label>
 			<label>
 				Password
-				<input
+				<Input
 					type="password"
 					value={password}
 					onChange={(e) =>
@@ -71,7 +71,7 @@ const LoginForm = () => {
 					required
 				/>
 			</label>
-			<button type="submit">Log In</button>
+			<Button bgColor={"#0061FF"} color="rgb(255 255 255)"  type="submit">Sign In</Button>
 		</form>
 	);
 };

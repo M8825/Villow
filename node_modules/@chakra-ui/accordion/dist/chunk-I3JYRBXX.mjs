@@ -1,0 +1,46 @@
+import {
+  useAccordionItem
+} from "./chunk-JDQBKIKM.mjs";
+import {
+  AccordionItemProvider,
+  useAccordionStyles
+} from "./chunk-JST25EWU.mjs";
+
+// src/accordion-item.tsx
+import {
+  chakra,
+  forwardRef
+} from "@chakra-ui/system";
+import { cx } from "@chakra-ui/shared-utils";
+import { useMemo } from "react";
+import { jsx } from "react/jsx-runtime";
+var AccordionItem = forwardRef(
+  function AccordionItem2(props, ref) {
+    const { children, className } = props;
+    const { htmlProps, ...context } = useAccordionItem(props);
+    const styles = useAccordionStyles();
+    const containerStyles = {
+      ...styles.container,
+      overflowAnchor: "none"
+    };
+    const ctx = useMemo(() => context, [context]);
+    return /* @__PURE__ */ jsx(AccordionItemProvider, { value: ctx, children: /* @__PURE__ */ jsx(
+      chakra.div,
+      {
+        ref,
+        ...htmlProps,
+        className: cx("chakra-accordion__item", className),
+        __css: containerStyles,
+        children: typeof children === "function" ? children({
+          isExpanded: !!context.isOpen,
+          isDisabled: !!context.isDisabled
+        }) : children
+      }
+    ) });
+  }
+);
+AccordionItem.displayName = "AccordionItem";
+
+export {
+  AccordionItem
+};
