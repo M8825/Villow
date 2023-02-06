@@ -16,7 +16,6 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
 # port ENV.fetch("PORT") { 3000 }
-# TODO: Make sure you don't need to change this to 5000
 port ENV.fetch("PORT") { 8000 }
 # port ENV.fetch("PORT" { 5000 }
 

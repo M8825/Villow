@@ -1,5 +1,6 @@
 export const restoreSession = async () => {
-    let res = await fetch('/api/session');
+    // TODO: prevent console 401 error
+    let res = await csrfFetch('/api/session');
     let token = res.headers.get('X-CSRF-Token');
     sessionStorage.setItem('X-CSRF-Token', token);
     let data = await res.json();

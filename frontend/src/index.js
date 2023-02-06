@@ -1,11 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import configureStore from './store';
 import { restoreSession } from './store/csrf';
 import { createUser, loginUser, logoutUser } from './store/usersReducer.js';
 import { Provider } from 'react-redux';
+import { createRoot } from 'react-dom/client';
+
+const domNode = document.getElementById('root');
+const root =createRoot(domNode);
 
 
 let currentUser;
@@ -28,21 +31,19 @@ window.loginUser = loginUser
 window.logoutUser = logoutUser
 
 const InitializeApp = () => {
-  ReactDOM.render(
+  return (
       <React.StrictMode>
       <Provider store={store}>
           <App />
       </Provider>
-      </React.StrictMode>,
-      document.getElementById('root')
+      </React.StrictMode>
   );
 }
 
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <InitializeApp />
   </React.StrictMode>,
-  document.getElementById('root')
 );
 
 restoreSession().then(InitializeApp)
