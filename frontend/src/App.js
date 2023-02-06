@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-
+import SessionContainer from "./components/SessionContainer";
 
 const App = () => (
 	<Router>
 		<>
-      <h1> Form should be below</h1>
-      <Switch>
+			<Switch>
 				<Route
-					path="/login"
-					component={LoginFormPage}
+          exact
+					path="/"
+					component={SessionContainer}
 				/>
-      </Switch>
+			</Switch>
 		</>
 	</Router>
 );
+
 export default App;

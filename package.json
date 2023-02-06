@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/M8825/Villow/issues"
   },
-  "homepage": "https://github.com/M8825/Villow#readme"
+  "homepage": "https://github.com/M8825/Villow#readme",
+  "dependencies": {
+    "focus-trap-react": "^10.0.2"
+  }
 }

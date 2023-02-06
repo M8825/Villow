@@ -7,8 +7,8 @@ const rootReducer = combineReducers({
     user: userReducer
 });
 
-const configureStore = (preloadedState = {}) => (
-  createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger))
-)
+const configureStore = (preloadedState = {}) => {
+  return createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger))
+}
 
 export default configureStore;
