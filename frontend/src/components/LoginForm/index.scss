@@ -1,0 +1,70 @@
+#login_form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 5px;
+}
+
+form > label {
+    font-size: 14px;
+    color: #2A2A33;
+    padding: 0px, 0px, 4px;
+    font-weight: 600;
+}
+
+form > label > Input[type="text"], Input[type="password"] {
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid rgb(209, 209, 213);
+    background-color: rgb(246, 246, 250);
+    font-size: 16px;
+    outline: none;
+    height: 44px;
+}
+
+.login_form__label:hover > Input {
+    border-color: #006AFF;
+    transition: box-shadow .3s;
+}
+
+.login_form__label > Input:focus {
+    box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
+}
+
+.button_group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+.line-separator {
+    background-color: rgb(209 209 213);
+    height: 0.01vh;
+}
+
+.personal-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vh;
+    gap: 2vh;
+}
+
+.personal-links__title {
+    display: flex;
+    justify-content: center;
+}
+
+.personal-links__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1vw;
+}
+
+.personal-links__buttons > Button {
+    border-radius: 3px;
+}
+
+
+.personal-links__buttons__github {
+    background-color: red;
+    padding: 10px;
+}

@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import LoginForm from "../LoginForm";
+import SignUpForm from "../SignUpForm";
 import FocusTrap from "focus-trap-react";
+import "./index.scss";
+import tablistTheme from "./style";
 import {
 	ChakraProvider,
 	Tabs,
@@ -10,6 +13,7 @@ import {
 	Tab,
 	TabPanel,
 } from "@chakra-ui/react";
+
 
 export const Modal = ({ onClickOutside, closeModal, onSubmit }) => {
 	return ReactDOM.createPortal(
@@ -42,25 +46,33 @@ export const Modal = ({ onClickOutside, closeModal, onSubmit }) => {
 							<path d="M 10,10 L 30,30 M 30,10 L 10,30" />
 						</svg>
 					</button>
-					<ChakraProvider>
+					<div id="container__welcome_header">
+						<div id="welcome_header"></div>
+					</div>
+					<ChakraProvider theme={tablistTheme}>
 						<Tabs>
-							<TabList>
-								<Tab>
+							<TabList borderBottom={'1px solid '} borderColor={"rgb(209 209 213)"}>
+								<Tab className="form-tab">
 									Sign in
 								</Tab>
 								<Tab>
-									Create Account
+									New
+									Account
 								</Tab>
 							</TabList>
-
 							<TabPanels>
 								<TabPanel>
 									<LoginForm
 										onSubmit={
 											onSubmit
 										}
-										closeModalFunc={closeModal}
+										closeModalFunc={
+											closeModal
+										}
 									/>
+								</TabPanel>
+								<TabPanel>
+									<SignUpForm></SignUpForm>
 								</TabPanel>
 							</TabPanels>
 						</Tabs>

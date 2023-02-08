@@ -6,8 +6,7 @@ import { restoreSession } from "./store/csrf";
 import { createUser, loginUser, logoutUser } from "./store/usersReducer.js";
 import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
-import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react";
-import chakraTheme from '@chakra-ui/theme'
+import { ChakraBaseProvider} from "@chakra-ui/react";
 
 
 const domNode = document.getElementById("root");
@@ -41,15 +40,6 @@ const InitializeApp = () => {
 		</React.StrictMode>
 	);
 };
-
-// const { Button, Form } = chakraTheme.components
-
-// const theme = extendBaseTheme({
-//   components: {
-//     Button,
-//     Form,
-//   },
-// })
 
 root.render(
 	<React.StrictMode>

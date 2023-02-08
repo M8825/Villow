@@ -30,7 +30,7 @@ export const loginUser = (user, closeModalFunc) => async (dispatch) => {
 };
 
 export const logoutUser = (userId) => async (dispatch) => {
-	let res = await csrfFetch("/api/session", {
+	await csrfFetch("/api/session", {
 		method: "DELETE",
 	});
 	sessionStorage.setItem("currentUser", null);

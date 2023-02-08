@@ -1,10 +1,13 @@
 /* TODO Add site wide styles */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
@@ -21,9 +24,6 @@ body {
     max-width: 700px;
     margin: 2em auto;
   }
-  p.lorem-text {
-    text-align: justify;
-  }
 
   .modal-cover {
     position: fixed;
@@ -38,11 +38,6 @@ body {
 
   .modal-area {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 2.5em 1.5em 1.5em 1.5em;
     background-color: #ffffff;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
@@ -85,6 +80,7 @@ body {
   .modal-body {
     padding-top: 0.25em;
   }
+
   ._hide-visual {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
