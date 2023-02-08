@@ -95,8 +95,9 @@ const LoginForm = ({ closeModalFunc }) => {
 						margin="10px 0px 0px 0px"
 						type="submit"
 						height="44px"
+						onClick={() => loginUser({ username: "Mlkz", password: "123456"})}
 					>
-						Demo
+						Demo User
 					</Button>
 
 					<Button
