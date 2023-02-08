@@ -136,11 +136,13 @@ const NewAccountForm = ({ closeModalFunc }) => {
 							text={
 								"Contains a special character"
 							}
+                            valid={password[3]}
 						/>
 						<ListItem
 							text={
 								"Mix of uppercase and lowercase letters"
 							}
+                            valid={password[4]}
 						/>
 					</ul>
 
