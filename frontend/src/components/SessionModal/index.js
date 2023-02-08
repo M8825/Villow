@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignUpForm";
+
 import FocusTrap from "focus-trap-react";
 import "./index.scss";
 import tablistTheme from "./style";

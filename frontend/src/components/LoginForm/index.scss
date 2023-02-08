@@ -1,14 +1,18 @@
 #login_form {
     display: flex;
     flex-direction: column;
-    gap: 20px 5px;
+    padding-top: 0px;
+    gap: 17px;
+    font-weight: 600;
+}
+
+.form_first_element {
+    margin-top: -16px;
 }
 
 form > label {
     font-size: 14px;
     color: #2A2A33;
-    padding: 0px, 0px, 4px;
-    font-weight: 600;
 }
 
 form > label > Input[type="text"], Input[type="password"] {
@@ -23,7 +27,6 @@ form > label > Input[type="text"], Input[type="password"] {
 
 .login_form__label:hover > Input {
     border-color: #006AFF;
-    transition: box-shadow .3s;
 }
 
 .login_form__label > Input:focus {
@@ -31,9 +34,10 @@ form > label > Input[type="text"], Input[type="password"] {
 }
 
 .button_group {
+    padding-top: 8px;
     display: flex;
     flex-direction: column;
-    gap: 0.8vh;
+    gap: 5px;
 }
 
 .line-separator {
@@ -42,9 +46,10 @@ form > label > Input[type="text"], Input[type="password"] {
 }
 
 .personal-links {
+    font-weight: 400;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
-    margin-top: 1vh;
     gap: 2vh;
 }
 
@@ -57,9 +62,11 @@ form > label > Input[type="text"], Input[type="password"] {
     display: flex;
     flex-direction: column;
     gap: 1.1vw;
+    margin-bottom: 5px;
 }
 
 .personal-links__buttons > Button {
+    font-weight: 400;
     border-radius: 3px;
 }
 
