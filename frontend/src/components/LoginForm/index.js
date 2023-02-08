@@ -96,7 +96,7 @@ const LoginForm = ({ closeModalFunc }) => {
 						type="submit"
 						height="44px"
 					>
-						Demo User
+						Demo
 					</Button>
 
 					<Button

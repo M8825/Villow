@@ -1,0 +1,41 @@
+.account_inputs_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+}
+
+.account_inputs__label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.account_inputs__label > input {
+    width: 100%;
+    padding: 9px 16px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid rgb(209, 209, 213);
+    background-color: rgb(246, 246, 250);
+    font-size: 16px;
+    outline: none;
+    height: 44px;
+}
+
+.validation_list {
+    -webkit-font-smoothing: antialiased;
+    text-transform: none;
+    font-family: "Open Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(163, 0, 11);
+    margin: 0px;
+}
+
+.foo {
+    fill: rgb(163, 0, 11);
+}
