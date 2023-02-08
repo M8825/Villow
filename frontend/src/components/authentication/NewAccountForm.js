@@ -2,9 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { createUser } from "../../store/usersReducer";
-import "./index.scss";
-import ListItem from "./ListItem";
-import FollowLinks from "./FollowLinks";
+import "./NewAccountForm.scss";
+import ListItem from "./NewAccountFormListItem";
+import FollowButtonLinks from "./FollowButtonLinks";
+import "./FollowButtonLinks.scss";
 
 const NewAccountForm = ({ closeModalFunc }) => {
 	const dispatch = useDispatch();
@@ -197,7 +198,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 						</p>
 					</div>
 				</div>
-				<FollowLinks />
+				<FollowButtonLinks />
 			</form>
 		</>
 	);

@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LoginForm from "../LoginForm";
+import LoginForm from "../authentication/LoginForm";
 // import SignUpForm from "../SignUpForm";
-import NewAccountForm from "../NewAccountForm";
+// import NewAccountForm from "../NewAccountForm";
+import NewAccountForm from "../authentication/NewAccountForm";
 import FocusTrap from "focus-trap-react";
-import "./index.scss";
-import tablistTheme from "./style";
+import "./SessionModal.scss";
+import tablistTheme from "./ChakraTablisTheme";
 import {
 	ChakraProvider,
 	Tabs,

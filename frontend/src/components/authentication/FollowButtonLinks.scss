@@ -1,0 +1,35 @@
+.line-separator {
+    background-color: rgb(209 209 213);
+    height: 0.01vh;
+}
+
+.personal-links {
+    font-weight: 400;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.personal-links__title {
+    display: flex;
+    justify-content: center;
+}
+
+.personal-links__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1vw;
+    margin-bottom: 5px;
+}
+
+.personal-links__buttons > Button {
+    font-weight: 400;
+    border-radius: 3px;
+}
+
+
+.personal-links__buttons__github {
+    background-color: red;
+    padding: 10px;
+}

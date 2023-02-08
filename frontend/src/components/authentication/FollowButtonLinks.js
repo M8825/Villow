@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faAngellist } from "@fortawesome/free-brands-svg-icons";
 import { Button } from "@chakra-ui/react";
 
-const FollowLinks = () => {
+const FollowButtonLinks = () => {
 	return (
 		<>
 			<hr className="line-separator" />
@@ -92,4 +92,4 @@ const FollowLinks = () => {
 	);
 };
 
-export default FollowLinks;
+export default FollowButtonLinks;

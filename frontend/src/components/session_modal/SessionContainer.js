@@ -1,6 +1,6 @@
 import React from "react";
-import Modal from "../SessionModal";
-import SessionButton from "../SessionButton";
+import Modal from "./SessionModal";
+import SessionButton from "./SessionButton";
 import { useState } from "react";
 
 const SessionContainer = () => {
