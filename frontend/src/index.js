@@ -18,11 +18,15 @@ if (sessionStorage.getItem("currentUser") !== "undefined") {
 	currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 }
 
-let initialState = {};
+let initialState;
+
 if (currentUser) {
 	initialState = {
-		user: currentUser,
-	};
+		user: {
+			active: JSON.parse(sessionStorage.getItem("currentUser"))
+		}
+	  };
+
 }
 
 const store = configureStore(initialState);

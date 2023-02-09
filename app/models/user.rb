@@ -7,8 +7,8 @@ class User < ApplicationRecord
     self.session_token ||= generate_unique_session_token
   end
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
     # has_secure_password gives us the authenticate method
 
     if user&.authenticate(password)

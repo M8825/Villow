@@ -3,7 +3,6 @@ import NewAccountPasswordErrors from "./NewAccountPasswordErrors";
 
 const ListItem = ({ password, text, valid }) => {
 	const color = password !== "" ? "rgb(163, 0, 11)" : "gray"
-    debugger
 
 	return (
 		<li

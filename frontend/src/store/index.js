@@ -1,14 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import userReducer from './usersReducer';
+import usersReducer from './usersReducer';
 
 const rootReducer = combineReducers({
-    user: userReducer
+  user: usersReducer
 });
 
-const configureStore = (preloadedState = {}) => {
-  return createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger))
-}
+const configureStore = (preloadedState = {}) => (
+  createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger))
+);
 
 export default configureStore;

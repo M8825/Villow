@@ -23,7 +23,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 		e.preventDefault();
 		setErrors([]);
 		return dispatch(
-			createUser({ username: email, password }),
+			createUser({ email: email, password: password.password }),
 			closeModalFunc()
 		).catch(async (res) => {
 			let data;
@@ -95,7 +95,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit} id="login_form">
+			<form onSubmit={handleSubmit} className="login_form">
 				<ul>
 					{errors.map((error) => (
 						<li key={error}>{error}</li>
@@ -164,7 +164,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 					</ul>
 
 					<label
-						for="checkbox1"
+						htmlFor="checkbox1"
 						id="login_form__checkbox"
 					>
 						<input
@@ -180,7 +180,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 					<button
 						type="Submit"
 						id="submit_button"
-						disabled={true}
+						// disabled={true}
 					>
 						Submit
 					</button>

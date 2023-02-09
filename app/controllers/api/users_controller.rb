@@ -4,15 +4,7 @@ class Api::UsersController < ApplicationController
   before_action :require_logged_out, only: [:create]
 
   def create
-    # {credential: "username@gmail.com", :password=>"password" }
-    if (user_params.credentials.include?("@"))
-      @user =
-        User.new(email: user_params.credential, password: user_params.password)
-    else
-      @user =
-        User.new(email: user_params.credential, password: user_params.password)
-    end
-    debugger
+    @user = User.new(user_params)
 
     if @user.save
       login(@user)
@@ -25,7 +17,6 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    # params.require(:user).permit(:username, :password)
-    params.require(:user).permit(:credential, :password)
+    params.require(:user).permit(:email, :password)
   end
 end

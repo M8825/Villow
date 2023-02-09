@@ -14,46 +14,49 @@ const LoginForm = ({ closeModalFunc }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		return dispatch(
-			loginUser({ username: email, password }),
-			closeModalFunc()
+
+		dispatch(
+			loginUser({ email, password }, closeModalFunc),
+
 		).catch(async (res) => {
 			let data;
-			try {
+
+			if (res.ok) {
 				data = await res.json();
-			} catch {
-				data = await res.text(); // Will hit this case if the server is down
 			}
+
 			if (data?.errors) setErrors(data.errors);
 			else if (data) setErrors([data]);
 			else setErrors([res.statusText]);
 		});
 	};
 
+	const demoUserHandleOnClick = () => {
+		setPassword("Ilmangel123!");
+		setEmail("mlkz@gmail.com");
+	};
+
 	return (
 		<>
-			<form onSubmit={handleSubmit} id="login_form">
+			<form onSubmit={handleSubmit} className="login_form">
 				<ul>
 					{errors.map((error) => (
 						<li key={error}>{error}</li>
 					))}
 				</ul>
-					<label className="login_form__label form_first_element">
-						Email
-						<Input
-							type="text"
-							value={email}
-							onChange={(e) =>
-								setEmail(
-									e.target
-										.value
-								)
-							}
-							placeholder="Enter Email"
-							required
-						/>
-					</label>
-				<label class="login_form__label">
+				<label className="login_form__label form_first_element">
+					Email
+					<Input
+						type="text"
+						value={email}
+						onChange={(e) =>
+							setEmail(e.target.value)
+						}
+						placeholder="Enter Email"
+						required
+					/>
+				</label>
+				<label className="login_form__label">
 					Password
 					<Input
 						type="password"
@@ -89,7 +92,7 @@ const LoginForm = ({ closeModalFunc }) => {
 						margin="10px 0px 0px 0px"
 						type="submit"
 						height="44px"
-						onClick={() => loginUser({ username: "Mlkz", password: "123456"})}
+						onClick={demoUserHandleOnClick}
 					>
 						Demo User
 					</Button>

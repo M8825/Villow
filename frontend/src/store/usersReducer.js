@@ -22,7 +22,6 @@ export const loginUser = (user, closeModalFunc) => async (dispatch) => {
 		body: JSON.stringify(user),
 	});
 
-	debugger;
 	let data = await res.json();
 	sessionStorage.setItem("currentUser", JSON.stringify(data.user));
 	closeModalFunc();
@@ -34,7 +33,6 @@ export const logoutUser = (userId) => async (dispatch) => {
 		method: "DELETE",
 	});
 	sessionStorage.setItem("currentUser", null);
-	debugger;
 	dispatch(removeUser(userId));
 };
 
@@ -54,8 +52,8 @@ const userReducer = (state = {}, action) => {
 
 	switch (action.type) {
 		case RECEIVE_USER:
-			debugger;
-			nextState[action.payload.id] = action.payload;
+			nextState['active'] = action.payload;
+			debugger
 			return nextState;
 		case REMOVE_USER:
 			delete nextState[action.userId];

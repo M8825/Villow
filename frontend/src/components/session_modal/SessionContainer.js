@@ -4,15 +4,15 @@ import SessionButton from "./SessionButton";
 import { useState } from "react";
 
 const SessionContainer = () => {
-	let [popup, setState] = useState({ isShown: false });
+	let [popup, setPopup] = useState({ isShown: false });
 
 	const showModal = () => {
-		setState({ isShown: true });
+		setPopup({ isShown: true });
 		toggleScrollLock();
 	};
 
 	const closeModal = () => {
-		setState({ isShown: false });
+		setPopup({ isShown: false });
 		toggleScrollLock();
 	};
 
@@ -36,7 +36,7 @@ const SessionContainer = () => {
 		<>
 			<SessionButton
 				showModal={showModal}
-				triggerText={"login in"}
+				triggerText={"Sign in"}
 			/>
 			{popup.isShown ? (
 				<Modal

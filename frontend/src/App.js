@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import SessionContainer from "./components/SessionContainer";
 import SessionContainer from "./components/session_modal/SessionContainer";
+import Nav from "./components/header/Navigation";
 
 const App = () => (
 	<Router>
@@ -10,7 +10,7 @@ const App = () => (
 				<Route
           exact
 					path="/"
-					component={SessionContainer}
+					component={Nav}
 				/>
 			</Switch>
 		</>
