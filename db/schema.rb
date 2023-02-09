@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_221850) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_09_201915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "price", null: false
+    t.integer "bedroom", null: false
+    t.integer "bathroom", null: false
+    t.integer "sqft", null: false
+    t.string "address", null: false
+    t.string "listing_type", null: false
+    t.string "est_payment", null: false
+    t.string "building_type", null: false
+    t.integer "built_in", null: false
+    t.boolean "heating"
+    t.boolean "ac"
+    t.boolean "garage"
+    t.integer "price_sqft", null: false
+    t.text "overview", null: false
+    t.text "key_words", null: false
+    t.string "listing_by", null: false
+    t.integer "views"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "zipcode", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "password_digest", null: false
@@ -21,8 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_221850) do
     t.datetime "updated_at", null: false
     t.string "email", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["session_token"],
-            name: "index_users_on_session_token",
-            unique: true
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
+
 end
