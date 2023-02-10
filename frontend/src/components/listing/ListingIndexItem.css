@@ -1,0 +1,9 @@
+.listing_item {
+    background-color: red;
+    list-style: none;
+    background-image: url("https://photos.zillowstatic.com/fp/5f51941150e53a9cbd76dee9659474ec-cc_ft_1536.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 10px;
+    border-radius: 10px;
+}

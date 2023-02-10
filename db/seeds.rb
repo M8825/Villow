@@ -18,6 +18,7 @@ ApplicationRecord.transaction do
   puts "Creating users..."
   User.create!(email: "mlkz@gmail.com", password: "Ilmangel123!")
 
+  puts "Creating Listing..."
   Listing.create(
     price: 700_000,
     bedroom: 3,

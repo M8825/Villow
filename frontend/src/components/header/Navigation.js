@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SessionContainer from "../session_modal/SessionContainer";
 import AuthorizedUser from "./AuthorizedUser";
 import "./Navigation.css";
+import Listing from "../listing/Listing";
 
 const Nav = () => {
     const [userIsActive, setUserIsActive] = useState(false);
@@ -48,6 +49,7 @@ const Nav = () => {
                     </div>
 				</div>
 			</div>
+			<Listing />
 		</>
 	);
 };

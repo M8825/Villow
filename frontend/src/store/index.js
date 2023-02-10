@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import usersReducer from './usersReducer';
+import listingsReducer from './listingsReducer';
 
 const rootReducer = combineReducers({
-  user: usersReducer
+  user: usersReducer,
+  listings: listingsReducer
 });
 
 const configureStore = (preloadedState = {}) => (

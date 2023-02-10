@@ -1,0 +1,14 @@
+.splat_listing_container {
+    border: 1px solid black;
+    background-color: aqua;
+    padding-top: 32px;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+}
+
+.splat_listing_container__listings {
+    display: flex;
+    justify-content: row;
+    gap: 10px;
+}
