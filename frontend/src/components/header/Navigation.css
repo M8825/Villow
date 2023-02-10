@@ -17,14 +17,6 @@
     grid-template-columns: 1.5fr 1fr 1.5fr;
 }
 
-.grid-item:nth-child(1) {
-  }
-
-  .grid-item:nth-child(2) {
-  }
-
-  .grid-item:nth-child(3) {
-  }
 
   .left {
     padding: 0px 24px 0px 45px;
@@ -59,7 +51,6 @@
 .search_container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-image: url("https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/5/2022/08/ZG_ZPA_08_21_Americana_ExtFront_1081_1440_desktopWebp-2.webp");
     background-repeat: no-repeat;
@@ -68,7 +59,32 @@
     height: 408px;
     width: 100%;
     border-top: 2px solid #ebebeb;
-    gap: 10%;
+    gap: 8%;
+}
+
+.search_container:nth-child(1) {
+}
+
+.grid-item:nth-child(2) {
+}
+
+
+
+.search_container > h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    width: 100%;
+    color: #fff;
+    font-weight: 700;
+    line-height: 36px;
+    max-width: 550px;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    filter: drop-shadow(0px 0px 5px #000);
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 38px;
 }
 
 .search_container__search_bar {
@@ -78,6 +94,7 @@
     width: 613px;
     font-weight: 800;
 }
+
 
 .search_container__search_bar:focus {
     box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;

@@ -1,0 +1,87 @@
+.listing_item {
+    list-style: none;
+    min-width: 286px;
+    height: 283px;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 2px 6px -1px;
+}
+
+.listing_item:hover {
+    list-style: none;
+    min-width: 286px;
+    height: 283px;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 10px -1px, rgba(0, 0, 0, 0.3) 0px 4px 6px -1px;
+}
+
+.listing_item__content_box {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+    border-radius: 125px;
+}
+
+.listing_item__thumbnail {
+    background-image: url("https://photos.zillowstatic.com/fp/0e3b3d4d314759ce68e639037620f61d-p_e.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listing_item__thumbnail__keyword {
+    background-color: #0A0A1499;
+    padding: 2px 8px;
+    color: #FFFFFF;
+    font-size: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    height: 22px;
+}
+
+.listing_item__info {
+    border-radius: 0px 0px 5px 5px;
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+}
+
+.listing_item__info > h1 {
+    font-size: 20px;
+    color: 2A2A33;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.listing_item__info__details {
+    width: 270px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.listing_item__info__details__listing_by {
+    font-size: 10px;
+    font-weight: 400;
+    color: #596b82;
+}
+
+.listing_item__info__details__bold_span {
+    font-weight: 700;
+}
+
+.listing_item__info__details__light_span {
+    color: gray;
+}
+
+.listing_item__info__details__address {
+    font-size: 14ps
+}
+

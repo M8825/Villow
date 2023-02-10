@@ -1,23 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./ListingIndexItem.css"
+import ListingIndexItemHeart from "./ListingIndexItemHeart";
 
+import "./ListingIndexItem.scss";
 
 const ListingItem = ({ listing }) => {
-    return (
-        <>
-            <li className="listing_item">
-                <Link to={`/listings/${listing.id}`}>
-                    {/* <img src={"https://photos.zillowstatic.com/fp/5f51941150e53a9cbd76dee9659474ec-cc_ft_1536.webp"} alt="" /> */}
-                    <div className="listing_item__info">
-                        <p>{listing.price}</p>
-                        <p>{listing.address}</p>
-                        <p>{listing.listing_type}</p>
-                    </div>
-                </Link>
-            </li>
-        </>
-    );
+    const buildingType = listing.buildingType === "Apartment" ? "Apt" : listing.buildingType;
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+    });
+
+    const price = formatter.format(listing.price);
+
+	return (
+		<>
+			<li className="listing_item">
+				<Link to={`/listings/${listing.id}`}>
+					<div className="listing_item__content_box">
+						{/* <img src={"https://photos.zillowstatic.com/fp/5f51941150e53a9cbd76dee9659474ec-cc_ft_1536.webp"} alt="" /> */}
+						<div className="listing_item__thumbnail">
+                            <div className="listing_item__thumbnail__keyword">
+                                {listing.keyWords}
+                            </div>
+                            <div className="listing_item__thumbnail__favorite">
+                            <ListingIndexItemHeart />
+                            </div>
+                        </div>
+
+						<div className="listing_item__info">
+							<h1>{price}</h1>
+                            <div className="listing_item__info__details">
+                            <p><span className="listing_item__info__details__bold_span">{listing.bedroom}</span> bd <span className="listing_item__info__details__light_span">|</span></p>
+							<p><span className="listing_item__info__details__bold_span">{listing.bathroom}</span> ba <span className="listing_item__info__details__light_span">|</span></p>
+							<p><span className="listing_item__info__details__bold_span">{listing.sqft}</span> sqft <span className="listing_item__info__details__light_span">|</span></p>
+							<p>{buildingType} for {listing.listingType}</p>
+                            </div>
+							<p className="listing_item__info__details__address">{listing.address}</p>
+							<p class="listing_item__info__details__listing_by"> LISTING BY: {listing.listingBy.toUpperCase()}</p>
+						</div>
+					</div>
+				</Link>
+			</li>
+		</>
+	);
 };
 
 export default ListingItem;

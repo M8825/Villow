@@ -1,0 +1,41 @@
+.login_form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0px;
+    gap: 17px;
+    font-weight: 600;
+}
+
+.form_first_element {
+    margin-top: -16px;
+}
+
+form > label {
+    font-size: 14px;
+    color: #2A2A33;
+}
+
+form > label > Input[type="text"], Input[type="password"] {
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid rgb(209, 209, 213);
+    background-color: rgb(246, 246, 250);
+    font-size: 16px;
+    outline: none;
+    height: 44px;
+}
+
+.login_form__label:hover > Input {
+    border-color: #006AFF;
+}
+
+.login_form__label > Input:focus {
+    box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
+}
+
+.button_group {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

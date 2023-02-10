@@ -1,0 +1,36 @@
+import {
+  useTabsStyles
+} from "./chunk-ZWUY3VWT.mjs";
+import {
+  useTabIndicator
+} from "./chunk-ROBISDLO.mjs";
+
+// src/tab-indicator.tsx
+import { cx } from "@chakra-ui/shared-utils";
+import { chakra, forwardRef } from "@chakra-ui/system";
+import { jsx } from "react/jsx-runtime";
+var TabIndicator = forwardRef(
+  function TabIndicator2(props, ref) {
+    const indicatorStyle = useTabIndicator();
+    const style = {
+      ...props.style,
+      ...indicatorStyle
+    };
+    const styles = useTabsStyles();
+    return /* @__PURE__ */ jsx(
+      chakra.div,
+      {
+        ref,
+        ...props,
+        className: cx("chakra-tabs__tab-indicator", props.className),
+        style,
+        __css: styles.indicator
+      }
+    );
+  }
+);
+TabIndicator.displayName = "TabIndicator";
+
+export {
+  TabIndicator
+};
