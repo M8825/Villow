@@ -1,18 +1,13 @@
+// import foobar from "./components/TextFeature/foobar";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import SessionContainer from "./components/session_modal/SessionContainer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/header/Navigation";
-import Listing from "./components/listing/Listing";
 
 const App = () => (
 	<Router>
 		<>
 			<Switch>
-				<Route
-          exact
-					path="/"
-					component={Nav}
-				/>
+				<Route exact path="/" component={Nav} />
 			</Switch>
 		</>
 	</Router>

@@ -1,7 +1,8 @@
 import React from "react";
-import Modal from "./SessionModal";
-import SessionButton from "./SessionButton";
 import { useState } from "react";
+import SessionButton from "./ProfileButton";
+import Modal from "./Modal";
+import "./ModalContainer.scss"
 
 const SessionContainer = () => {
 	let [popup, setPopup] = useState({ isShown: false });
@@ -16,31 +17,25 @@ const SessionContainer = () => {
 		toggleScrollLock();
 	};
 
+	// On click outside of modal, close modal if user clicks
+	// outside of modal. If user clicks inside modal, do nothing.
+	// Modal box is located in another div with class name "modal-cover"
+	// when user clicks modal container, we close modal.
 	const onClickOutside = (event) => {
-        if (event.target.className === "modal-cover") {
-            closeModal();
-        }
-	};
-
-	const onSubmit = (event) => {
-		event.preventDefault(event);
-		console.log(event.target.name.value);
-		console.log(event.target.email.value);
+		if (event.target.className === "modal-container") {
+			closeModal();
+		}
 	};
 
 	const toggleScrollLock = () => {
-		document.querySelector("html").classList.toggle("scroll-lock");
+		// document.querySelector("html").classList.toggle("scroll-lock");
 	};
 
 	return (
 		<>
-			<SessionButton
-				showModal={showModal}
-				triggerText={"Sign in"}
-			/>
+			<SessionButton showModal={showModal} triggerText={"Sign in"} />
 			{popup.isShown ? (
 				<Modal
-					onSubmit={onSubmit}
 					closeModal={closeModal}
 					onClickOutside={onClickOutside}
 				/>

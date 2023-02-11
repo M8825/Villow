@@ -2,7 +2,7 @@
 // style component
 import { extendTheme } from "@chakra-ui/react";
 
-const tablistTheme = extendTheme({
+const tabListTheme = extendTheme({
 	components: {
 		Tabs: {
 			baseStyle: {
@@ -24,4 +24,4 @@ const tablistTheme = extendTheme({
 	},
 });
 
-export default tablistTheme;
+export default tabListTheme;

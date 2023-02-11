@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import SessionContainer from "../session_modal/SessionContainer";
+import SessionContainer from "../modal/ModalContainer";
 import AuthorizedUser from "./AuthorizedUser";
 import "./Navigation.css";
 import Listing from "../listing/Listing";

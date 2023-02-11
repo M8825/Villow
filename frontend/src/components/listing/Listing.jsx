@@ -1,21 +1,19 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { fetchListings } from "../../store/listingsReducer";
-import { useSelector } from "react-redux";
-import { getListings } from "../../store/listingsReducer";
-import ListingItem from "./ListingIndexItem";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchListings, getListings } from "../../store/listingsReducer";
+import Carousel from "./Carousel";
 import "./Listing.scss";
 
 const Listing = () => {
 	const dispatch = useDispatch();
 
+	const listings = useSelector(getListings);
+
 	useEffect(() => {
 		dispatch(fetchListings());
 	}, [dispatch]);
 
-	const listings = useSelector(getListings);
-	const sampleListings = listings ? listings.slice(0, 4) : [];
+	const sampleListings = listings ? listings.slice(0, 5) : [];
 
 	return (
 		<>
@@ -24,14 +22,11 @@ const Listing = () => {
 					<div className="splat_listing_container__headers">
 						<h1>Homes For You in New York, NY</h1>
 						<p>Based on your view history</p>
-					<hr/>
+						<hr />
 					</div>
 					<ul className="splat_listing_container__listings">
-						{sampleListings.map((listing, i) => {
-							return <ListingItem key={i} listing={listing} />;
-						})}
+						<Carousel sampleListings={sampleListings} />
 					</ul>
-
 				</div>
 			</div>
 		</>

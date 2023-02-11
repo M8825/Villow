@@ -1,0 +1,85 @@
+.modal-area {
+	position: fixed;
+	background-color: #ffffff;
+	box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+@media screen and (min-width: 500px) {
+	/* Center the Modal! */
+	.modal-area {
+		left: 50%;
+		top: 50%;
+		height: auto;
+		transform: translate(-50%, -50%);
+		max-width: 30em;
+		max-height: calc(100% - 1em);
+	}
+}
+
+._modal-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.5em;
+	line-height: 10;
+	background: #f6f6f7;
+	border: 0;
+	box-shadow: 0;
+	cursor: pointer;
+}
+
+._modal-close-icon {
+	width: 25px;
+	height: 25px;
+	fill: transparent;
+	stroke: black;
+	stroke-linecap: round;
+	stroke-width: 2;
+}
+
+.modal-body {
+	padding-top: 0.25em;
+}
+
+._hide-visual {
+	border: 0 !important;
+	clip: rect(0 0 0 0) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
+
+.scroll-lock {
+	overflow: hidden;
+	margin-right: 17px;
+}
+.modal-area {
+	display: flex;
+	flex-direction: column;
+	width: 80vw;
+	padding: 27px 16px 14px 16px;
+	border-radius: 10px;
+	width: 456px;
+	background-color: rgb(255 255 255);
+}
+
+#container__welcome_header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#welcome_header {
+	background-image: url("./assets/header.png");
+	background-repeat: no-repeat, no-repeat;
+	background-size: 200px;
+	width: 200px;
+	height: 50px;
+	margin: 1vh;
+}

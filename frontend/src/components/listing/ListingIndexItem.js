@@ -38,7 +38,7 @@ const ListingItem = ({ listing }) => {
 							<p>{buildingType} for {listing.listingType}</p>
                             </div>
 							<p className="listing_item__info__details__address">{listing.address}</p>
-							<p class="listing_item__info__details__listing_by"> LISTING BY: {listing.listingBy.toUpperCase()}</p>
+							<p className="listing_item__info__details__listing_by"> LISTING BY: {listing.listingBy.toUpperCase()}</p>
 						</div>
 					</div>
 				</Link>
