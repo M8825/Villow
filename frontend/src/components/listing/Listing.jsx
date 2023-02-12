@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchListings, getListings } from "../../store/listingsReducer";
 import Carousel from "./Carousel";
-import "./Listing.scss";
 
-const Listing = () => {
+
+const Listing = ({ header,paragraph}) => {
 	const dispatch = useDispatch();
 
 	const listings = useSelector(getListings);
@@ -13,6 +13,7 @@ const Listing = () => {
 		dispatch(fetchListings());
 	}, [dispatch]);
 
+	// TODO: Change it to more listings, Ideally on each swipe it should load another 4 listings
 	const sampleListings = listings ? listings.slice(0, 5) : [];
 
 	return (
@@ -20,11 +21,11 @@ const Listing = () => {
 			<div className="splat_listing_container">
 				<div className="splat_listing_container__wrapper">
 					<div className="splat_listing_container__headers">
-						<h1>Homes For You in New York, NY</h1>
-						<p>Based on your view history</p>
+						<h1>{header}</h1>
+						<p>{paragraph}</p>
 						<hr />
 					</div>
-					<ul className="splat_listing_container__listings">
+					<ul className="carousel-container">
 						<Carousel sampleListings={sampleListings} />
 					</ul>
 				</div>

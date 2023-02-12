@@ -49,7 +49,6 @@ const Nav = () => {
                     </div>
 				</div>
 			</div>
-			<Listing />
 		</>
 	);
 };

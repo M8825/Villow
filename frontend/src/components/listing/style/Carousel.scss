@@ -1,0 +1,16 @@
+.carousel-container {
+    padding: 13px 0px 20px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1240px;
+    position: relative;
+    .carousel-container__swiper {
+        width: 1220px;
+        height: 100%;
+        z-index: 0;
+        display: flex;
+        padding: 10px;
+    }
+}
+

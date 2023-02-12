@@ -1,0 +1,44 @@
+.splat_listing_container {
+	padding-top: 52px;
+	height: 420px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.splat_listing_container__wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.splat_listing_container__headers {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
+    padding: 23px 20px 0px 20px;
+	gap: 10px;
+
+    &.splat_listing_container__headers h1 {
+        font-size: 20px;
+        color: #2a2a33;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    &.splat_listing_container__headers p {
+        font-size: 14px;
+        font-weight: 400;
+        color: rgb(89, 107, 130);
+    }
+
+    &.splat_listing_container__headers hr {
+        border: none;
+        height: 1px;
+        background-color: #ccc;
+        width: 100%;
+    }
+}
+

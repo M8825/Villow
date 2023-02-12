@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ListingIndexItemHeart from "./ListingIndexItemHeart";
 
-import "./ListingIndexItem.scss";
 
 const ListingItem = ({ listing }) => {
     const buildingType = listing.buildingType === "Apartment" ? "Apt" : listing.buildingType;

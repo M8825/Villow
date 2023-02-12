@@ -1,6 +1,5 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
-import "./ListingIndexItemHeart.scss";
 
 const ListingIndexItemHeart = () => {
 	return (

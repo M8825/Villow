@@ -1,16 +1,7 @@
 .container {
     z-index: 0;
 }
-.container__menu_positioner {
-    border: 1px solid red;
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    z-index: 1;
-    margin: 0px 32px 0px 32px;
-    padding: 16px;
-    height: 100%;
-}
+
 #navigation {
     height: 80px;
     display: grid;

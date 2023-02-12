@@ -4,6 +4,9 @@ import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
 import "./ModalContainer.scss"
 
+
+// How to delete git branch
+// git branch -d <branch_name>
 const SessionContainer = () => {
 	let [popup, setPopup] = useState({ isShown: false });
 
