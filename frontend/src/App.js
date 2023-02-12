@@ -3,6 +3,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/header/Navigation";
 import ListingIndex from "./components/listing/";
+import Layout from "./components/cards";
+import "./index.scss"
 
 const App = () => (
 	<Router>
@@ -13,6 +15,7 @@ const App = () => (
 						<>
 							<Nav />
 							<ListingIndex header={"Homes For You in New York, NY"} paragraph={"Based on your view history"}/>
+							<Layout />
 						</>
 					);
 				}} />

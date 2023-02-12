@@ -1,0 +1,12 @@
+@import "mixins";
+
+.cards-container {
+    @include flexCenter;
+    background-color: antiquewhite;
+    height: 664px;
+    width: 100%;
+    padding: 64px 0px;
+    gap: 25px;
+
+}
+
