@@ -1,17 +1,15 @@
 import React from 'react'
 import './index.scss'
+import { buyHome, sellHome, rentHome } from './cardText';
 import Card from './Card';
 
 const Layout = () => {
-    const buyAHome = "https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/5/2022/07/Buy_a_home.webp"
-    const header = "Buy a home"
-    const body = "Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else."
-    const btnText = "Browse homes"
+
   return (
     <div className="cards-container">
-        <Card headerImg={buyAHome} header={header} body={body} buttonText={btnText}/>
-        <Card />
-        <Card />
+        <Card headerImg={buyHome.headerImg} header={buyHome.header} body={buyHome.body} buttonText={buyHome.btnText}/>
+        <Card headerImg={sellHome.headerImg} header={sellHome.header} body={sellHome.body} buttonText={sellHome.btnText}/>
+        <Card headerImg={rentHome.headerImg} header={rentHome.header} body={rentHome.body} buttonText={rentHome.btnText}/>
     </div>
   )
 };
