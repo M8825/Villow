@@ -6,11 +6,13 @@ import ListingIndex from "./components/listing/";
 import Layout from "./components/cards";
 import Footer  from "./components/footer";
 import "./index.scss"
+import Foobar from "./components/TestFeature/foobar";
 
 const App = () => (
 	<Router>
 		<>
-			<Switch>
+			<Foobar />
+			{/* <Switch>
 				<Route exact path="/" render={() => {
 					return (
 						<>
@@ -23,7 +25,7 @@ const App = () => (
 						</>
 					);
 				}} />
-			</Switch>
+			</Switch> */}
 		</>
 	</Router>
 );

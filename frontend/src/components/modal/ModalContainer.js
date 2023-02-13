@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
+import ModalTabs from "./ModalTabs";
+
 import "./ModalContainer.scss"
 
 
@@ -42,6 +44,7 @@ const ModalContainer = (props) => {
 					containerWelcomeHeader={props.containerWelcomeHeader}
 					welcomeHeader={props.welcomeHeader}
 					modalArea={props.modalArea}
+					content={props.content}
 				/>
 			) : null}
 		</>

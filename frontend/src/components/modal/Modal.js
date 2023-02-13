@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react";
 import ModalCloseButton from "./ModalCloseButton";
-import ModalTabs from "./ModalTabs";
+// import ModalTabs from "./ModalTabs";
 import "./Modal.scss";
 
 export const Modal = (props) => {
@@ -21,7 +21,8 @@ export const Modal = (props) => {
 					<div id="container__welcome_header" style={props.containerWelcomeHeader}>
 						<div id="welcome_header" style={props.welcomeHeader}></div>
 					</div>
-					<ModalTabs closeModal={props.closeModal}/>
+					{<props.content closeModal={props.closeModal} />}
+					{/* <ModalTabs closeModal={props.closeModal}/> */}
 				</div>
 			</aside>
 		</FocusTrap>,
