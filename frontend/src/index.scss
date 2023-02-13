@@ -12,12 +12,23 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	box-sizing: border-box;
+
+	h1 {
+		font-size: 20px;
+		color: #2a2a33;
+		font-weight: 700;
+		line-height: 24px;
+		line-height: 40px;
+		text-align: center;
+		--webkit-font-smoothing: antialiased;
+		--webkit-tap-highlight-color: transparent;
+	}
 }
 
 *,
 *:before,
 *:after {
-	box-sizing: inherit;
+	box-sizing: border-box;
 }
 
 .App {
@@ -26,9 +37,3 @@ body {
 	margin: 2em auto;
 }
 
-h1 {
-	font-size: 50px;
-	color: #2a2a33;
-	font-weight: 800;
-	line-height: 24px;
-}
