@@ -11,8 +11,8 @@ import Foobar from "./components/TestFeature/foobar";
 const App = () => (
 	<Router>
 		<>
-			<Foobar />
-			{/* <Switch>
+			{/* <Foobar /> */}
+			<Switch>
 				<Route exact path="/" render={() => {
 					return (
 						<>
@@ -25,7 +25,7 @@ const App = () => (
 						</>
 					);
 				}} />
-			</Switch> */}
+			</Switch>
 		</>
 	</Router>
 );

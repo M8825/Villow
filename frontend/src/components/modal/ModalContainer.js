@@ -2,10 +2,8 @@ import React from "react";
 import { useState } from "react";
 import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
-import ModalTabs from "./ModalTabs";
 
-import "./ModalContainer.scss"
-
+import "./ModalContainer.scss";
 
 const ModalContainer = (props) => {
 	let [popup, setPopup] = useState({ isShown: false });
@@ -31,7 +29,7 @@ const ModalContainer = (props) => {
 	};
 
 	const toggleScrollLock = () => {
-		// document.querySelector("html").classList.toggle("scroll-lock");
+		document.querySelector("html").classList.toggle("scroll-lock");
 	};
 
 	return (
@@ -41,11 +39,10 @@ const ModalContainer = (props) => {
 				<Modal
 					closeModal={closeModal}
 					onClickOutside={onClickOutside}
-					containerWelcomeHeader={props.containerWelcomeHeader}
-					welcomeHeader={props.welcomeHeader}
-					modalArea={props.modalArea}
-					content={props.content}
-				/>
+					modalAreaStyling={props.modalAreaStyling}
+				>
+					{props.children}
+				</Modal>
 			) : null}
 		</>
 	);

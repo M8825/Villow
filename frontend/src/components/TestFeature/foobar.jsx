@@ -1,13 +1,22 @@
 import React from "react";
 import ModalContainer from "../modal/ModalContainer";
-import ModalTabs from "../modal/ModalTabs";
 
 const Foobar = () => {
+	const modalAreaStyling = {
+		width: "800px",
+		height: "800px",
+		backgroundColor: "rgb(255 255 255)",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "end",
+		alignItems: "center",
+		gap: "20px",
+	}
 	return (
-		<>
-			<h1>FROM FOOBAR</h1>
-			<ModalContainer content={ModalTabs}/>
-		</>
+		<ModalContainer modalAreaStyling={modalAreaStyling}>
+			<h1>Mlkz</h1>
+			<p>Wilson</p>
+		</ModalContainer>
 	);
 };
 

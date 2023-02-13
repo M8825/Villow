@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import LoginForm from "../authentication/LoginForm";
 import NewAccountForm from "../authentication/NewAccountForm";
+import ModalWelcomeHeader from "../header/Welcome";
 
 const ModalTabs = ({ closeModal }) => {
 	return (

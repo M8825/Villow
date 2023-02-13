@@ -2,10 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import ModalContainer from "../modal/ModalContainer";
 import AuthorizedUser from "./AuthorizedUser";
+import ModalTabs from "../modal/ModalTabs";
+import ModalWelcomeHeader from "./Welcome";
+
 import "./Navigation.css";
 
-import headerImage from  '../modal/assets/header.png'
-// import Listing from "../listing/Listing";
 
 const Nav = () => {
 	const [userIsActive, setUserIsActive] = useState(false);
@@ -20,28 +21,13 @@ const Nav = () => {
 		}
 	}, []);
 
-	const containerWelcomeHeader = {
-		display: "flex",
-		flexDirection: "row",
-		justifyContent: "center",
-	};
-
-	const welcomeHeader = {
-		backgroundImage: `url(${headerImage})`,
-		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundSize: "200px",
-		width: "200px",
-		height: "50px",
-		margin: "1vh",
-	};
-
-	const modalArea = {
+	const modalAreaStyling = {
 		display: "flex",
 		flexDirection: "column",
 		padding: "27px 16px 14px 16px",
 		borderRadius: "10px",
 		width: "456px",
-		backgroundColor: "rgb(255 255 255)"
+		backgroundColor: "rgb(255 255 255)",
 	};
 
 	return (
@@ -62,11 +48,10 @@ const Nav = () => {
 						{userIsActive ? (
 							<AuthorizedUser setUserIsActive={setUserIsActive} />
 						) : (
-							<ModalContainer
-								containerWelcomeHeader={containerWelcomeHeader}
-								welcomeHeader={welcomeHeader}
-								modalArea={modalArea}
-							/>
+							<ModalContainer modalAreaStyling={modalAreaStyling}>
+								<ModalWelcomeHeader />
+								<ModalTabs />
+							</ModalContainer>
 						)}
 					</div>
 				</nav>
