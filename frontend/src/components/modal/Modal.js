@@ -5,7 +5,7 @@ import ModalCloseButton from "./ModalCloseButton";
 import ModalTabs from "./ModalTabs";
 import "./Modal.scss";
 
-export const Modal = ({ onClickOutside, closeModal }) => {
+export const Modal = (props) => {
 	return ReactDOM.createPortal(
 		<FocusTrap>
 			<aside
@@ -14,14 +14,14 @@ export const Modal = ({ onClickOutside, closeModal }) => {
 				role="dialog"
 				tabIndex="-1"
 				aria-modal="true"
-				onClick={onClickOutside}
+				onClick={props.onClickOutside}
 			>
-				<div className="modal-area">
-					<ModalCloseButton closeModal={closeModal} />
-					<div id="container__welcome_header">
-						<div id="welcome_header"></div>
+				<div className="modal-area" style={props.modalArea}>
+					<ModalCloseButton closeModal={props.closeModal} />
+					<div id="container__welcome_header" style={props.containerWelcomeHeader}>
+						<div id="welcome_header" style={props.welcomeHeader}></div>
 					</div>
-					<ModalTabs closeModal={closeModal}/>
+					<ModalTabs closeModal={props.closeModal}/>
 				</div>
 			</aside>
 		</FocusTrap>,

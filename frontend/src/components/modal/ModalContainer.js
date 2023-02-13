@@ -5,9 +5,7 @@ import Modal from "./Modal";
 import "./ModalContainer.scss"
 
 
-// How to delete git branch
-// git branch -d <branch_name>
-const SessionContainer = () => {
+const ModalContainer = (props) => {
 	let [popup, setPopup] = useState({ isShown: false });
 
 	const showModal = () => {
@@ -41,10 +39,13 @@ const SessionContainer = () => {
 				<Modal
 					closeModal={closeModal}
 					onClickOutside={onClickOutside}
+					containerWelcomeHeader={props.containerWelcomeHeader}
+					welcomeHeader={props.welcomeHeader}
+					modalArea={props.modalArea}
 				/>
 			) : null}
 		</>
 	);
 };
 
-export default SessionContainer;
+export default ModalContainer;

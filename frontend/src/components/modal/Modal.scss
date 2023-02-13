@@ -59,27 +59,13 @@
 	overflow: hidden;
 	margin-right: 17px;
 }
-.modal-area {
-	display: flex;
-	flex-direction: column;
-	width: 80vw;
-	padding: 27px 16px 14px 16px;
-	border-radius: 10px;
-	width: 456px;
-	background-color: rgb(255 255 255);
-}
 
-#container__welcome_header {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-
-#welcome_header {
-	background-image: url("./assets/header.png");
-	background-repeat: no-repeat, no-repeat;
-	background-size: 200px;
-	width: 200px;
-	height: 50px;
-	margin: 1vh;
-}
+// .modal-area {
+// 	display: flex;
+// 	flex-direction: column;
+// 	width: 80vw;
+// 	padding: 27px 16px 14px 16px;
+// 	border-radius: 10px;
+// 	width: 456px;
+// 	background-color: rgb(255 255 255);
+// }
