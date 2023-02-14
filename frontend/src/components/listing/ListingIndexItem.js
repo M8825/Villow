@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ListingIndexItemHeart from "./ListingIndexItemHeart";
+import useCurrencyFormatter from "../utils/useCurrencyFormatter";
 
 
 const ListingItem = ({ listing }) => {
@@ -18,7 +19,7 @@ const ListingItem = ({ listing }) => {
 			<li className="listing_item">
 				<Link to={`/listings/${listing.id}`}>
 					<div className="listing_item__content_box">
-						{/* <img src={"https://photos.zillowstatic.com/fp/5f51941150e53a9cbd76dee9659474ec-cc_ft_1536.webp"} alt="" /> */}
+						<img src={listing.photoUrl} alt="" />
 						<div className="listing_item__thumbnail">
                             <div className="listing_item__thumbnail__keyword">
                                 {listing.keyWords}

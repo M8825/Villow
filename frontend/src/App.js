@@ -5,6 +5,8 @@ import Nav from "./components/header/Navigation";
 import ListingIndex from "./components/listing/";
 import Layout from "./components/cards";
 import Footer  from "./components/footer";
+import ShowListing from "./components/showListing";
+
 import "./index.scss"
 import Foobar from "./components/TestFeature/foobar";
 
@@ -25,6 +27,8 @@ const App = () => (
 						</>
 					);
 				}} />
+				<Route exact path="/listings/:listingId" component={ShowListing}
+				/>
 			</Switch>
 		</>
 	</Router>

@@ -1,3 +1,4 @@
+import { csrfFetch } from "./csrf";
 // TODO: write a reducer for listings
 const RECEIVE_LISTINGS = "listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "listings/RECEIVE_LISTING";
@@ -30,7 +31,7 @@ export const getListing = (id) => (state) => {
 };
 
 export const fetchListings = () => async (dispatch) => {
-	const res = await fetch("/api/listings");
+	const res = await csrfFetch("/api/listings");
 
 	if (res.ok) {
 		const listings = await res.json();
@@ -39,7 +40,16 @@ export const fetchListings = () => async (dispatch) => {
 };
 
 
-// TODO: Fetch a single listing
+export const fetchListing = (id) => async (dispatch) => {
+	const res = await csrfFetch(`/api/listings/${id}`);
+
+	if (res.ok) {
+		const listing = await res.json();
+		dispatch(receiveListing(listing));
+	}
+};
+
+
 const listingsReducer = (state = {}, action) => {
 	const newState = { ...state };
 

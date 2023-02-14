@@ -1,3 +1,4 @@
+require "open-uri"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -19,26 +20,27 @@ ApplicationRecord.transaction do
   User.create!(email: "mlkz@gmail.com", password: "Ilmangel123!")
 
   puts "Creating Listing..."
-  Listing.create(
-    price: 700_000,
-    bedroom: 3,
-    bathroom: 2,
-    sqft: 1500,
-    address: "100 Main St, New York, NY 10001",
-    listing_type: "Sale",
-    est_payment: "$3500/month",
-    building_type: "Apartment",
-    built_in: 1990,
-    heating: true,
-    ac: true,
-    garage: true,
-    price_sqft: 467,
-    overview: "Beautiful 3BR 2BA apartment in the heart of NYC",
-    key_words: "NYC, Apartment, Sale",
-    listing_by: "John Doe",
-    views: 0,
-    zipcode: 10_001
-  )
+  l1 =
+    Listing.create(
+      price: 700_000,
+      bedroom: 3,
+      bathroom: 2,
+      sqft: 1500,
+      address: "100 Main St, New York, NY 10001",
+      listing_type: "Sale",
+      est_payment: "$3500/month",
+      building_type: "Apartment",
+      built_in: 1990,
+      heating: true,
+      ac: true,
+      garage: true,
+      price_sqft: 467,
+      overview: "Beautiful 3BR 2BA apartment in the heart of NYC",
+      key_words: "NYC, Apartment, Sale",
+      listing_by: "John Doe",
+      views: 0,
+      zipcode: 10_001
+    )
 
   Listing.create(
     price: 900_000,
@@ -123,6 +125,34 @@ ApplicationRecord.transaction do
     views: 0,
     zipcode: 10_011
   )
+
+  photos1 = [
+    {
+      io:
+        URI.open(
+          "https://villow.s3.amazonaws.com/e1e6f7a316234250a86e4c7d8e6ef033-cc_ft_768.webp"
+        ),
+      filename: "1.webp"
+    },
+    {
+      io:
+        URI.open(
+          "https://villow.s3.amazonaws.com/5cc9872369b3035401b102c003830d6a-cc_ft_1536.webp"
+        ),
+      filename: "2.webp"
+    },
+    {
+      io:
+        URI.open(
+          "https://villow.s3.amazonaws.com/fbbaf2a90e48220c4fc25fcda4f2564c-cc_ft_768.webp"
+        ),
+      filename: "3.webp"
+    }
+  ]
+
+  photos1.each do |photo|
+    l1.photos.attach(io: photo[:io], filename: photo[:filename])
+  end
 
   puts "Done!"
 end

@@ -1,0 +1,36 @@
+@import "../../../mixins";
+
+.top-container {
+    @include flexCenter();
+    flex-direction: column;
+    justify-content: start;
+    gap: 8px;
+    padding: 24px 0px 0px 16px;
+
+
+    .saleOrRent {
+
+    }
+
+}
+
+
+.top-container__header {
+    @include flexCenter();
+    background-color: beige;
+    justify-content: start;
+    align-items: end;
+    gap: 5px;
+
+    h1 {
+        font-size: 36px;
+    }
+
+    p {
+        font-size: 16px;
+
+        span {
+            font-weight: 800;
+        }
+    }
+}
