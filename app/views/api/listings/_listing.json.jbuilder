@@ -18,11 +18,7 @@ json.extract! listing,
               :listing_by,
               :views,
               :created_at,
-              :updated_at
+              :updated_at,
+              :created_at
 
-# json.photoUrl listing.photos.attached? ? url_for(listing.photos) : nil
-# json.photo_url listing.photos.attached? ? rails_blob_url(listing.photos) : nil
-
-json.image_urls do
-  json.array!(listing.photos) { |photo| json.image_url url_for(photo) }
-end
+json.photo_url listing.photos.map { |file| url_for(file) } # <-- ADD THIS LINE

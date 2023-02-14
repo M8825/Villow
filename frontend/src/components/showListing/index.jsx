@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getListing, fetchListing } from "../../store/listingsReducer";
-import useCurrencyFormatter from "../utils/useCurrencyFormatter";
+import Gallery from "./gallery";
 import Home from "./Home";
 import "./style/home.scss"
 
@@ -20,29 +20,18 @@ const ShowListing = () => {
     }, [listingId])
 
 
-
-
     const modalAreaStyling = {
-        width: "800px",
-        height: "800px",
+        width: "68vw",
+        height: "100vh",
         backgroundColor: "rgb(255 255 255)",
         display: "flex",
-    };
-
-
-    const Gallery = () => {
-        return (
-            <div style={{ width: "50vw", backgroundColor: 'lightblue' }}>
-                <h1>Gallery box</h1>
-            </div>
-        )
     };
 
 
 	return (
 		<>
 			<ModalContainer modalAreaStyling={modalAreaStyling}>
-                <Gallery />
+                <Gallery listing={listing}/>
                 <Home listing={listing}/>
             </ModalContainer>
 		</>

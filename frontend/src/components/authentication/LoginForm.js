@@ -15,20 +15,19 @@ const LoginForm = ({ closeModalFunc }) => {
 		e.preventDefault();
 		setErrors([]);
 
-		dispatch(
-			loginUser({ email, password }, closeModalFunc),
+		dispatch(loginUser({ email, password }, closeModalFunc)).catch(
+			async (res) => {
+				let data;
 
-		).catch(async (res) => {
-			let data;
+				if (res.ok) {
+					data = await res.json();
+				}
 
-			if (res.ok) {
-				data = await res.json();
+				if (data?.errors) setErrors(data.errors);
+				else if (data) setErrors([data]);
+				else setErrors([res.statusText]);
 			}
-
-			if (data?.errors) setErrors(data.errors);
-			else if (data) setErrors([data]);
-			else setErrors([res.statusText]);
-		});
+		);
 	};
 
 	const demoUserHandleOnClick = () => {
@@ -49,9 +48,7 @@ const LoginForm = ({ closeModalFunc }) => {
 					<Input
 						type="text"
 						value={email}
-						onChange={(e) =>
-							setEmail(e.target.value)
-						}
+						onChange={(e) => setEmail(e.target.value)}
 						placeholder="Enter Email"
 						required
 					/>
@@ -61,11 +58,7 @@ const LoginForm = ({ closeModalFunc }) => {
 					<Input
 						type="password"
 						value={password}
-						onChange={(e) =>
-							setPassword(
-								e.target.value
-							)
-						}
+						onChange={(e) => setPassword(e.target.value)}
 						placeholder="Enter Password"
 						required
 					/>
@@ -103,8 +96,7 @@ const LoginForm = ({ closeModalFunc }) => {
 						marginTop="0px"
 						_hover={{
 							color: "#74ACF1",
-							textDecoration:
-								"underline",
+							textDecoration: "underline",
 						}}
 					>
 						Forgot your password?
