@@ -1,6 +1,6 @@
 import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
-import { Logo, Building, Calendar, Heating, Cooling } from "./assets/svgs";
+import { Heart, Share, Hide, More,  Logo, Building, Calendar, Heating, Cooling } from "./assets/svgs";
 import ShowMore from "./ShowMore";
 
 const Home = ({ listing }) => {
@@ -44,10 +44,10 @@ const Home = ({ listing }) => {
         		<header>
 					<Logo />
                     <ul>
-                        <li>Save</li>
-                        <li>Share</li>
-                        <li>Hide</li>
-                        <li>More</li>
+                        <li><Heart /> Save</li>
+                        <li><Share /> Share</li>
+                        <li><Hide /> Hide</li>
+                        <li><More /> More</li>
                     </ul>
 				</header>
 			<div className="listing-details-wrapper">

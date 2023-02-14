@@ -23,6 +23,10 @@
 
             li {
 
+                display: flex;
+                align-items: flex-end;
+                gap: 5px;
+
                 &:hover {
                     text-decoration: underline;
                     cursor: pointer;
