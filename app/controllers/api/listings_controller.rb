@@ -11,13 +11,43 @@ class Api::ListingsController < ApplicationController
     render :show
   end
 
-  # TODO: add create, update, destroy actions
   def create
+    # :views is not included in listing_params and should have default value 0
+    @listing = Listing.new(listing_params)
+
+    if @listing.save
+      render :show
+    else
+      render json: @listing.errors.full_messages, status: 422
+    end
   end
 
   def update
   end
 
   def destroy
+  end
+
+  private
+
+  def listing_params
+    params.require(:listing).permit(
+      :price,
+      :bedroom,
+      :bathroom,
+      :sqft,
+      :address,
+      :listing_type,
+      :est_payment,
+      :building_type,
+      :built_in,
+      :heating,
+      :ac,
+      :garage,
+      :price_sqft,
+      :overview,
+      :key_words,
+      :listing_by
+    )
   end
 end

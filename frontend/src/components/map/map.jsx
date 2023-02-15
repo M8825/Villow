@@ -8,7 +8,7 @@ const containerStyle = {
 	height: "95.6vh",
 };
 
-const Foobar = () => {
+const Map = () => {
 	const dispatch = useDispatch();
 	const coordinates = useSelector((state) =>
 		state && state.geocode ? state.geocode.coordinates : null
@@ -54,4 +54,4 @@ const Foobar = () => {
 	);
 };
 
-export default React.memo(Foobar);
+export default React.memo(Map);

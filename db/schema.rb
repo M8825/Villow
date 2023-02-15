@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_223449) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_214736) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,7 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_223449) do
     t.integer "price_sqft", null: false
     t.text "overview", null: false
     t.text "key_words", null: false
-    t.string "listing_by", null: false
     t.integer "views"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

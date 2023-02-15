@@ -6,7 +6,6 @@ import Modal from "./Modal";
 import "./ModalContainer.scss";
 
 const ModalContainer = (props) => {
-	debugger
 	let [popup, setPopup] = useState({ isShown: props.isOpen });
 
 	const showModal = () => {

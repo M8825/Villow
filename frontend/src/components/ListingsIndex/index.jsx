@@ -15,7 +15,6 @@ const ListingsPage = () => {
 
 	const history = useHistory();
 	const [isModalOpen, setIsModalOpen] = useState(true);
-	debugger;
 
 	const handleOpenModal = () => {
 		setIsModalOpen(true);

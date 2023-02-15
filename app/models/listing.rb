@@ -36,7 +36,6 @@ class Listing < ApplicationRecord
             :price_sqft,
             :overview,
             :key_words,
-            :listing_by,
             presence: true
 
   has_many_attached :photos
