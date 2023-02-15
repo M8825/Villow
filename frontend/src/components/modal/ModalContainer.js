@@ -6,7 +6,8 @@ import Modal from "./Modal";
 import "./ModalContainer.scss";
 
 const ModalContainer = (props) => {
-	let [popup, setPopup] = useState({ isShown: false });
+	debugger
+	let [popup, setPopup] = useState({ isShown: props.isOpen });
 
 	const showModal = () => {
 		setPopup({ isShown: true });
@@ -16,6 +17,7 @@ const ModalContainer = (props) => {
 	const closeModal = () => {
 		setPopup({ isShown: false });
 		toggleScrollLock();
+		props.onClose();
 	};
 
 	// On click outside of modal, close modal if user clicks
@@ -25,6 +27,8 @@ const ModalContainer = (props) => {
 	const onClickOutside = (event) => {
 		if (event.target.className === "modal-container") {
 			closeModal();
+			debugger
+			props.onClose();
 		}
 	};
 

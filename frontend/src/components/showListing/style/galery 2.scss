@@ -1,0 +1,27 @@
+.gallery-wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.header {
+    width: 50vw;
+}
+
+.rest_gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 50vw;
+
+    .left {
+       width: 20vw;
+        padding: 2px 2px 2px 0px;
+    }
+
+    .right {
+        width: 20vw;
+        padding: 2px 0px 2px 2px;
+    }
+}
+

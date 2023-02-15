@@ -16,11 +16,10 @@ const ListingItem = ({ listing }) => {
 
 	return (
 		<>
-			<li className="listing_item">
-				<Link to={`/listings/${listing.id}`}>
-					<div className="listing_item__content_box">
-						<img src={listing.photoUrl} alt="" />
-						<div className="listing_item__thumbnail">
+			<li className="listing_item" style={{width: "385px", height: "300px"}}>
+				<Link to={`/listings/1`}>
+					<div className="listing_item__content_box" >
+					<div className="listing_item__thumbnail" style={{ backgroundImage: `url(${listing.photoUrl[0]})`}}>
                             <div className="listing_item__thumbnail__keyword">
                                 {listing.keyWords}
                             </div>

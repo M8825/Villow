@@ -7,8 +7,7 @@ import ModalWelcomeHeader from "./Welcome";
 
 import "./Navigation.css";
 
-
-const Nav = () => {
+const Nav = ({ isIndex }) => {
 	const [userIsActive, setUserIsActive] = useState(false);
 
 	useEffect(() => {
@@ -55,15 +54,17 @@ const Nav = () => {
 						)}
 					</div>
 				</nav>
-				<div className="search_container">
-					<h1>Find it. Tour it. Own it.</h1>
-					<input
-						className="search_container__search_bar"
-						type="text"
-						placeholder="Enter an address, neighborhood, city, or ZIP code"
-					/>
-					<div className="search_container__search_button"></div>
-				</div>
+				{!isIndex && (
+					<div className="search_container">
+						<h1>Find it. Tour it. Own it.</h1>
+						<input
+							className="search_container__search_bar"
+							type="text"
+							placeholder="Enter an address, neighborhood, city, or ZIP code"
+						/>
+						<div className="search_container__search_button"></div>
+					</div>
+				)}
 			</div>
 		</>
 	);

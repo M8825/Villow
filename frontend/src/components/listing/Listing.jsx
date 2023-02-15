@@ -4,7 +4,7 @@ import { fetchListings, getListings } from "../../store/listingsReducer";
 import Carousel from "./Carousel";
 
 
-const Listing = ({ header,paragraph}) => {
+const Listing = ({ header, paragraph}) => {
 	const dispatch = useDispatch();
 
 	const listings = useSelector(getListings);

@@ -3,10 +3,12 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import usersReducer from './usersReducer';
 import listingsReducer from './listingsReducer';
+import geocodeReducer from './geocodeReducer';
 
 const rootReducer = combineReducers({
   user: usersReducer,
-  listings: listingsReducer
+  listings: listingsReducer,
+  geocode: geocodeReducer
 });
 
 const configureStore = (preloadedState = {}) => (
