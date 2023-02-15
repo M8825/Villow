@@ -20,6 +20,8 @@ ApplicationRecord.transaction do
 
   puts "Creating users..."
   User.create!(email: "mlkz@gmail.com", password: "Ilmangel123!")
+  User.create!(email: "foo@gmail.com", password: "Ilmangel123!")
+  User.create!(email: "bar@gmail.com", password: "Ilmangel123!")
 
   puts "Creating Listing..."
   l1 =
@@ -47,7 +49,8 @@ ApplicationRecord.transaction do
     The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenance.",
       key_words: "STUDIO ELEVATOR DOORMAN STORAGE ALCOVE BATHROOM",
       views: 0,
-      zipcode: 10_001
+      zipcode: 10_001,
+      owner_id: 1
     )
 
   l2 =
@@ -72,7 +75,8 @@ ApplicationRecord.transaction do
     The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenance.",
       key_words: "DOORMAN STORAGE ELEVATOR STUDIO ALCOVE BATHROOM",
       views: 0,
-      zipcode: 10_007
+      zipcode: 10_007,
+      owner_id: 1
     )
 
   l3 =
@@ -97,7 +101,8 @@ ApplicationRecord.transaction do
     The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenance.",
       key_words: "ALCOVE ELEVATOR STORAGE STUDIO BATHROOM DOORMAN",
       views: 0,
-      zipcode: 10_007
+      zipcode: 10_007,
+      owner_id: 2
     )
 
   l4 =
@@ -122,7 +127,8 @@ ApplicationRecord.transaction do
     The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenance.",
       key_words: "BATHROOM STORAGE DOORMAN STUDIO ELEVATOR ALCOVE",
       views: 0,
-      zipcode: 10_016
+      zipcode: 10_016,
+      owner_id: 1
     )
 
   l5 =
@@ -147,7 +153,8 @@ ApplicationRecord.transaction do
     The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenance.",
       key_words: "ELEVATOR STUDIO BATHROOM DOORMAN STORAGE ALCOVE",
       views: 0,
-      zipcode: 10_011
+      zipcode: 10_011,
+      owner_id: 2
     )
 
   l6 =
@@ -169,7 +176,8 @@ ApplicationRecord.transaction do
         "Beautiful and sunny one-bedroom apartment in the heart of Upper East Side! This lovely apartment features hardwood floors, a large living room, updated kitchen, king-size bedroom, and updated bathroom. The building offers 24-hour doorman, elevator, laundry, and gym. Close to many fine restaurants, shopping, and transportation.",
       key_words: "1BR ELEVATOR DOORMAN GYM HARDWOOD FLOORS LAUNDRY",
       views: 0,
-      zipcode: 10_162
+      zipcode: 10_162,
+      owner_id: 1
     )
 
   # ---
@@ -192,7 +200,8 @@ ApplicationRecord.transaction do
         "This gorgeous 3-bedroom condo features an open living room and dining room with Brazilian cherry wood floors, a custom kitchen with cherry cabinets, granite countertops and high-end stainless-steel appliances, 3 bedrooms with abundant closet space, and 2 marble bathrooms. Building amenities include a doorman, gym, laundry, and roof deck. Great location close to many restaurants, shops, and transportation.",
       key_words: "3BR CONDO ELEVATOR DOORMAN GYM LAUNDRY ROOF DECK",
       views: 0,
-      zipcode: 10_065
+      zipcode: 10_065,
+      owner_id: 1
     )
 
   l8 =
@@ -215,7 +224,8 @@ ApplicationRecord.transaction do
       key_words:
         "STUDIO HARDWOOD FLOORS UPDATED KITCHEN UPDATED BATHROOM LAUNDRY",
       views: 0,
-      zipcode: 10_028
+      zipcode: 10_028,
+      owner_id: 2
     )
 
   l9 =
@@ -237,7 +247,8 @@ ApplicationRecord.transaction do
         "Beautiful one-bedroom apartment in the heart of the Upper East Side! This spacious apartment features large windows, hardwood floors, and a renovated kitchen. The building is well-maintained and features a doorman and laundry facilities. Conveniently located near transportation, shops, and restaurants.",
       key_words: "1BR HARDWOOD FLOORS RENOVATED KITCHEN DOORMAN LAUNDRY",
       views: 0,
-      zipcode: 10_021
+      zipcode: 10_021,
+      owner_id: 2
     )
 
   l10 =
@@ -259,7 +270,8 @@ ApplicationRecord.transaction do
         "Luxury three-bedroom condo with stunning views of Central Park! This beautiful apartment features high ceilings, floor-to-ceiling windows, and a gourmet kitchen. The building offers 24-hour doorman service, a fitness center, and a landscaped roof terrace. Located just steps from Central Park and the Museum Mile.",
       key_words: "3BR CONDO CENTRAL PARK VIEWS DOORMAN FITNESS TERRACE",
       views: 0,
-      zipcode: 10_029
+      zipcode: 10_029,
+      owner_id: 2
     )
 
   l11 =
@@ -281,7 +293,8 @@ ApplicationRecord.transaction do
         "Stylish two-bedroom co-op in a prime Upper East Side location! This renovated apartment features an open layout, high ceilings, and custom built-ins. The building offers a 24-hour doorman, live-in superintendent, and a common roof deck. Close to transportation, shopping, and dining.",
       key_words: "2BR RENOVATED CO-OP DOORMAN ROOF DECK CUSTOM BUILT-INS",
       views: 0,
-      zipcode: 10_021
+      zipcode: 10_021,
+      owner_id: 2
     )
 
   l12 =
@@ -303,7 +316,8 @@ ApplicationRecord.transaction do
         "Elegant three-bedroom co-op in a classic pre-war building! This spacious apartment features high ceilings, original moldings, and a wood-burning fireplace. The building offers a 24-hour doorman, a live-in superintendent, and a roof garden. Conveniently located near transportation, shops, and restaurants.",
       key_words: "3BR PRE-WAR CO-OP DOORMAN FIREPLACE ROOF GARDEN",
       views: 0,
-      zipcode: 10_021
+      zipcode: 10_021,
+      owner_id: 1
     )
 
   l13 =
@@ -325,7 +339,8 @@ ApplicationRecord.transaction do
         "Spacious two-bedroom condo with a private balcony and city views! This modern apartment features hardwood floors, stainless steel appliances, and in-unit laundry. The building offers a 24-hour doorman, a fitness center, and a children's playroom. Close to transportation, shops, and restaurants.",
       key_words: "2BR CONDO BALCONY CITY VIEWS DOORMAN FITNESS PLAYROOM",
       views: 0,
-      zipcode: 10_128
+      zipcode: 10_128,
+      owner_id: 2
     )
 
   l14 =
@@ -347,7 +362,8 @@ ApplicationRecord.transaction do
         "Stunning four-bedroom co-op with beautiful pre-war details! This grand apartment features a formal dining room, a wood-burning fireplace, and a home office. The building offers a 24-hour doorman, a live-in superintendent, and a roof terrace. Conveniently located near transportation, shops, and restaurants.",
       key_words: "4BR PRE-WAR CO-OP DOORMAN FIREPLACE HOME OFFICE ROOF TERRACE",
       views: 0,
-      zipcode: 10_128
+      zipcode: 10_128,
+      owner_id: 1
     )
 
   l15 =
@@ -370,7 +386,8 @@ ApplicationRecord.transaction do
       key_words:
         "5BR CONDO TERRACE HOME OFFICE WINE CELLAR DOORMAN FITNESS ROOF DECK",
       views: 0,
-      zipcode: 10_128
+      zipcode: 10_128,
+      owner_id: 2
     )
 
   l16 =
@@ -392,7 +409,8 @@ ApplicationRecord.transaction do
         "Charming one-bedroom apartment in a well-maintained building! This bright apartment features hardwood floors, a separate kitchen, and ample closet space. The building offers laundry facilities and a live-in super. Conveniently located near transportation, shops, and restaurants.",
       key_words: "1BR HARDWOOD FLOORS SEPARATE KITCHEN LAUNDRY",
       views: 0,
-      zipcode: 10_075
+      zipcode: 10_075,
+      owner_id: 1
     )
 
   puts "> Attaching Photos..."

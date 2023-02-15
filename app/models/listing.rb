@@ -18,12 +18,15 @@
 #  price_sqft    :integer          not null
 #  overview      :text             not null
 #  key_words     :text             not null
-#  listing_by    :string           not null
 #  views         :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  zipcode       :integer          not null
+#  owner_id      :bigint
 #
 class Listing < ApplicationRecord
+  belongs_to :owner, class_name: :User, foreign_key: :owner_id
+
   validates :price,
             :bedroom,
             :bathroom,
