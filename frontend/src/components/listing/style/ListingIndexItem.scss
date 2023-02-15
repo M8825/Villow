@@ -1,15 +1,11 @@
 .listing_item {
     list-style: none;
-    // min-width: 286px;
-    // height: 283px;
     border-radius: 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 2px 6px -1px;
 }
 
 .listing_item:hover {
     list-style: none;
-    // min-width: 286px;
-    // height: 283px;
     border-radius: 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 10px -1px, rgba(0, 0, 0, 0.3) 0px 4px 6px -1px;
 }
@@ -21,14 +17,10 @@
 }
 
 .listing_item__thumbnail {
-    // background-image: url("https://photos.zillowstatic.com/fp/0e3b3d4d314759ce68e639037620f61d-p_e.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
     border-radius: 5px 5px 0px 0px;
     padding: 10px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
 }
 
