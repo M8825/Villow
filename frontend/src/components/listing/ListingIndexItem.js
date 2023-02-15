@@ -4,7 +4,7 @@ import ListingIndexItemHeart from "./ListingIndexItemHeart";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
 
 
-const ListingItem = ({ listing, listingStyling }) => {
+const ListingItem = ({ listing, listingStyling, thumbnailStyling }) => {
     const buildingType = listing.buildingType === "Apartment" ? "Apt" : listing.buildingType;
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -19,7 +19,7 @@ const ListingItem = ({ listing, listingStyling }) => {
 			<li className="listing_item" style={listingStyling}>
 				<Link to={`/listings/1`}>
 					<div className="listing_item__content_box" >
-					<div className="listing_item__thumbnail" style={{ backgroundImage: `url(${listing.photoUrl[0]})`, backgroundSize: "cover"}}>
+					<div className="listing_item__thumbnail" style={{ backgroundImage: `url(${listing.photoUrl[0]})`, backgroundSize: "cover", ...thumbnailStyling}} >
                             <div className="listing_item__thumbnail__keyword">
                                 {listing.keyWords.split(" ").slice(0, 3).join(" ")}
                             </div>

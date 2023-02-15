@@ -4,8 +4,8 @@ import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
 import { getLatLngByAddress } from "../../store/geocodeReducer";
 
 const containerStyle = {
-	width: "60vw",
-	height: "100vh",
+	width: "100%",
+	height: "95.6vh",
 };
 
 

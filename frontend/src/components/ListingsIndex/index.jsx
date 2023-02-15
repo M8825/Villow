@@ -33,23 +33,27 @@ const ListingsPage = () => {
 		history.push("/listings");
 	};
 
+	const listingStyling = {
+		backgroundColor: "yellow",
+		flexBasis: "49%",
+		maxWidth: "49%",
+		height: "281px"
+	};
+
+	const thumbnailStyling = {
+		height: "171px",
+
+	}
+
 	return (
 		<>
-			<div
-				style={{
-					display: "flex",
-					flexWrap: "wrap",
-					justifyContent: "space-around",
-					padding: "10px",
-					gap: "10px",
-					width: "40vw",
-					height: "100vh",
-				}}
-			>
+			<div className="listings-container">
 				{listings.map((listing) => {
 					return (
 						<ListingItem
-							listing={listing}
+							listing={listing} style
+							listingStyling={listingStyling}
+							thumbnailStyling={thumbnailStyling}
 						/>
 					);
 				})}

@@ -1,0 +1,13 @@
+.listings-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 5px 10px;
+    gap: 5px;
+    max-width: 850px;
+    min-width: 850px;
+    height: 100vh;
+    background-color: coral;
+    overflow: auto;
+}
+
