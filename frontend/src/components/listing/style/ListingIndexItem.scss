@@ -3,7 +3,6 @@
     // min-width: 286px;
     // height: 283px;
     border-radius: 5px;
-    height: 100px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 2px 6px -1px;
 }
 
@@ -17,9 +16,8 @@
 
 .listing_item__content_box {
     display: grid;
-   grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     height: 100%;
-    border-radius: 125px;
 }
 
 .listing_item__thumbnail {
@@ -53,7 +51,7 @@
     gap: 1%;
 }
 
-.listing_item__info > h1 {
+.listing_item__info>h1 {
     font-size: 20px;
     text-align: left;
     color: 2A2A33;
@@ -86,4 +84,3 @@
 .listing_item__info__details__address {
     font-size: 14ps
 }
-
