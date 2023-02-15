@@ -68,6 +68,14 @@ const Home = ({ listing }) => {
 					</div>
 					<p>{listing.address}</p>
 					{listingType(listing.listingType)}
+					<p><span>Est. payment: </span>{listing.estPayment}</p>
+				</div>
+				<div className="follow-buttons-wrapper">
+					<button className="github_btn">
+					Github
+					<p>View on Github</p>
+					</button>
+					<button className="linkedin_btn">LinkedIn</button>
 				</div>
 				<div className="listing-info">
 					<div className="listing-info__header-menu">

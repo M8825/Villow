@@ -42,6 +42,12 @@
     flex-direction: column;
     padding: 24px 0px 0px 16px;
     gap: 10px;
+
+    p {
+        span{
+            font-weight: 800;
+        }
+    }
 }
 
 
@@ -55,10 +61,11 @@
         @include flexCenter();
         justify-content: flex-start;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
 
         p {
             font-weight: 800;
+            font-size: 18px;
             line-height: 24px;
         }
 
@@ -67,7 +74,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: red;
+            background-color: rgb(236 102 88);
         }
 
         .rent {
@@ -78,11 +85,50 @@
             background-color: #8a2be2;
         }
     }
-
-
-
 }
 
+.follow-buttons-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0px 16px 0px 0px;
+    gap: 10px;
+
+    button {
+        border-radius: 5px;
+        font-weight: 800;
+    }
+
+    .github_btn {
+        background-color: rgb(0, 106, 255);
+        width: 70vw;
+        color: white;
+        padding: 10px;
+
+        p {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(35 81 182)
+        }
+    }
+
+    .linkedin_btn {
+        border: 1px solid rgb(35 81 182);
+        color: rgb(35 81 182);
+        width: 30vw;
+        padding: 20px;
+        font-size: 14px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(243 250 254)
+        }
+    }
+}
 
 .top-container__header {
     @include flexCenter();

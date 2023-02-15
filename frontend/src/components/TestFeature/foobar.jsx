@@ -1,23 +1,14 @@
-import React from "react";
-import ModalContainer from "../modal/ModalContainer";
 
-const Foobar = () => {
-	const modalAreaStyling = {
-		width: "800px",
-		height: "800px",
-		backgroundColor: "rgb(255 255 255)",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "end",
-		alignItems: "center",
-		gap: "20px",
-	}
-	return (
-		<ModalContainer modalAreaStyling={modalAreaStyling}>
-			<h1>Mlkz</h1>
-			<p>Wilson</p>
-		</ModalContainer>
-	);
-};
+import { useMemo } from "react";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
-export default Foobar;
+export default function Foobar() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDjeZ25bTcc8oOxF2TZiu9Co42kqbMKcBU",
+  });
+
+//   if (!isLoaded) return <div>Loading...</div>;
+  return <h1>Map</h1>;
+}
+
+

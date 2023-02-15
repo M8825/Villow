@@ -22,6 +22,34 @@ ApplicationRecord.transaction do
   User.create!(email: "mlkz@gmail.com", password: "Ilmangel123!")
 
   puts "Creating Listing..."
+  l1 =
+  Listing.create(
+    price: 700_000,
+    bedroom: 3,
+    bathroom: 2,
+    sqft: 1500,
+    address: "100 Main St, New York, NY 10001",
+    listing_type: "Sale",
+    est_payment: "$3500/month",
+    building_type: "Apartment",
+    built_in: 1990,
+    heating: true,
+    ac: true,
+    garage: true,
+    price_sqft: 467,
+    overview: "Spacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
+    This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
+    This unique apartment has beautiful solid oak parquet floors, plenty of storage and so much more.\n
+    The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenanceSpacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
+    This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
+    This unique apartment has beautiful solid oak parquet floors, plenty of storage and so much more.\n
+    The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenance.",
+
+    key_words: "HUGE ALCOVE, STUDIOSTUNNING, BATHROOMSPACIOUS, ALCOVE, STUDIOPLENTY OF STORAGE, EUROPEAN STYLE PEDESTAL SINK, FULL TIME DOORMANFULL, SERVICE BUILDING",
+    listing_by: "John Doe",
+    views: 0,
+    zipcode: 10_001
+  )
 
 
   Listing.create(
@@ -38,8 +66,11 @@ ApplicationRecord.transaction do
     ac: true,
     garage: true,
     price_sqft: 450,
-    overview: "Spacious 4BR 3BA condo with stunning views of Central Park",
-    key_words: "NYC, Condo, Rent",
+    overview: "Spacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
+    This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
+    This unique apartment has beautiful solid oak parquet floors, plenty of storage and so much more.
+    The pet-friendly, full service building has a full time doorman, Concierge, valet and an on-site garage where residents receive a 25% discount. We are close to most subway lines as well as the cross-town buses. There is a monthly special assessment of $220.07 through 2/28/23, in addition to the maintenance.",
+    key_words: "HUGE ALCOVE, STUDIOSTUNNING, BATHROOMSPACIOUS, ALCOVE, STUDIOPLENTY OF STORAGE, EUROPEAN STYLE PEDESTAL SINK, FULL TIME DOORMANFULL, SERVICE BUILDING",
     listing_by: "Jane Doe",
     views: 0,
     zipcode: 10_007
@@ -108,27 +139,7 @@ ApplicationRecord.transaction do
     zipcode: 10_011
   )
 
-  l1 =
-    Listing.create(
-      price: 700_000,
-      bedroom: 3,
-      bathroom: 2,
-      sqft: 1500,
-      address: "100 Main St, New York, NY 10001",
-      listing_type: "Sale",
-      est_payment: "$3500/month",
-      building_type: "Apartment",
-      built_in: 1990,
-      heating: true,
-      ac: true,
-      garage: true,
-      price_sqft: 467,
-      overview: "Beautiful 3BR 2BA apartment in the heart of NYC",
-      key_words: "NYC, Apartment, Sale",
-      listing_by: "John Doe",
-      views: 0,
-      zipcode: 10_001
-    )
+
 
   l1.photos.attach([
     {io:URI.open('https://villow-seeds.s3.amazonaws.com/house1.webp'), filename: 'house1.webp'},
