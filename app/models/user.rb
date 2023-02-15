@@ -14,6 +14,8 @@ class User < ApplicationRecord
   before_validation :ensure_session_token
   validates :password, length: { minimum: 6 }, allow_nil: true
 
+  has_many :listings, class_name: :Listing, foreign_key: :owner_id
+
   def ensure_session_token
     self.session_token ||= generate_unique_session_token
   end
