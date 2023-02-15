@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import {
 	BrowserRouter as Router,
-Switch,
+	Switch,
 	Route,
-	useHistory
+	useHistory,
 } from "react-router-dom";
 import Nav from "./components/header/Navigation";
 import ListingIndex from "./components/listing/";
@@ -65,13 +65,22 @@ const App = () => {
 					}}
 				/>
 				<Route exact path="/listings">
-					<Nav isIndex={true}/>
-					<div style={{ display: "flex"}}>
-					<Foobar/>
-					<ListingsPage />
+					<Nav isIndex={true} />
+					<div
+					style={{ height: "55px", backgroundColor: "coral"}}
+					>
+
+					</div>
+					<div style={{ display: "flex" }}>
+						<Foobar />
+						<ListingsPage />
 					</div>
 				</Route>
-        		<Route exact path="/listings/:listingId" component={ShowListing} />
+				<Route
+					exact
+					path="/listings/:listingId"
+					component={ShowListing}
+				/>
 			</Switch>
 		</Router>
 	);

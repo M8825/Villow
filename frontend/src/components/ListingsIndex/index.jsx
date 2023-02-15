@@ -4,12 +4,6 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { getListings, fetchListings } from "../../store/listingsReducer";
 import ListingItem from "../listing/ListingIndexItem";
-import Nav from "../header/Navigation";
-import ListingIndex from "../listing";
-import Layout from "../cards";
-import Footer from "../footer";
-import ShowListing from "../showListing";
-import { Heading } from "@chakra-ui/react";
 
 const ListingsPage = () => {
 	const dispatch = useDispatch();
@@ -34,35 +28,43 @@ const ListingsPage = () => {
 	};
 
 	const listingStyling = {
-		backgroundColor: "yellow",
 		flexBasis: "49%",
 		maxWidth: "49%",
-		height: "281px"
+		height: "281px",
 	};
 
 	const thumbnailStyling = {
 		height: "171px",
-
-	}
+	};
 
 	return (
 		<>
-			<div className="listings-container">
-				{listings.map((listing) => {
-					return (
-						<ListingItem
-							listing={listing} style
-							listingStyling={listingStyling}
-							thumbnailStyling={thumbnailStyling}
-						/>
-					);
-				})}
+			<div className="index-container">
+				<div className="listing-container-header">
+					<h1>Manhattan NY Real Estate & Homes For Sale</h1>
+					<div className="listing-container-header__btn_container">
+						<button className="btn1">
+							<span>{listings.length}</span> Agent listings
+						</button>
+						<button className="btn2">
+							{" "}
+							<span>0</span> Agent listings
+						</button>
+					</div>
+				</div>
+				<div className="listings-container">
+					{listings.map((listing) => {
+						return (
+							<ListingItem
+								listing={listing}
+								style
+								listingStyling={listingStyling}
+								thumbnailStyling={thumbnailStyling}
+							/>
+						);
+					})}
+				</div>
 			</div>
-			{/* <Nav />
-        <ListingIndex onOpenModal={handleOpenModal} />
-        <Layout />
-        <Footer />
-        <ShowListing isOpen={isModalOpen} onClose={handleCloseModal} /> */}
 		</>
 	);
 };
