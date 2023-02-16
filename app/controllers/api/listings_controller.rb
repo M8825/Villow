@@ -1,4 +1,6 @@
 class Api::ListingsController < ApplicationController
+  before_action :snake_case_params, only: %i[create update]
+
   def index
     @listings = Listing.all
 
@@ -32,26 +34,29 @@ class Api::ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(
-      :price,
-      :bedroom,
-      :bathroom,
-      :sqft,
-      :address,
-      :city,
-      :state,
-      :zipcode,
-      :listing_type,
-      :est_payment,
-      :building_type,
-      :built_in,
-      :heating,
-      :ac,
-      :garage,
-      :price_sqft,
-      :overview,
-      :key_words,
-      :owner_id
-    )
+    params
+      .require(:listing)
+      .permit(
+        :price,
+        :bedroom,
+        :bathroom,
+        :sqft,
+        :address,
+        :city,
+        :state,
+        :zipcode,
+        :heating,
+        :ac,
+        :garage,
+        :overview,
+        :key_words,
+        :price_sqft,
+        :owner_id,
+        :built_in,
+        :building_type,
+        :listing_type,
+        :est_payment
+      )
+      .deep_transform_keys!(&:underscore)
   end
 end
