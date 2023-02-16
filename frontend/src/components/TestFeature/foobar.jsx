@@ -69,6 +69,7 @@ const CreateListing = () => {
 	const [isGarage, setGarage] = useState(listing.garage);
 	const [isAc, setAc] = useState(listing.ac);
 	const [isHeating, setHeating] = useState(listing.heating);
+	const [agreement, setAgreement] = useState(false);
 
 	// TODO: Figure out the way to list renting or selling
 	// const [listingType, setListingType] = useState("Sale");
@@ -326,7 +327,7 @@ const CreateListing = () => {
 					<label>
 						<label className="terms">
 							<div className="inner-check">
-							<input type="checkbox" className="agreement" />
+							<input type="checkbox" checked={agreement} onClick={(e) => setAgreement(true)} className="agreement" />
 								I agree to, acknowledge and understand the
 								following: (i) I am (or I have authority to act
 								on behalf of) the owner of this home; (ii) I
@@ -372,7 +373,7 @@ const CreateListing = () => {
 							</div>
 						</label>
 					</label>
-					<button onSubmit={handleSubmit} className="sbmt-btn">
+					<button type="submit" onSubmit={handleSubmit} disabled={!agreement} className="sbmt-btn">
 						{formType}
 					</button>
 				</form>

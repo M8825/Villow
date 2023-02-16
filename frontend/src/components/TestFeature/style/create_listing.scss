@@ -91,13 +91,11 @@ label > input {
 
 
 textarea {
-    color: #000;
     background: #fff;
     border: 1px solid #000;
 
     &:focus {
-        color: #fff;
-        background: #000;
+        color: #000;
     }
 }
 
@@ -165,6 +163,10 @@ h2 {
     width: 100%;
     &:hover {
         background-color: rgb(31 68 148);
+    }
+
+    &:disabled {
+        background-color: rgb(150, 158, 175);
     }
 }
 
