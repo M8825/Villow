@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { getListings, fetchListings } from "../../store/listingsReducer";
 import ListingItem from "../listing/ListingIndexItem";
+import { color } from "@chakra-ui/react";
+// import { Link } from "react-router-dom";
 
 const ListingsPage = () => {
 	const dispatch = useDispatch();
@@ -38,6 +40,22 @@ const ListingsPage = () => {
 
 	return (
 		<>
+			{/* <Link
+				to={`listings/${1}/edit`}
+				style={{
+					width: "200px",
+					backgroundColor: "blue",
+					height: "40px",
+					color: "white",
+					fontWeight: "800",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+				}}
+			>
+				Edit report
+			</Link> */}
+
 			<div className="index-container">
 				<div className="listing-container-header">
 					<h1>Manhattan NY Real Estate & Homes For Sale</h1>
@@ -52,9 +70,10 @@ const ListingsPage = () => {
 					</div>
 				</div>
 				<div className="listings-container">
-					{listings.map((listing) => {
+					{listings.map((listing, i) => {
 						return (
 							<ListingItem
+								key={i}
 								listing={listing}
 								style
 								listingStyling={listingStyling}

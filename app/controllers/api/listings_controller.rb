@@ -1,5 +1,5 @@
 class Api::ListingsController < ApplicationController
-  before_action :snake_case_params, only: %i[create update]
+  before_action :set_report, only: %i[show update destroy]
 
   def index
     @listings = Listing.all
@@ -17,7 +17,6 @@ class Api::ListingsController < ApplicationController
     # :views is not included in listing_params and should have default value 0
     @listing = Listing.new(listing_params)
 
-    debugger
     if @listing.save
       render :show
     else
@@ -26,12 +25,23 @@ class Api::ListingsController < ApplicationController
   end
 
   def update
+    if @listing.update(listing_params)
+      render :show
+    else
+      render json: @report.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
   def destroy
   end
 
   private
+
+  def set_report
+    @listing = Listing.find(params[:id])
+  rescue StandardError
+    render json: ["Report not found"], status: :not_found
+  end
 
   def listing_params
     params

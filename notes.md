@@ -11,7 +11,7 @@
     [X] - add default value to listing tables on view
     [X] - delete listing by. This information should be provided by joins table between
             listing and user
-    [ ] - priceSqft should be calculate in front end
+    [X] - priceSqft should be calculate in front end
 
 #### Adding a listing
     [X] - write thunk and pojo actions to receiveListing
@@ -24,6 +24,10 @@
         - [ ] errors inf
         - [ ] Rent sell inf
         - [ ] Photos to upload inf
+
+#### Updating a listing
+    - [ ] - properly render inputs on update
+    - [ ] - Test on proper update
 
 
 

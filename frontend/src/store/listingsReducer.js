@@ -56,8 +56,19 @@ export const createListing = (listing) => async (dispatch) => {
 
 	if (res.ok) {
 		const newListing = await res.json();
-		debugger
 		dispatch(receiveListing(newListing));
+	}
+};
+
+export const updateListing = (listing) => async (dispatch) => {
+	const res = await csrfFetch(`/api/listings/${listing.id}`, {
+		method: "PUT",
+		body: JSON.stringify(listing),
+	});
+
+	if (res.ok) {
+		const updatedListing = await res.json();
+		dispatch(receiveListing(updatedListing));
 	}
 };
 
