@@ -11,6 +11,8 @@ import "./index.scss";
 import Map from "./components/map/map";
 import ListingsPage from "./components/ListingsIndex";
 
+import CreateListing from "./components/TestFeature/foobar";
+
 const App = () => {
 	return (
 		<Router>

@@ -15,6 +15,7 @@ class Api::ListingsController < ApplicationController
     # :views is not included in listing_params and should have default value 0
     @listing = Listing.new(listing_params)
 
+    debugger
     if @listing.save
       render :show
     else
@@ -37,6 +38,9 @@ class Api::ListingsController < ApplicationController
       :bathroom,
       :sqft,
       :address,
+      :city,
+      :state,
+      :zipcode,
       :listing_type,
       :est_payment,
       :building_type,
@@ -47,7 +51,7 @@ class Api::ListingsController < ApplicationController
       :price_sqft,
       :overview,
       :key_words,
-      :listing_by
+      :owner_id
     )
   end
 end

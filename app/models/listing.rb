@@ -39,6 +39,9 @@ class Listing < ApplicationRecord
             :price_sqft,
             :overview,
             :key_words,
+            :zipcode,
+            :city,
+            :state,
             presence: true
 
   has_many_attached :photos
