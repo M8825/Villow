@@ -23,4 +23,4 @@ json.extract! listing,
               :updated_at,
               :created_at
 
-json.photo_url listing.photos.map { |file| url_for(file) } # <-- ADD THIS LINE
+json.photo_urls listing.photos.map { |file| url_for(file) } # <-- ADD THIS LINE

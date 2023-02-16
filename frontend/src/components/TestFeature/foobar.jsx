@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	createListing,
@@ -13,7 +13,6 @@ import "./style/create_listing.scss";
 
 const CreateListing = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
 
 	const { listingId } = useParams();
 	const formType = listingId ? "Update post" : "Post for sale by owner";
@@ -26,12 +25,25 @@ const CreateListing = () => {
 		}
 	}, [dispatch, listingId]);
 
-	// PHOTO SECTIO
-	const [photoFile, setPhotoFile] = useState(null);
+	// const [photoFile, setPhotoFile] = useState(null);
+	const [photoFiles, setPhotoFiles] = useState([]);
+	const [photoUrls, setPhotoUrls] = useState([]);
 
-	const handleFile = ({ currentTarget }) => {
-		const file = currentTarget.files[0];
-		setPhotoFile(file);
+	const handleFiles = ({ currentTarget }) => {
+		const files = currentTarget.files;
+		setPhotoFiles(files);
+		if (files.length !== 0) {
+			let filesLoaded = 0;
+			const urls = [];
+			Array.from(files).forEach((file, index) => {
+				const fileReader = new FileReader();
+				fileReader.readAsDataURL(file);
+				fileReader.onload = () => {
+					urls[index] = fileReader.result;
+					if (++filesLoaded === files.length) setPhotoUrls(urls);
+				};
+			});
+		} else setPhotoUrls([]);
 	};
 
 	if (!listing) {
@@ -92,10 +104,13 @@ const CreateListing = () => {
 		e.preventDefault();
 
 		const formData = new FormData();
-		// formData.append("post[title]", title);
-		if (photoFile) {
-			formData.append("listing[photos]", photoFile);
-		}
+
+		  if (photoFiles.length !== 0) {   // <-- ADD THESE LINES
+			for (let photo of photoFiles) {
+			  formData.append('listing[photos][]', photo);
+			}
+		  }
+
 
 		if (listingId) {
 			let newListing = { ...listing };
@@ -141,39 +156,13 @@ const CreateListing = () => {
 			formData.append("listing[heating]", isHeating);
 
 			dispatch(createListing(formData));
-			// const estPayment = (price / (30 * 12)).toFixed(2);
-			// const priceSqft = (price / sqft).toFixed(2);
-			// const newListing = {
-			// 	price,
-			// 	address,
-			// 	city,
-			// 	state,
-			// 	zipcode,
-			// 	bedroom,
-			// 	bathroom,
-			// 	sqft,
-			// 	listing_type: "Sale",
-			// 	est_payment: estPayment,
-			// 	building_type: buildingType,
-			// 	built_in: builtIn,
-			// 	price_sqft: priceSqft,
-			// 	key_words: keyWords,
-			// 	overview,
-			// 	owner_id: owner,
-			// 	garage: isGarage,
-			// 	ac: isAc,
-			// 	heating: isHeating,
-			// };
-
-			// dispatch(createListing(newListing));
 		}
 
-		console.log(photoFile);
+		console.log(photoFiles);
 
-		// history.push("/listings");
 	};
-	// TODO: add styling to input focus
 
+	// TODO: add styling to input focus
 	return (
 		<>
 			{/* TODO: It's not index page but we still call this isIndex. change it to something abstract */}
@@ -200,7 +189,7 @@ const CreateListing = () => {
 						/>
 					</label>
 					<h1 className="photos"> HERE should be my photos</h1>
-					<input type="file" onChange={handleFile} />{" "}
+					<input type="file" onChange={handleFiles} multiple />{" "}
 					{/* <----- ADD THIS LINE */}
 					<div className="streetAddress">
 						<label>

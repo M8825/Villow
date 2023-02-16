@@ -19,7 +19,7 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling }) => {
 			<li className="listing_item" style={listingStyling}>
 				<Link to={`/listings/1`}>
 					<div className="listing_item__content_box" >
-					<div className="listing_item__thumbnail" style={{ backgroundImage: `url(${listing.photoUrl[0]})`, backgroundSize: "cover", ...thumbnailStyling}} >
+					<div className="listing_item__thumbnail" style={{ backgroundImage: `url(${listing.photoUrls[0]})`, backgroundSize: "cover", ...thumbnailStyling}} >
                             <div className="listing_item__thumbnail__keyword">
                                 {listing.keyWords.split(" ").slice(0, 3).join(" ")}
                             </div>

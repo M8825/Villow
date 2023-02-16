@@ -10,7 +10,6 @@ import "./style/home.scss"
 import ModalContainer from "../modal/ModalContainer";
 
 const ShowListing = ({isOpen, onClose}) => {
-    debugger
     const { listingId } = useParams();
     const dispatch = useDispatch();
     const listing = useSelector(getListing(listingId));

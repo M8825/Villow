@@ -1,5 +1,5 @@
 class Api::ListingsController < ApplicationController
-  before_action :set_report, only: %i[show update destroy]
+  before_action :set_listing, only: %i[show update destroy]
 
   def index
     @listings = Listing.all
@@ -38,14 +38,13 @@ class Api::ListingsController < ApplicationController
 
   private
 
-  def set_report
+  def set_listing
     @listing = Listing.find(params[:id])
   rescue StandardError
     render json: ["Report not found"], status: :not_found
   end
 
   def listing_params
-    debugger
     params
       .require(:listing)
       .permit(
@@ -68,7 +67,7 @@ class Api::ListingsController < ApplicationController
         :building_type,
         :listing_type,
         :est_payment,
-        :photos
+        photos: []
       )
       .deep_transform_keys!(&:underscore)
   end
