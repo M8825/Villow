@@ -13,10 +13,18 @@ export const csrfFetch = async (url, options = {}) => {
 
     // will need to modify this when using formData to attach resources like photos
         // can't have a Content-Type header
-    if (options.method.toUpperCase() !== 'GET') {
-        options.headers['Content-Type'] = 'application/json';
-        options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
-    }
+    // if (options.method.toUpperCase() !== 'GET') {
+    //     options.headers['Content-Type'] = 'application/json';
+    //     options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
+    // }
+
+    // Modified for formData
+    if (options.method.toUpperCase() !== "GET") {
+        if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
+          options.headers["Content-Type"] = "application/json";
+        }
+        options.headers["X-CSRF-Token"] = sessionStorage.getItem("X-CSRF-Token");
+      }
 
     const res = await fetch(url, options);
     return res

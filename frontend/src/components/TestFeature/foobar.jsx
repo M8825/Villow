@@ -26,6 +26,14 @@ const CreateListing = () => {
 		}
 	}, [dispatch, listingId]);
 
+	// PHOTO SECTIO
+	const [photoFile, setPhotoFile] = useState(null);
+
+	const handleFile = ({ currentTarget }) => {
+		const file = currentTarget.files[0];
+		setPhotoFile(file);
+	};
+
 	if (!listing) {
 		listing = {
 			price: "",
@@ -80,8 +88,14 @@ const CreateListing = () => {
 	// TODO: Set up errors
 	// const [errors, setErrors] = useState([]);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		const formData = new FormData();
+		// formData.append("post[title]", title);
+		if (photoFile) {
+			formData.append("listing[photos]", photoFile);
+		}
 
 		if (listingId) {
 			let newListing = { ...listing };
@@ -106,32 +120,57 @@ const CreateListing = () => {
 		} else {
 			const estPayment = (price / (30 * 12)).toFixed(2);
 			const priceSqft = (price / sqft).toFixed(2);
-			const newListing = {
-				price,
-				address,
-				city,
-				state,
-				zipcode,
-				bedroom,
-				bathroom,
-				sqft,
-				listing_type: "Sale",
-				est_payment: estPayment,
-				building_type: buildingType,
-				built_in: builtIn,
-				price_sqft: priceSqft,
-				key_words: keyWords,
-				overview,
-				owner_id: owner,
-				garage: isGarage,
-				ac: isAc,
-				heating: isHeating,
-			};
+			formData.append("listing[price]", price);
+			formData.append("listing[address]", address);
+			formData.append("listing[city]", city);
+			formData.append("listing[state]", state);
+			formData.append("listing[zipcode]", zipcode);
+			formData.append("listing[bedroom]", bedroom);
+			formData.append("listing[bathroom]", bathroom);
+			formData.append("listing[sqft]", sqft);
+			formData.append("listing[listing_type]", "Sale");
+			formData.append("listing[est_payment]", estPayment);
+			formData.append("listing[building_type]", buildingType);
+			formData.append("listing[built_in]", builtIn);
+			formData.append("listing[price_sqft]", priceSqft);
+			formData.append("listing[key_words]", keyWords);
+			formData.append("listing[overview]", overview);
+			formData.append("listing[owner_id]", owner);
+			formData.append("listing[garage]", isGarage);
+			formData.append("listing[ac]", isAc);
+			formData.append("listing[heating]", isHeating);
 
-			dispatch(createListing(newListing));
+			dispatch(createListing(formData));
+			// const estPayment = (price / (30 * 12)).toFixed(2);
+			// const priceSqft = (price / sqft).toFixed(2);
+			// const newListing = {
+			// 	price,
+			// 	address,
+			// 	city,
+			// 	state,
+			// 	zipcode,
+			// 	bedroom,
+			// 	bathroom,
+			// 	sqft,
+			// 	listing_type: "Sale",
+			// 	est_payment: estPayment,
+			// 	building_type: buildingType,
+			// 	built_in: builtIn,
+			// 	price_sqft: priceSqft,
+			// 	key_words: keyWords,
+			// 	overview,
+			// 	owner_id: owner,
+			// 	garage: isGarage,
+			// 	ac: isAc,
+			// 	heating: isHeating,
+			// };
+
+			// dispatch(createListing(newListing));
 		}
 
-		history.push("/listings");
+		console.log(photoFile);
+
+		// history.push("/listings");
 	};
 	// TODO: add styling to input focus
 
@@ -160,9 +199,9 @@ const CreateListing = () => {
 							onChange={(e) => setPrice(e.target.value)}
 						/>
 					</label>
-
 					<h1 className="photos"> HERE should be my photos</h1>
-
+					<input type="file" onChange={handleFile} />{" "}
+					{/* <----- ADD THIS LINE */}
 					<div className="streetAddress">
 						<label>
 							Street address
@@ -207,9 +246,7 @@ const CreateListing = () => {
 							/>
 						</label>
 					</div>
-
 					<h2>Home facts</h2>
-
 					<div className="room-details">
 						<label
 							style={{ display: "flex", flexDirection: "column" }}
@@ -274,7 +311,6 @@ const CreateListing = () => {
 							</label>
 						</div>
 					</div>
-
 					<div className="text-fields">
 						<label>
 							Describe your home
@@ -296,13 +332,12 @@ const CreateListing = () => {
 							/>
 						</label>
 					</div>
-
 					<div className="checkmarks">
 						<label>
 							<input
 								type="checkbox"
 								checked={isGarage}
-								onChange={(e) => setGarage(true)}
+								onChange={(e) => setGarage(!isGarage)}
 							/>
 							<p>Garage</p>
 						</label>
@@ -310,7 +345,7 @@ const CreateListing = () => {
 							<input
 								type="checkbox"
 								checked={isAc}
-								onChange={(e) => setAc(true)}
+								onChange={(e) => setAc(!isAc)}
 							/>
 							<p>Centra AC</p>
 						</label>
@@ -318,16 +353,20 @@ const CreateListing = () => {
 							<input
 								type="checkbox"
 								checked={isHeating}
-								onChange={(e) => setHeating(true)}
+								onChange={(e) => setHeating(!isHeating)}
 							/>
 							<p>Central Heating</p>
 						</label>
 					</div>
-
 					<label>
 						<label className="terms">
 							<div className="inner-check">
-							<input type="checkbox" checked={agreement} onClick={(e) => setAgreement(true)} className="agreement" />
+								<input
+									type="checkbox"
+									checked={agreement}
+									onChange={(e) => setAgreement(!agreement)}
+									className="agreement"
+								/>
 								I agree to, acknowledge and understand the
 								following: (i) I am (or I have authority to act
 								on behalf of) the owner of this home; (ii) I
@@ -373,7 +412,12 @@ const CreateListing = () => {
 							</div>
 						</label>
 					</label>
-					<button type="submit" onSubmit={handleSubmit} disabled={!agreement} className="sbmt-btn">
+					<button
+						type="submit"
+						onSubmit={handleSubmit}
+						disabled={!agreement}
+						className="sbmt-btn"
+					>
 						{formType}
 					</button>
 				</form>

@@ -17,6 +17,7 @@ class Api::ListingsController < ApplicationController
     # :views is not included in listing_params and should have default value 0
     @listing = Listing.new(listing_params)
 
+    debugger
     if @listing.save
       render :show
     else
@@ -44,6 +45,7 @@ class Api::ListingsController < ApplicationController
   end
 
   def listing_params
+    debugger
     params
       .require(:listing)
       .permit(
@@ -65,7 +67,8 @@ class Api::ListingsController < ApplicationController
         :built_in,
         :building_type,
         :listing_type,
-        :est_payment
+        :est_payment,
+        :photos
       )
       .deep_transform_keys!(&:underscore)
   end
