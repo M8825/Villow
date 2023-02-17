@@ -16,9 +16,6 @@ import CreateListing from "./components/TestFeature/foobar";
 
 const App = () => {
 	return (
-		// <Switch>
-		// </Switch>
-		// <Router>
 		<Switch>
 			<Route exec path="/listings/new" component={CreateListing} />
 			<Route

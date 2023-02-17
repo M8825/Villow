@@ -107,12 +107,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 						<input
 							type="text"
 							value={email}
-							onChange={(e) =>
-								setEmail(
-									e.target
-										.value
-								)
-							}
+							onChange={(e) => setEmail(e.target.value)}
 							placeholder="Enter Email"
 							required
 						/>
@@ -122,60 +117,44 @@ const NewAccountForm = ({ closeModalFunc }) => {
 						Password
 						<input
 							type="password"
-							value={
-								password.password
-							}
-							onChange={
-								handlePasswordChange
-							}
+							value={password.password}
+							onChange={handlePasswordChange}
 							placeholder="Create Password"
 						/>
 					</label>
 
 					<ul className="validation_list">
 						<ListItem
-							text={
-								"At least 8 characters "
-							}
+							text={"At least 8 characters "}
 							valid={password[1]}
 							password={password.password}
 						/>
 						<ListItem
-							text={
-								"Mix of letters and numbers"
-							}
+							text={"Mix of letters and numbers"}
 							valid={password[2]}
 							password={password.password}
 						/>
 						<ListItem
-							text={
-								"Contains a special character"
-							}
+							text={"Contains a special character"}
 							valid={password[3]}
 							password={password.password}
 						/>
 						<ListItem
-							text={
-								"Mix of uppercase and lowercase letters"
-							}
+							text={"Mix of uppercase and lowercase letters"}
 							valid={password[4]}
 							password={password.password}
 						/>
 					</ul>
 
-					<label
-						htmlFor="checkbox1"
-						id="login_form__checkbox"
-					>
+					{/* <label htmlFor="checkbox1" id="login_form__checkbox">
 						<input
 							type="checkbox"
 							id="checkbox1"
 							name="checkbox1"
 							value="value1"
 						/>
-						I am a landlord or industry
-						professional
-					</label>
+						<p>I am a landlord or industry professional</p>
+					</label> */}
 
 					<button
 						type="Submit"
@@ -187,8 +166,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 
 					<div id="login_form__terms_and_conditions">
 						<p>
-							By submitting, I accept
-							Zillow's{" "}
+							By submitting, I accept Villow's{" "}
 							<a
 								id="login_form__terms_and_conditions__terms_of_use_link"
 								href="https://www.zillow.com/z/corp/terms/"

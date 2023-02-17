@@ -188,8 +188,10 @@ const CreateListing = () => {
 							onChange={(e) => setPrice(e.target.value)}
 						/>
 					</label>
-					<h1 className="photos"> HERE should be my photos</h1>
+					<h2>Upload home photos</h2>
+					<br />
 					<input type="file" onChange={handleFiles} multiple />{" "}
+					<br />
 					{/* <----- ADD THIS LINE */}
 					<div className="streetAddress">
 						<label>

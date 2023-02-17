@@ -14,10 +14,8 @@ class Api::ListingsController < ApplicationController
   end
 
   def create
-    # :views is not included in listing_params and should have default value 0
     @listing = Listing.new(listing_params)
 
-    debugger
     if @listing.save
       render :show
     else

@@ -2,7 +2,6 @@ import React from "react";
 
 
 const Gallery = ({ listing }) => {
-	debugger
 	return (
 		<div
 			className="gallery-wrapper"
