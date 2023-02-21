@@ -1,10 +1,12 @@
 import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
 import { Heart, Share, Hide, More,  Logo, Building, Calendar, Heating, Cooling } from "./assets/svgs";
+import { useHistory } from "react-router-dom";
 import ShowMore from "./ShowMore";
 
 const Home = ({ listing }) => {
 	const formatter = useCurrencyFormatter();
+	const history = useHistory();
 
 	const listingPrice = formatter.format(listing.price);
 
@@ -71,7 +73,7 @@ const Home = ({ listing }) => {
 					<p><span>Est. payment: </span>{listing.estPayment}</p>
 				</div>
 				<div className="follow-buttons-wrapper">
-					<button className="github_btn">
+					<button className="github_btn" onClick={(e) => history.push("/listings")}>
 					Github
 					<p>View on Github</p>
 					</button>

@@ -60,10 +60,10 @@ export const createListing = (listing) => async (dispatch) => {
 	}
 };
 
-export const updateListing = (listing) => async (dispatch) => {
-	const res = await csrfFetch(`/api/listings/${listing.id}`, {
+export const updateListing = (listing, listingId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/listings/${listingId}`, {
 		method: "PUT",
-		body: JSON.stringify(listing),
+		body: listing,
 	});
 
 	if (res.ok) {

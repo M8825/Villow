@@ -31,6 +31,7 @@ class Api::ListingsController < ApplicationController
     end
   end
 
+  # TODO: DELETE
   def destroy
   end
 

@@ -3,9 +3,11 @@ import { loginUser } from "../../store/usersReducer";
 import { useDispatch } from "react-redux";
 import { Input, Button } from "@chakra-ui/react";
 import FollowButtonLinks from "./FollowButtonLinks";
+import { useHistory } from "react-router-dom";
 import "./LoginForm.scss";
 
 const LoginForm = ({ closeModalFunc }) => {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -33,16 +35,18 @@ const LoginForm = ({ closeModalFunc }) => {
 	const demoUserHandleOnClick = () => {
 		setPassword("Ilmangel123!");
 		setEmail("mlkz@gmail.com");
+		history.push("/")
 	};
 
 	return (
 		<>
 			<form onSubmit={handleSubmit} className="login_form">
-				<ul>
+				{/* <ul>
 					{errors.map((error) => (
 						<li key={error}>{error}</li>
 					))}
-				</ul>
+				</ul> */}
+				<br />
 				<label className="login_form__label form_first_element">
 					Email
 					<Input

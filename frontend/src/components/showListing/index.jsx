@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getListing, fetchListing } from "../../store/listingsReducer";
-import Gallery from "./Gallery";
+import Gallery from "./gallery";
 import Home from "./Home";
 import "./style/home.scss"
 
@@ -17,7 +17,7 @@ const ShowListing = ({isOpen, onClose}) => {
 
     useEffect(() => {
         dispatch(fetchListing(listingId));
-    }, [listingId])
+    }, [dispatch, listingId])
 
 
     const modalAreaStyling = {

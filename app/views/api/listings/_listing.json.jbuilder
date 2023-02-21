@@ -19,6 +19,7 @@ json.extract! listing,
               :overview,
               :key_words,
               :views,
+              :owner_id,
               :created_at,
               :updated_at,
               :created_at

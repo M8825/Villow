@@ -2,11 +2,14 @@ import React from "react";
 import { useState } from "react";
 import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
+import { useParams } from "react-router-dom";
+import ShowListing from "../showListing";
 
 import "./ModalContainer.scss";
 
 const ModalContainer = (props) => {
-	let [popup, setPopup] = useState({ isShown: props.isOpen });
+	const { listingId } = useParams();
+	let [popup, setPopup] = useState({ isShown: false });
 
 	const showModal = () => {
 		setPopup({ isShown: true });
@@ -16,7 +19,7 @@ const ModalContainer = (props) => {
 	const closeModal = () => {
 		setPopup({ isShown: false });
 		toggleScrollLock();
-		props.onClose();
+		// props.onClose();
 	};
 
 	// On click outside of modal, close modal if user clicks
@@ -26,8 +29,7 @@ const ModalContainer = (props) => {
 	const onClickOutside = (event) => {
 		if (event.target.className === "modal-container") {
 			closeModal();
-			debugger
-			props.onClose();
+			// props.onClose();
 		}
 	};
 
@@ -37,16 +39,33 @@ const ModalContainer = (props) => {
 
 	return (
 		<>
-			<SessionButton showModal={showModal} triggerText={"Sign in"} />
-			{popup.isShown ? (
-				<Modal
-					closeModal={closeModal}
-					onClickOutside={onClickOutside}
-					modalAreaStyling={props.modalAreaStyling}
-				>
-					{props.children}
-				</Modal>
-			) : null}
+			{listingId ? (
+				<>
+					<Modal
+						closeModal={closeModal}
+						onClickOutside={onClickOutside}
+						modalAreaStyling={props.modalAreaStyling}
+					>
+						{props.children}
+					</Modal>
+				</>
+			) : (
+				<div>
+					<SessionButton
+						showModal={showModal}
+						triggerText={"Sign in"}
+					/>
+					{popup.isShown ? (
+						<Modal
+							closeModal={closeModal}
+							onClickOutside={onClickOutside}
+							modalAreaStyling={props.modalAreaStyling}
+						>
+							{props.children}
+						</Modal>
+					) : null}
+				</div>
+			)}
 		</>
 	);
 };

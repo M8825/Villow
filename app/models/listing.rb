@@ -1,4 +1,4 @@
-# == Schema Information
+#listing.id == Schema Information
 #
 # Table name: listings
 #

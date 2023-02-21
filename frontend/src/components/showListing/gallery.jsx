@@ -2,6 +2,7 @@ import React from "react";
 
 
 const Gallery = ({ listing }) => {
+	debugger
 	return (
 		<div
 			className="gallery-wrapper"
@@ -9,11 +10,11 @@ const Gallery = ({ listing }) => {
 			<img
 				className="header"
 				alt="home_image"
-				src={listing.photoUrls[0]}
+				src={listing.photoUrls.reverse()[0]}
 			/>
 
 			<div className="rest_gallery">
-				{listing.photoUrls.map((photo, idx) => {
+				{listing.photoUrls.reverse().map((photo, idx) => {
 
 					if (idx !== 0) {
                         const classForImg = idx % 2 === 0 ? "right" :  "left"

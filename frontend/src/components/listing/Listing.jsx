@@ -14,7 +14,7 @@ const Listing = ({ header, paragraph}) => {
 	}, [dispatch]);
 
 	// TODO: Change it to more listings, Ideally on each swipe it should load another 4 listings
-	const sampleListings = listings ? listings.slice(0, 5) : [];
+	const sampleListings = listings ? listings.slice(0, 15) : [];
 
 	return (
 		<>

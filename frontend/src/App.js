@@ -55,7 +55,7 @@ const App = () => {
 				{/* TODO: search_bar */}
 				<div style={{ height: "55px",  border: "1px solid black" }}></div>
 
-				<Link
+				{/* <Link
 					to={`listings/${1}/edit`}
 					style={{
 						width: "100%",
@@ -88,7 +88,7 @@ const App = () => {
 					}}
 				>
 					CREATE NEW (Sorry for styling)
-				</Link>
+				</Link> */}
 
 				<div style={{ display: "flex" }}>
 					<Map />

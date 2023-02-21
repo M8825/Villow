@@ -10,8 +10,10 @@ import {
 
 import Nav from "../header/Navigation";
 import "./style/create_listing.scss";
+import { useHistory } from "react-router-dom";
 
 const CreateListing = () => {
+	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const { listingId } = useParams();
@@ -113,25 +115,54 @@ const CreateListing = () => {
 
 
 		if (listingId) {
-			let newListing = { ...listing };
-			newListing.price = price;
-			newListing.address = address;
-			newListing.city = city;
-			newListing.state = state;
-			newListing.zipcode = zipcode;
-			newListing.bedroom = bedroom;
-			newListing.bathroom = bathroom;
-			newListing.sqft = sqft;
-			newListing.building_type = buildingType;
-			newListing.built_in = builtIn;
-			newListing.key_words = keyWords;
-			newListing.overview = overview;
-			newListing.owner_id = owner;
-			newListing.garage = isGarage;
-			newListing.ac = isAc;
-			newListing.heating = isHeating;
 
-			dispatch(updateListing(newListing));
+			debugger
+			for (let key in listing) {
+				formData.append(`listing[${key}]`, listing[key]);
+			}
+
+			// let newListing = { ...listing };
+			// newListing.price = price;
+			// newListing.address = address;
+			// newListing.city = city;
+			// newListing.state = state;
+			// newListing.zipcode = zipcode;
+			// newListing.bedroom = bedroom;
+			// newListing.bathroom = bathroom;
+			// newListing.sqft = sqft;
+			// newListing.building_type = buildingType;
+			// newListing.built_in = builtIn;
+			// newListing.key_words = keyWords;
+			// newListing.overview = overview;
+			// newListing.owner_id = owner;
+			// newListing.garage = isGarage;
+			// newListing.ac = isAc;
+			// newListing.heating = isHeating;
+			const estPayment = (price / (30 * 12)).toFixed(2);
+			const priceSqft = (price / sqft).toFixed(2);
+
+			formData.append("listing[price]", price);
+			formData.append("listing[address]", address);
+			formData.append("listing[city]", city);
+			formData.append("listing[state]", state);
+			formData.append("listing[zipcode]", zipcode);
+			formData.append("listing[bedroom]", bedroom);
+			formData.append("listing[bathroom]", bathroom);
+			formData.append("listing[sqft]", sqft);
+			formData.append("listing[listing_type]", "Sale");
+			formData.append("listing[est_payment]", estPayment);
+			formData.append("listing[building_type]", buildingType);
+			formData.append("listing[built_in]", builtIn);
+			formData.append("listing[price_sqft]", priceSqft);
+			formData.append("listing[key_words]", keyWords);
+			formData.append("listing[overview]", overview);
+			formData.append("listing[owner_id]", owner);
+			formData.append("listing[garage]", isGarage);
+			formData.append("listing[ac]", isAc);
+			formData.append("listing[heating]", isHeating);
+
+			debugger
+			dispatch(updateListing(formData, listingId));
 		} else {
 			const estPayment = (price / (30 * 12)).toFixed(2);
 			const priceSqft = (price / sqft).toFixed(2);
@@ -155,10 +186,12 @@ const CreateListing = () => {
 			formData.append("listing[ac]", isAc);
 			formData.append("listing[heating]", isHeating);
 
+			debugger
 			dispatch(createListing(formData));
 		}
 
-		console.log(photoFiles);
+
+		history.push("/listings")
 
 	};
 
