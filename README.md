@@ -1,24 +1,16 @@
-# README
+# WELCOME TO WEBFLIX
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Introduction
 
-Things you may want to cover:
+Villow Clone is a replica of the popular real estate website Zillow. Villow is a platform that allows users to buy, sell, and rent properties. It provides a comprehensive database of real estate listings, including houses, apartments, and land. Users can search for properties by location, price, and other criteria, as well as save their favorite listings and receive notifications when new properties become available. As someone who is passionate about real estate, I wanted to create a similar platform that provides users with an easy-to-use interface and a wealth of real estate information. The technologies used in this project include:
 
-* Ruby version
 
-* System dependencies
+- Languages: Javascript, Ruby, HTML, and CSS
+- Frontend: React-Redux
+- Database: PostgreSQL
+- Hosting: Heroku
+- Asset Storage: AWS Simple Cloud Storage (S3)
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# User Auth
+A Villow user is able to create new profiles, which persist to both the front and backend.
