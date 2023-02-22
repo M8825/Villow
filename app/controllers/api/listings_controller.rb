@@ -1,4 +1,6 @@
 class Api::ListingsController < ApplicationController
+  before_action :set_listing, only: %i[show update destroy]
+
   def index
     @listings = Listing.all
 
@@ -12,7 +14,6 @@ class Api::ListingsController < ApplicationController
   end
 
   def create
-    # :views is not included in listing_params and should have default value 0
     @listing = Listing.new(listing_params)
 
     if @listing.save
@@ -23,31 +24,50 @@ class Api::ListingsController < ApplicationController
   end
 
   def update
+    if @listing.update(listing_params)
+      render :show
+    else
+      render json: @report.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
+  # TODO: DELETE
   def destroy
   end
 
   private
 
+  def set_listing
+    @listing = Listing.find(params[:id])
+  rescue StandardError
+    render json: ["Report not found"], status: :not_found
+  end
+
   def listing_params
-    params.require(:listing).permit(
-      :price,
-      :bedroom,
-      :bathroom,
-      :sqft,
-      :address,
-      :listing_type,
-      :est_payment,
-      :building_type,
-      :built_in,
-      :heating,
-      :ac,
-      :garage,
-      :price_sqft,
-      :overview,
-      :key_words,
-      :listing_by
-    )
+    params
+      .require(:listing)
+      .permit(
+        :price,
+        :bedroom,
+        :bathroom,
+        :sqft,
+        :address,
+        :city,
+        :state,
+        :zipcode,
+        :heating,
+        :ac,
+        :garage,
+        :overview,
+        :key_words,
+        :price_sqft,
+        :owner_id,
+        :built_in,
+        :building_type,
+        :listing_type,
+        :est_payment,
+        photos: []
+      )
+      .deep_transform_keys!(&:underscore)
   end
 end

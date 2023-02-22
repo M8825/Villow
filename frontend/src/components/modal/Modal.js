@@ -6,6 +6,7 @@ import ModalCloseButton from "./ModalCloseButton";
 import "./Modal.scss";
 
 export const Modal = (props) => {
+
 	return ReactDOM.createPortal(
 		<FocusTrap>
 			<aside className="modal-container" onClick={props.onClickOutside}>

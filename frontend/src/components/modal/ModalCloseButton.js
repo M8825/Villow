@@ -6,6 +6,7 @@ const ModalCloseButton = ({ closeModal }) => {
 			aria-label="Close Modal"
 			aria-labelledby="close-modal"
 			className="_modal-close"
+			// onClick={handleClick}
 			onClick={closeModal}
 		>
 			<span id="close-modal" className="_hide-visual">

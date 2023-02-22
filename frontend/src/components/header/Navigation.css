@@ -4,8 +4,10 @@
 
 #navigation {
     height: 80px;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1.5fr;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10%;
 }
 
 
@@ -22,10 +24,9 @@
 
 
 .middle {
-    background-image: url("https://s.zillowstatic.com/pfs/static/z-logo-default.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 160px 35px;
+    /* background-image: url("https://s.zillowstatic.com/pfs/static/z-logo-default.svg"); */
+    /* background-repeat: no-repeat;
+    background-position: center; */
 }
 
 

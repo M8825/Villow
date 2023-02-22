@@ -35,10 +35,9 @@ export const fetchListings = () => async (dispatch) => {
 
 	if (res.ok) {
 		const listings = await res.json();
-	    dispatch(receiveListings(listings));
+		dispatch(receiveListings(listings));
 	}
 };
-
 
 export const fetchListing = (id) => async (dispatch) => {
 	const res = await csrfFetch(`/api/listings/${id}`);
@@ -49,13 +48,37 @@ export const fetchListing = (id) => async (dispatch) => {
 	}
 };
 
+export const createListing = (listing) => async (dispatch) => {
+	const res = await csrfFetch("/api/listings", {
+		method: "POST",
+    	body: listing
+	});
+
+	if (res.ok) {
+		const newListing = await res.json();
+		dispatch(receiveListing(newListing));
+	}
+};
+
+export const updateListing = (listing, listingId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/listings/${listingId}`, {
+		method: "PUT",
+		body: listing,
+	});
+
+	if (res.ok) {
+		const updatedListing = await res.json();
+		dispatch(receiveListing(updatedListing));
+	}
+};
+
 
 const listingsReducer = (state = {}, action) => {
 	const newState = { ...state };
 
 	switch (action.type) {
 		case RECEIVE_LISTINGS:
-			return {...newState, ...action.listings};
+			return { ...newState, ...action.listings };
 		case RECEIVE_LISTING:
 			newState[action.listing.id] = action.listing;
 			return newState;

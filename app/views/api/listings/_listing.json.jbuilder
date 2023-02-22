@@ -5,6 +5,9 @@ json.extract! listing,
               :bathroom,
               :sqft,
               :address,
+              :city,
+              :state,
+              :zipcode,
               :listing_type,
               :est_payment,
               :building_type,
@@ -16,8 +19,9 @@ json.extract! listing,
               :overview,
               :key_words,
               :views,
+              :owner_id,
               :created_at,
               :updated_at,
               :created_at
 
-json.photo_url listing.photos.map { |file| url_for(file) } # <-- ADD THIS LINE
+json.photo_urls listing.photos.map { |file| url_for(file) } # <-- ADD THIS LINE

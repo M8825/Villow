@@ -4,6 +4,12 @@ import ModalContainer from "../modal/ModalContainer";
 import AuthorizedUser from "./AuthorizedUser";
 import ModalTabs from "../modal/ModalTabs";
 import ModalWelcomeHeader from "./Welcome";
+import { Link } from "react-router-dom";
+import Layout from "../cards";
+import Footer from "../footer";
+import ListingIndex from "../listing/";
+import villow from "../assets/villow.png";
+
 
 import "./Navigation.css";
 
@@ -31,7 +37,7 @@ const Nav = ({ isIndex }) => {
 
 	return (
 		<>
-			<div className="container">
+			<div className="container" >
 				<nav id="navigation">
 					<div className="grid-item left">
 						<p>Github</p>
@@ -39,7 +45,43 @@ const Nav = ({ isIndex }) => {
 						<p>AngelList</p>
 						<p>About</p>
 					</div>
-					<div className="grid-item middle"></div>
+					<Link
+						to="/"
+						render={() => {
+							return (
+								<>
+									<Nav />
+									<ListingIndex
+										header={"Homes For You in New York, NY"}
+										paragraph={"Based on your view history"}
+									/>
+									<Layout />
+									<ListingIndex
+										header={
+											"Trending Homes in New York, NY"
+										}
+										paragraph={
+											"Popular listings in the area"
+										}
+									/>
+									<ListingIndex
+										header={
+											"Selling Soon Homes in New York, NY"
+										}
+										paragraph={
+											"Likely to sell faster than 80% of homes nearby"
+										}
+									/>
+									<Footer />
+								</>
+							);
+						}}
+					>
+						<div className="grid-item middle" style={{ width: "200px", height: "10px"} }>
+
+							<img src={villow} alt="villow" style={{marginTop: "10px"}}/>
+						</div>
+					</Link>
 					<div className="grid-item right">
 						<p>Manage Rentals</p>
 						<p>Advertise</p>
