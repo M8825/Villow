@@ -19,12 +19,7 @@ A Villow user is able to create new profiles, which persist to both the front an
 !["auth"](./frontend/src/components/assets/auth.png)
 
 
-
-
-Villow was created within a 14 day time frame. Thank you for your time and consideration! I hope you enjoy it!
-
-
-
+On Villow, users can browse listings on the index page using Google Maps markers based on their address.
 
 !["auth"](./frontend/src/components/assets/index.png)
 
@@ -141,4 +136,5 @@ export default ListingsPage;
 
 ```
 
+Villow was created within a 14 day time frame. Thank you for your time and consideration! I hope you enjoy it!
 
