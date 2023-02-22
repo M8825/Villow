@@ -19,3 +19,8 @@ A Villow user is able to create new profiles, which persist to both the front an
 !["auth"](./frontend/src/components/assets/auth.png)
 
 
+
+
+Villow was created within a 14 day time frame. Thank you for your time and consideration! I hope you enjoy it!
+
+
