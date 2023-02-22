@@ -16,4 +16,6 @@ Villow Clone is a replica of the popular real estate website Zillow. Villow is a
 A Villow user is able to create new profiles, which persist to both the front and backend.
 
 
-!["auth"](.frontend/src/components/components/assets/auth.png)
+!["auth"](./frontend/src/components/assets/auth.png)
+
+
