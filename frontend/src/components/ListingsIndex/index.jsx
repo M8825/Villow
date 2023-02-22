@@ -6,12 +6,11 @@ import { getListings, fetchListings } from "../../store/listingsReducer";
 import ListingItem from "../listing/ListingIndexItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-// import { Link } from "react-router-dom";
 
 const ListingsPage = () => {
 	const dispatch = useDispatch();
 	const listings = useSelector(getListings);
-	const [reveresed, setReversed] = useState(false);
+	const [reversed, setReversed] = useState(false);
 
 	useEffect(() => {
 		dispatch(fetchListings());
@@ -47,27 +46,11 @@ const ListingsPage = () => {
 	const handleClick = (e) => {
 		e.preventDefault();
 		debugger
-		setReversed(!reveresed);
+		setReversed(!reversed);
 	};
 
 	return (
 		<>
-			{/* <Link
-				to={`listings/${1}/edit`}
-				style={{
-					width: "200px",
-					backgroundColor: "blue",
-					height: "40px",
-					color: "white",
-					fontWeight: "800",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-				}}
-			>
-				Edit report
-			</Link> */}
-
 			<div className="index-container">
 				<div className="listing-container-header">
 					<h1>Manhattan NY Real Estate & Homes For Sale</h1>
@@ -94,7 +77,7 @@ const ListingsPage = () => {
 					</div>
 				</div>
 				<div className="listings-container">
-					{reveresed
+					{reversed
 						? listings
 								.reverse()
 								.map((listing, i) => (
