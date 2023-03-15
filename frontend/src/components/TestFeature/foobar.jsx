@@ -121,23 +121,6 @@ const CreateListing = () => {
 				formData.append(`listing[${key}]`, listing[key]);
 			}
 
-			// let newListing = { ...listing };
-			// newListing.price = price;
-			// newListing.address = address;
-			// newListing.city = city;
-			// newListing.state = state;
-			// newListing.zipcode = zipcode;
-			// newListing.bedroom = bedroom;
-			// newListing.bathroom = bathroom;
-			// newListing.sqft = sqft;
-			// newListing.building_type = buildingType;
-			// newListing.built_in = builtIn;
-			// newListing.key_words = keyWords;
-			// newListing.overview = overview;
-			// newListing.owner_id = owner;
-			// newListing.garage = isGarage;
-			// newListing.ac = isAc;
-			// newListing.heating = isHeating;
 			const estPayment = (price / (30 * 12)).toFixed(2);
 			const priceSqft = (price / sqft).toFixed(2);
 
@@ -161,7 +144,6 @@ const CreateListing = () => {
 			formData.append("listing[ac]", isAc);
 			formData.append("listing[heating]", isHeating);
 
-			debugger
 			dispatch(updateListing(formData, listingId));
 		} else {
 			const estPayment = (price / (30 * 12)).toFixed(2);
