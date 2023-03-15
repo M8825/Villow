@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-// TODO: write a reducer for listings
+
 const RECEIVE_LISTINGS = "listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "listings/RECEIVE_LISTING";
 // TODO: add remove and update listing
