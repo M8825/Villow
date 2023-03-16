@@ -1,12 +1,10 @@
-// import foobar from "./components/TextFeature/foobar";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Nav from "./components/header/Navigation";
 import ListingIndex from "./components/listing/";
 import Layout from "./components/cards";
 import Footer from "./components/footer";
 import ShowListing from "./components/showListing";
-import { Link } from "react-router-dom";
 
 import "./index.scss";
 import Map from "./components/map/map";

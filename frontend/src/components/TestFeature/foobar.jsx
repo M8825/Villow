@@ -16,6 +16,7 @@ const CreateListing = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
+
 	const { listingId } = useParams();
 	const formType = listingId ? "Update post" : "Post for sale by owner";
 
@@ -27,7 +28,6 @@ const CreateListing = () => {
 		}
 	}, [dispatch, listingId]);
 
-	// const [photoFile, setPhotoFile] = useState(null);
 	const [photoFiles, setPhotoFiles] = useState([]);
 	const [photoUrls, setPhotoUrls] = useState([]);
 
@@ -115,29 +115,10 @@ const CreateListing = () => {
 
 
 		if (listingId) {
-
-			debugger
 			for (let key in listing) {
 				formData.append(`listing[${key}]`, listing[key]);
 			}
 
-			// let newListing = { ...listing };
-			// newListing.price = price;
-			// newListing.address = address;
-			// newListing.city = city;
-			// newListing.state = state;
-			// newListing.zipcode = zipcode;
-			// newListing.bedroom = bedroom;
-			// newListing.bathroom = bathroom;
-			// newListing.sqft = sqft;
-			// newListing.building_type = buildingType;
-			// newListing.built_in = builtIn;
-			// newListing.key_words = keyWords;
-			// newListing.overview = overview;
-			// newListing.owner_id = owner;
-			// newListing.garage = isGarage;
-			// newListing.ac = isAc;
-			// newListing.heating = isHeating;
 			const estPayment = (price / (30 * 12)).toFixed(2);
 			const priceSqft = (price / sqft).toFixed(2);
 
