@@ -25,7 +25,7 @@ const ModalTabs = ({ closeModal }) => {
 				</TabList>
 				<TabPanels>
 					<TabPanel>
-						<LoginForm closeModalFunc={closeModal} />
+						<LoginForm closeModal={closeModal} />
 					</TabPanel>
 					<TabPanel>
 						<NewAccountForm closeModalFunc={closeModal} />

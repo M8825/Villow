@@ -146,20 +146,9 @@ const NewAccountForm = ({ closeModalFunc }) => {
 						/>
 					</ul>
 
-					{/* <label htmlFor="checkbox1" id="login_form__checkbox">
-						<input
-							type="checkbox"
-							id="checkbox1"
-							name="checkbox1"
-							value="value1"
-						/>
-						<p>I am a landlord or industry professional</p>
-					</label> */}
-
 					<button
 						type="Submit"
 						id="submit_button"
-						// disabled={true}
 					>
 						Submit
 					</button>
@@ -176,6 +165,8 @@ const NewAccountForm = ({ closeModalFunc }) => {
 						</p>
 					</div>
 				</div>
+
+              {/* Follow button links as a separate component, because we also need it on sign in tab */}
 				<FollowButtonLinks />
 			</form>
 		</>

@@ -1,23 +1,38 @@
-import React, { useState } from "react";
-import { loginUser } from "../../store/usersReducer";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { getActiveUser, loginUser } from "../../store/usersReducer";
+import { useDispatch, useSelector } from "react-redux";
 import { Input, Button } from "@chakra-ui/react";
 import FollowButtonLinks from "./FollowButtonLinks";
-import { useHistory } from "react-router-dom";
+
 import "./LoginForm.scss";
 
-const LoginForm = ({ closeModalFunc }) => {
-	const history = useHistory();
+const LoginForm = ({ closeModal }) => {
 	const dispatch = useDispatch();
+
+	const activeUser = useSelector(getActiveUser());
+
+	if (activeUser) {
+		closeModal();
+	}
+;
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
+
+    const [ demoUserClick, setDemoUserClick ] = useState(false);
+
+
+    useEffect(() => {
+        if (demoUserClick) {
+            dispatch(loginUser({ email, password }))
+        }
+    }, [dispatch, demoUserClick])
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors([]);
 
-		dispatch(loginUser({ email, password }, closeModalFunc)).catch(
+		dispatch(loginUser({ email, password })).catch(
 			async (res) => {
 				let data;
 
@@ -32,10 +47,10 @@ const LoginForm = ({ closeModalFunc }) => {
 		);
 	};
 
-	const demoUserHandleOnClick = () => {
+	const demoUserHandleOnClick = (e) => {
 		setPassword("Ilmangel123!");
 		setEmail("mlkz@gmail.com");
-		history.push("/")
+        setDemoUserClick(true)
 	};
 
 	return (

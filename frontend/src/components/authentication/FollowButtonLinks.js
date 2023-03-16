@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@chakra-ui/react";
+import { Button, Link } from "@chakra-ui/react";
 import {
   faAngellist,
   faGithub,
@@ -17,26 +17,38 @@ const FollowButtonLinks = () => {
         </div>
 
         <div className="personal-links__buttons">
-          <Button
-            className={"gitbug-btn positioning"}
-            leftIcon={<FontAwesomeIcon icon={faGithub} />}
-          >
-            Follow me on Github
-          </Button>
+          <Link className="external-links" href="https://github.com/M8825">
+            <Button
+              className={"gitbug-btn positioning"}
+              leftIcon={<FontAwesomeIcon icon={faGithub} />}
+            >
+              Follow me on Github
+            </Button>
+          </Link>
 
-          <Button
-            className={"linkedIn-btn positioning"}
-            leftIcon={<FontAwesomeIcon icon={faLinkedin} />}
+          <Link
+            className="external-links"
+            href="https://www.linkedin.com/in/malkhaz-mamulashvili-703a97208/?trk=public_profile-settings_edit-profile-content"
           >
-            Follow me on LinkedIn
-          </Button>
+            <Button
+              className={"linkedIn-btn positioning"}
+              leftIcon={<FontAwesomeIcon icon={faLinkedin} />}
+            >
+              Follow me on LinkedIn
+            </Button>
+          </Link>
 
-          <Button
-            className={"angelList-btn positioning"}
-            leftIcon={<FontAwesomeIcon icon={faAngellist} />}
+          <Link
+            className={"external-links"}
+            href="https://wellfound.com/u/malkhaz-mamulashvili"
           >
-            Follow me on AngelList
-          </Button>
+            <Button
+              className={"angelList-btn positioning"}
+              leftIcon={<FontAwesomeIcon icon={faAngellist} />}
+            >
+              Follow me on AngelList
+            </Button>
+          </Link>
         </div>
       </div>
     </>

@@ -7,7 +7,7 @@ const REMOVE_USER = "users/REMOVE_USER";
 // ACTION CREATORS
 export const receiveUser = (user) => ({
 	type: RECEIVE_USER,
-	payload: user,
+	user,
 });
 
 export const removeUser = (userId) => ({
@@ -15,17 +15,26 @@ export const removeUser = (userId) => ({
 	userId, // userId: userId
 });
 
-// THUNK ACTION CREATORS
-export const loginUser = (user, closeModalFunc) => async (dispatch) => {
+
+export const getActiveUser = () => (state) => {
+	if (state && state.user.active) {
+		return state.user.active;
+	}
+
+	return null;
+}
+export const loginUser = (user) => async (dispatch) => {
 	let res = await csrfFetch("/api/session", {
 		method: "POST",
 		body: JSON.stringify(user),
 	});
 
-	let data = await res.json();
-	sessionStorage.setItem("currentUser", JSON.stringify(data.user));
-	closeModalFunc();
-	dispatch(receiveUser(data.user));
+	if (res.ok) {
+		let data = await res.json();
+		sessionStorage.setItem("currentUser", JSON.stringify(data.user));
+
+		dispatch(receiveUser(data.user));
+	}
 };
 
 export const logoutUser = (userId) => async (dispatch) => {
@@ -41,6 +50,7 @@ export const createUser = (user) => async (dispatch) => {
 		method: "POST",
 		body: JSON.stringify(user),
 	});
+
 	let data = await res.json();
 	sessionStorage.setItem("currentUser", JSON.stringify(data.user));
 	dispatch(receiveUser(data.user));
@@ -52,7 +62,8 @@ const userReducer = (state = {}, action) => {
 
 	switch (action.type) {
 		case RECEIVE_USER:
-			nextState['active'] = action.payload;
+			nextState["active"] = action.user;
+
 			return nextState;
 		case REMOVE_USER:
 			delete nextState[action.userId];

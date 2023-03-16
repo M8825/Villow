@@ -21,6 +21,10 @@
     gap: 1.1vw;
     margin-bottom: 5px;
 
+    .external-links {
+      text-decoration: none;
+    }
+
     .positioning {
       display: flex;
       justify-content: space-between;
@@ -60,5 +64,6 @@
   Button {
     font-weight: 400;
     border-radius: 3px;
+    width: 100%;
   }
 }
