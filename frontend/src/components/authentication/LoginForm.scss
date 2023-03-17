@@ -5,18 +5,48 @@
     gap: 17px;
     font-weight: 600;
     width: 100%;
+
+    .button_group {
+        .sign-in-btn {
+            background-color: #006AFF;
+            color: #fff;
+            border: 1px solid rgb(0 160 255);
+            margin: 10px 0px 0px 0px;
+            height: 44px;
+
+            &:hover {
+                background-color: #204698;
+            }
+        }
+
+        .demo-user-btn {
+            background-color: #0061FF;
+            color: #fff;
+            border: 1px solid rgb(0 160 255);
+            margin: 10px 0px 0px 0px;
+            height: 44;
+
+
+            &:hover {
+                background-color: #204698;
+            }
+
+
+        }
+    }
 }
 
 .form_first_element {
     margin-top: -16px;
 }
 
-form > label {
+form>label {
     font-size: 14px;
     color: #2A2A33;
 }
 
-form > label > Input[type="text"], Input[type="password"] {
+form>label>Input[type="text"],
+Input[type="password"] {
     margin-top: 5px !important;
     border-radius: 4px !important;
     border: 1px solid rgb(209, 209, 213) !important;
@@ -27,11 +57,11 @@ form > label > Input[type="text"], Input[type="password"] {
     height: 44px !important;
 }
 
-.login_form__label:hover > Input {
+.login_form__label:hover>Input {
     border-color: #006AFF !important;
 }
 
-.login_form__label > Input:focus {
+.login_form__label>Input:focus {
     box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
 }
 

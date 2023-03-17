@@ -11,46 +11,49 @@ const LoginForm = ({ closeModal }) => {
 
 	const activeUser = useSelector(getActiveUser());
 
+	// automatically close modal if user is logged in by
+	// either clicking the demo user button or the sign in button
 	if (activeUser) {
 		closeModal();
 	}
-;
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
-    const [ demoUserClick, setDemoUserClick ] = useState(false);
+	// State to keep track of whether the demo user button has been clicked
+	const [demoUserClick, setDemoUserClick] = useState(false);
 
+	// Login in the demo user when the demo user button is clicked
+	useEffect(() => {
+		if (demoUserClick) {
+			dispatch(loginUser({ email, password }));
+		}
+	}, [dispatch, demoUserClick]);
 
-    useEffect(() => {
-        if (demoUserClick) {
-            dispatch(loginUser({ email, password }))
-        }
-    }, [dispatch, demoUserClick])
-
+	// Login in the user when the sign in button is clicked
+	// if credential are valid
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors([]);
 
-		dispatch(loginUser({ email, password })).catch(
-			async (res) => {
-				let data;
+		dispatch(loginUser({ email, password })).catch(async (res) => {
+			let data;
 
-				if (res.ok) {
-					data = await res.json();
-				}
-
-				if (data?.errors) setErrors(data.errors);
-				else if (data) setErrors([data]);
-				else setErrors([res.statusText]);
+			if (res.ok) {
+				data = await res.json();
 			}
-		);
+
+			if (data?.errors) setErrors(data.errors);
+			else if (data) setErrors([data]);
+			else setErrors([res.statusText]);
+		});
 	};
 
+	// Sign in as a demo user
 	const demoUserHandleOnClick = (e) => {
 		setPassword("Ilmangel123!");
 		setEmail("mlkz@gmail.com");
-        setDemoUserClick(true)
+		setDemoUserClick(true);
 	};
 
 	return (
@@ -83,33 +86,17 @@ const LoginForm = ({ closeModal }) => {
 					/>
 				</label>
 				<div className="button_group">
+					<Button className="sign-in-btn">Sign in</Button>
 					<Button
-						bgColor={"#0061FF"}
-						color="rgb(255 255 255)"
-						_hover={{ bg: "#204698" }}
-						border="1px"
-						borderColor="rgb(0 160 255)"
-						margin="10px 0px 0px 0px"
+						className="demo-user-btn"
 						type="submit"
-						height="44px"
-					>
-						Sign in
-					</Button>
-					<Button
-						bgColor={"#0061FF"}
-						color="rgb(255 255 255)"
-						_hover={{ bg: "#204698" }}
-						border="1px"
-						borderColor="rgb(0 160 255)"
-						margin="10px 0px 0px 0px"
-						type="submit"
-						height="44px"
 						onClick={demoUserHandleOnClick}
 					>
 						Demo User
 					</Button>
 
-					<Button
+					{/* TODO: Decide about Forgot your password functionality */}
+					{/* <Button
 						variant={"none"}
 						color={"#004494"}
 						marginTop="0px"
@@ -119,7 +106,7 @@ const LoginForm = ({ closeModal }) => {
 						}}
 					>
 						Forgot your password?
-					</Button>
+					</Button> */}
 					<FollowButtonLinks />
 				</div>
 			</form>
