@@ -21,17 +21,21 @@ export const getActiveUser = () => (state) => {
 
 	return null;
 };
-export const loginUser = (user) => async (dispatch) => {
+export const loginUser = (userCredentials) => async (dispatch) => {
 	let res = await csrfFetch("/api/session", {
 		method: "POST",
-		body: JSON.stringify(user),
+		body: JSON.stringify(userCredentials),
 	});
 
 	if (res.ok) {
-		let data = await res.json();
-		sessionStorage.setItem("currentUser", JSON.stringify(data));
+		const { user } = await res.json();
+		sessionStorage.setItem("currentUser", JSON.stringify(user));
 
-		dispatch(receiveUser(data));
+		dispatch(receiveUser(user));
+	} else {
+		const { errors } = await res.json();
+		debugger;
+		throw new Error(errors);
 	}
 };
 
@@ -49,9 +53,14 @@ export const createUser = (user) => async (dispatch) => {
 		body: JSON.stringify(user),
 	});
 
-	let data = await res.json();
-	sessionStorage.setItem("currentUser", JSON.stringify(data.user));
-	dispatch(receiveUser(data.user));
+	if (res.ok) {
+		let data = await res.json();
+		sessionStorage.setItem("currentUser", JSON.stringify(data.user));
+		dispatch(receiveUser(data.user));
+	} else {
+		const { errors } = await res.json();
+		throw new Error(errors);
+	}
 };
 
 export const fetchCurrentUser = () => async (dispatch) => {

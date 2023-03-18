@@ -6,6 +6,12 @@
     font-weight: 600;
     width: 100%;
 
+
+    .errors {
+        color: red;
+        list-style: none;
+    }
+
     .button_group {
         .sign-in-btn {
             background-color: #006AFF;

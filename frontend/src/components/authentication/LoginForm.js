@@ -38,16 +38,14 @@ const LoginForm = ({ closeModal }) => {
 		setErrors([]);
 
 		dispatch(loginUser({ email, password })).catch(async (res) => {
-			let data;
 
-			if (res.ok) {
-				data = await res.json();
-				closeModal();
+			if (res?.message) {
+				setErrors([res.message]);
+			} else if (res) {
+				setErrors([res]);
+			} else {
+				setErrors([res.statusText]);
 			}
-
-			if (data?.errors) setErrors(data.errors);
-			else if (data) setErrors([data]);
-			else setErrors([res.statusText]);
 		});
 	};
 
@@ -61,11 +59,11 @@ const LoginForm = ({ closeModal }) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit} className="login_form">
-				{/* <ul>
+				<ul className="errors">
 					{errors.map((error) => (
 						<li key={error}>{error}</li>
 					))}
-				</ul> */}
+				</ul>
 				<br />
 				<label className="login_form__label form_first_element">
 					Email
@@ -88,7 +86,9 @@ const LoginForm = ({ closeModal }) => {
 					/>
 				</label>
 				<div className="button_group">
-					<Button className="sign-in-btn" type="submit">Sign in</Button>
+					<Button className="sign-in-btn" type="submit">
+						Sign in
+					</Button>
 					<Button
 						className="demo-user-btn"
 						type="submit"
