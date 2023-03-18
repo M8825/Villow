@@ -42,6 +42,7 @@ const LoginForm = ({ closeModal }) => {
 
 			if (res.ok) {
 				data = await res.json();
+				closeModal();
 			}
 
 			if (data?.errors) setErrors(data.errors);
