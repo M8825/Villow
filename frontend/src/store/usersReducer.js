@@ -10,19 +10,17 @@ export const receiveUser = (user) => ({
 	user,
 });
 
-export const removeUser = (userId) => ({
+export const removeUser = () => ({
 	type: REMOVE_USER,
-	userId, // userId: userId
 });
 
-
 export const getActiveUser = () => (state) => {
-	if (state && state.user.active) {
-		return state.user.active;
+	if (state && state.session) {
+		return state.session.user;
 	}
 
 	return null;
-}
+};
 export const loginUser = (user) => async (dispatch) => {
 	let res = await csrfFetch("/api/session", {
 		method: "POST",
@@ -31,18 +29,18 @@ export const loginUser = (user) => async (dispatch) => {
 
 	if (res.ok) {
 		let data = await res.json();
-		sessionStorage.setItem("currentUser", JSON.stringify(data.user));
+		sessionStorage.setItem("currentUser", JSON.stringify(data));
 
-		dispatch(receiveUser(data.user));
+		dispatch(receiveUser(data));
 	}
 };
 
-export const logoutUser = (userId) => async (dispatch) => {
+export const logoutUser = () => async (dispatch) => {
 	await csrfFetch("/api/session", {
 		method: "DELETE",
 	});
 	sessionStorage.setItem("currentUser", null);
-	dispatch(removeUser(userId));
+	dispatch(removeUser());
 };
 
 export const createUser = (user) => async (dispatch) => {
@@ -56,17 +54,25 @@ export const createUser = (user) => async (dispatch) => {
 	dispatch(receiveUser(data.user));
 };
 
+export const fetchCurrentUser = () => async (dispatch) => {
+	const res = await csrfFetch("/api/session");
+
+	if (res.ok) {
+		const user = await res.json();
+		dispatch(receiveUser(user));
+	}
+};
+
 // REDUCER
 const userReducer = (state = {}, action) => {
 	const nextState = { ...state };
 
 	switch (action.type) {
 		case RECEIVE_USER:
-			nextState["active"] = action.user;
-
+			nextState.user = action.user;
 			return nextState;
 		case REMOVE_USER:
-			delete nextState[action.userId];
+			delete nextState["user"];
 			return nextState;
 		default:
 			return state;

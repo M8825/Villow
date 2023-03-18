@@ -6,6 +6,7 @@ import { getListings, fetchListings } from "../../store/listingsReducer";
 import ListingItem from "../listing/ListingIndexItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { getActiveUser } from "../../store/usersReducer";
 
 const ListingsPage = () => {
 	const dispatch = useDispatch();
@@ -29,9 +30,7 @@ const ListingsPage = () => {
 		history.push("/listings");
 	};
 
-	const currentUser = useSelector((state) => {
-		return state.user.active;
-	});
+	const currentUser = useSelector(getActiveUser());
 
 	const listingStyling = {
 		flexBasis: "49%",

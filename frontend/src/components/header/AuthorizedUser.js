@@ -18,7 +18,7 @@ const AuthorizedUser = () => {
 	const handleSignOutClick = (e) => {
 		e.preventDefault();
 
-		dispatch(logoutUser(18));
+		dispatch(logoutUser());
 	};
 	return (
 		<>

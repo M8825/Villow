@@ -11,24 +11,16 @@ import ListingIndex from "../listing/";
 import villow from "../assets/villow.png";
 
 import "./Navigation.css";
-import { useSelector } from "react-redux";
-import { getActiveUser } from "../../store/usersReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
 
 const Nav = ({ isIndex }) => {
-
+	const dispatch = useDispatch();
 	const activeUser = useSelector(getActiveUser());
 
-	// const [userIsActive, setUserIsActive] = useState(false);
-
-	// useEffect(() => {
-	// 	const currentUser = sessionStorage.getItem("currentUser");
-
-	// 	if (currentUser) {
-	// 		setUserIsActive(true);
-	// 	} else {
-	// 		setUserIsActive(false);
-	// 	}
-	// }, []);
+	useEffect(() => {
+		dispatch(fetchCurrentUser());
+	}, []);
 
 	const modalAreaStyling = {
 		display: "flex",

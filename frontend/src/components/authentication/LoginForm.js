@@ -86,7 +86,7 @@ const LoginForm = ({ closeModal }) => {
 					/>
 				</label>
 				<div className="button_group">
-					<Button className="sign-in-btn">Sign in</Button>
+					<Button className="sign-in-btn" type="submit">Sign in</Button>
 					<Button
 						className="demo-user-btn"
 						type="submit"

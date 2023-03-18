@@ -13,12 +13,13 @@ const ModalContainer = ({
 	ModalTabs,
 }) => {
 	const { listingId } = useParams();
-	let [popup, setPopup] = useState({ isShown: false });
+	let [popup, setPopup] = useState({ isShown: false }); // isShown is false by default for modal
 
 	const showModal = () => {
 		setPopup({ isShown: true });
 		toggleScrollLock();
 	};
+
 
 	const closeModal = () => {
 		setPopup({ isShown: false });
@@ -32,7 +33,6 @@ const ModalContainer = ({
 	const onClickOutside = (event) => {
 		if (event.target.className === "modal-container") {
 			closeModal();
-			// props.onClose();
 		}
 	};
 
