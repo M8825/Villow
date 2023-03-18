@@ -27,6 +27,7 @@ const LoginForm = ({ closeModal }) => {
 	useEffect(() => {
 		if (demoUserClick) {
 			dispatch(loginUser({ email, password }));
+			closeModal();
 		}
 	}, [dispatch, demoUserClick]);
 
