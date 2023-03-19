@@ -3,7 +3,7 @@
 }
 
 #navigation {
-    height: 80px;
+    height: 8vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -11,7 +11,16 @@
 }
 
 
-  .left {
+.grid-item {
+
+    a {
+        &:hover {
+            color: rgb(44 104 244);
+        }
+    }
+}
+
+.left {
     padding: 0px 24px 0px 45px;
     font-weight: 400;
     display: flex;
@@ -20,7 +29,7 @@
     font-size: 16px;
     gap: 28px;
 
-  }
+}
 
 
 .middle {
@@ -54,15 +63,13 @@
     gap: 8%;
 }
 
-.search_container:nth-child(1) {
-}
+.search_container:nth-child(1) {}
 
-.grid-item:nth-child(2) {
-}
+.grid-item:nth-child(2) {}
 
 
 
-.search_container > h1 {
+.search_container>h1 {
     display: flex;
     justify-content: center;
     margin-top: 70px;
@@ -93,10 +100,4 @@
 }
 
 
-.search_container__search_button {
-
-}
-
-
-
-
+.search_container__search_button {}

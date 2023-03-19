@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getListings, fetchListings } from "../../store/listingsReducer";
-import ListingItem from "../listing/ListingIndexItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { getActiveUser } from "../../store/usersReducer";
+
+import ListingItem from "../listing/ListingIndexItem";
+import "./ListingsIndex.scss";
 
 const ListingsPage = () => {
 	const dispatch = useDispatch();
@@ -44,9 +45,10 @@ const ListingsPage = () => {
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		debugger
+		debugger;
 		setReversed(!reversed);
 	};
+
 
 	return (
 		<>
@@ -88,7 +90,7 @@ const ListingsPage = () => {
 										thumbnailStyling={thumbnailStyling}
 										userId={currentUser.id}
 									/>
-					))
+								))
 						: listings.map((listing, i) => (
 								<ListingItem
 									key={i}

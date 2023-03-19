@@ -10,7 +10,7 @@ import Footer from "../footer";
 import ListingIndex from "../listing/";
 import villow from "../assets/villow.png";
 
-import "./Navigation.css";
+import "./Navigation.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
 
@@ -36,10 +36,14 @@ const Nav = ({ isIndex }) => {
 			<div className="container">
 				<nav id="navigation">
 					<div className="grid-item left">
-						<p>Github</p>
-						<p>LinkedIn</p>
-						<p>AngelList</p>
-						<p>About</p>
+						<a href="https://github.com/M8825">Github</a>
+						<a href="https://www.linkedin.com/in/malkhaz-mamulashvili-703a97208/">
+							LinkedIn
+						</a>
+						<a href="https://wellfound.com/u/malkhaz-mamulashvili">
+							Wellfound
+						</a>
+						<a href="#">About</a>
 					</div>
 					<Link
 						to="/"
