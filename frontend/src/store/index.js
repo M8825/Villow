@@ -6,7 +6,7 @@ import listingsReducer from './listingsReducer';
 import geocodeReducer from './geocodeReducer';
 
 const rootReducer = combineReducers({
-  user: usersReducer,
+  session: usersReducer,
   listings: listingsReducer,
   geocode: geocodeReducer
 });

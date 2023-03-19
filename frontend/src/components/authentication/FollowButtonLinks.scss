@@ -1,35 +1,69 @@
 .line-separator {
-    background-color: rgb(209 209 213);
-    height: 0.01vh;
-}
-
-.personal-links {
-    font-weight: 400;
-    margin-top: 1vh;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
+  background-color: rgb(209 209 213);
+  height: 0.01vh;
 }
 
 .personal-links__title {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.personal-links__buttons {
+.personal-links {
+  font-weight: 400;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+
+  .personal-links__buttons {
     display: flex;
     flex-direction: column;
     gap: 1.1vw;
     margin-bottom: 5px;
-}
 
-.personal-links__buttons > Button {
+    .external-links {
+      text-decoration: none;
+    }
+
+    .positioning {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 10vh 0px 3.7vh;
+    }
+
+    .gitbug-btn {
+      color: white;
+      background-color: black;
+
+      &:hover {
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+      }
+    }
+
+    .linkedIn-btn {
+      background-color: rgb(44 104 246);
+      color: white;
+
+      &:hover {
+        background-color: white;
+        border: 1px solid #1f4494;
+        color: #1f4494;
+      }
+    }
+
+    .angelList-btn {
+      &:hover {
+        background-color: white;
+        border: 1px solid black;
+      }
+    }
+  }
+
+  Button {
     font-weight: 400;
     border-radius: 3px;
-}
-
-
-.personal-links__buttons__github {
-    background-color: red;
-    padding: 10px;
+    width: 100%;
+  }
 }

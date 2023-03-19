@@ -7,19 +7,23 @@ import ShowListing from "../showListing";
 
 import "./ModalContainer.scss";
 
-const ModalContainer = (props) => {
+const ModalContainer = ({
+	modalAreaStyling,
+	ModalWelcomeHeader,
+	ModalTabs,
+}) => {
 	const { listingId } = useParams();
-	let [popup, setPopup] = useState({ isShown: false });
+	let [popup, setPopup] = useState({ isShown: false }); // isShown is false by default for modal
 
 	const showModal = () => {
 		setPopup({ isShown: true });
 		toggleScrollLock();
 	};
 
+
 	const closeModal = () => {
 		setPopup({ isShown: false });
 		toggleScrollLock();
-		// props.onClose();
 	};
 
 	// On click outside of modal, close modal if user clicks
@@ -29,7 +33,6 @@ const ModalContainer = (props) => {
 	const onClickOutside = (event) => {
 		if (event.target.className === "modal-container") {
 			closeModal();
-			// props.onClose();
 		}
 	};
 
@@ -44,9 +47,10 @@ const ModalContainer = (props) => {
 					<Modal
 						closeModal={closeModal}
 						onClickOutside={onClickOutside}
-						modalAreaStyling={props.modalAreaStyling}
+						modalAreaStyling={modalAreaStyling}
 					>
-						{props.children}
+						<ModalWelcomeHeader />
+						<ModalTabs />
 					</Modal>
 				</>
 			) : (
@@ -59,9 +63,10 @@ const ModalContainer = (props) => {
 						<Modal
 							closeModal={closeModal}
 							onClickOutside={onClickOutside}
-							modalAreaStyling={props.modalAreaStyling}
+							modalAreaStyling={modalAreaStyling}
 						>
-							{props.children}
+							<ModalWelcomeHeader />
+							<ModalTabs closeModal={closeModal} />
 						</Modal>
 					) : null}
 				</div>

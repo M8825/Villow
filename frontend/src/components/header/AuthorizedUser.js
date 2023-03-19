@@ -4,7 +4,7 @@ import { logoutUser} from "../../store/usersReducer";
 import { useDispatch } from "react-redux";
 import "./AuthorizedUser.scss";
 
-const AuthorizedUser = ({ setUserIsActive }) => {
+const AuthorizedUser = () => {
 
 	const dispatch = useDispatch();
 	const [menuIsActive, setMenuIsActive] = useState(false);
@@ -18,8 +18,7 @@ const AuthorizedUser = ({ setUserIsActive }) => {
 	const handleSignOutClick = (e) => {
 		e.preventDefault();
 
-		dispatch(logoutUser(18));
-		setUserIsActive(false);
+		dispatch(logoutUser());
 	};
 	return (
 		<>

@@ -16,6 +16,7 @@ const CreateListing = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
+
 	const { listingId } = useParams();
 	const formType = listingId ? "Update post" : "Post for sale by owner";
 
@@ -27,7 +28,6 @@ const CreateListing = () => {
 		}
 	}, [dispatch, listingId]);
 
-	// const [photoFile, setPhotoFile] = useState(null);
 	const [photoFiles, setPhotoFiles] = useState([]);
 	const [photoUrls, setPhotoUrls] = useState([]);
 
@@ -115,8 +115,6 @@ const CreateListing = () => {
 
 
 		if (listingId) {
-
-			debugger
 			for (let key in listing) {
 				formData.append(`listing[${key}]`, listing[key]);
 			}

@@ -10,20 +10,16 @@ import Footer from "../footer";
 import ListingIndex from "../listing/";
 import villow from "../assets/villow.png";
 
-
 import "./Navigation.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
 
 const Nav = ({ isIndex }) => {
-	const [userIsActive, setUserIsActive] = useState(false);
+	const dispatch = useDispatch();
+	const activeUser = useSelector(getActiveUser());
 
 	useEffect(() => {
-		const currentUser = sessionStorage.getItem("currentUser");
-
-		if (currentUser) {
-			setUserIsActive(true);
-		} else {
-			setUserIsActive(false);
-		}
+		dispatch(fetchCurrentUser());
 	}, []);
 
 	const modalAreaStyling = {
@@ -37,7 +33,7 @@ const Nav = ({ isIndex }) => {
 
 	return (
 		<>
-			<div className="container" >
+			<div className="container">
 				<nav id="navigation">
 					<div className="grid-item left">
 						<p>Github</p>
@@ -77,22 +73,29 @@ const Nav = ({ isIndex }) => {
 							);
 						}}
 					>
-						<div className="grid-item middle" style={{ width: "200px", height: "10px"} }>
-
-							<img src={villow} alt="villow" style={{marginTop: "10px"}}/>
+						<div
+							className="grid-item middle"
+							style={{ width: "200px", height: "10px" }}
+						>
+							<img
+								src={villow}
+								alt="villow"
+								style={{ marginTop: "10px" }}
+							/>
 						</div>
 					</Link>
 					<div className="grid-item right">
 						<p>Manage Rentals</p>
 						<p>Advertise</p>
 						<p>Help</p>
-						{userIsActive ? (
-							<AuthorizedUser setUserIsActive={setUserIsActive} />
+						{activeUser ? (
+							<AuthorizedUser />
 						) : (
-							<ModalContainer modalAreaStyling={modalAreaStyling}>
-								<ModalWelcomeHeader />
-								<ModalTabs />
-							</ModalContainer>
+							<ModalContainer
+								modalAreaStyling={modalAreaStyling}
+								ModalWelcomeHeader={ModalWelcomeHeader}
+								ModalTabs={ModalTabs}
+							/>
 						)}
 					</div>
 				</nav>
