@@ -1,5 +1,5 @@
 import React from "react";
-import headerImage from "../modal/assets/header.png";
+import headerImage from "../Modal/assets/header.png";
 
 const ModalWelcomeHeader = () => {
     const containerWelcomeHeader = {

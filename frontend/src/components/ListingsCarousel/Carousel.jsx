@@ -1,10 +1,12 @@
 import React from "react";
-import ListingItem from "./ListingIndexItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper";
 import { CarouselNextButton, CarouselPrevButton } from "./CarouselButton";
+
+import ListingItem from "../ListingItem/ListingItem"
+
+import './Carousel.scss'
 import "swiper/css";
-// import "./Carousel.scss";
 
 const Carousel = ({ sampleListings }) => {
 	const listingStyling = {

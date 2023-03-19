@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { getActiveUser } from "../../store/usersReducer";
 
-import ListingItem from "../listing/ListingIndexItem";
+import ListingItem from "../ListingItem/ListingItem";
 import "./ListingsIndex.scss";
 
 const ListingsPage = () => {
@@ -48,7 +48,6 @@ const ListingsPage = () => {
 		debugger;
 		setReversed(!reversed);
 	};
-
 
 	return (
 		<>

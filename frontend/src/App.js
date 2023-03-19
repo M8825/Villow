@@ -1,13 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Nav from "./components/header/Navigation";
-import ListingIndex from "./components/listing/";
-import Layout from "./components/cards";
-import Footer from "./components/footer";
-import ShowListing from "./components/showListing";
+import Navigation from "./components/Header/Navigation";
+import Layout from "./components/Cards";
+import Footer from "./components/Footer";
+import ShowListing from "./components/ShowListing";
 
 import "./index.scss";
-import Map from "./components/map/map";
+import Map from "./components/Map/map";
 import ListingsPage from "./components/ListingsIndex/ListingsIndex";
 import SearchBar from "./components/SearchBar/SearchBar";
 
@@ -28,7 +27,7 @@ const App = () => {
 			<Route exact path="/" component={SplashPage} />
 
 			<Route exact path="/listings">
-				<Nav isIndex={true} />
+				<Navigation isIndex={true} />
 				<IndexPage />
 			</Route>
 			<Route path="/listings/:listingId/edit" component={CreateListing} />

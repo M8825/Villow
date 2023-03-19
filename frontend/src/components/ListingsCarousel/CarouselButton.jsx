@@ -2,7 +2,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import "./index.scss"
+
+import './CarouselButton.scss'
 
 export const CarouselNextButton = (props) => {
 	return (

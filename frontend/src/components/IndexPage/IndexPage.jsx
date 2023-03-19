@@ -1,5 +1,5 @@
 import SearchBar from "../SearchBar/SearchBar";
-import Map from "../map/map";
+import Map from "../Map/map";
 import ListingsPage from "../ListingsIndex/ListingsIndex";
 
 import "./IndexPage.scss";

@@ -8,9 +8,9 @@ import {
 	Tab,
 	TabPanel,
 } from "@chakra-ui/react";
-import LoginForm from "../authentication/LoginForm";
-import NewAccountForm from "../authentication/NewAccountForm";
-import ModalWelcomeHeader from "../header/Welcome";
+import LoginForm from "../Authentication/LoginForm";
+import NewAccountForm from "../Authentication/NewAccountForm";
+import ModalWelcomeHeader from "../Header/Welcome";
 
 const ModalTabs = ({ closeModal }) => {
 	return (

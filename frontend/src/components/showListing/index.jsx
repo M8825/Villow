@@ -7,7 +7,7 @@ import Gallery from "./gallery";
 import Home from "./Home";
 import "./style/home.scss"
 
-import ModalContainer from "../modal/ModalContainer";
+import ModalContainer from "../Modal/ModalContainer";
 
 const ShowListing = ({isOpen, onClose}) => {
     const { listingId } = useParams();

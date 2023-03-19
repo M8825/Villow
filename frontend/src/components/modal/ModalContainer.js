@@ -3,7 +3,7 @@ import { useState } from "react";
 import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
 import { useParams } from "react-router-dom";
-import ShowListing from "../showListing";
+import ShowListing from "../ShowListing";
 
 import "./ModalContainer.scss";
 

@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import ListingIndexItemHeart from "./ListingIndexItemHeart";
+import ListingIndexItemHeart from "./ListingHeart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-// import useCurrencyFormatter from "../utils/useCurrencyFormatter";
-// import { useSelector, useDispatch } from "react-redux";
+
+// import "./Listing.scss"
+import "./ListingItem.scss"
 
 const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
 	const buildingType =

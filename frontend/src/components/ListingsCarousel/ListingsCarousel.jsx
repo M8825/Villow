@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchListings, getListings } from "../../store/listingsReducer";
 import Carousel from "./Carousel";
 
+import "./ListingsCarousel.scss"
 
-const Listing = ({ header, paragraph}) => {
+
+const ListingsCarousel = ({ header, paragraph}) => {
 	const dispatch = useDispatch();
 
 	const listings = useSelector(getListings);
@@ -33,4 +35,4 @@ const Listing = ({ header, paragraph}) => {
 	);
 };
 
-export default Listing;
+export default ListingsCarousel;

@@ -8,7 +8,7 @@ import {
 	getListing,
 } from "../../store/listingsReducer";
 
-import Nav from "../header/Navigation";
+import Navigation from "../Header/Navigation";
 import "./style/create_listing.scss";
 import { useHistory } from "react-router-dom";
 
@@ -179,7 +179,7 @@ const CreateListing = () => {
 	return (
 		<>
 			{/* TODO: It's not index page but we still call this isIndex. change it to something abstract */}
-			<Nav isIndex={true} />
+			<Navigation isIndex={true} />
 			<hr />
 			<div className="form-container">
 				<form onSubmit={handleSubmit}>

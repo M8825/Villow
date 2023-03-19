@@ -1,20 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import ModalContainer from "../modal/ModalContainer";
+import ModalContainer from "../Modal/ModalContainer";
 import AuthorizedUser from "./AuthorizedUser";
-import ModalTabs from "../modal/ModalTabs";
+import ModalTabs from "../Modal/ModalTabs";
 import ModalWelcomeHeader from "./Welcome";
 import { Link } from "react-router-dom";
-import Layout from "../cards";
-import Footer from "../footer";
-import ListingIndex from "../listing/";
+import Layout from "../Cards";
+import Footer from "../Footer";
+
+import ListingsCarousel from "../ListingsCarousel/ListingsCarousel";
 import villow from "../assets/villow.png";
 
 import "./Navigation.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
 
-const Nav = ({ isIndex }) => {
+const Navigation = ({ isIndex }) => {
 	const dispatch = useDispatch();
 	const activeUser = useSelector(getActiveUser());
 
@@ -50,13 +51,13 @@ const Nav = ({ isIndex }) => {
 						render={() => {
 							return (
 								<>
-									<Nav />
-									<ListingIndex
+									<Navigation />
+									<ListingsCarousel
 										header={"Homes For You in New York, NY"}
 										paragraph={"Based on your view history"}
 									/>
 									<Layout />
-									<ListingIndex
+									<ListingsCarousel
 										header={
 											"Trending Homes in New York, NY"
 										}
@@ -64,7 +65,7 @@ const Nav = ({ isIndex }) => {
 											"Popular listings in the area"
 										}
 									/>
-									<ListingIndex
+									<ListingsCarousel
 										header={
 											"Selling Soon Homes in New York, NY"
 										}
@@ -119,4 +120,4 @@ const Nav = ({ isIndex }) => {
 	);
 };
 
-export default Nav;
+export default Navigation;
