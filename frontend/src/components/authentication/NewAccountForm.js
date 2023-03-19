@@ -1,14 +1,17 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+
 import { createUser } from "../../store/usersReducer";
-import "./NewAccountForm.scss";
 import ListItem from "./NewAccountFormListItem";
 import FollowButtonLinks from "./FollowButtonLinks";
+
+import "./NewAccountForm.scss";
 import "./FollowButtonLinks.scss";
 
-const NewAccountForm = ({ closeModalFunc }) => {
+const NewAccountForm = () => {
 	const dispatch = useDispatch();
+
+	const [errors, setErrors] = useState([]);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState({
 		password: "",
@@ -17,25 +20,27 @@ const NewAccountForm = ({ closeModalFunc }) => {
 		3: false,
 		4: false,
 	});
-	const [errors, setErrors] = useState([]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors([]);
+
 		return dispatch(
-			createUser({ email: email, password: password.password }),
-			closeModalFunc()
+			createUser({ email: email, password: password.password })
 		).catch(async (res) => {
-			let data;
-			try {
-				data = await res.json();
-			} catch {
-				data = await res.text(); // Will hit this case if the server is down
+			const errors = res.message.split(",");
+
+			if (res?.message) {
+				setErrors(errors)
+			} else {
+				setErrors([res.statusText]);
 			}
-			if (data?.errors) setErrors(data.errors);
-			else if (data) setErrors([data]);
-			else setErrors([res.statusText]);
 		});
+	};
+
+	const isPasswordValid = () => {
+		debugger;
+		return Object.values(password).every((value) => value);
 	};
 
 	const mixOfLettersAndNumbers = (password) => {
@@ -96,9 +101,9 @@ const NewAccountForm = ({ closeModalFunc }) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit} className="login_form">
-				<ul>
+				<ul className="errors">
 					{errors.map((error) => (
-						<li key={error}>{error}</li>
+						<li key={error}>*{error}</li>
 					))}
 				</ul>
 				<div className="account_inputs_container">
@@ -125,7 +130,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 
 					<ul className="validation_list">
 						<ListItem
-							text={"At least 8 characters "}
+							text={"At least 8 characters"}
 							valid={password[1]}
 							password={password.password}
 						/>
@@ -149,6 +154,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 					<button
 						type="Submit"
 						id="submit_button"
+						disabled={!isPasswordValid()}
 					>
 						Submit
 					</button>
@@ -166,7 +172,7 @@ const NewAccountForm = ({ closeModalFunc }) => {
 					</div>
 				</div>
 
-              {/* Follow button links as a separate component, because we also need it on sign in tab */}
+				{/* Follow button links as a separate component, because we also need it on sign in tab */}
 				<FollowButtonLinks />
 			</form>
 		</>

@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :email,
             format: {
               with: URI::MailTo::EMAIL_REGEXP,
-              message: "Invalid email format"
+              message: "- Invalid email format"
             },
             uniqueness: true
 

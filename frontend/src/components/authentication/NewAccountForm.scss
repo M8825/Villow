@@ -54,6 +54,10 @@
   outline: none;
   height: 44px;
   margin-top: 20px;
+
+  &:disabled {
+    background-color: #c1ceec;
+  }
 }
 
 #login_form__terms_and_conditions {

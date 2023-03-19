@@ -64,7 +64,6 @@ const LoginForm = ({ closeModal }) => {
 						<li key={error}>{error}</li>
 					))}
 				</ul>
-				<br />
 				<label className="login_form__label form_first_element">
 					Email
 					<Input
