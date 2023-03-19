@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchListings, getListings } from "../../store/listingsReducer";
 import Carousel from "./Carousel";
 
-import "./ListingsCarousel.scss"
+import "./ListingsCarousel.scss";
 
-
-const ListingsCarousel = ({ header, paragraph}) => {
+const ListingsCarousel = ({ header, paragraph, prevButtonClassName, nextButtonClassName}) => {
 	const dispatch = useDispatch();
 
 	const listings = useSelector(getListings);
@@ -27,7 +26,11 @@ const ListingsCarousel = ({ header, paragraph}) => {
 						<hr />
 					</div>
 					<ul className="carousel-container">
-						<Carousel sampleListings={sampleListings} />
+						<Carousel
+							sampleListings={sampleListings}
+							prevButtonClassName={prevButtonClassName}
+							nextButtonClassName={nextButtonClassName}
+						/>
 					</ul>
 				</div>
 			</div>

@@ -8,12 +8,13 @@ import ListingItem from "../ListingItem/ListingItem"
 import './Carousel.scss'
 import "swiper/css";
 
-const Carousel = ({ sampleListings }) => {
+const Carousel = ({ sampleListings, prevButtonClassName, nextButtonClassName}) => {
 	const listingStyling = {
 		minWidth: "286px",
 		height: "283px",
 	};
 
+	debugger
 	return (
 		<>
 			<Swiper
@@ -22,8 +23,8 @@ const Carousel = ({ sampleListings }) => {
 				spaceBetween={15}
 				slidesPerView={4}
 				navigation={{
-					nextEl: ".custom-next-button",
-					prevEl: ".custom-prev-button",
+					prevEl: `.${prevButtonClassName}`,
+					nextEl: `.${nextButtonClassName}`,
 				}}
 			>
 				{sampleListings.map((listing, i) => {
@@ -35,8 +36,8 @@ const Carousel = ({ sampleListings }) => {
 				})}
 			</Swiper>
 			<div className="custom-nav-buttons">
-				<CarouselPrevButton />
-				<CarouselNextButton />
+				<CarouselPrevButton prevButtonClassName={prevButtonClassName} />
+				<CarouselNextButton nextButtonClassName={nextButtonClassName} />
 			</div>
 		</>
 	);
