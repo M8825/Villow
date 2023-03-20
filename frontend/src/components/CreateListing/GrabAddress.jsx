@@ -1,13 +1,16 @@
 import { useState } from "react";
-import ListingForm from "../ListingForm/ListingForm";
+import Geocode from "react-geocode";
+import ConfirmLocation from "./ConfirmLocation";
 import GrabAddressForm from "./GrabAddressForm";
 
 import "./GrabAddress.scss";
+import "../ListingForm/ListingForm.scss";
 
 // TODO: add update address functionality
 const GrabAddress = () => {
 	// State to keep track of whether to render next page
 	const [nextPage, setNextPage] = useState(false);
+	const [coordinates, setCoordinates] = useState({});
 
 	// State to keep track of address inputs
 	const [address, setAddress] = useState({
@@ -53,7 +56,6 @@ const GrabAddress = () => {
 				break;
 		}
 	};
-
 
 	// Helper function to check if zipcode is all digit
 	const isDigits = (zipcode) => {
@@ -103,19 +105,35 @@ const GrabAddress = () => {
 		return isValid;
 	};
 
-	const handleSubmit = (e) => {
+	const getCoordinatesFromAddress = async () => {
+
+			const addressString = `${address.streetAddress} ${address.unit}, ${address.city}, ${address.state} ${address.zipcode}`;
+
+			Geocode.setApiKey("AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA");
+
+			const response = await Geocode.fromAddress(addressString);
+
+
+			if (response.status === "OK") {
+				const coords = response.results[0].geometry.location;
+				setCoordinates(coords)
+			}
+	}
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		// If all inputs are valid, set nextPage to true
 		// to render next page which will confirm address
 		// on the Map component
 		if (validateAddress()) {
+			await getCoordinatesFromAddress();
 			setNextPage(true);
 		}
 	};
 
 	return nextPage ? (
-		<ListingForm address={address} />
+		<ConfirmLocation coordinates={coordinates} />
 	) : (
 		<GrabAddressForm
 			address={address}
