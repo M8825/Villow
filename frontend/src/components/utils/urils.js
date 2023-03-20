@@ -5,6 +5,5 @@ export function generateRandomString(length) {
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
 
-    debugger
     return result;
 }

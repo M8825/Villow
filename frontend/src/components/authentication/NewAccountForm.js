@@ -39,7 +39,6 @@ const NewAccountForm = () => {
 	};
 
 	const isPasswordValid = () => {
-		debugger;
 		return Object.values(password).every((value) => value);
 	};
 

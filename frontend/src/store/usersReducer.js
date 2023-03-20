@@ -59,7 +59,6 @@ export const createUser = (user) => async (dispatch) => {
 		dispatch(receiveUser(data.user));
 	} else {
 		const { errors } = await res.json();
-		debugger
 		throw new Error(errors);
 	}
 };

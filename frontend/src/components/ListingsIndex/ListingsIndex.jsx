@@ -45,7 +45,6 @@ const ListingsPage = () => {
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		debugger;
 		setReversed(!reversed);
 	};
 

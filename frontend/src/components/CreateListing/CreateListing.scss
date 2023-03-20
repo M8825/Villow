@@ -1,0 +1,83 @@
+h1 {
+    font-family: 'Times New Roman', Courier, monospace;
+}
+
+.header {
+    background-image: url(https://blog-media.dev.zg-core.com/bedrock/app/uploads/sites/11/2022/10/Hero_Sell_Large-1-1440x514.png);
+    height: 536px;
+    width: 100%;
+    padding: 48px 24px 0px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 60px;
+        font-family: 'Times New Roman', Courier, monospace;
+        font-weight: 700;
+        line-height: 72px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+}
+
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 32px 32px 32px;
+    margin: 48px 116px 32px 116px;
+    min-height: auto;
+
+    .content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        height: 544px;
+        min-width: 1280px;
+
+        .description {
+            display: flex;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .post-listing {
+                background-color: #0061FF;
+                color: white;
+                display: inline;
+            }
+
+            .post-listing {
+                width: 100%;
+                width: fit-content;
+                padding: 15px 16px;
+                border-radius: 5px;
+                font-weight: 700;
+                margin-top: 40px;
+
+                &:hover {
+                    background-color: rgb(31 68 148);
+                }
+
+            }
+        }
+
+
+        img {
+            height: 240px;
+        }
+
+
+    }
+
+
+    h1 {
+        font-size: 48px;
+        line-height: 64px;
+        font-family: 'Times New Roman', Courier, monospace;
+        text-align: start;
+    }
+}

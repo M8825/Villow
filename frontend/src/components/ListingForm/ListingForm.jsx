@@ -8,11 +8,12 @@ import {
 	getListing,
 } from "../../store/listingsReducer";
 
-import Navigation from "../Header/Navigation";
-import "./style/create_listing.scss";
 import { useHistory } from "react-router-dom";
+import { getActiveUser } from "../../store/usersReducer";
 
-const CreateListing = () => {
+import "./ListingForm.scss";
+
+const ListingForm = ({ handlePostListing }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
@@ -72,9 +73,7 @@ const CreateListing = () => {
 		};
 	}
 
-	const owner = useSelector((state) => {
-		return state.user.active.id;
-	});
+	const owner = useSelector(getActiveUser());
 
 	const [price, setPrice] = useState(listing ? listing.price : 0);
 	const [address, setStreetAddress] = useState(listing.address);
@@ -166,7 +165,6 @@ const CreateListing = () => {
 			formData.append("listing[ac]", isAc);
 			formData.append("listing[heating]", isHeating);
 
-			debugger
 			dispatch(createListing(formData));
 		}
 
@@ -179,7 +177,6 @@ const CreateListing = () => {
 	return (
 		<>
 			{/* TODO: It's not index page but we still call this isIndex. change it to something abstract */}
-			<Navigation isIndex={true} />
 			<hr />
 			<div className="form-container">
 				<form onSubmit={handleSubmit}>
@@ -430,4 +427,4 @@ const CreateListing = () => {
 	);
 };
 
-export default CreateListing;
+export default ListingForm;

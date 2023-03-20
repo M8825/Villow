@@ -14,7 +14,6 @@ const Carousel = ({ sampleListings, prevButtonClassName, nextButtonClassName}) =
 		height: "283px",
 	};
 
-	debugger
 	return (
 		<>
 			<Swiper

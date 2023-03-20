@@ -10,7 +10,6 @@ import "./CarouselButton.scss";
 
 export const CarouselPrevButton = ({ prevButtonClassName }) => {
 	const classNames = `${prevButtonClassName} btn`;
-	debugger;
 	return (
 		<button className={`${classNames}`}>
 			<FontAwesomeIcon icon={faChevronLeft} className="btn__icon" />
