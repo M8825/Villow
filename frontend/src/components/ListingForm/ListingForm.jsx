@@ -203,50 +203,6 @@ const ListingForm = ({ handlePostListing }) => {
 					<input type="file" onChange={handleFiles} multiple />{" "}
 					<br />
 					{/* <----- ADD THIS LINE */}
-					<div className="streetAddress">
-						<label>
-							Street address
-							<input
-								type="text"
-								onChange={(e) =>
-									setStreetAddress(e.target.value)
-								}
-								placeholder="Street address"
-								value={address}
-								className="input-address"
-							/>
-						</label>
-
-						<label>
-							City
-							<input
-								type="text"
-								placeholder="City"
-								value={city}
-								onChange={(e) => setCity(e.target.value)}
-							/>
-						</label>
-
-						<label>
-							State
-							<input
-								type="text"
-								placeholder="State"
-								value={state}
-								onChange={(e) => setState(e.target.value)}
-							/>
-						</label>
-
-						<label>
-							Zip code
-							<input
-								type="text"
-								placeholder="Zip code"
-								value={zipcode}
-								onChange={(e) => setZipCode(e.target.value)}
-							/>
-						</label>
-					</div>
 					<h2>Home facts</h2>
 					<div className="room-details">
 						<label

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Footer from "../Footer";
 import Navigation from "../Header/Navigation";
 import ListingForm from "../ListingForm/ListingForm";
-import MapConfirmation from "./MapConfirmation";
+import GrabAddress from "./GrabAddress";
 
 import "./CreateListing.scss";
 import LandingPage from "./LandingPage";
@@ -25,7 +25,7 @@ const CreateListing = () => {
 		<LandingPage handlePostListing={handlePostListing} />
 	);
 
-	const mapConfirmation = () => <MapConfirmation handlePostListing={handlePostListing} />;
+	const mapConfirmation = () => <GrabAddress handlePostListing={handlePostListing} />;
 
 	const listingForm = () => <ListingForm handlePostListing={handlePostListing} />;
 
