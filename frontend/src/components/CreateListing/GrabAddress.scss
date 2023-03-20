@@ -1,65 +1,115 @@
-.map-confirmation {
+@mixin image-selector($positions-x) {
+    background-image: url("https://www.zillowstatic.com/static-posting-path/9fc9e65/static-posting-path/images/icons/seller-landing-page-3x.png");
+    background-position-x: $positions-x;
+    background-position-y: 0;
+    background-size: 317px 160px;
+    height: 75px;
+    width: 75px;
+}
+
+.address-input-wrapper {
     display: flex;
-    justify-content: flex-end;
-    width: 1240px;
-    height: 470px;
-    background-image: url("http://zillowstatic.com/static-posting-path/9fc9e65/static-posting-path/images/icons/seller-landing-page-background3.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid rgb(213, 213, 213);
+    width: 100%;
 
-    .trapezoid-wrapper {
+    .address-input {
         display: flex;
+        justify-content: flex-end;
+        width: 1280px;
+        height: 470px;
+        background-image: url("http://zillowstatic.com/static-posting-path/9fc9e65/static-posting-path/images/icons/seller-landing-page-background3.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
 
-        .rectangle {
+        .trapezoid-wrapper {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 560px;
-            height: 65px;
-            padding: 0px 20px 0px 10px;
-            background-color: rgb(30 65 142);
-            color: white;
-            font-size: 33px;
-            font-weight: 600;
+
+            .rectangle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 560px;
+                height: 65px;
+                padding: 0px 20px 0px 10px;
+                background-color: rgb(30 65 142);
+                color: white;
+                font-size: 33px;
+                font-weight: 600;
+            }
+
+            .trapezoid {
+                border-bottom: 65px solid rgb(30 65 142);
+                border-right: 35px solid transparent;
+                height: 0;
+                width: 35px;
+            }
         }
 
-        .trapezoid {
-            border-bottom: 65px solid rgb(30 65 142);
-            border-right: 35px solid transparent;
-            height: 0;
-            width: 35px;
+        .grab-address {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1.3fr 0.31fr 1fr 1fr;
+            column-gap: 1%;
+            align-items: center;
+            height: 150px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            text-align: left;
+            background-color: rgba(0, 116, 228, .9);
+
+            input {
+                border: 1px solid #eaeaea;
+                height: 40px;
+                width: 100%;
+            }
+
+            .submit-btn {
+                width: fit-content;
+                height: fit-content;
+                background-color: rgb(106 199 103);
+                padding: 6px 10.5px;
+                border-radius: 5px;
+                color: white;
+
+                &:hover {
+                    background-color: rgb(103 196 99);
+                }
+            }
         }
     }
 
-    .grab-address {
+    .address-input-bottom {
         display: grid;
-        grid-template-columns: 3fr 1fr 1.3fr 0.31fr 1fr 1fr;
-        column-gap: 1%;
-        align-items: center;
-        height: 150px;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 10px;
-        text-align: left;
-        background-color: rgba(0, 116, 228, .9);
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 1280px;
 
-        input {
-            border: 1px solid #eaeaea;
-            height: 40px;
-            width: 100%;
-        }
+        .description-items {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0px 20px 0px 20px;
+            height: 144px;
+            font-family: "Open sans";
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.5;
+            gap: 15px;
 
-        .submit-btn {
-            width: fit-content;
-            height: fit-content;
-            background-color: rgb(106 199 103);
-            padding: 6px 10.5px;
-            border-radius: 5px;
-            color: white;
+            .home-image {
+                @include image-selector(-151px)
+            }
 
-            &:hover {
-                background-color: rgb(103 196 99);
+            .rupor-image {
+                @include image-selector(-76px)
+            }
+
+            .check-mark {
+                @include image-selector(0px);
             }
         }
     }
