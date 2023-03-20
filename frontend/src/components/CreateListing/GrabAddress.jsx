@@ -9,7 +9,16 @@ const GrabAddress = () => {
 
 	const [address, setAddress] = useState({
 		streetAddress: "",
-		apt: "",
+		unit: "",
+		city: "",
+		state: "",
+		zipcode: "",
+	});
+
+	const [errors, setErrors] = useState({
+		isSet: false,
+		streetAddress: "",
+		unit: "",
 		city: "",
 		state: "",
 		zipcode: "",
@@ -22,8 +31,8 @@ const GrabAddress = () => {
 			case "streetAddress":
 				setAddress({ ...address, streetAddress: e.target.value });
 				break;
-			case "apt":
-				setAddress({ ...address, apt: e.target.value });
+			case "unit":
+				setAddress({ ...address, unit: e.target.value });
 				break;
 			case "city":
 				setAddress({ ...address, city: e.target.value });
@@ -39,14 +48,60 @@ const GrabAddress = () => {
 		}
 	};
 
+	const isDigits = (zipcode) => {
+		return /^\d+$/.test(zipcode);
+	};
+
+	const validateAddress = () => {
+		let newErrors = {};
+		let isValid = true;
+
+		if (!address.streetAddress) {
+			newErrors.streetAddress = "Please enter a street address";
+			isValid = false;
+		} else {
+			newErrors.streetAddress = "";
+		}
+
+		if (!address.city) {
+			newErrors.city = "Please enter a city";
+			isValid = false;
+		} else {
+			newErrors.city = "";
+		}
+
+		if (!address.state) {
+			newErrors.state = "Please select a state";
+			isValid = false;
+		} else {
+			newErrors.state = "";
+		}
+
+		if (!address.zipcode) {
+			newErrors.zipcode = "Please enter a zipcode";
+			isValid = false;
+		} else if (!isDigits(address.zipcode) || address.zipcode.length !== 5) {
+			newErrors.zipcode = "Please enter a valid zipcode";
+			isValid = false;
+		} else {
+			newErrors.zipcode = "";
+		}
+
+		setErrors({ ...errors, ...newErrors, isSet: true });
+
+		return isValid;
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		setNextPage(true);
+		if (validateAddress()) {
+			setNextPage(true);
+		}
 	};
 
 	return nextPage ? (
-		<ListingForm />
+		<ListingForm address={address} />
 	) : (
 		<div className="address-input-wrapper">
 			<form className="address-input">
@@ -57,37 +112,56 @@ const GrabAddress = () => {
 					<div className="trapezoid"></div>
 				</div>
 				<div className="grab-address">
-					<input
-						type="text"
-						onChange={(e) =>
-							handleAddressChange(e, "streetAddress")
-						}
-						placeholder="Street address"
-						value={address.streetAddress}
-					/>
+					<div className="input-wrapper">
+						<input
+							type="text"
+							onChange={(e) =>
+								handleAddressChange(e, "streetAddress")
+							}
+							placeholder="Street address"
+							value={address.streetAddress}
+						/>
 
-					<input
-						type="text"
-						onChange={(e) => handleAddressChange(e, "unit")}
-						placeholder="Unit# (optional)"
-						value={address.streetAddress}
-					/>
+						<p>{errors.isSet && errors.streetAddress}</p>
+					</div>
 
-					<input
-						type="text"
-						placeholder="City"
-						value={address.city}
-						onChange={(e) => handleAddressChange(e, "city")}
-					/>
+					<div className="input-wrapper">
+						<input
+							type="text"
+							onChange={(e) => handleAddressChange(e, "unit")}
+							placeholder="Unit# (optional)"
+							value={address.unit}
+						/>
+						<p>{errors.isSet && " "}</p>
+					</div>
 
-					<SelectedState handleAddressChange={handleAddressChange} />
+					<div className="input-wrapper">
+						<input
+							type="text"
+							placeholder="City"
+							value={address.city}
+							onChange={(e) => handleAddressChange(e, "city")}
+						/>
+						<p>{errors.isSet && errors.city}</p>
+					</div>
 
-					<input
-						type="text"
-						placeholder="Zip code"
-						value={address.zipcode}
-						onChange={(e) => handleAddressChange(e, "zipcode")}
-					/>
+					<div className="input-wrapper">
+						<SelectedState
+							handleAddressChange={handleAddressChange}
+						/>
+						<p>{errors.isSet && errors.state}</p>
+					</div>
+
+					<div className="input-wrapper">
+						<input
+							type="text"
+							placeholder="Zip code"
+							value={address.zipcode}
+							onChange={(e) => handleAddressChange(e, "zipcode")}
+						/>
+						<p>{errors.isSet && errors.zipcode}</p>
+					</div>
+
 					<button
 						className="submit-btn"
 						type="submit"

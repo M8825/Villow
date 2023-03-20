@@ -60,11 +60,19 @@
             text-align: left;
             background-color: rgba(0, 116, 228, .9);
 
-            input {
-                border: 1px solid #eaeaea;
-                height: 40px;
-                width: 100%;
+            .input-wrapper {
+                input {
+                    border: 1px solid #eaeaea;
+                    height: 40px;
+                    width: 100%;
+                }
+
+                p {
+                    color: white;
+                }
+
             }
+
 
             .submit-btn {
                 width: fit-content;
