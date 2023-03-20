@@ -3,8 +3,9 @@ const SelectedState = ({ handleAddressChange }) => {
 		<select
 			onChange={(e) => handleAddressChange(e, "state")}
 			style={{
-        textAlignLast: "center",
+				textAlignLast: "start",
 				height: "40px",
+				width: "100%",
 			}}
 		>
 			<option value="---">{"   "}</option>

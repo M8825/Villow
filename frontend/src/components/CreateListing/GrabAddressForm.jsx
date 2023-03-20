@@ -1,8 +1,12 @@
 import SelectedState from "./SelectedState";
 
-const GrabAddressForm = ({ address, handleAddressChange, errors, handleSubmit }) => {
-
-    return (
+const GrabAddressForm = ({
+	address,
+	handleAddressChange,
+	errors,
+	handleSubmit,
+}) => {
+	return (
 		<div className="address-input-wrapper">
 			<form className="address-input">
 				<div className="trapezoid-wrapper">
@@ -11,8 +15,18 @@ const GrabAddressForm = ({ address, handleAddressChange, errors, handleSubmit })
 					</div>
 					<div className="trapezoid"></div>
 				</div>
-				<div className="grab-address">
-					<div className="input-wrapper">
+				<div
+					className={`grab-address ${
+						errors.isSet ? "errors-set" : ""
+					}`}
+				>
+					<div
+						className={`input-wrapper ${
+							errors.isSet && errors.streetAddress
+								? "error-set"
+								: ""
+						}`}
+					>
 						<input
 							type="text"
 							onChange={(e) =>
@@ -35,7 +49,11 @@ const GrabAddressForm = ({ address, handleAddressChange, errors, handleSubmit })
 						<p>{errors.isSet && " "}</p>
 					</div>
 
-					<div className="input-wrapper">
+					<div
+						className={`input-wrapper ${
+							errors.isSet && errors.city ? "error-set" : ""
+						}`}
+					>
 						<input
 							type="text"
 							placeholder="City"
@@ -45,14 +63,22 @@ const GrabAddressForm = ({ address, handleAddressChange, errors, handleSubmit })
 						<p>{errors.isSet && errors.city}</p>
 					</div>
 
-					<div className="input-wrapper">
+					<div
+						className={`input-wrapper ${
+							errors.isSet && errors.state ? "error-set" : ""
+						}`}
+					>
 						<SelectedState
 							handleAddressChange={handleAddressChange}
 						/>
 						<p>{errors.isSet && errors.state}</p>
 					</div>
 
-					<div className="input-wrapper">
+					<div
+						className={`input-wrapper ${
+							errors.isSet && errors.zipcode ? "error-set" : ""
+						}`}
+					>
 						<input
 							type="text"
 							placeholder="Zip code"
@@ -62,13 +88,15 @@ const GrabAddressForm = ({ address, handleAddressChange, errors, handleSubmit })
 						<p>{errors.isSet && errors.zipcode}</p>
 					</div>
 
-					<button
-						className="submit-btn"
-						type="submit"
-						onClick={handleSubmit}
-					>
-						Continue
-					</button>
+					<div className="input-wrapper">
+						<button
+							className="submit-btn"
+							type="submit"
+							onClick={handleSubmit}
+						>
+							Continue
+						</button>
+					</div>
 				</div>
 			</form>
 			<h2>Why post on Villow?</h2>
@@ -95,8 +123,7 @@ const GrabAddressForm = ({ address, handleAddressChange, errors, handleSubmit })
 				</div>
 			</div>
 		</div>
-
-    )
-}
+	);
+};
 
 export default GrabAddressForm;

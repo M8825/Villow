@@ -4,9 +4,12 @@ import GrabAddressForm from "./GrabAddressForm";
 
 import "./GrabAddress.scss";
 
+// TODO: add update address functionality
 const GrabAddress = () => {
+	// State to keep track of whether to render next page
 	const [nextPage, setNextPage] = useState(false);
 
+	// State to keep track of address inputs
 	const [address, setAddress] = useState({
 		streetAddress: "",
 		unit: "",
@@ -15,6 +18,7 @@ const GrabAddress = () => {
 		zipcode: "",
 	});
 
+	// State to keep track of errors
 	const [errors, setErrors] = useState({
 		isSet: false,
 		streetAddress: "",
@@ -24,6 +28,8 @@ const GrabAddress = () => {
 		zipcode: "",
 	});
 
+	// Handler function to handle address input changes
+	// and update address state accordingly
 	const handleAddressChange = (e, input) => {
 		e.preventDefault();
 
@@ -48,10 +54,15 @@ const GrabAddress = () => {
 		}
 	};
 
+
+	// Helper function to check if zipcode is all digit
 	const isDigits = (zipcode) => {
-		return /^\d+$/.test(zipcode);
+		return /^\d+$/.test(zipcode) && zipcode.length === 5;
 	};
 
+	// Invoked at submit click and checks if all inputs are valid
+	// based on relevant conditions. Updates errors state if
+	// any inputs are invalid.
 	const validateAddress = () => {
 		let newErrors = {};
 		let isValid = true;
@@ -70,7 +81,7 @@ const GrabAddress = () => {
 			newErrors.city = "";
 		}
 
-		if (!address.state) {
+		if (address.state === "---") {
 			newErrors.state = "Please select a state";
 			isValid = false;
 		} else {
@@ -80,7 +91,7 @@ const GrabAddress = () => {
 		if (!address.zipcode) {
 			newErrors.zipcode = "Please enter a zipcode";
 			isValid = false;
-		} else if (!isDigits(address.zipcode) || address.zipcode.length !== 5) {
+		} else if (!isDigits(address.zipcode)) {
 			newErrors.zipcode = "Please enter a valid zipcode";
 			isValid = false;
 		} else {
@@ -95,6 +106,9 @@ const GrabAddress = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
+		// If all inputs are valid, set nextPage to true
+		// to render next page which will confirm address
+		// on the Map component
 		if (validateAddress()) {
 			setNextPage(true);
 		}
