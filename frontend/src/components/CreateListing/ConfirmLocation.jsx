@@ -5,7 +5,7 @@ import "./ConfirmLocation.scss";
 const ConfirmLocation = ({ address, coordinates }) => {
 	const containerStyle = {
 		width: "1240px",
-		height: "600px",
+		height: "400px",
 	};
 
 	const [selectedPosition, setSelectedPosition] = useState(coordinates);
@@ -28,7 +28,7 @@ const ConfirmLocation = ({ address, coordinates }) => {
 				<GoogleMap
 					mapContainerStyle={containerStyle}
 					center={coordinates}
-					zoom={25}
+					zoom={20}
 				>
 					<>
 						<MarkerF
@@ -42,6 +42,11 @@ const ConfirmLocation = ({ address, coordinates }) => {
 					</>
 				</GoogleMap>
 			</LoadScript>
+			</div>
+			<div className="confirmation-buttons">
+
+				<button className="bttn next-page">Yes, it's the correct location</button>
+				<button className="bttn move-coordinates">No, let me change it</button>
 			</div>
 		</div>
 	);

@@ -29,4 +29,31 @@
         }
     }
 
+
+    .confirmation-buttons {
+        display: flex;
+        gap: 5px;
+        margin: 22px;
+        width: 1240px;
+
+        .bttn {
+            background-color: #0061FF;
+            min-height: 44px;
+            min-width: 44px;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .next-page {
+            color: white;
+        }
+
+        .move-coordinates {
+            background-color: white;
+            color: #0061FF;
+            border: 1px solid #0061FF;
+        }
+    }
 }
