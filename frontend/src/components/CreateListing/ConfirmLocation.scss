@@ -48,12 +48,21 @@
 
         .next-page {
             color: white;
+
+            &:hover {
+                background-color: rgb(31 68 148);
+            }
         }
 
         .move-coordinates {
             background-color: white;
             color: #0061FF;
             border: 1px solid #0061FF;
+
+            &:hover {
+                background-color: rgb(242 249 255);
+            }
         }
+
     }
 }
