@@ -37,3 +37,6 @@
 
 
 
+## Libraries
+    - https://googlemaps.github.io/react-wrapper/index.html - Handle google maps loading with this library
+

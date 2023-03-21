@@ -108,11 +108,8 @@ const GrabAddress = () => {
 	const getCoordinatesFromAddress = async () => {
 
 			const addressString = `${address.streetAddress} ${address.unit}, ${address.city}, ${address.state} ${address.zipcode}`;
-
 			Geocode.setApiKey("AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA");
-
 			const response = await Geocode.fromAddress(addressString);
-
 
 			if (response.status === "OK") {
 				const coords = response.results[0].geometry.location;
@@ -133,7 +130,7 @@ const GrabAddress = () => {
 	};
 
 	return nextPage ? (
-		<ConfirmLocation coordinates={coordinates} />
+		<ConfirmLocation coordinates={coordinates} address={address} />
 	) : (
 		<GrabAddressForm
 			address={address}

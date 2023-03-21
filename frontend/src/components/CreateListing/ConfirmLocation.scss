@@ -1,0 +1,32 @@
+.confirm-location-map-container {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .header-for-sale {
+        width: 1240px;
+        margin-bottom: 20px;
+
+        h1 {
+            font-size: 36px;
+            font-weight: 800;
+            font-family: "Time New Roman", Times, serif;
+            text-align: start;
+        }
+
+        hr {
+            margin: 24px 0px;
+        }
+
+        h5 {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: "Open sans", Times, serif;
+            text-align: start;
+        }
+    }
+
+}
