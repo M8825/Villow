@@ -9,6 +9,7 @@ import {
 	TabPanel,
 } from "@chakra-ui/react";
 import Footer from "../Footer";
+import Card from "../Cards/Card";
 
 import "./UserProfile.scss";
 
@@ -30,6 +31,7 @@ const UserProfile = () => {
 							<TabPanels>
 								<TabPanel>
 									<h1>Foo</h1>
+                                    <Card />
 								</TabPanel>
 								<TabPanel>
 									<h1>Bar</h1>

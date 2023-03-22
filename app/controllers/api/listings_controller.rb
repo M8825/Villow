@@ -1,6 +1,12 @@
 class Api::ListingsController < ApplicationController
   before_action :set_listing, only: %i[show update destroy]
 
+  # only allow index page if URL includes user_id
+  # without a user session
+  before_action :require_logged_in,
+                only: [:index],
+                if: Proc.new { params[:user_id] && !current_user }
+
   def index
     @listings = Listing.all
 
@@ -38,6 +44,9 @@ class Api::ListingsController < ApplicationController
 
   private
 
+  # TODO: Get rid of this function or implement relevant actions
+  # properly. I don't think that I need to re-initialize @listing
+  # in [show update destroy] actions.
   def set_listing
     @listing = Listing.find(params[:id])
   rescue StandardError

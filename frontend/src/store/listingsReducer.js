@@ -48,6 +48,15 @@ export const fetchListing = (id) => async (dispatch) => {
 	}
 };
 
+export const fetchListingByUserId = (userId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/listings/user/${userId}`);
+
+	if (res.ok) {
+		const listings = await res.json()
+		dispatch(receiveListings(listings));
+	}
+};
+
 export const createListing = (listing) => async (dispatch) => {
 	const res = await csrfFetch("/api/listings", {
 		method: "POST",
