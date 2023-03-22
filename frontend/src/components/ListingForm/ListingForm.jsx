@@ -11,6 +11,8 @@ import {
 import { useHistory } from "react-router-dom";
 import { getActiveUser } from "../../store/usersReducer";
 import uploadPhotosImg from "./assets/upload-photos.png";
+import Navigation from "../Header/Navigation";
+import Footer from "../Footer";
 
 import "./ListingForm.scss";
 
@@ -155,6 +157,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 	// TODO: add styling to input focus
 	return (
 		<>
+			<Navigation isIndex={true} />
 			{/* TODO: It's not index page but we still call this isIndex. change it to something abstract */}
 			<hr />
 			<div className="form-container">
@@ -399,15 +402,16 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 						</label>
 					</label>
 					<button
-						className="bttn post-submit"
 						type="submit"
 						onSubmit={handleSubmit}
 						disabled={!agreement}
+						className="bttn post-submit"
 					>
 						{formType}
 					</button>
 				</form>
 			</div>
+			<Footer />
 		</>
 	);
 };
