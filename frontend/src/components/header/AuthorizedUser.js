@@ -1,13 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { logoutUser} from "../../store/usersReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+
+import { getActiveUser, logoutUser } from "../../store/usersReducer";
+
 import "./AuthorizedUser.scss";
-
 const AuthorizedUser = () => {
-
 	const dispatch = useDispatch();
 	const [menuIsActive, setMenuIsActive] = useState(false);
+
+	const currentUser = useSelector(getActiveUser());
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -20,7 +23,8 @@ const AuthorizedUser = () => {
 
 		dispatch(logoutUser());
 	};
-	return (
+
+	return currentUser && (
 		<>
 			<ul className="authorized-user" onClick={handleClick}>
 				<li style={{}}>
@@ -30,30 +34,15 @@ const AuthorizedUser = () => {
 							className="authorized-user__dropdown"
 						>
 							<ul>
-								<li>
-									Saved
-									homes
-								</li>
-								<li>
-									Saved
-									Searches
-								</li>
-								<li>
-									Your
-									Home
-								</li>
-								<li>
-									Renter
-									Hub
-								</li>
-								<li>
-									Account
-									Settings
-								</li>
+								<NavLink to={`/user/${currentUser.id}`}>
+									<li>User Profile</li>
+								</NavLink>
+								<li>Saved homes</li>
+								<li>Your Home</li>
+								<li>Renter Hub</li>
+								<li>Account Settings</li>
 								<hr />
-								<li onClick={handleSignOutClick}>
-									Sign Out
-								</li>
+								<li onClick={handleSignOutClick}>Sign Out</li>
 							</ul>
 						</section>
 					) : null}

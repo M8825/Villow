@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Footer from "../Footer";
+
 import Navigation from "../Header/Navigation";
-import ListingForm from "../ListingForm/ListingForm";
 import GrabAddress from "./GrabAddress";
+import LandingPage from "./LandingPage";
+import Footer from "../Footer";
 
 import "./CreateListing.scss";
-import LandingPage from "./LandingPage";
 
 const CreateListing = () => {
 	const handlePostListing = (e, last) => {
@@ -30,22 +30,9 @@ const CreateListing = () => {
 
 	return (
 		<>
-			<ListingForm
-				resultAddress={{
-					streetAddress: "514 E 82ND ST. APT# 2R",
-					unit: "2R",
-					city: "New York",
-					state: "NY",
-					zipcode: "10028",
-				}}
-				coordinates={{
-					lat: 40.7728549,
-					lng: -73.9481746,
-				}}
-			/>
-			{/* <Navigation isIndex={true} />
+			<Navigation isIndex={true} />
 			{page}
-			<Footer /> */}
+			<Footer />
 		</>
 	);
 };

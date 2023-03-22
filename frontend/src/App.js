@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Navigation from "./components/Header/Navigation";
 import ShowListing from "./components/ShowListing";
 import { LoadScript } from "@react-google-maps/api";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 import "./index.scss";
 
@@ -19,6 +20,7 @@ const App = () => {
 					path="/listings/:listingId/edit"
 					component={CreateListing}
 				/>
+				<Route exact path="/user/:id" component={UserProfile} />
 				<Route exact path="/" component={SplashPage} />
 
 				<Route exact path="/listings">
