@@ -1,48 +1,40 @@
 import Navigation from "../Header/Navigation";
-import tabListTheme from "../Modal/ModalTabsTheme";
-import {
-	ChakraProvider,
-	Tabs,
-	TabList,
-	TabPanels,
-	Tab,
-	TabPanel,
-} from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getActiveUser } from "../../store/usersReducer";
+import { fetchListingByUserId, getListings } from "../../store/listingsReducer";
+
 import Footer from "../Footer";
+import UserProfileTabs from "./UserProfileTabs";
 import Card from "../Cards/Card";
 
 import "./UserProfile.scss";
 
 const UserProfile = () => {
+	const dispatch = useDispatch();
+
+	const currentUser = useSelector(getActiveUser());
+	const listings = useSelector(getListings);
+
+	useEffect(() => {
+		if (currentUser) {
+			dispatch(fetchListingByUserId(currentUser.id));
+		}
+	}, [dispatch, currentUser]);
+
+	// const userListings
 	return (
-		<>
-			<Navigation isIndex={true} />
-			<div className="profile-wrapper">
-				<div className="content">
-					<ChakraProvider theme={tabListTheme}>
-						<Tabs>
-							<TabList
-								borderBottom={"1px solid "}
-								borderColor={"rgb(209 209 213)"}
-							>
-								<Tab className="form-tab">Your Home</Tab>
-								<Tab>Favorite Homes</Tab>
-							</TabList>
-							<TabPanels>
-								<TabPanel>
-									<h1>Foo</h1>
-                                    <Card />
-								</TabPanel>
-								<TabPanel>
-									<h1>Bar</h1>
-								</TabPanel>
-							</TabPanels>
-						</Tabs>
-					</ChakraProvider>
-				</div>
-			</div>
-			<Footer />
-		</>
+		listings && (
+			<>
+				<Navigation isIndex={true} />
+				<UserProfileTabs>
+					{listings.map((listing, idx) => (
+						<Card key={idx} listing={listing} />
+					))}
+				</UserProfileTabs>
+				<Footer />
+			</>
+		)
 	);
 };
 

@@ -1,11 +1,13 @@
 import React from "react";
 
-const Card = ({ headerImg, header, body, buttonText }) => {
-	return (
+const Card = ({listing, headerImg, header, body, buttonText }) => {
+	debugger
+
+	return listing && (
 		<div className="cards-container__card">
 			<img src={headerImg} alt="buy_a_house" />
 			<div className="cards-container__card__body_wrapper">
-				<h1>{header}</h1>
+				<h1>{listing.address}</h1>
 				<p>{body}</p>
                 <button>{buttonText}</button>
 			</div>
