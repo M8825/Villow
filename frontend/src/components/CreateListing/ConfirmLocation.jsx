@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { GoogleMap, MarkerF, LoadScript } from "@react-google-maps/api";
+import ListingForm from "../ListingForm/ListingForm";
+import ConfirmationMap from "./ConfirmationMap";
+import Geocode from "react-geocode";
 import "./ConfirmLocation.scss";
 
 const ConfirmLocation = ({ address, coordinates }) => {
@@ -9,44 +11,94 @@ const ConfirmLocation = ({ address, coordinates }) => {
 	};
 
 	const [selectedPosition, setSelectedPosition] = useState(coordinates);
+	const [changeLocation, setChangeLocation] = useState(false);
+	const [nextPage, setNextPage] = useState(false);
+	const [resultAddress, setResultAddress] = useState(address);
 
-	const handleDragEnd = (e) => {
-		setSelectedPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+	const handleLocationChange = (e) => {
+		e.preventDefault();
+		setChangeLocation(true);
 	};
 
-	return (
+	const handleCancel = (e) => {
+		e.preventDefault();
+		setChangeLocation(false);
+	};
+
+	const getCoordinatesFromCoordinates = async () => {
+		Geocode.setApiKey("AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA");
+		const response = await Geocode.fromLatLng(selectedPosition.lat, selectedPosition.lng);
+
+		if (response.status === "OK") {
+			const generatedAddress = response.results[0].formatted_address;
+			setResultAddress(generatedAddress);
+		}
+
+		return null;
+}
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		getCoordinatesFromCoordinates();
+		setNextPage(true);
+
+	};
+
+	return nextPage ? (
+		<ListingForm resultAddress={resultAddress} coordinates={selectedPosition} />
+	) : (
 		<div className="confirm-location-map-container">
 			<div className="header-for-sale">
 				<h1>For Sale by Owner Listing</h1>
 				<h5>{`${address.streetAddress}, ${address.city}, ${address.state} ${address.zipcode}`}</h5>
 				<hr />
-				<p>Is this an accurate location of your home?</p>
-			</div>
 
-			<div className="confirm-location-map-wrapper">
-			<LoadScript googleMapsApiKey="AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA">
-				<GoogleMap
-					mapContainerStyle={containerStyle}
-					center={coordinates}
-					zoom={20}
-				>
+				{changeLocation ? (
 					<>
-						<MarkerF
-							position={{
-								lat: selectedPosition.lat,
-								lng: selectedPosition.lng,
-							}}
-							draggable={true}
-							onDragEnd={handleDragEnd}
-						/>
+						<p>Move your home to the correct location</p>
+						<p>
+							Drag pin to correct location, and the home will be
+							placed there.
+						</p>
+						<p className="currently-selected-coordinates">
+							Currently selected:{" "}
+							{`${selectedPosition.lat}, ${selectedPosition.lng}`}
+						</p>
 					</>
-				</GoogleMap>
-			</LoadScript>
+				) : (
+					<p>Is this an accurate location of your home?</p>
+				)}
 			</div>
-			<div className="confirmation-buttons">
 
-				<button className="bttn next-page">Yes, it's the correct location</button>
-				<button className="bttn move-coordinates">No, let me change it</button>
+			<ConfirmationMap
+				containerStyle={containerStyle}
+				selectedPosition={selectedPosition}
+				setSelectedPosition={setSelectedPosition}
+			/>
+
+			<div className="confirmation-buttons">
+				<button className="bttn next-page" onClick={handleSubmit}>
+					{changeLocation
+						? "Save and continue"
+						: "Yes, it's the correct location"}
+				</button>
+
+				{changeLocation ? (
+					<button
+						className="bttn move-coordinates"
+						onClick={handleCancel}
+					>
+						Cancel
+					</button>
+				) : (
+					<button
+						className="bttn move-coordinates"
+						onClick={handleLocationChange}
+					>
+						No, let me change it
+					</button>
+				)}
 			</div>
 		</div>
 	);

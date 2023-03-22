@@ -66,6 +66,8 @@ class Api::ListingsController < ApplicationController
         :building_type,
         :listing_type,
         :est_payment,
+        :lat,
+        :lng,
         photos: []
       )
       .deep_transform_keys!(&:underscore)

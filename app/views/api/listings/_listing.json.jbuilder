@@ -21,6 +21,8 @@ json.extract! listing,
               :views,
               :owner_id,
               :created_at,
+              :lat,
+              :lng,
               :updated_at,
               :created_at
 

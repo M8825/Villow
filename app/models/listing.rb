@@ -1,4 +1,4 @@
-#listing.id == Schema Information
+# == Schema Information
 #
 # Table name: listings
 #
@@ -15,14 +15,18 @@
 #  heating       :boolean
 #  ac            :boolean
 #  garage        :boolean
-#  price_sqft    :integer          not null
+#  price_sqft    :float            not null
 #  overview      :text             not null
 #  key_words     :text             not null
-#  views         :integer
+#  views         :integer          default(0)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  zipcode       :integer          not null
 #  owner_id      :bigint
+#  city          :string           default("NY"), not null
+#  state         :string           default("NY"), not null
+#  lat           :float
+#  lng           :float
 #
 class Listing < ApplicationRecord
   belongs_to :owner, class_name: :User, foreign_key: :owner_id
@@ -42,6 +46,8 @@ class Listing < ApplicationRecord
             :zipcode,
             :city,
             :state,
+            :lat,
+            :lng,
             presence: true
 
   has_many_attached :photos

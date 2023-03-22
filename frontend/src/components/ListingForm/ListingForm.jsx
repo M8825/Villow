@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	createListing,
@@ -13,10 +13,10 @@ import { getActiveUser } from "../../store/usersReducer";
 
 import "./ListingForm.scss";
 
-const ListingForm = ({ handlePostListing }) => {
+const ListingForm = ({ resultAddress, coordinates }) => {
+	debugger;
 	const history = useHistory();
 	const dispatch = useDispatch();
-
 
 	const { listingId } = useParams();
 	const formType = listingId ? "Update post" : "Post for sale by owner";
@@ -52,10 +52,10 @@ const ListingForm = ({ handlePostListing }) => {
 	if (!listing) {
 		listing = {
 			price: "",
-			address: "",
-			city: "",
-			state: "",
-			zipcode: "",
+			address: resultAddress.streetAddress,
+			city: resultAddress.city,
+			state: resultAddress.state,
+			zipcode: resultAddress.zipcode,
 			bedroom: "",
 			bathroom: "",
 			sqft: "",
@@ -106,12 +106,14 @@ const ListingForm = ({ handlePostListing }) => {
 
 		const formData = new FormData();
 
-		  if (photoFiles.length !== 0) {   // <-- ADD THESE LINES
+		if (photoFiles.length !== 0) {
 			for (let photo of photoFiles) {
-			  formData.append('listing[photos][]', photo);
+				formData.append("listing[photos][]", photo);
 			}
-		  }
+		}
 
+		coordinates.append("listing[lat]", coordinates.lat);
+		coordinates.append("listing[lng]", coordinates.lng);
 
 		if (listingId) {
 			for (let key in listing) {
@@ -168,9 +170,7 @@ const ListingForm = ({ handlePostListing }) => {
 			dispatch(createListing(formData));
 		}
 
-
-		history.push("/listings")
-
+		history.push("/listings");
 	};
 
 	// TODO: add styling to input focus
@@ -200,8 +200,7 @@ const ListingForm = ({ handlePostListing }) => {
 					</label>
 					<h2>Upload home photos</h2>
 					<br />
-					<input type="file" onChange={handleFiles} multiple />{" "}
-					<br />
+					<input type="file" onChange={handleFiles} multiple /> <br />
 					{/* <----- ADD THIS LINE */}
 					<h2>Home facts</h2>
 					<div className="room-details">
