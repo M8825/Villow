@@ -13,29 +13,39 @@ const CreateListing = () => {
 
 		switch (last) {
 			case "LandingPage":
-				setPage(mapConfirmation())
+				setPage(mapConfirmation());
 				break;
 
 			default:
 				break;
 		}
 	};
-
+	const mapConfirmation = () => (
+		<GrabAddress handlePostListing={handlePostListing} />
+	);
 	const landingPage = () => (
 		<LandingPage handlePostListing={handlePostListing} />
 	);
-
-	const mapConfirmation = () => <GrabAddress handlePostListing={handlePostListing} />;
-
-	const listingForm = () => <ListingForm handlePostListing={handlePostListing} />;
-
 	const [page, setPage] = useState(landingPage());
 
 	return (
 		<>
-			<Navigation isIndex={true} />
+			<ListingForm
+				resultAddress={{
+					streetAddress: "514 E 82ND ST. APT# 2R",
+					unit: "2R",
+					city: "New York",
+					state: "NY",
+					zipcode: "10028",
+				}}
+				coordinates={{
+					lat: 40.7728549,
+					lng: -73.9481746,
+				}}
+			/>
+			{/* <Navigation isIndex={true} />
 			{page}
-			<Footer />
+			<Footer /> */}
 		</>
 	);
 };

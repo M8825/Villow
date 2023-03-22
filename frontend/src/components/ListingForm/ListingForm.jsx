@@ -10,11 +10,11 @@ import {
 
 import { useHistory } from "react-router-dom";
 import { getActiveUser } from "../../store/usersReducer";
+import uploadPhotosImg from "./assets/upload-photos.png";
 
 import "./ListingForm.scss";
 
 const ListingForm = ({ resultAddress, coordinates }) => {
-	debugger;
 	const history = useHistory();
 	const dispatch = useDispatch();
 
@@ -112,61 +112,40 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 			}
 		}
 
-		coordinates.append("listing[lat]", coordinates.lat);
-		coordinates.append("listing[lng]", coordinates.lng);
-
 		if (listingId) {
 			for (let key in listing) {
 				formData.append(`listing[${key}]`, listing[key]);
 			}
+		}
 
-			const estPayment = (price / (30 * 12)).toFixed(2);
-			const priceSqft = (price / sqft).toFixed(2);
+		const estPayment = (price / (30 * 12)).toFixed(2);
+		const priceSqft = (price / sqft).toFixed(2);
 
-			formData.append("listing[price]", price);
-			formData.append("listing[address]", address);
-			formData.append("listing[city]", city);
-			formData.append("listing[state]", state);
-			formData.append("listing[zipcode]", zipcode);
-			formData.append("listing[bedroom]", bedroom);
-			formData.append("listing[bathroom]", bathroom);
-			formData.append("listing[sqft]", sqft);
-			formData.append("listing[listing_type]", "Sale");
-			formData.append("listing[est_payment]", estPayment);
-			formData.append("listing[building_type]", buildingType);
-			formData.append("listing[built_in]", builtIn);
-			formData.append("listing[price_sqft]", priceSqft);
-			formData.append("listing[key_words]", keyWords);
-			formData.append("listing[overview]", overview);
-			formData.append("listing[owner_id]", owner);
-			formData.append("listing[garage]", isGarage);
-			formData.append("listing[ac]", isAc);
-			formData.append("listing[heating]", isHeating);
+		formData.append("listing[lat]", coordinates.lat);
+		formData.append("listing[lng]", coordinates.lng);
+		formData.append("listing[price]", price);
+		formData.append("listing[address]", address);
+		formData.append("listing[city]", city);
+		formData.append("listing[state]", state);
+		formData.append("listing[zipcode]", zipcode);
+		formData.append("listing[bedroom]", bedroom);
+		formData.append("listing[bathroom]", bathroom);
+		formData.append("listing[sqft]", sqft);
+		formData.append("listing[listing_type]", "Sale");
+		formData.append("listing[est_payment]", estPayment);
+		formData.append("listing[building_type]", buildingType);
+		formData.append("listing[built_in]", builtIn);
+		formData.append("listing[price_sqft]", priceSqft);
+		formData.append("listing[key_words]", keyWords);
+		formData.append("listing[overview]", overview);
+		formData.append("listing[owner_id]", owner.id);
+		formData.append("listing[garage]", isGarage);
+		formData.append("listing[ac]", isAc);
+		formData.append("listing[heating]", isHeating);
 
+		if (listingId) {
 			dispatch(updateListing(formData, listingId));
 		} else {
-			const estPayment = (price / (30 * 12)).toFixed(2);
-			const priceSqft = (price / sqft).toFixed(2);
-			formData.append("listing[price]", price);
-			formData.append("listing[address]", address);
-			formData.append("listing[city]", city);
-			formData.append("listing[state]", state);
-			formData.append("listing[zipcode]", zipcode);
-			formData.append("listing[bedroom]", bedroom);
-			formData.append("listing[bathroom]", bathroom);
-			formData.append("listing[sqft]", sqft);
-			formData.append("listing[listing_type]", "Sale");
-			formData.append("listing[est_payment]", estPayment);
-			formData.append("listing[building_type]", buildingType);
-			formData.append("listing[built_in]", builtIn);
-			formData.append("listing[price_sqft]", priceSqft);
-			formData.append("listing[key_words]", keyWords);
-			formData.append("listing[overview]", overview);
-			formData.append("listing[owner_id]", owner);
-			formData.append("listing[garage]", isGarage);
-			formData.append("listing[ac]", isAc);
-			formData.append("listing[heating]", isHeating);
-
 			dispatch(createListing(formData));
 		}
 
@@ -182,6 +161,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 				<form onSubmit={handleSubmit}>
 					<br />
 					<h1>For Sale By Owner Listing</h1>
+					<h2 className="address-title">{`${resultAddress.streetAddress}, ${resultAddress.city}, ${resultAddress.state}, ${resultAddress.zipcode}`}</h2>
 					<p className="warning">
 						Post once and your home will be listed on both Villow
 						and Trulia, reaching buyers on the largest real estate
@@ -198,10 +178,60 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 							onChange={(e) => setPrice(e.target.value)}
 						/>
 					</label>
-					<h2>Upload home photos</h2>
+					<hr />
+					<h2>Photos</h2>
 					<br />
-					<input type="file" onChange={handleFiles} multiple /> <br />
-					{/* <----- ADD THIS LINE */}
+					<div className="listing-photo-wrapper">
+						<h1>My Photos</h1>
+						<p>
+							Drag and drop to reorder. Click on a photo to add a
+							caption or delete a photo.
+						</p>
+						<br />
+						<div className="photos-wrapper">
+							<div className="attach-photos">
+								<img src={uploadPhotosImg} alt="plus" />
+								<p>Drag and drop photos here to upload</p>
+								<br />
+								<input
+									className="photo-input"
+									type="file"
+									onChange={handleFiles}
+									multiple
+								/>
+								<input
+									className="bttn photo-upload-button"
+									type="button"
+									value="Add New Photo"
+									onClick={(e) => {
+										document
+											.getElementsByClassName(
+												"photo-input"
+											)[0]
+											.click();
+									}}
+								/>
+								<br />
+							</div>
+							{Array.from(photoFiles).length !== 0 ? (
+								<div className="photo-preview">
+									{Array.from(photoFiles).map(
+										(photo, idx) => (
+											<div
+												key={idx}
+												className="photo-preview-item"
+												style={{
+													backgroundImage: `url(${URL.createObjectURL(
+														photo
+													)})`,
+												}}
+											></div>
+										)
+									)}
+								</div>
+							) : null}
+						</div>
+					</div>
 					<h2>Home facts</h2>
 					<div className="room-details">
 						<label
@@ -369,10 +399,10 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 						</label>
 					</label>
 					<button
+						className="bttn post-submit"
 						type="submit"
 						onSubmit={handleSubmit}
 						disabled={!agreement}
-						className="sbmt-btn"
 					>
 						{formType}
 					</button>

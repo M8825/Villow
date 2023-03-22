@@ -20,8 +20,10 @@ const Navigation = ({ isIndex }) => {
 	const activeUser = useSelector(getActiveUser());
 
 	useEffect(() => {
-		dispatch(fetchCurrentUser());
-	}, []);
+		if (!activeUser){
+			dispatch(fetchCurrentUser());
+		}
+	}, [activeUser]);
 
 	const modalAreaStyling = {
 		display: "flex",

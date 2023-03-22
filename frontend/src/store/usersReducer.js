@@ -34,7 +34,6 @@ export const loginUser = (userCredentials) => async (dispatch) => {
 		dispatch(receiveUser(user));
 	} else {
 		const { errors } = await res.json();
-		debugger;
 		throw new Error(errors);
 	}
 };
