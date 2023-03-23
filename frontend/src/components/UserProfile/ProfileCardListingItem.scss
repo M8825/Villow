@@ -1,0 +1,108 @@
+.profile_card {
+    padding: 30px 12px 12px 12px;
+    display: flex;
+    gap: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    .header-selector {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 10px;
+
+        input{
+            width: 20px;
+            height: 20px;
+        }
+
+        p {
+            font-weight: 700;
+            color: #0D4599;
+        }
+
+
+        // uncomment this to see the checkbox hell
+        // .foo{
+        //     appearance: none;
+        //     -webkit-appearance: none;
+        //     -moz-appearance: none;
+        //     border: 2px solid blue;
+        //     border-radius: 3px;
+        //     width: 20px;
+        //     height: 20px;
+        //     cursor: pointer;
+        //     outline: none;
+        // }
+
+        // .foo:checked {
+        //     background-color: blue;
+        // }
+
+
+        // .foo:checked:after {
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     content: "✓";
+        //     color: white;
+        // }
+
+
+
+    }
+
+    .listing-item-wrapper {
+        width: 100%;
+        height: 100%;
+
+        .listing_item {
+            box-shadow: none;
+            border: 1px solid rgb(230, 230, 230);
+            width: 100%;
+            height: 280px;
+            border-bottom: none;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+    }
+
+    .my-hr {
+        height: 5px;
+        background-color: #0061FF;
+    }
+
+    .listing-type {
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: row wrap;
+        height: 100%;
+        width: 100%;
+        padding: 5px;
+        gap: 5px;
+
+        .listing-detail-type {
+            background-color: white;
+            width: 32%;
+        }
+
+        .type-attr {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            justify-content: flex-start;
+
+            .text-wrapper {
+                h6 {
+                    font-size: 12px;
+                    font-weight: "Open Sans";
+                    font-weight: 700;
+                }
+
+                span {
+                    font-size: 13px;
+                    font-weight: "Open Sans";
+                }
+            }
+        }
+    }
+}
+

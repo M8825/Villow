@@ -2,8 +2,45 @@
     display: flex;
     justify-content: center;
 
-    .content{
-        border: 1px solid black;
+    .content {
         width: 1280px;
     }
+}
+
+.listing-cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+    .card {
+        flex: 0 0 33%;
+    }
+}
+
+.your-home-title {
+    text-align: left;
+    font-size: 36px;
+    font-weight: 700;
+    color: #2A2A33;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+    padding: 30px;
+
+    .delete-home {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        p {
+            font-weight: 700;
+            color: rgb(44, 104, 246);
+        }
+    }
+
 }

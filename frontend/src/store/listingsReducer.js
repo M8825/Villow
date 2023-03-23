@@ -53,7 +53,6 @@ export const fetchListingByUserId = (userId) => async (dispatch) => {
 
 	if (res.ok) {
 		const listings = await res.json()
-		debugger
 		dispatch(receiveListings(listings));
 	}
 };

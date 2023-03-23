@@ -23,7 +23,6 @@ const UserProfileTabs = (props) => {
 						</TabList>
 						<TabPanels>
 							<TabPanel>
-								<h1>Tabs</h1>
                                 {props.children}
 							</TabPanel>
 							<TabPanel>

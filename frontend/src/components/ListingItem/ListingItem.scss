@@ -42,6 +42,20 @@
     display: flex;
     flex-direction: column;
     gap: 1%;
+
+    h1{
+        font-family: "Open Sans", "Time New Roman", arial !important;
+    }
+
+    p {
+
+        font-family: "Open Sans", "Time New Roman", arial !important;
+        font-size: 14px;
+    }
+
+    .listing_item__info__details__address {
+        display: flex;
+    }
 }
 
 .listing_item__info>h1 {

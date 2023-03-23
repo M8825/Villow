@@ -29,7 +29,7 @@ const App = () => {
 				</Route>
 				<Route
 					path="/listings/:listingId/edit"
-					component={CreateListing}
+				component={CreateListing}
 				/>
 				<Route exact path="/listings/new" component={CreateListing} />
 				<Route
