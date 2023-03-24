@@ -1,10 +1,9 @@
-import "../Cards/style/card.scss";
-import "./ProfileCard.scss";
 import ListingItem from "../ListingItem/ListingItem";
-import { Garage, Type, Heating, BuildIn, Bath } from "./Svgs";
+import { Bath, BuildIn, Garage, Heating, Type } from "./Svgs";
 
 import "./ProfileCardListingItem.scss";
-import { useState } from "react";
+import "./ProfileCard.scss";
+import "../Cards/style/card.scss";
 
 const ProfileCard = ({
 	listing,

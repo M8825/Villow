@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import tabListTheme from "../Modal/ModalTabsTheme";
 
-const UserProfileTabs = ({ yourHome }) => {
+const UserProfileTabs = ({ yourHome, favorites }) => {
 	return (
 		<div className="profile-wrapper">
 			<ChakraProvider theme={tabListTheme}>
@@ -22,9 +22,7 @@ const UserProfileTabs = ({ yourHome }) => {
 					<div className="content">
 						<TabPanels>
 							<TabPanel>{yourHome}</TabPanel>
-							<TabPanel>
-								<h1>Bar</h1>
-							</TabPanel>
+							<TabPanel>{favorites}</TabPanel>
 						</TabPanels>
 					</div>
 				</Tabs>

@@ -9,6 +9,7 @@ import UserProfileTabs from "./UserProfileTabs";
 
 import YourHome from "./YourHome";
 import "./UserProfile.scss";
+import Favorites from "./Favorites";
 
 const UserProfile = () => {
 	const dispatch = useDispatch();
@@ -26,6 +27,9 @@ const UserProfile = () => {
 			<Navigation isIndex={true} />
 			<UserProfileTabs
 				yourHome={<YourHome currentUser={currentUser} />}
+
+				 // NOTE(mlkz): Do I really need currentUser of front end?
+				favorites={<Favorites currentUser={currentUser}/>}
 			/>
 			<Footer />
 		</>
