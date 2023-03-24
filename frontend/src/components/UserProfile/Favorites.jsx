@@ -5,33 +5,39 @@ import { fetchUserFavorites, getListings } from "../../store/listingsReducer";
 import ProfileCard from "./ProfileCard";
 
 const Favorites = ({ currentUser }) => {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-    const listings = useSelector(getListings)
+	const listings = useSelector(getListings);
 
-    useEffect(() => {
-        if (currentUser) {
-            dispatch(fetchUserFavorites(currentUser.id));
-        }
-    }, [dispatch, currentUser])
+	useEffect(() => {
+		if (currentUser) {
+			dispatch(fetchUserFavorites(currentUser.id));
+		}
+	}, [dispatch, currentUser]);
 
+	return (
+		listings && (
+			<>
+				<div className="header-wrapper">
+					<h1 className="your-home-title">Favorites</h1>
+				</div>
 
-
-
-    return listings && (
-        <>
-			<div className="listing-cards-wrapper">
-				{listings.map((listing) => (
-					<ProfileCard
-						key={listing.id}
-						listingId={listing.id}
-						listing={listing}
-						className="card"
-					/>
-				))}
-			</div>
-        </>
-    )
-}
+				<div className="listing-cards-wrapper">
+                    {/* NOTE(mlkz): Profile cards still have select check-mark in favorites tab
+                        because I want to implement compare feature in the future.
+                      */}
+					{listings.map((listing) => (
+						<ProfileCard
+							key={listing.id}
+							listingId={listing.id}
+							listing={listing}
+							className="card"
+						/>
+					))}
+				</div>
+			</>
+		)
+	);
+};
 
 export default Favorites;
