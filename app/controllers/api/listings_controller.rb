@@ -1,5 +1,5 @@
 class Api::ListingsController < ApplicationController
-  before_action :set_listing, only: %i[show update destroy]
+  before_action :set_listing, only: %i[show update]
 
   # only allow index page if URL includes user_id
   # without a user session
@@ -38,15 +38,24 @@ class Api::ListingsController < ApplicationController
     end
   end
 
-  # TODO: DELETE
+  # IMPORTANT: This action expects an array of listing ids rather than
+  # single listing ID. This is because I want to be able to delete
+  # many listings at once. But it's not RESTful.
   def destroy
+    all_listing_ids = params.require(:listing).permit(listing_ids: [])
+
+    all_listings = Listing.where(id: all_listing_ids[:listing_ids])
+
+    all_listings.destroy_all if all_listings
+
+    head :no_content
   end
 
   private
 
   # TODO: Get rid of this function or implement relevant actions
   # properly. I don't think that I need to re-initialize @listing
-  # in [show update destroy] actions.
+  # in [show update] actions.
   def set_listing
     @listing = Listing.find(params[:id])
   rescue StandardError

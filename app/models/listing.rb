@@ -50,5 +50,5 @@ class Listing < ApplicationRecord
             :lng,
             presence: true
 
-  has_many_attached :photos
+  has_many_attached :photos, dependent: :destroy
 end

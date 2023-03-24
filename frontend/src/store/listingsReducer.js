@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const RECEIVE_LISTINGS = "listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "listings/RECEIVE_LISTING";
+const REMOVE_LISTINGS = "listings/REMOVE_LISTINGS";
+
 // TODO: add remove and update listing
 
 export const receiveListings = (listings) => ({
@@ -12,6 +14,11 @@ export const receiveListings = (listings) => ({
 export const receiveListing = (listing) => ({
 	type: RECEIVE_LISTING,
 	listing,
+});
+
+export const removeListings = (listingIds) => ({
+	type: REMOVE_LISTINGS,
+	listingIds,
 });
 
 export const getListings = (state) => {
@@ -52,7 +59,7 @@ export const fetchListingByUserId = (userId) => async (dispatch) => {
 	const res = await csrfFetch(`/api/users/${userId}/listings`);
 
 	if (res.ok) {
-		const listings = await res.json()
+		const listings = await res.json();
 		dispatch(receiveListings(listings));
 	}
 };
@@ -60,7 +67,7 @@ export const fetchListingByUserId = (userId) => async (dispatch) => {
 export const createListing = (listing) => async (dispatch) => {
 	const res = await csrfFetch("/api/listings", {
 		method: "POST",
-    	body: listing
+		body: listing,
 	});
 
 	if (res.ok) {
@@ -81,6 +88,16 @@ export const updateListing = (listing, listingId) => async (dispatch) => {
 	}
 };
 
+export const deleteBulkListings = (listingIds) => async (dispatch) => {
+	const res = await csrfFetch(`/api/listings/${1}`, {
+		method: "DELETE",
+		body: JSON.stringify({ listing: { listing_ids: listingIds } }),
+	});
+
+	if (res.ok) {
+		dispatch(removeListings(listingIds));
+	}
+};
 
 const listingsReducer = (state = {}, action) => {
 	const newState = { ...state };
@@ -88,6 +105,9 @@ const listingsReducer = (state = {}, action) => {
 	switch (action.type) {
 		case RECEIVE_LISTINGS:
 			return { ...newState, ...action.listings };
+		case REMOVE_LISTINGS:
+			action.listingIds.forEach((listingId) => delete newState[listingId]);
+			return newState;
 		case RECEIVE_LISTING:
 			newState[action.listing.id] = action.listing;
 			return newState;

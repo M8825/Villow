@@ -2,7 +2,7 @@ import Navigation from "../Header/Navigation";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActiveUser } from "../../store/usersReducer";
-import { fetchListingByUserId, getListings } from "../../store/listingsReducer";
+import { deleteBulkListings, fetchListingByUserId, getListings } from "../../store/listingsReducer";
 
 import Footer from "../Footer";
 import UserProfileTabs from "./UserProfileTabs";
@@ -38,6 +38,13 @@ const UserProfile = () => {
 
 	};
 
+	const handleDelete = (e) => {
+		e.preventDefault();
+		debugger
+
+		dispatch(deleteBulkListings(selectedListings));
+	};
+
 	return (
 		listings && (
 			<>
@@ -46,7 +53,7 @@ const UserProfile = () => {
 					<div className="header-wrapper">
 						<h1 className="your-home-title">Your home</h1>
 
-						<div className="delete-home" onClick={handleCheck}>
+						<div className="delete-home" onClick={handleDelete}>
 							<DeleteIcon />
 							<p>Remove</p>
 						</div>
