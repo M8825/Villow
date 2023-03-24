@@ -8,30 +8,27 @@ import {
 } from "@chakra-ui/react";
 import tabListTheme from "../Modal/ModalTabsTheme";
 
-const UserProfileTabs = (props) => {
+const UserProfileTabs = ({ yourHome }) => {
 	return (
 		<div className="profile-wrapper">
-			<div className="content">
-				<ChakraProvider theme={tabListTheme}>
-					<Tabs>
-						<TabList
-							borderBottom={"1px solid "}
-							borderColor={"rgb(209 209 213)"}
-						>
+			<ChakraProvider theme={tabListTheme}>
+				<Tabs>
+					<div className="tabs-wrapper">
+						<TabList borderBottom={"none"}>
 							<Tab className="form-tab">Your Home</Tab>
 							<Tab>Favorite Homes</Tab>
 						</TabList>
+					</div>
+					<div className="content">
 						<TabPanels>
-							<TabPanel>
-                                {props.children}
-							</TabPanel>
+							<TabPanel>{yourHome}</TabPanel>
 							<TabPanel>
 								<h1>Bar</h1>
 							</TabPanel>
 						</TabPanels>
-					</Tabs>
-				</ChakraProvider>
-			</div>
+					</div>
+				</Tabs>
+			</ChakraProvider>
 		</div>
 	);
 };

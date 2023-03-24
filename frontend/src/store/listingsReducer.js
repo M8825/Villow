@@ -88,11 +88,11 @@ export const updateListing = (listing, listingId) => async (dispatch) => {
 	}
 };
 
-export const deleteBulkListings = (listingIds) => async (dispatch) => {
-	const res = await csrfFetch(`/api/listings/${1}`, {
-		method: "DELETE",
-		body: JSON.stringify({ listing: { listing_ids: listingIds } }),
-	});
+export const deleteListing = (listingIds) => async (dispatch) => {
+const res = await csrfFetch(`/api/listings/${1}`, {
+	method: "DELETE",
+	body: JSON.stringify({ listing: { listing_ids: listingIds } }),
+});
 
 	if (res.ok) {
 		dispatch(removeListings(listingIds));
