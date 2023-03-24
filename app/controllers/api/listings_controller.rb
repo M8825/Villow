@@ -1,6 +1,4 @@
 class Api::ListingsController < ApplicationController
-  before_action :set_listing, only: %i[show update]
-
   # only allow index page if URL includes user_id
   # without a user session
   before_action :require_logged_in,
@@ -51,15 +49,6 @@ class Api::ListingsController < ApplicationController
   end
 
   private
-
-  # TODO: Get rid of this function or implement relevant actions
-  # properly. I don't think that I need to re-initialize @listing
-  # in [show update] actions.
-  def set_listing
-    @listing = Listing.find(params[:id])
-  rescue StandardError
-    render json: ["Report not found"], status: :not_found
-  end
 
   def listing_params
     params

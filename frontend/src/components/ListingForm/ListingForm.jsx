@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import {
 	createListing,
 	fetchListing,
-	updateListing,
 	getListing,
+	updateListing,
 } from "../../store/listingsReducer";
 
-import { useHistory } from "react-router-dom";
 import { getActiveUser } from "../../store/usersReducer";
-import uploadPhotosImg from "./assets/upload-photos.png";
-import Navigation from "../Header/Navigation";
 import Footer from "../Footer";
 
+import uploadPhotosImg from "./assets/upload-photos.png";
 import "./ListingForm.scss";
 
 const ListingForm = ({ resultAddress, coordinates }) => {
@@ -157,7 +157,6 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 	// TODO: add styling to input focus
 	return (
 		<>
-			<Navigation isIndex={true} />
 			{/* TODO: It's not index page but we still call this isIndex. change it to something abstract */}
 			<hr />
 			<div className="form-container">

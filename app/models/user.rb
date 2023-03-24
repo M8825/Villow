@@ -24,6 +24,13 @@ class User < ApplicationRecord
 
   has_many :listings, class_name: :Listing, foreign_key: :owner_id
 
+  has_many :favorites,
+           class_name: :Favorite,
+           foreign_key: :favoriter_id,
+           dependent: :destroy
+
+  has_many :favorited_listings, through: :favorites, source: :listing
+
   def ensure_session_token
     self.session_token ||= generate_unique_session_token
   end

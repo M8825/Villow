@@ -29,8 +29,6 @@
 #  lng           :float
 #
 class Listing < ApplicationRecord
-  belongs_to :owner, class_name: :User, foreign_key: :owner_id
-
   validates :price,
             :bedroom,
             :bathroom,
@@ -49,6 +47,15 @@ class Listing < ApplicationRecord
             :lat,
             :lng,
             presence: true
+
+  belongs_to :owner, class_name: :User, foreign_key: :owner_id
+
+  has_many :favorites,
+           class_name: :Favorite,
+           foreign_key: :listing_id,
+           dependent: :destroy
+
+  has_many :favoriter, through: :favorites, source: :favoriter
 
   has_many_attached :photos, dependent: :destroy
 end

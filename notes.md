@@ -2,8 +2,8 @@
 ### Listing
     - NOTE: I'm setting boolean for conto, garage, and ac. On creation WITHOUT `null: false`;
 
-### Cards
-    - Change layout of cards on window resize
+### Cards - TODO!
+    [ ] - Change layout of cards on window resize
 
 
 ## backend
@@ -21,22 +21,21 @@
         - [X] - round est_payment number to two decimal
         - [X] - Fix boolean inputs eg. garage, ac, conto
     - OPEN TODOs:
-        - [ ] errors inf
-        - [ ] Rent sell inf
-        - [ ] Photos to upload inf
-
-#### Updating a listing
-    - [ ] - properly render inputs on update
-    - [ ] - Test on proper update
-
-
-
-## Modal debugging
-- CALLED
-    - ShowListing
-
-
+        - [X] errors inf
+        - [X] Rent sell inf
+        - [X] Photos to upload inf
 
 ## Libraries
     - https://googlemaps.github.io/react-wrapper/index.html - Handle google maps loading with this library
 
+## Favorites
+    [ ] - Backend
+        [X] - Create Joins table with references to user_id and listing_id
+        [X] - Create associations
+            + [X] - User has many favorites
+            + [X] - User has many favorited_listings through favorites
+            + [X] - Listing has many favorites
+            + [X] - Favorite belongs to user
+            + [X] - Favorite belongs to listing
+
+    [ ] - Frontend - TODO:
