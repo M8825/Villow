@@ -37,5 +37,10 @@
             + [X] - Listing has many favorites
             + [X] - Favorite belongs to user
             + [X] - Favorite belongs to listing
+        [x] - Create /api/users/:user_id/favorites route
+        [x] - Create controller and render index jbuilder
+        [ ] - Implement create and destroy actions
 
     [ ] - Frontend - TODO:
+        [X] - Favorites index and update state
+        [-] - Implement Favorites component and use ProfileCard to render favorites

@@ -1,8 +1,9 @@
 import { csrfFetch } from "./csrf";
 
-const RECEIVE_LISTINGS = "listings/RECEIVE_LISTINGS";
-const RECEIVE_LISTING = "listings/RECEIVE_LISTING";
-const REMOVE_LISTINGS = "listings/REMOVE_LISTINGS";
+const RECEIVE_LISTINGS = "api/listings/RECEIVE_LISTINGS";
+const RECEIVE_LISTING = "api/listings/RECEIVE_LISTING";
+const REMOVE_LISTINGS = "api/listings/REMOVE_LISTINGS";
+const RECEIVE_FAVORITES = "api/listings/RECEIVE_FAVORITES";
 
 // TODO: add remove and update listing
 
@@ -14,6 +15,11 @@ export const receiveListings = (listings) => ({
 export const receiveListing = (listing) => ({
 	type: RECEIVE_LISTING,
 	listing,
+});
+
+export const receiveFavorites = (favorites) => ({
+	type: RECEIVE_FAVORITES,
+	favorites,
 });
 
 export const removeListings = (listingIds) => ({
@@ -89,13 +95,22 @@ export const updateListing = (listing, listingId) => async (dispatch) => {
 };
 
 export const deleteListing = (listingIds) => async (dispatch) => {
-const res = await csrfFetch(`/api/listings/${1}`, {
-	method: "DELETE",
-	body: JSON.stringify({ listing: { listing_ids: listingIds } }),
-});
+	const res = await csrfFetch(`/api/listings/${1}`, {
+		method: "DELETE",
+		body: JSON.stringify({ listing: { listing_ids: listingIds } }),
+	});
 
 	if (res.ok) {
 		dispatch(removeListings(listingIds));
+	}
+};
+
+export const fetchUserFavorites = (userId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/users/${userId}/favorites`);
+
+	if (res.ok) {
+		const favorites = await res.json();
+		dispatch(receiveFavorites(favorites));
 	}
 };
 
@@ -105,11 +120,15 @@ const listingsReducer = (state = {}, action) => {
 	switch (action.type) {
 		case RECEIVE_LISTINGS:
 			return { ...newState, ...action.listings };
-		case REMOVE_LISTINGS:
-			action.listingIds.forEach((listingId) => delete newState[listingId]);
-			return newState;
 		case RECEIVE_LISTING:
 			newState[action.listing.id] = action.listing;
+			return newState;
+		case RECEIVE_FAVORITES:
+			return { ...action.favorites };
+		case REMOVE_LISTINGS:
+			action.listingIds.forEach(
+				(listingId) => delete newState[listingId]
+			);
 			return newState;
 		default:
 			return state;

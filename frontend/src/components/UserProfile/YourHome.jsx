@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     deleteListing,
-    fetchListing,
+    fetchListings,
     getListings
 } from "../../store/listingsReducer";
 import ProfileCard from "./ProfileCard";
@@ -13,14 +13,16 @@ import { DeleteIcon } from "./Svgs";
 const YourHome = ({ currentUser }) => {
 	const dispatch = useDispatch();
 
+
 	const listings = useSelector(getListings);
 	const [selectedListings, setSelectedListings] = useState([]);
 
 	useEffect(() => {
 		if (currentUser) {
-			dispatch(fetchListing(currentUser.id));
+			dispatch(fetchListings(currentUser.id));
 		}
-	});
+	}, []);
+
 
 	const handleCheck = (event, listingId) => {
 		const { checked } = event.target;
