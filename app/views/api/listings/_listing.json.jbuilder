@@ -26,4 +26,9 @@ json.extract! listing,
               :updated_at,
               :created_at
 
-json.photo_urls listing.photos.map { |file| url_for(file) } # <-- ADD THIS LINE
+# Attach key photo_urls with value array of image urls to listing
+json.photo_urls listing.photos.map { |file| url_for(file) }
+
+# Attach key favorite to listing if current user is signed in and has favorited
+# the listing
+json.favorite listing.favoriter.exists?(id: current_user.id) if current_user

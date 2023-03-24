@@ -3,8 +3,11 @@ class Api::FavoritesController < ApplicationController
 
   def index
     @listings = current_user.favorited_listings
+    @current_user = current_user
 
-    render "/api/listings/index", listings: @listings
+    render "/api/listings/index",
+           listings: @listings,
+           current_user: @current_user
   end
 
   def create

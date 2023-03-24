@@ -1,5 +1,5 @@
 class Api::ListingsController < ApplicationController
-  # only allow index page if URL includes user_id
+  # only allow index action if URL includes user_id
   # without a user session
   before_action :require_logged_in,
                 only: [:index],
@@ -7,12 +7,14 @@ class Api::ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+    @current_user = current_user
 
     render :index
   end
 
   def show
     @listing = Listing.find(params[:id])
+    @current_user = current_user
 
     render :show
   end
