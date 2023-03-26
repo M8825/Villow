@@ -11,8 +11,22 @@ class Api::FavoritesController < ApplicationController
   end
 
   def create
+
+    if current_user
+      @favorite = current_user.favorites.new(favorite_params)
+    end
+
+    if @favorite.save
+      render "/api/listings/show"
+    end
   end
 
   def destroy
+  end
+
+  private
+
+  def favorite_params
+    params.require(:listing).permit(:listing_id)
   end
 end

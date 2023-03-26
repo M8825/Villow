@@ -114,6 +114,18 @@ export const fetchUserFavorites = (userId) => async (dispatch) => {
 	}
 };
 
+export const addFavorite = (userId, listingId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/users/${userId}/favorites`, {
+		method: "POST",
+		body: JSON.stringify({ listing: { listing_id: listingId } }),
+	});
+
+	if (res.ok) {
+		const favorite = await res.json();
+		dispatch(receiveListing(favorite));
+	}
+};
+
 const listingsReducer = (state = {}, action) => {
 	const newState = { ...state };
 

@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ListingIndexItemHeart from "./ListingHeart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-// import "./Listing.scss"
-import "./ListingItem.scss"
+import "./ListingItem.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite } from "../../store/listingsReducer";
+import { fetchCurrentUser, getActiveUser} from "../../store/usersReducer";
 
 const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
+	const dispatch = useDispatch();
+	const currentUser = useSelector(getActiveUser());
+
 	const buildingType =
 		listing.buildingType === "Apartment" ? "Apt" : listing.buildingType;
 	const formatter = new Intl.NumberFormat("en-US", {
@@ -17,8 +22,21 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
 		minimumFractionDigits: 0,
 	});
 
+	useEffect(() => {
+		if (!currentUser) {
+			dispatch(fetchCurrentUser());
+		}
+	}, [])
+
 	const price = formatter.format(listing.price);
 	const [color, setColor] = useState("black");
+
+	const handleFavoriteClick = (e, listingId)=> {
+		e.preventDefault();
+		e.stopPropagation();
+
+		dispatch(addFavorite(currentUser.id, listingId));
+	};
 
 	return (
 		<>
@@ -36,8 +54,6 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
 								})`,
 								backgroundSize: "cover",
 								backgroundRepeat: "no-repeat",
-
-
 							}}
 						>
 							<div className="listing_item__thumbnail__keyword">
@@ -46,8 +62,13 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
 									.slice(0, 3)
 									.join(" ")}
 							</div>
-							<div className="listing_item__thumbnail__favorite">
-								<ListingIndexItemHeart />
+							<div
+								className="listing_item__thumbnail__favorite"
+								onClick={e => handleFavoriteClick(e, listing.id)}
+							>
+								<ListingIndexItemHeart
+									isFavorite={listing.favorite}
+								/>
 							</div>
 						</div>
 

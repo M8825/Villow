@@ -1,16 +1,18 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
 
-import "./ListingHeart.scss"
+import "./ListingHeart.scss";
 
-const ListingIndexItemHeart = () => {
+const ListingIndexItemHeart = ({ isFavorite }) => {
 	return (
 		<>
 			<Icon name="heart" viewBox="0 0 24 22" w={8} h={8}>
 				<svg viewBox="0 0 24 22">
 					<path
-						fillOpacity=".50"
-						className="HeartIcon__fill"
+						fillOpacity="0.5"
+						className={`${
+							isFavorite ? "favorite" : null
+						} HeartIcon__fill`}
 						d="M17.3996 6.17511e-05C15.5119 0.00908657 13.7078 0.779206 12.3955 2.13608L11.9995 2.54408L11.6035 2.13608C10.2912 0.779206 8.48708 0.00908657 6.59946 6.17511e-05C5.15317 -0.00630912 3.7479 0.480456 2.61543 1.38007C1.08163 2.60976 0.137114 4.42893 0.0137749 6.39093C-0.109564 8.35294 0.5997 10.2761 1.96743 11.6882L2.51943 12.2522L11.3995 21.3482C11.5575 21.5095 11.7738 21.6004 11.9995 21.6004C12.2253 21.6004 12.4415 21.5095 12.5995 21.3482L21.4796 12.2522L22.0316 11.6882C23.3993 10.2761 24.1086 8.35294 23.9852 6.39093C23.8619 4.42893 22.9174 2.60976 21.3836 1.38007C20.2511 0.480456 18.8458 -0.00630912 17.3996 6.17511e-05Z"
 					></path>
 					<path
