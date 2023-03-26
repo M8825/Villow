@@ -7,8 +7,8 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 import "./ListingItem.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite } from "../../store/listingsReducer";
-import { fetchCurrentUser, getActiveUser} from "../../store/usersReducer";
+import { addFavorite, removeFavorite } from "../../store/listingsReducer";
+import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
 
 const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
 	const dispatch = useDispatch();
@@ -26,16 +26,20 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
 		if (!currentUser) {
 			dispatch(fetchCurrentUser());
 		}
-	}, [])
+	}, []);
 
 	const price = formatter.format(listing.price);
 	const [color, setColor] = useState("black");
 
-	const handleFavoriteClick = (e, listingId)=> {
+	const handleFavoriteClick = (e, listingId) => {
 		e.preventDefault();
 		e.stopPropagation();
 
-		dispatch(addFavorite(currentUser.id, listingId));
+		if (listing.favorite) {
+			dispatch(removeFavorite(currentUser.id, listingId));
+		} else {
+			dispatch(addFavorite(currentUser.id, listingId));
+		}
 	};
 
 	return (
@@ -64,7 +68,9 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
 							</div>
 							<div
 								className="listing_item__thumbnail__favorite"
-								onClick={e => handleFavoriteClick(e, listing.id)}
+								onClick={(e) =>
+									handleFavoriteClick(e, listing.id)
+								}
 							>
 								<ListingIndexItemHeart
 									isFavorite={listing.favorite}

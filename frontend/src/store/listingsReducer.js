@@ -126,6 +126,18 @@ export const addFavorite = (userId, listingId) => async (dispatch) => {
 	}
 };
 
+export const removeFavorite = (userId, listingId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/users/${userId}/favorites`, {
+		method: "DELETE",
+		body: JSON.stringify({ listing: { listing_id: listingId } }),
+	});
+
+	if (res.ok) {
+		const favorite = await res.json();
+		dispatch(receiveListing(favorite));
+	};
+};
+
 const listingsReducer = (state = {}, action) => {
 	const newState = { ...state };
 
