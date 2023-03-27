@@ -11,17 +11,22 @@ class Api::FavoritesController < ApplicationController
   end
 
   def create
+    @favorite = current_user.favorites.new(favorite_params) if current_user
 
-    if current_user
-      @favorite = current_user.favorites.new(favorite_params)
-    end
-
-    if @favorite.save
-      render "/api/listings/show"
-    end
+    render "/api/listings/show" if @favorite.save
   end
 
   def destroy
+    @favorite =
+      current_user.favorites.find_by(listing_id: favorite_params[:listing_id])
+
+    if @favorite && @favorite.destroy
+      render "/api/listings/show",
+             listing: @favorite.listing,
+             current_user: current_user
+    else
+      render json: { message: @favorite.errors.full_messages }, status: 422
+    end
   end
 
   private

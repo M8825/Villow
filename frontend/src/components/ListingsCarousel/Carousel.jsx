@@ -29,7 +29,7 @@ const Carousel = ({ sampleListings, prevButtonClassName, nextButtonClassName}) =
 				{sampleListings.map((listing, i) => {
 					return (
 						<SwiperSlide key={listing.id}>
-							<ListingItem key={i} listing={listing} listingStyling={listingStyling}/>
+							<ListingItem listing={listing} listingStyling={listingStyling}/>
 						</SwiperSlide>
 					);
 				})}

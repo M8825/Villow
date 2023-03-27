@@ -43,4 +43,6 @@
 
     [ ] - Frontend - TODO:
         [X] - Favorites index and update state
-        [-] - Implement Favorites component and use ProfileCard to render favorites
+        [X] - Implement Favorites component and use ProfileCard to render favorites
+        [x] - Add onClick create favorites
+        [-] - Add onClick destroy favorites
