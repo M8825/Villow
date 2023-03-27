@@ -6,7 +6,14 @@ class Api::ListingsController < ApplicationController
                 if: Proc.new { params[:user_id] && !current_user }
 
   def index
-    @listings = Listing.all
+    search_term = params[:search_term]
+
+    if search_term
+      @listings = Listing.search(search_term)
+    else
+      @listings = Listing.all
+    end
+
     @current_user = current_user
 
     render :index
