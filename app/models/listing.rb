@@ -29,6 +29,16 @@
 #  lng           :float
 #
 class Listing < ApplicationRecord
+  def self.searchByState(search_string)
+    cityStateArray =
+      where(
+        "state ILIKE :search_string",
+        search_string: "%#{Listing.sanitize_sql_like(search_string)}%"
+      ).take(5).pluck("city", "state")
+
+    cityStateArray.map { |cityState| cityState.join(", ") }
+  end
+
   def self.search(search_term)
     where(
       "address ILIKE :search_term OR city ILIKE :search_term OR state ILIKE :search_term OR zipcode::text ILIKE :search_term",

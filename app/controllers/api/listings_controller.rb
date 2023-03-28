@@ -6,10 +6,11 @@ class Api::ListingsController < ApplicationController
                 if: Proc.new { params[:user_id] && !current_user }
 
   def index
+    search_string = params[:search_string]
     search_term = params[:search_term]
 
-    if search_term
-      @listings = Listing.search(search_term)
+    if search_term == "state"
+      @listings = Listing.search(string)
     else
       @listings = Listing.all
     end
@@ -17,6 +18,17 @@ class Api::ListingsController < ApplicationController
     @current_user = current_user
 
     render :index
+  end
+
+  def search
+    term = params[:term]
+    search_str = params[:search_phrase]
+
+    if term == "state"
+      states = Listing.searchByState(search_str)
+
+      render "api/listings/search_suggestions", locals: { states: states }
+    end
   end
 
   def show

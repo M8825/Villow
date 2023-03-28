@@ -135,7 +135,7 @@ export const removeFavorite = (userId, listingId) => async (dispatch) => {
 	if (res.ok) {
 		const listing = await res.json();
 		dispatch(receiveListing(listing));
-	};
+	}
 };
 
 const listingsReducer = (state = {}, action) => {

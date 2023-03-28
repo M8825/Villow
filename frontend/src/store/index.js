@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import usersReducer from './usersReducer';
 import listingsReducer from './listingsReducer';
 import geocodeReducer from './geocodeReducer';
+import searchSuggestionsReducer from './search';
 
 const rootReducer = combineReducers({
   session: usersReducer,
   listings: listingsReducer,
-  geocode: geocodeReducer
+  geocode: geocodeReducer,
+  search: searchSuggestionsReducer,
 });
 
 const configureStore = (preloadedState = {}) => (
