@@ -111,7 +111,6 @@ const Navigation = ({ isIndex }) => {
 					<div className="search_container">
 						<h1>Find it. Tour it. Own it.</h1>
 						<SearchBar />
-						<div className="search_container__search_button"></div>
 					</div>
 				)}
 			</div>

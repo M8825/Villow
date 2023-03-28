@@ -95,9 +95,13 @@
 }
 
 
-.search_container__search_bar:focus {
-    box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
+// .search_container__search_bar:focus {
+//     box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
+// }
+
+
+.search_container__search_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
-.search_container__search_button {}
