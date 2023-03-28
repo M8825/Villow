@@ -31,7 +31,7 @@
 class Listing < ApplicationRecord
   def self.search(search_term)
     where(
-      "address ILIKE :search_term OR city ILIKE :search_term OR state ILIKE :search_term OR zip_code::text ILIKE :search_term",
+      "address ILIKE :search_term OR city ILIKE :search_term OR state ILIKE :search_term OR zipcode::text ILIKE :search_term",
       search_term: "%#{sanitize_sql_like(search_term)}%"
     )
   end

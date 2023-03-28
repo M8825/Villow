@@ -14,6 +14,7 @@ import villow from "../assets/villow.png";
 import "./Navigation.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Navigation = ({ isIndex }) => {
 	const dispatch = useDispatch();
@@ -109,11 +110,7 @@ const Navigation = ({ isIndex }) => {
 				{!isIndex && (
 					<div className="search_container">
 						<h1>Find it. Tour it. Own it.</h1>
-						<input
-							className="search_container__search_bar"
-							type="text"
-							placeholder="Enter an address, neighborhood, city, or ZIP code"
-						/>
+						<SearchBar />
 						<div className="search_container__search_button"></div>
 					</div>
 				)}

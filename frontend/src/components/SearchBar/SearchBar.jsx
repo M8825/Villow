@@ -1,12 +1,13 @@
 import "./SearchBar.scss";
 
 const SearchBar = () => {
-    return (
-        <div className="search-bar-wrapper">
-            To be implemented
-        </div>
-    )
-
-}
+	return (
+		<input
+			className="search_container__search_bar"
+			type="text"
+			placeholder="Enter an address, neighborhood, city, or ZIP code"
+		/>
+	);
+};
 
 export default SearchBar;
