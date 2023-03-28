@@ -29,7 +29,7 @@
     - https://googlemaps.github.io/react-wrapper/index.html - Handle google maps loading with this library
 
 ## Favorites
-    [ ] - Backend
+    [X] - Backend
         [X] - Create Joins table with references to user_id and listing_id
         [X] - Create associations
             + [X] - User has many favorites
@@ -41,8 +41,16 @@
         [x] - Create controller and render index jbuilder
         [ ] - Implement create and destroy actions
 
-    [ ] - Frontend - TODO:
+    [X] - Frontend - TODO:
         [X] - Favorites index and update state
         [X] - Implement Favorites component and use ProfileCard to render favorites
         [x] - Add onClick create favorites
-        [-] - Add onClick destroy favorites
+        [X] - Add onClick destroy favorites
+## Search
+[ ] - Splash page
+    [X] - route for search with state
+    [-] - Add dropdown to search bar for suggestions
+    [ ] - complete styling of dropdown
+    [ ] - search identified by city
+    [ ] - Add identified search based on zip code
+    [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address

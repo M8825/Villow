@@ -3,6 +3,16 @@ import { csrfFetch } from "./csrf";
 const RECEIVE_SUGGESTIONS = "api/search/RECEIVE_SUGGESTIONS";
 
 
+export const getSuggestions = () => (state) => {
+    if (state && state.search) {
+        return Object.values(state.search)
+    }
+
+
+    return null;
+}
+
+
 const receiveSuggestions = (suggestions) => ({
     type: RECEIVE_SUGGESTIONS,
     suggestions
