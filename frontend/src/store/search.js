@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const RECEIVE_SUGGESTIONS = "api/search/RECEIVE_SUGGESTIONS";
+const CLEAN_SUGGESTIONS = "CLEAN_SUGGESTIONS";
 
 
 export const getSuggestions = () => (state) => {
@@ -17,6 +18,11 @@ const receiveSuggestions = (suggestions) => ({
     type: RECEIVE_SUGGESTIONS,
     suggestions
 });
+
+
+const cleanSuggestions = () => ({
+    type: CLEAN_SUGGESTIONS
+})
 
 export const searchSuggestions =
 	(searchString, term = null) =>
@@ -41,10 +47,16 @@ export const searchSuggestions =
 
 
 
+export const cleanSearchSuggestions = () => async (dispatch) => {
+    dispatch(cleanSuggestions());
+};
+
 const searchSuggestionsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_SUGGESTIONS:
             return {...state, ...action.suggestions};
+        case CLEAN_SUGGESTIONS:
+            return {};
         default:
             return state;
     }
