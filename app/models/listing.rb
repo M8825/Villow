@@ -30,13 +30,13 @@
 #
 class Listing < ApplicationRecord
   def self.searchByState(search_string)
-    cityStateArray =
+    city_state_array =
       where(
         "state ILIKE :search_string",
         search_string: "%#{Listing.sanitize_sql_like(search_string)}%"
       ).take(5).pluck("city", "state")
 
-    cityStateArray.map { |cityState| cityState.join(", ") }
+    city_state_array.map { |city_state| city_state.join(", ") }
   end
 
   def self.searchByCityState(search_string)
@@ -56,30 +56,30 @@ class Listing < ApplicationRecord
   end
 
   validates :price,
-            :bedroom,
-            :bathroom,
-            :sqft,
-            :address,
-            :listing_type,
-            :est_payment,
-            :building_type,
-            :built_in,
-            :price_sqft,
-            :overview,
-            :key_words,
-            :zipcode,
-            :city,
-            :state,
-            :lat,
-            :lng,
-            presence: true
+    :bedroom,
+    :bathroom,
+    :sqft,
+    :address,
+    :listing_type,
+    :est_payment,
+    :building_type,
+    :built_in,
+    :price_sqft,
+    :overview,
+    :key_words,
+    :zipcode,
+    :city,
+    :state,
+    :lat,
+    :lng,
+    presence: true
 
   belongs_to :owner, class_name: :User, foreign_key: :owner_id
 
   has_many :favorites,
-           class_name: :Favorite,
-           foreign_key: :listing_id,
-           dependent: :destroy
+    class_name: :Favorite,
+    foreign_key: :listing_id,
+    dependent: :destroy
 
   has_many :favoriter, through: :favorites, source: :favoriter
 

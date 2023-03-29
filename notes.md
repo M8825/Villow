@@ -41,11 +41,12 @@
         [x] - Create controller and render index jbuilder
         [ ] - Implement create and destroy actions
 
-    [X] - Frontend - TODO:
+    [+] - Frontend - TODO:
         [X] - Favorites index and update state
         [X] - Implement Favorites component and use ProfileCard to render favorites
         [x] - Add onClick create favorites
         [X] - Add onClick destroy favorites
+
 ## Search
 [ ] - Splash page
     [X] - route for search with state

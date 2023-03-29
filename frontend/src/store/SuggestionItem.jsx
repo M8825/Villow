@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./SuggestionItem.scss";
 import { fetchListingsByState } from "./listingsReducer";
+
+import "./SuggestionItem.scss";
 
 const SuggestionItem = ({ term, suggestion }) => {
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const SuggestionItem = ({ term, suggestion }) => {
 
 	return (
 		<li className="suggestion-item" onClick={handleSearchOnClickItem}>
-			{suggestion}
+			<span>{suggestion}</span>
 		</li>
 	);
 };

@@ -1,3 +1,23 @@
 .suggestion-item {
-    background-color: red;
+    display: flex;
+    align-items: center;
+    height: 51px;
+    border-bottom: 1px solid #e6e6e6;
+
+    &:not(:last-child) {
+        margin: 0 0 5px 0;
+    }
+
+    span{
+        font-size: 16px;
+        color: #767676;
+        margin-left: 30px;
+    }
+
+    &:hover{
+        background-color: rgb(44 104 246);
+        span{
+            color: #fff;
+        }
+    }
 }
