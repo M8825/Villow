@@ -27,7 +27,6 @@ const cleanSuggestions = () => ({
 export const searchSuggestions =
 	(searchString, term = null) =>
 	async (dispatch) => {
-		// listings?search_term=10028
 		let res;
 		if (term) {
 			res = await csrfFetch(
@@ -44,6 +43,7 @@ export const searchSuggestions =
 			dispatch(receiveSuggestions(suggestions))
 		}
 	};
+
 
 
 

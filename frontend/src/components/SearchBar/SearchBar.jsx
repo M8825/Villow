@@ -10,7 +10,7 @@ const SearchBar = () => {
 	const dispatch = useDispatch();
 	const suggestions = useSelector(getSuggestions());
 	const [dropdownEmpty, setDropdownEmpty] = useState(false);
-    const [searchFilter, setSearchFilter] = useState("");
+    const [term, setTerm] = useState("");
 
     useEffect(() => {
         if (dropdownEmpty) {
@@ -26,7 +26,7 @@ const SearchBar = () => {
 			setDropdownEmpty(true);
 		} else if (statesMatch(searchString)) {
             setDropdownEmpty(false);
-            setSearchFilter("state");
+            setTerm("state");
 
 			dispatch(searchSuggestions(statesMatch(searchString), "state"));
 		}
@@ -78,8 +78,8 @@ const SearchBar = () => {
 								return (
 									<SuggestionItem
 										key={idx}
+                                        term={term}
 										suggestion={suggestion}
-                                        searchFilter={searchFilter}
 									/>
 								);
 							})}

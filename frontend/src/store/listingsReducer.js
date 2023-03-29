@@ -138,12 +138,26 @@ export const removeFavorite = (userId, listingId) => async (dispatch) => {
 	}
 };
 
+export const fetchListingsByState = (term, cityState) => async (dispatch) => {
+	const res = await csrfFetch(
+		`/api/search?term=${term}&search_phrase=${cityState}&search_filter=listings`
+	);
+
+	debugger;
+	if (res.ok) {
+		debugger;
+		const listings = await res.json();
+		debugger;
+		dispatch(receiveListings(listings));
+	}
+};
+
 const listingsReducer = (state = {}, action) => {
 	const newState = { ...state };
 
 	switch (action.type) {
 		case RECEIVE_LISTINGS:
-			return { ...newState, ...action.listings };
+			return { ...action.listings };
 		case RECEIVE_LISTING:
 			newState[action.listing.id] = action.listing;
 			return newState;

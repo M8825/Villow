@@ -40,7 +40,7 @@ class Listing < ApplicationRecord
   end
 
   def self.searchByStateListings(search_string)
-    state = search_string.split(",")[1]
+    state = search_string.split(",")[1].strip
 
     debugger
     where(

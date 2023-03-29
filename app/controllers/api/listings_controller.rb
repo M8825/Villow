@@ -25,6 +25,7 @@ class Api::ListingsController < ApplicationController
     search_filter = params[:search_filter]
     search_str = params[:search_phrase]
 
+    debugger
     if term == "state"
       if (search_filter == "listings")
         debugger

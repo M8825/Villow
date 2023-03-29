@@ -1,10 +1,18 @@
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "./SuggestionItem.scss";
+import { fetchListingsByState } from "./listingsReducer";
 
-const SuggestionItem = ({ suggestion, searchFilter }) => {
+const SuggestionItem = ({ term, suggestion }) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
 	const handleSearchOnClickItem = (e) => {
 		e.preventDefault();
 
-		debugger;
+        dispatch(fetchListingsByState(term, suggestion));
+
+        history.push('/listings')
 
 	};
 
