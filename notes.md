@@ -49,8 +49,10 @@
 ## Search
 [ ] - Splash page
     [X] - route for search with state
-    [-] - Add dropdown to search bar for suggestions
-    [ ] - complete styling of dropdown
+    [X] - Add dropdown to search bar for suggestions
+    [-] - complete styling of dropdown
+        [-] - styling for search results - include onClick listener
+        [-] - style default dropdown
     [ ] - search identified by city
     [ ] - Add identified search based on zip code
     [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address

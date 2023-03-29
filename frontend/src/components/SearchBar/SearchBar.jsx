@@ -10,6 +10,7 @@ const SearchBar = () => {
 	const dispatch = useDispatch();
 	const suggestions = useSelector(getSuggestions());
 	const [dropdownEmpty, setDropdownEmpty] = useState(false);
+    const [searchFilter, setSearchFilter] = useState("");
 
     useEffect(() => {
         if (dropdownEmpty) {
@@ -25,9 +26,12 @@ const SearchBar = () => {
 			setDropdownEmpty(true);
 		} else if (statesMatch(searchString)) {
             setDropdownEmpty(false);
+            setSearchFilter("state");
+
 			dispatch(searchSuggestions(statesMatch(searchString), "state"));
 		}
 	};
+
 
 	return (
 		<div className="search-input-dropdown-wrapper" onMouseLeave={(e) => setDropdownEmpty(false)}>
@@ -75,6 +79,7 @@ const SearchBar = () => {
 									<SuggestionItem
 										key={idx}
 										suggestion={suggestion}
+                                        searchFilter={searchFilter}
 									/>
 								);
 							})}

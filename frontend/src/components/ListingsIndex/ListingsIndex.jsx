@@ -15,8 +15,10 @@ const ListingsPage = () => {
 	const [reversed, setReversed] = useState(false);
 
 	useEffect(() => {
-		dispatch(fetchListings());
-	}, []);
+		if (listings.length === 0) {
+			dispatch(fetchListings());
+		}
+	}, [dispatch, listings]);
 
 	const history = useHistory();
 	const [isModalOpen, setIsModalOpen] = useState(true);

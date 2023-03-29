@@ -22,12 +22,20 @@ class Api::ListingsController < ApplicationController
 
   def search
     term = params[:term]
+    search_filter = params[:search_filter]
     search_str = params[:search_phrase]
 
     if term == "state"
-      states = Listing.searchByState(search_str)
+      if (search_filter == "listings")
+        debugger
+        @current_user = current_user
+        @listings = Listing.searchByStateListings(search_str)
 
-      render "api/listings/search_suggestions", locals: { states: states }
+        render "api/listings/index"
+      else
+        states = Listing.searchByState(search_str)
+        render "api/listings/search_suggestions", locals: { states: states }
+      end
     end
   end
 
