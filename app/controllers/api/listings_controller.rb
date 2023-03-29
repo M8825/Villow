@@ -25,12 +25,10 @@ class Api::ListingsController < ApplicationController
     search_filter = params[:search_filter]
     search_str = params[:search_phrase]
 
-    debugger
     if term == "state"
       if (search_filter == "listings")
-        debugger
         @current_user = current_user
-        @listings = Listing.searchByStateListings(search_str)
+        @listings = Listing.searchByCityState(search_str)
 
         render "api/listings/index"
       else

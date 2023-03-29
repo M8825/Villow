@@ -143,11 +143,8 @@ export const fetchListingsByState = (term, cityState) => async (dispatch) => {
 		`/api/search?term=${term}&search_phrase=${cityState}&search_filter=listings`
 	);
 
-	debugger;
 	if (res.ok) {
-		debugger;
 		const listings = await res.json();
-		debugger;
 		dispatch(receiveListings(listings));
 	}
 };

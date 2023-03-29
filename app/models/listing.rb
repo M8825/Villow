@@ -39,13 +39,12 @@ class Listing < ApplicationRecord
     cityStateArray.map { |cityState| cityState.join(", ") }
   end
 
-  def self.searchByStateListings(search_string)
-    state = search_string.split(",")[1].strip
+  def self.searchByCityState(search_string)
+    city = search_string.split(",")[0].strip
 
-    debugger
     where(
-      "state ILIKE :search_string",
-      search_string: "%#{Listing.sanitize_sql_like(state)}%"
+      "city ILIKE :search_string",
+      search_string: "%#{Listing.sanitize_sql_like(city)}%"
     )
   end
 
