@@ -52,9 +52,11 @@
     [X] - route for search with state
     [X] - Add dropdown to search bar for suggestions
     [-] - complete styling of dropdown
-        [-] - styling for search results - include onClick listener
-        [-] - style default dropdown
-    [ ] - search identified by city
+        [X] - styling for search results - include onClick listener
+        [-] - style default dropdown - TODO(mlkz):
+    [-] - search identified by city
+        [X] - identify city pattern
+        [-] - Fetch relevant suggestions from database if there are any
     [ ] - Add identified search based on zip code
     [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address
 

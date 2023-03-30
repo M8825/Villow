@@ -39,9 +39,9 @@ const SearchBar = () => {
             setTerm("state");
 
             dispatch(searchSuggestions(statesMatch(searchString), "state"));
-        } else if (searchString.length >= 3 && citiesMatch(searchString).length > 0 ) {
-            // TODO: search listing by city in DB
-            debugger
+        } else if (searchString.length >= 3 && citiesMatch(searchString).length > 0) {
+            // fetch suggestions based on city name
+            dispatch(searchSuggestions(citiesMatch(searchString), "city"));
         }
     };
 

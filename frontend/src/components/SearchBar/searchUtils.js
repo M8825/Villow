@@ -11,7 +11,7 @@ export const findMatchingIndices = (suggestion, value) => {
             && suggestion[i].toLowerCase() === value[0].toLowerCase()) {
 
             for (let j = 0; j < value.length; j++) {
-                if (suggestion[i] && value[j] !== " "
+                if (suggestion[suggestionIdx] && value[j] !== " "
                     && suggestion[suggestionIdx].toLowerCase() === value[j].toLowerCase()) {
 
                     matchingPart.push(suggestionIdx);

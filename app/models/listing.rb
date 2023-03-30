@@ -1,5 +1,4 @@
 # == Schema Information
-#
 # Table name: listings
 #
 #  id            :bigint           not null, primary key
@@ -29,16 +28,20 @@
 #  lng           :float
 #
 class Listing < ApplicationRecord
-  def self.searchByState(search_string)
+  # receives a string representing state - "NY" or city - "Brooklyn" and returns
+  # an array of suffestion "City, State" names from database based on the search_string
+  def self.searchByState(search_string, term)
     city_state_array =
       where(
-        "state ILIKE :search_string",
+        "#{term} ILIKE :search_string",
         search_string: "%#{Listing.sanitize_sql_like(search_string)}%"
       ).take(5).pluck("city", "state")
 
     city_state_array.map { |city_state| city_state.join(", ") }
   end
 
+  # receives a string like "New York, NY" and return an array of listings
+  # based on the search_sting
   def self.searchByCityState(search_string)
     city = search_string.split(",")[0].strip
 
@@ -48,6 +51,7 @@ class Listing < ApplicationRecord
     )
   end
 
+  # NOTE(mlkz): not in use
   def self.search(search_term)
     where(
       "address ILIKE :search_term OR city ILIKE :search_term OR state ILIKE :search_term OR zipcode::text ILIKE :search_term",

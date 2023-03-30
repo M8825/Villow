@@ -25,24 +25,24 @@ const cleanSuggestions = () => ({
 })
 
 export const searchSuggestions =
-	(searchString, term = null) =>
-	async (dispatch) => {
-		let res;
-		if (term) {
-			res = await csrfFetch(
-				`/api/search?term=${term}&search_phrase=${searchString}`
-			);
-		} else {
-			res = await csrfFetch(
-				`/api/listings?search_string${searchString}?search_term=${term}`
-			);
-		}
+    (searchString, term = null) =>
+        async (dispatch) => {
+            let res;
+            if (term) {
+                res = await csrfFetch(
+                    `/api/search?term=${term}&search_phrase=${searchString}`
+                );
+            } else {
+                res = await csrfFetch(
+                    `/api/listings?search_string${searchString}?search_term=${term}`
+                );
+            }
 
-		if (res.ok) {
-			const suggestions = await res.json();
-			dispatch(receiveSuggestions(suggestions))
-		}
-	};
+            if (res.ok) {
+                const suggestions = await res.json();
+                dispatch(receiveSuggestions(suggestions))
+            }
+        };
 
 
 
@@ -54,7 +54,7 @@ export const cleanSearchSuggestions = () => async (dispatch) => {
 const searchSuggestionsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_SUGGESTIONS:
-            return {...state, ...action.suggestions};
+            return { ...state, ...action.suggestions };
         case CLEAN_SUGGESTIONS:
             return {};
         default:
