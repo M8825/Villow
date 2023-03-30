@@ -4,9 +4,32 @@ import { fetchListingsByState } from "./listingsReducer";
 
 import "./SuggestionItem.scss";
 
-const SuggestionItem = ({ term, suggestion }) => {
+const SuggestionItem = ({ term, suggestion, value }) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const matchingIndecies = () => {
+        const matchingPart = [];
+
+        for (let i = 0; i < suggestion.length; i++) {
+            if (suggestion[i] === value[0]){
+                let suggestionIdx = i;
+                let tempMatching = [];
+
+                for (let j = 0; j < value.length; j++){ 
+                    if (suggestion[suggestionIdx] === value[j]){
+                        tempMatching.push(suggestion[suggestionIdx]);
+                        suggestionIdx++;
+                    } else {
+                        tempMatching = [];
+                        break;
+                    }
+                };
+
+                matchingPart.concat(tempMatching);
+            };
+        };
+    };
 
 	const handleSearchOnClickItem = (e) => {
 		e.preventDefault();

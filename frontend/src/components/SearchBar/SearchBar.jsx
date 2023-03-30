@@ -11,8 +11,9 @@ import "./SearchBar.scss";
 const SearchBar = () => {
     const dispatch = useDispatch();
     const suggestions = useSelector(getSuggestions());
-	const [dropdownEmpty, setDropdownEmpty] = useState(false);
+    const [dropdownEmpty, setDropdownEmpty] = useState(false);
     const [term, setTerm] = useState("");
+    const [value, setValue] = useState("");
 
     useEffect(() => {
         if (dropdownEmpty) {
@@ -25,22 +26,24 @@ const SearchBar = () => {
         }
     }, [dispatch, dropdownEmpty])
 
-	const handleSearchOnChange = (e) => {
-		const searchString = e.target.value;
+    const handleSearchOnChange = (e) => {
+        const searchString = e.target.value;
 
-		if (searchString.length === 0) {
-			setDropdownEmpty(true);
-		} else if (statesMatch(searchString)) {
+        setValue(searchString);
+
+        if (searchString.length === 0) {
+            setDropdownEmpty(true);
+        } else if (statesMatch(searchString)) {
             setDropdownEmpty(false);
             setTerm("state");
             //this is the line I"m working on
 
-			dispatch(searchSuggestions(statesMatch(searchString), "state"));
-		}
-	};
+            dispatch(searchSuggestions(statesMatch(searchString), "state"));
+        }
+    };
 
 
-	return (
+    return (
         <div className="search-input-dropdown-wrapper" onMouseLeave={(e) => {
             setDropdownEmpty(false)
 
@@ -62,41 +65,43 @@ const SearchBar = () => {
             }
         }}
         >
-			<div
-				className="search-container"
-			>
-				<input
-					className="search_container__search_bar"
-					type="text"
-					placeholder="Enter address, neighborhood, city, or ZIP code"
-					onChange={handleSearchOnChange}
-                    onClick={(e) => setDropdownEmpty(true)} 
-				/>
-				<div className="search_container__search_button">
-					<SearchIcon />
-				</div>
-			</div>
+        <div
+        className="search-container"
+        >
+        <input
+        className="search_container__search_bar"
+        type="text"
+        value={value}
+        placeholder="Enter address, neighborhood, city, or ZIP code"
+        onChange={handleSearchOnChange}
+        onClick={(e) => setDropdownEmpty(true)} 
+        />
+        <div className="search_container__search_button">
+        <SearchIcon />
+        </div>
+        </div>
 
-			{dropdownEmpty ? (
-				<p>Empty search options</p>
-			) : (
-				<div className="dropdown">
-					<ul>
-						{suggestions &&
-							suggestions.map((suggestion, idx) => {
-								return (
-									<SuggestionItem
-										key={idx}
-                                        term={term}
-										suggestion={suggestion}
-									/>
-								);
-							})}
-					</ul>
-				</div>
-			)}
-		</div>
-	);
+        {dropdownEmpty ? (
+            <p>Empty search options</p>
+        ) : (
+            <div className="dropdown">
+            <ul>
+            {suggestions &&
+                suggestions.map((suggestion, idx) => {
+                    return (
+                        <SuggestionItem
+                        key={idx}
+                        term={term}
+                        value={value}
+                        suggestion={suggestion}
+                        />
+                    );
+                })}
+            </ul>
+            </div>
+        )}
+        </div>
+    );
 };
 
 export default SearchBar;

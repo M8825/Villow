@@ -101,7 +101,7 @@ export const deleteListing = (listingIds) => async (dispatch) => {
 	});
 
 	if (res.ok) {
-		dispatch(removeListings(listingIds));
+		dispatch((listingIds));
 	}
 };
 
