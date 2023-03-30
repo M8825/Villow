@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanSearchSuggestions, getSuggestions, searchSuggestions } from "../../store/search";
-import SuggestionItem from "../../store/SuggestionItem";
+import SuggestionItem from "./SuggestionItem";
 import SearchIcon from "./SearchIcon";
+import { citiesMatch } from "./searchUtils";
 
 import { statesMatch } from "./utils";
 
@@ -21,7 +22,7 @@ const SearchBar = () => {
         }
 
         // clean on unmount
-        return ()=> {
+        return () => {
             dispatch(cleanSearchSuggestions());
         }
     }, [dispatch, dropdownEmpty])
@@ -36,9 +37,11 @@ const SearchBar = () => {
         } else if (statesMatch(searchString)) {
             setDropdownEmpty(false);
             setTerm("state");
-            //this is the line I"m working on
 
             dispatch(searchSuggestions(statesMatch(searchString), "state"));
+        } else if (searchString.length >= 3 && citiesMatch(searchString).length > 0 ) {
+            // TODO: search listing by city in DB
+            debugger
         }
     };
 
@@ -49,57 +52,57 @@ const SearchBar = () => {
 
             if (
                 e.target.parentElement.className
-                .split(" ")
-                .includes("search-container")
+                    .split(" ")
+                    .includes("search-container")
             ) {
                 e.target.parentElement.classList.remove("focused");
             }
         }}
-        onMouseEnter={(e) => {
-            if (
-                e.target.parentElement.className
-                .split(" ")
-                .includes("search-container")
-            ){
-                e.target.parentElement.classList.add("focused");
-            }
-        }}
+            onMouseEnter={(e) => {
+                if (
+                    e.target.parentElement.className
+                        .split(" ")
+                        .includes("search-container")
+                ) {
+                    e.target.parentElement.classList.add("focused");
+                }
+            }}
         >
-        <div
-        className="search-container"
-        >
-        <input
-        className="search_container__search_bar"
-        type="text"
-        value={value}
-        placeholder="Enter address, neighborhood, city, or ZIP code"
-        onChange={handleSearchOnChange}
-        onClick={(e) => setDropdownEmpty(true)} 
-        />
-        <div className="search_container__search_button">
-        <SearchIcon />
-        </div>
-        </div>
-
-        {dropdownEmpty ? (
-            <p>Empty search options</p>
-        ) : (
-            <div className="dropdown">
-            <ul>
-            {suggestions &&
-                suggestions.map((suggestion, idx) => {
-                    return (
-                        <SuggestionItem
-                        key={idx}
-                        term={term}
-                        value={value}
-                        suggestion={suggestion}
-                        />
-                    );
-                })}
-            </ul>
+            <div
+                className="search-container"
+            >
+                <input
+                    className="search_container__search_bar"
+                    type="text"
+                    value={value}
+                    placeholder="Enter address, neighborhood, city, or ZIP code"
+                    onChange={handleSearchOnChange}
+                    onClick={(e) => setDropdownEmpty(true)}
+                />
+                <div className="search_container__search_button">
+                    <SearchIcon />
+                </div>
             </div>
-        )}
+
+            {dropdownEmpty ? (
+                <p>Empty search options</p>
+            ) : (
+                <div className="dropdown">
+                    <ul>
+                        {suggestions &&
+                            suggestions.map((suggestion, idx) => {
+                                return (
+                                    <SuggestionItem
+                                        key={idx}
+                                        term={term}
+                                        value={value}
+                                        suggestion={suggestion}
+                                    />
+                                );
+                            })}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };

@@ -48,7 +48,7 @@
         [X] - Add onClick destroy favorites
 
 ## Search
-[ ] - Splash page
+[-] - Splash page
     [X] - route for search with state
     [X] - Add dropdown to search bar for suggestions
     [-] - complete styling of dropdown
@@ -57,3 +57,34 @@
     [ ] - search identified by city
     [ ] - Add identified search based on zip code
     [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address
+
+
+
+# TODOs
+
+
+## Fix
+[ ] - If user is not signed in, search suggestion click breaks index page 
+
+## Can't delete listing properly in user profile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

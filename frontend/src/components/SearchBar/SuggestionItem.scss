@@ -1,3 +1,4 @@
+
 .suggestion-item {
     display: flex;
     align-items: center;
@@ -8,15 +9,21 @@
         margin: 0 0 5px 0;
     }
 
-    span{
-        font-size: 16px;
-        color: #767676;
+    p {
         margin-left: 30px;
+        color: #807e7e;
+        font-weight: 500;
+    }
+
+    .highlighted {
+        color: black;
+        margin: 0px;
+        font-weight: 500;
     }
 
     &:hover{
         background-color: rgb(44 104 246);
-        span{
+        span, p{
             color: #fff;
         }
     }
