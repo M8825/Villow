@@ -35,13 +35,15 @@ class Api::ListingsController < ApplicationController
         states = Listing.searchByState(search_str, term)
         render "api/listings/search_suggestions", locals: {states: states}
       end
-      if term == "city"
-        if search_filter == "listings"
-        else
-          cities_states = Listing.searchByState(search_str, term)
 
-          render "api/listings/search_suggestions", locals: {cities_states: cities_states}
-        end
+    end
+
+    if term == "city"
+      if search_filter == "listings"
+      else
+        cities_states = Listing.getSuggestionsByCity(search_str)
+
+        render "api/listings/search_suggestions", locals: {states: cities_states}
       end
     end
   end

@@ -40,6 +40,15 @@ class Listing < ApplicationRecord
     city_state_array.map { |city_state| city_state.join(", ") }
   end
 
+  def self.getSuggestionsByCity(city_names_str)
+    city_names_str.split(",").map do |city_name|
+      city_record = where("city ILIKE :city_name", city_name: "%#{city_name.strip}%")
+        .take(1).pluck("city", "state")
+
+      city_record.empty? ? nil : city_record.first.join(", ") # return nil if city_record is empty
+    end.compact # get rid of nil values
+  end
+
   # receives a string like "New York, NY" and return an array of listings
   # based on the search_sting
   def self.searchByCityState(search_string)

@@ -1,6 +1,7 @@
 export const majorCities = {
   "cities": [
     { "name": "New York", "state": "New York" },
+    { "name": "Brooklyn", "state": "New York" },
     { "name": "Los Angeles", "state": "California" },
     { "name": "Chicago", "state": "Illinois" },
     { "name": "Houston", "state": "Texas" },
