@@ -2,18 +2,19 @@ class Api::ListingsController < ApplicationController
   # only allow index action if URL includes user_id
   # without a user session
   before_action :require_logged_in,
-    only: [:index],
-    if: proc { params[:user_id] && !current_user }
+                only: [:index],
+                if: proc { params[:user_id] && !current_user }
 
   def index
     search_string = params[:search_string]
     search_term = params[:search_term]
 
-    @listings = if search_term == "state"
-      Listing.search(search_string)
-    else
-      Listing.all
-    end
+    @listings =
+      if search_term == "state"
+        Listing.search(search_string)
+      else
+        Listing.all
+      end
 
     @current_user = current_user
 
@@ -33,9 +34,8 @@ class Api::ListingsController < ApplicationController
         render "api/listings/index"
       else
         states = Listing.searchByState(search_str, term)
-        render "api/listings/search_suggestions", locals: {states: states}
+        render "api/listings/search_suggestions", locals: { states: states }
       end
-
     end
 
     if term == "city"
@@ -43,7 +43,18 @@ class Api::ListingsController < ApplicationController
       else
         cities_states = Listing.getSuggestionsByCity(search_str)
 
-        render "api/listings/search_suggestions", locals: {states: cities_states}
+        render "api/listings/search_suggestions",
+               locals: {
+                 states: cities_states
+               }
+      end
+    end
+
+    if term == "zipcode"
+      if search_filter == "listing"
+      else
+        zipcode = Listing.getSuggestionsByZipCode(search_str)
+        render "api/listings/search_suggestions", locals: { states: zipcode }
       end
     end
   end

@@ -58,12 +58,18 @@
         [X] - identify city pattern
         [X] - Fetch relevant suggestions from database if there are any
         [X] - test for other cities
-    [-] - Identify zip code
-        [-] - Create a utilFuntion that checks for zip code input
-        [ ] - Qury database for availabe listing zip codes
-        [ ] - Retun suggestions
-        [ ] - Make sure it's highlighted properly
-    [ ] - Add identified search based on zip code
+    [X] - Identify zip code
+        [X] - Create a utilFuntion that checks for zip code input
+        [X] - Qury database for availabe listing zip codes
+        [X] - Retun suggestions
+        [X] - Make sure it's highlighted properly
+    [-] - Fetch lisitings based on search input - Important note is that 
+          it should make specific query to database based on the search term 
+        [ ] - Fetch based on state
+        [ ] - Fetch based on city
+        [ ] - Fetch based on zipcode
+        [ ]
+
     [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address
 
 
@@ -73,6 +79,11 @@
 
 ## Fix
 [ ] - If user is not signed in, search suggestion click breaks index page 
+[ ] - For splash search, when you make initial requst to the database for
+      suggestions, after your receive suggestions from DB, on every additional
+      onChange BEFORE you make new request to the database, check if search 
+      input substring matches any record in redux state first. If there are
+      no matching state suggestions, THAN make new request to DB.
 
 ## Can't delete listing properly in user profile
 

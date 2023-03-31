@@ -66,6 +66,10 @@ class Listing < ApplicationRecord
     )
   end
 
+  def self.getSuggestionsByZipCode(zipcode)
+    Listing.query_db(zipcode, "zipcode")
+  end
+
   # NOTE(mlkz): not in use
   def self.search(search_term)
     where(
@@ -103,4 +107,19 @@ class Listing < ApplicationRecord
   has_many :favoriter, through: :favorites, source: :favoriter
 
   has_many_attached :photos, dependent: :destroy
+
+  private_class_method
+
+  def self.query_db(search_string, term)
+    five_results = where(
+      "#{term}::text ILIKE :search_string",
+      search_string: "%#{Listing.sanitize_sql_like(search_string)}%"
+    ).take(5)
+
+    if term == "zipcode"
+      five_results.pluck("zipcode").uniq.map(&:to_s)
+    else
+      five_results.pluck("city", "state").uniq
+    end
+  end
 end
