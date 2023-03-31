@@ -41,12 +41,18 @@ class Listing < ApplicationRecord
   end
 
   def self.getSuggestionsByCity(city_names_str)
-    city_names_str.split(",").map do |city_name|
-      city_record = where("city ILIKE :city_name", city_name: "%#{city_name.strip}%")
-        .take(1).pluck("city", "state")
+    city_names_str
+      .split(",")
+      .map do |city_name|
+        city_record =
+          where(
+            "city ILIKE :city_name",
+            city_name: "%#{city_name.strip}%"
+          ).take(1).pluck("city", "state")
 
-      city_record.empty? ? nil : city_record.first.join(", ") # return nil if city_record is empty
-    end.compact # get rid of nil values
+        city_record.empty? ? nil : city_record.first.join(", ") # return nil if city_record is empty
+      end
+      .compact # get rid of nil values
   end
 
   # receives a string like "New York, NY" and return an array of listings
@@ -69,30 +75,30 @@ class Listing < ApplicationRecord
   end
 
   validates :price,
-    :bedroom,
-    :bathroom,
-    :sqft,
-    :address,
-    :listing_type,
-    :est_payment,
-    :building_type,
-    :built_in,
-    :price_sqft,
-    :overview,
-    :key_words,
-    :zipcode,
-    :city,
-    :state,
-    :lat,
-    :lng,
-    presence: true
+            :bedroom,
+            :bathroom,
+            :sqft,
+            :address,
+            :listing_type,
+            :est_payment,
+            :building_type,
+            :built_in,
+            :price_sqft,
+            :overview,
+            :key_words,
+            :zipcode,
+            :city,
+            :state,
+            :lat,
+            :lng,
+            presence: true
 
   belongs_to :owner, class_name: :User, foreign_key: :owner_id
 
   has_many :favorites,
-    class_name: :Favorite,
-    foreign_key: :listing_id,
-    dependent: :destroy
+           class_name: :Favorite,
+           foreign_key: :listing_id,
+           dependent: :destroy
 
   has_many :favoriter, through: :favorites, source: :favoriter
 

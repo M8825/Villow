@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { cleanSearchSuggestions, getSuggestions, searchSuggestions } from "../../store/search";
 import SuggestionItem from "./SuggestionItem";
 import SearchIcon from "./SearchIcon";
-import { citiesMatch, statesMatch } from "./searchUtils";
+import { statesMatch, citiesMatch } from "./searchUtils";
+import { zipCodeMatch } from "./searchUtils";
 
 
 import "./SearchBar.scss";
@@ -43,7 +44,17 @@ const SearchBar = () => {
             setTerm("city");
             // fetch suggestions based on city name
             dispatch(searchSuggestions(citiesMatch(searchString), "city"));
+        } else if (searchString.length >= 3 && zipCodeMatch(searchString)) {
+            debugger
+            setDropdownEmpty(false);
+            setTerm("zip");
+
+            // fetch suggestions based on zip code
+            dispatch(searchSuggestions(zipCodeMatch(searchString), "zip"));
+        } else {
+            setDropdownEmpty(true);
         }
+
     };
 
 

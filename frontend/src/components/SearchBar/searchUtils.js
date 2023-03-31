@@ -74,3 +74,17 @@ export const statesMatch = (searchString) => {
     return false;
 
 }
+
+const isDigit = (str) => {
+  return /^\d$/.test(str);
+}
+
+
+// Iterate through seach input and check if all characters are digits
+export const zipCodeMatch = (searchString) => {
+    for (let i = 0; i < searchString.length; i++) {
+        if (!isDigit(searchString[i])) return false;
+    }
+
+    return true
+}

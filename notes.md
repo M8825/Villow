@@ -51,12 +51,18 @@
 [-] - Splash page
     [X] - route for search with state
     [X] - Add dropdown to search bar for suggestions
-    [-] - complete styling of dropdown
+    [-] - style default dropdown - TODO(mlkz):
+    [X] - complete styling of dropdown
         [X] - styling for search results - include onClick listener
-        [-] - style default dropdown - TODO(mlkz):
-    [-] - search identified by city
+    [X] - search identified by city
         [X] - identify city pattern
-        [-] - Fetch relevant suggestions from database if there are any
+        [X] - Fetch relevant suggestions from database if there are any
+        [X] - test for other cities
+    [-] - Identify zip code
+        [-] - Create a utilFuntion that checks for zip code input
+        [ ] - Qury database for availabe listing zip codes
+        [ ] - Retun suggestions
+        [ ] - Make sure it's highlighted properly
     [ ] - Add identified search based on zip code
     [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address
 
