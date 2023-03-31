@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { cleanSearchSuggestions, getSuggestions, searchSuggestions } from "../../store/search";
 import SuggestionItem from "./SuggestionItem";
 import SearchIcon from "./SearchIcon";
-import { citiesMatch } from "./searchUtils";
+import { citiesMatch, statesMatch } from "./searchUtils";
 
-import { statesMatch } from "./utils";
 
 import "./SearchBar.scss";
 
