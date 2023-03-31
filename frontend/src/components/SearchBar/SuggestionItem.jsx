@@ -25,14 +25,16 @@ const SuggestionItem = ({ term, suggestion, value }) => {
 
     };
 
+
     return (
         <li className="suggestion-item" onClick={handleSearchOnClickItem}>
             {
-                start && end ? (
+                end ? (
                     <>
                         <p>{suggestion.slice(0, start)}
-                            <span className="highlighted">{suggestion.slice(start, end + 1)}</span></p>
-                        <span>{suggestion.slice(end + 1)}</span>
+                            <span className="highlighted">{suggestion.slice(start, end + 1)}</span>
+                            <span>{suggestion.slice(end + 1)}</span>
+                        </p>
                     </>
                 ) :
                     (<p>{suggestion}</p>)

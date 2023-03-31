@@ -35,7 +35,6 @@ const SearchBar = () => {
         if (searchString.length === 0) {
             setDropdownEmpty(true);
         } else if (statesMatch(searchString)) {
-            debugger
             setDropdownEmpty(false);
             setTerm("state");
 
@@ -44,7 +43,6 @@ const SearchBar = () => {
             setDropdownEmpty(false);
             setTerm("city");
             // fetch suggestions based on city name
-            debugger
             dispatch(searchSuggestions(citiesMatch(searchString), "city"));
         }
     };

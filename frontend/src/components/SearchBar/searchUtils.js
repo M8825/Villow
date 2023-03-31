@@ -1,23 +1,33 @@
 import { majorCities } from "./majorCities";
 
-// checks if the suggestion matches the value and return 
+// checks if the suggestions matches the value and return 
 // the indices of the matching characters
-export const findMatchingIndices = (suggestion, value) => {
-    let matchingPart = [];
-    for (let i = 0; i < suggestion.length; i++) {
+export const findMatchingIndices = (suggestions, value) => {
+    if (!value) return [];
+
+    suggestions = suggestions.toLowerCase();
+    value = value.toLowerCase();
+
+    let start, end;
+
+    for (let i = 0; i < suggestions.length; i++) {
         let suggestionIdx = i;
 
-        if (suggestion[i] && value[0]
-            && suggestion[i].toLowerCase() === value[0].toLowerCase()) {
-
+        if (suggestions[i] === value[0]) {
             for (let j = 0; j < value.length; j++) {
-                if (suggestion[suggestionIdx] && value[j] !== " "
-                    && suggestion[suggestionIdx].toLowerCase() === value[j].toLowerCase()) {
+                if (suggestions[suggestionIdx] === value[j]) {
 
-                    matchingPart.push(suggestionIdx);
+                    // If start is already set, next matching index will be assigned to end
+                    if (!start && start !== 0) {
+                        start = suggestionIdx;
+                    } else {
+                        end = suggestionIdx;
+                    }
+
                     suggestionIdx++;
                 } else {
-                    matchingPart = [];
+                    start = null;
+                    end = null;
                     break;
                 }
 
@@ -25,12 +35,10 @@ export const findMatchingIndices = (suggestion, value) => {
 
         };
 
-        if (matchingPart.length > 0) {
-            break;
-        };
+        if (end) break;
     };
 
-    return matchingPart;
+    return [start, end];
 };
 
 
