@@ -29,40 +29,40 @@ module Searchable
 
   def search_by_state(search_filter, search_str)
     if search_filter == 'listings'
-      @listings = Listing.searchByCityState(search_str, 'state')
+      @listings = Listing.search_city_state_zip(search_str, 'state')
       render 'api/listings/index'
     else
-      states = Listing.getSuggestionsByState(search_str, 'state')
-      render 'api/listings/search_suggestions', locals: { states: states }
+      states = Listing.getsuggestions_by_state(search_str, 'state')
+      render 'api/listings/search_suggestions', locals: { states: }
     end
   end
 
   def search_by_city(search_filter, search_str)
     if search_filter == 'listings'
-      @listings = Listing.searchByCityState(search_str, 'city')
+      @listings = Listing.search_city_state_zip(search_str, 'city')
       render 'api/listings/index'
     else
-      cities_states = Listing.getSuggestionsByCity(search_str)
+      cities_states = Listing.getsuggestions_by_city(search_str)
       render 'api/listings/search_suggestions', locals: { states: cities_states }
     end
   end
 
   def search_by_zipcode(search_filter, search_str)
     if search_filter == 'listings'
-      @listings = Listing.searchByCityState(search_str, 'zipcode')
+      @listings = Listing.search_city_state_zip(search_str, 'zipcode')
       render 'api/listings/index'
     else
-      zipcode = Listing.getSuggestionsByZipCode(search_str)
+      zipcode = Listing.get_suggestions_by_zip(search_str)
       render 'api/listings/search_suggestions', locals: { states: zipcode }
     end
   end
 
   def search_by_street_address(search_filter, search_str)
     if search_filter == 'listings'
-      @listings = Listing.searchByCityState(search_str, 'address')
+      @listings = Listing.search_city_state_zip(search_str, 'address')
       render 'api/listings/index'
     else
-      suggestions = Listing.getSuggestionsByAddress(search_str)
+      suggestions = Listing.get_suggestions_by_address(search_str)
       render 'api/listings/search_suggestions', locals: { states: suggestions }
     end
   end
