@@ -65,10 +65,9 @@
         [X] - Make sure it's highlighted properly
     [-] - Fetch lisitings based on search input - Important note is that 
           it should make specific query to database based on the search term 
-        [ ] - Fetch based on state
-        [ ] - Fetch based on city
+        [X] - Fetch based on state
+        [X] - Fetch based on city
         [ ] - Fetch based on zipcode
-        [ ]
 
     [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address
 

@@ -138,9 +138,13 @@ export const removeFavorite = (userId, listingId) => async (dispatch) => {
 	}
 };
 
-export const fetchListingsByState = (term, cityState) => async (dispatch) => {
+export const fetchSearchListings = (term, searchInputValueStr) => async (dispatch) => {
+    // Make sure to encode for URL safe character like #
+    // prevent params from being cut off
+    const encodedSeachValue = encodeURIComponent(searchInputValueStr);
+    
 	const res = await csrfFetch(
-		`/api/search?term=${term}&search_phrase=${cityState}&search_filter=listings`
+		`/api/search?term=${term}&search_phrase=${encodedSeachValue}&search_filter=listings`
 	);
 
 	if (res.ok) {

@@ -54,7 +54,7 @@ export const cleanSearchSuggestions = () => async (dispatch) => {
 const searchSuggestionsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_SUGGESTIONS:
-            return { ...state, ...action.suggestions };
+            return { ...action.suggestions };
         case CLEAN_SUGGESTIONS:
             return {};
         default:

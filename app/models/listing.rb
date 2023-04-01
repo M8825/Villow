@@ -28,50 +28,58 @@
 #  lng           :float
 #
 class Listing < ApplicationRecord
-  # receives a string representing state - "NY" or city - "Brooklyn" and returns
-  # an array of suffestion "City, State" names from database based on the search_string
-  def self.searchByState(search_string, term)
-    city_state_array =
-      where(
-        "#{term} ILIKE :search_string",
-        search_string: "%#{Listing.sanitize_sql_like(search_string)}%"
-      ).take(5).pluck("city", "state")
-
-    city_state_array.map { |city_state| city_state.join(", ") }
+  def self.getSuggestionsByAddress(street_address_str)
+    query_db_suggestions(street_address_str, "address")
   end
 
-  def self.getSuggestionsByCity(city_names_str)
-    city_names_str
-      .split(",")
-      .map do |city_name|
-        city_record =
-          where(
-            "city ILIKE :city_name",
-            city_name: "%#{city_name.strip}%"
-          ).take(1).pluck("city", "state")
+  # receives a string representing state - "NY" - and returns
+  # an array of suffestion "City, State" names from database based on the state_name_str
+  def self.getSuggestionsByState(state_name_str, term)
+    city_state_suggestions_array = query_db_suggestions(state_name_str, term)
 
+    city_state_suggestions_array.map { |city_state| city_state.join(", ") }
+  end
+
+  # receives a string representing state city - "Brooklyn" and returns
+  # an array of suffestion "City, State" names from database based on the city_names_str
+  def self.getSuggestionsByCity(city_names_str)
+    city_names_arr = city_names_str.split(",")
+
+    suggestions =
+      city_names_arr.map do |city_name|
+        city_record = query_db_suggestions(city_name.strip, "city")
         city_record.empty? ? nil : city_record.first.join(", ") # return nil if city_record is empty
       end
-      .compact # get rid of nil values
+
+    suggestions.compact # get rid of nil values
+  end
+
+  # receives a string representing state zipcode - "120" and returns
+  # an array of suffestion "City, State" names from database based on the zipcode
+  def self.getSuggestionsByZipCode(zipcode)
+    Listing.query_db_suggestions(zipcode, "zipcode")
   end
 
   # receives a string like "New York, NY" and return an array of listings
   # based on the search_sting
-  def self.searchByCityState(search_string)
+  def self.searchByCityState(search_string, term)
     city = search_string.split(",")[0].strip
 
     where(
-      "city ILIKE :search_string",
-      search_string: "%#{Listing.sanitize_sql_like(city)}%"
+      "#{term}::text ILIKE :search_string",
+      search_string: "%#{Listing.sanitize_sql_like(city.to_s)}%"
     )
   end
 
-  def self.getSuggestionsByZipCode(zipcode)
-    Listing.query_db(zipcode, "zipcode")
+  def self.searchByStreetAddress(street_address, term)
+    where(
+      "address ILIKE :search_string",
+      search_string: "%#{Listing.sanitize_sql_like(street_address.strip)}%"
+    )
   end
 
-  # NOTE(mlkz): not in use
   def self.search(search_term)
+    # NOTE(mlkz): not in use
     where(
       "address ILIKE :search_term OR city ILIKE :search_term OR state ILIKE :search_term OR zipcode::text ILIKE :search_term",
       search_term: "%#{sanitize_sql_like(search_term)}%"
@@ -110,14 +118,17 @@ class Listing < ApplicationRecord
 
   private_class_method
 
-  def self.query_db(search_string, term)
-    five_results = where(
-      "#{term}::text ILIKE :search_string",
-      search_string: "%#{Listing.sanitize_sql_like(search_string)}%"
-    ).take(5)
+  def self.query_db_suggestions(search_string, term)
+    five_results =
+      where(
+        "#{term}::text ILIKE :search_string",
+        search_string: "%#{Listing.sanitize_sql_like(search_string)}%"
+      ).take(5)
 
     if term == "zipcode"
       five_results.pluck("zipcode").uniq.map(&:to_s)
+    elsif term == "address"
+      five_results.pluck("address").uniq
     else
       five_results.pluck("city", "state").uniq
     end

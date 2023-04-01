@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchListingsByState, } from "../../store/listingsReducer";
+import { fetchSearchListings } from "../../store/listingsReducer";
 
 import { findMatchingIndices } from "./searchUtils";
 
@@ -19,7 +19,7 @@ const SuggestionItem = ({ term, suggestion, value }) => {
     const handleSearchOnClickItem = (e) => {
         e.preventDefault();
 
-        dispatch(fetchListingsByState(term, suggestion));
+        dispatch(fetchSearchListings(term, suggestion));
 
         history.push('/listings')
 

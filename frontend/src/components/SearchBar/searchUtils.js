@@ -3,7 +3,6 @@ import { majorCities } from "./majorCities";
 // checks if the suggestions matches the value and return
 // the indices of the matching characters
 export const findMatchingIndices = (suggestions, value) => {
-  debugger;
   if (!value) return [];
 
   suggestions = suggestions.toLowerCase();
@@ -43,7 +42,6 @@ export const citiesMatch = (searchString) => {
   if (!searchString) return []; // return empty array if no search string
 
   let matchingCities = [];
-  if (searchString[searchString.length - 1] === ",") debugger;
 
   Object.values(majorCities.cities).forEach((cityObj) => {
     const cityName = cityObj.name.toLowerCase();
@@ -57,7 +55,6 @@ export const citiesMatch = (searchString) => {
     }
   });
 
-  if (searchString[searchString.length - 1] === ",") debugger;
 
   return matchingCities;
 };
