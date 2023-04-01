@@ -30,6 +30,7 @@ module Searchable
   def search_by_state(search_filter, search_str)
     if search_filter == 'listings'
       @listings = Listing.search_city_state_zip(search_str, 'state')
+
       render 'api/listings/index'
     else
       states = Listing.getsuggestions_by_state(search_str, 'state')

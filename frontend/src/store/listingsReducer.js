@@ -8,170 +8,170 @@ const RECEIVE_FAVORITES = "api/listings/RECEIVE_FAVORITES";
 // TODO: add remove and update listing
 
 export const receiveListings = (listings) => ({
-	type: RECEIVE_LISTINGS,
-	listings,
+  type: RECEIVE_LISTINGS,
+  listings,
 });
 
 export const receiveListing = (listing) => ({
-	type: RECEIVE_LISTING,
-	listing,
+  type: RECEIVE_LISTING,
+  listing,
 });
 
 export const receiveFavorites = (favorites) => ({
-	type: RECEIVE_FAVORITES,
-	favorites,
+  type: RECEIVE_FAVORITES,
+  favorites,
 });
 
 export const removeListings = (listingIds) => ({
-	type: REMOVE_LISTINGS,
-	listingIds,
+  type: REMOVE_LISTINGS,
+  listingIds,
 });
 
 export const getListings = (state) => {
-	if (state && state.listings) {
-		return Object.values(state.listings);
-	}
+  if (state && state.listings) {
+    return Object.values(state.listings);
+  }
 
-	return [];
+  return [];
 };
 
 export const getListing = (id) => (state) => {
-	if (state && state.listings) {
-		return state.listings[id];
-	}
+  if (state && state.listings) {
+    return state.listings[id];
+  }
 
-	return null;
+  return null;
 };
 
 export const fetchListings = () => async (dispatch) => {
-	const res = await csrfFetch("/api/listings");
+  const res = await csrfFetch("/api/listings");
 
-	if (res.ok) {
-		const listings = await res.json();
-		dispatch(receiveListings(listings));
-	}
+  if (res.ok) {
+    const listings = await res.json();
+    dispatch(receiveListings(listings));
+  }
 };
 
 export const fetchListing = (id) => async (dispatch) => {
-	const res = await csrfFetch(`/api/listings/${id}`);
+  const res = await csrfFetch(`/api/listings/${id}`);
 
-	if (res.ok) {
-		const listing = await res.json();
-		dispatch(receiveListing(listing));
-	}
+  if (res.ok) {
+    const listing = await res.json();
+    dispatch(receiveListing(listing));
+  }
 };
 
 export const fetchListingByUserId = (userId) => async (dispatch) => {
-	const res = await csrfFetch(`/api/users/${userId}/listings`);
+  const res = await csrfFetch(`/api/users/${userId}/listings`);
 
-	if (res.ok) {
-		const listings = await res.json();
-		dispatch(receiveListings(listings));
-	}
+  if (res.ok) {
+    const listings = await res.json();
+    dispatch(receiveListings(listings));
+  }
 };
 
 export const createListing = (listing) => async (dispatch) => {
-	const res = await csrfFetch("/api/listings", {
-		method: "POST",
-		body: listing,
-	});
+  const res = await csrfFetch("/api/listings", {
+    method: "POST",
+    body: listing,
+  });
 
-	if (res.ok) {
-		const newListing = await res.json();
-		dispatch(receiveListing(newListing));
-	}
+  if (res.ok) {
+    const newListing = await res.json();
+    dispatch(receiveListing(newListing));
+  }
 };
 
 export const updateListing = (listing, listingId) => async (dispatch) => {
-	const res = await csrfFetch(`/api/listings/${listingId}`, {
-		method: "PUT",
-		body: listing,
-	});
+  const res = await csrfFetch(`/api/listings/${listingId}`, {
+    method: "PUT",
+    body: listing,
+  });
 
-	if (res.ok) {
-		const updatedListing = await res.json();
-		dispatch(receiveListing(updatedListing));
-	}
+  if (res.ok) {
+    const updatedListing = await res.json();
+    dispatch(receiveListing(updatedListing));
+  }
 };
 
 export const deleteListing = (listingIds) => async (dispatch) => {
-	const res = await csrfFetch(`/api/listings/${1}`, {
-		method: "DELETE",
-		body: JSON.stringify({ listing: { listing_ids: listingIds } }),
-	});
+  const res = await csrfFetch(`/api/listings/${1}`, {
+    method: "DELETE",
+    body: JSON.stringify({ listing: { listing_ids: listingIds } }),
+  });
 
-	if (res.ok) {
-		dispatch((listingIds));
-	}
+  if (res.ok) {
+    dispatch(listingIds);
+  }
 };
 
 export const fetchUserFavorites = (userId) => async (dispatch) => {
-	const res = await csrfFetch(`/api/users/${userId}/favorites`);
+  const res = await csrfFetch(`/api/users/${userId}/favorites`);
 
-	if (res.ok) {
-		const favorites = await res.json();
-		dispatch(receiveFavorites(favorites));
-	}
+  if (res.ok) {
+    const favorites = await res.json();
+    dispatch(receiveFavorites(favorites));
+  }
 };
 
 export const addFavorite = (userId, listingId) => async (dispatch) => {
-	const res = await csrfFetch(`/api/users/${userId}/favorites`, {
-		method: "POST",
-		body: JSON.stringify({ listing: { listing_id: listingId } }),
-	});
+  const res = await csrfFetch(`/api/users/${userId}/favorites`, {
+    method: "POST",
+    body: JSON.stringify({ listing: { listing_id: listingId } }),
+  });
 
-	if (res.ok) {
-		const favorite = await res.json();
-		dispatch(receiveListing(favorite));
-	}
+  if (res.ok) {
+    const favorite = await res.json();
+    dispatch(receiveListing(favorite));
+  }
 };
 
 export const removeFavorite = (userId, listingId) => async (dispatch) => {
-	const res = await csrfFetch(`/api/users/${userId}/favorites/${listingId}`, {
-		method: "DELETE",
-		body: JSON.stringify({ listing: { listing_id: listingId } }),
-	});
+  const res = await csrfFetch(`/api/users/${userId}/favorites/${listingId}`, {
+    method: "DELETE",
+    body: JSON.stringify({ listing: { listing_id: listingId } }),
+  });
 
-	if (res.ok) {
-		const listing = await res.json();
-		dispatch(receiveListing(listing));
-	}
+  if (res.ok) {
+    const listing = await res.json();
+    dispatch(receiveListing(listing));
+  }
 };
 
-export const fetchSearchListings = (term, searchInputValueStr) => async (dispatch) => {
+export const fetchSearchListings =
+  (term, searchInputValueStr) => async (dispatch) => {
     // Make sure to encode for URL safe character like #
     // prevent params from being cut off
     const encodedSeachValue = encodeURIComponent(searchInputValueStr);
-    
-	const res = await csrfFetch(
-		`/api/search?term=${term}&search_phrase=${encodedSeachValue}&search_filter=listings`
-	);
+      debugger
 
-	if (res.ok) {
-		const listings = await res.json();
-		dispatch(receiveListings(listings));
-	}
-};
+    const res = await csrfFetch(
+      `/api/search?term=${term}&search_phrase=${encodedSeachValue}&search_filter=listings`
+    );
+
+    if (res.ok) {
+      const listings = await res.json();
+      dispatch(receiveListings(listings));
+    }
+  };
 
 const listingsReducer = (state = {}, action) => {
-	const newState = { ...state };
+  const newState = { ...state };
 
-	switch (action.type) {
-		case RECEIVE_LISTINGS:
-			return { ...action.listings };
-		case RECEIVE_LISTING:
-			newState[action.listing.id] = action.listing;
-			return newState;
-		case RECEIVE_FAVORITES:
-			return { ...action.favorites };
-		case REMOVE_LISTINGS:
-			action.listingIds.forEach(
-				(listingId) => delete newState[listingId]
-			);
-			return newState;
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case RECEIVE_LISTINGS:
+      return { ...action.listings };
+    case RECEIVE_LISTING:
+      newState[action.listing.id] = action.listing;
+      return newState;
+    case RECEIVE_FAVORITES:
+      return { ...action.favorites };
+    case REMOVE_LISTINGS:
+      action.listingIds.forEach((listingId) => delete newState[listingId]);
+      return newState;
+    default:
+      return state;
+  }
 };
 
 export default listingsReducer;

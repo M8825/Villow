@@ -65,12 +65,16 @@ class Listing < ApplicationRecord
   # receives a string like "New York, NY" and return an array of listings
   # based on the search_sting
   def self.search_city_state_zip(search_string, column_name)
-    # Separate city from "City, St" string and grab only city name
-    search_word = search_string.split(',')[0].strip
+    # Separate content of search_string and select relevant element from array
+    # based on the column_name flag
+    search_word = search_string.split(',')
+    search_word = column_name == 'state' ? search_word[1] : search_word[0]
+
+    search_word = search_word.strip.to_s
 
     where(
       "#{column_name}::text ILIKE :search_string",
-      search_string: "%#{Listing.sanitize_sql_like(search_word.to_s)}%"
+      search_string: "%#{Listing.sanitize_sql_like(search_word)}%"
     )
   end
 
@@ -90,30 +94,30 @@ class Listing < ApplicationRecord
   end
 
   validates :price,
-            :bedroom,
-            :bathroom,
-            :sqft,
-            :address,
-            :listing_type,
-            :est_payment,
-            :building_type,
-            :built_in,
-            :price_sqft,
-            :overview,
-            :key_words,
-            :zipcode,
-            :city,
-            :state,
-            :lat,
-            :lng,
-            presence: true
+    :bedroom,
+    :bathroom,
+    :sqft,
+    :address,
+    :listing_type,
+    :est_payment,
+    :building_type,
+    :built_in,
+    :price_sqft,
+    :overview,
+    :key_words,
+    :zipcode,
+    :city,
+    :state,
+    :lat,
+    :lng,
+    presence: true
 
   belongs_to :owner, class_name: :User, foreign_key: :owner_id
 
   has_many :favorites,
-           class_name: :Favorite,
-           foreign_key: :listing_id,
-           dependent: :destroy
+    class_name: :Favorite,
+    foreign_key: :listing_id,
+    dependent: :destroy
 
   has_many :favoriter, through: :favorites, source: :favoriter
 
