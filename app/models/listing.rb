@@ -37,7 +37,8 @@ class Listing < ApplicationRecord
   # receives a string representing state - "NY" - and returns
   # an array of suffestion "City, State" names from database based on the state_name_str
   def self.getsuggestions_by_state(state_name_str, column_name)
-    city_state_suggestions_array = query_db_suggestions(state_name_str, column_name)
+    city_state_suggestions_array = query_db_suggestions(state_name_str,
+                                                        column_name)
 
     city_state_suggestions_array.map { |city_state| city_state.join(', ') }
   end
@@ -94,30 +95,30 @@ class Listing < ApplicationRecord
   end
 
   validates :price,
-    :bedroom,
-    :bathroom,
-    :sqft,
-    :address,
-    :listing_type,
-    :est_payment,
-    :building_type,
-    :built_in,
-    :price_sqft,
-    :overview,
-    :key_words,
-    :zipcode,
-    :city,
-    :state,
-    :lat,
-    :lng,
-    presence: true
+            :bedroom,
+            :bathroom,
+            :sqft,
+            :address,
+            :listing_type,
+            :est_payment,
+            :building_type,
+            :built_in,
+            :price_sqft,
+            :overview,
+            :key_words,
+            :zipcode,
+            :city,
+            :state,
+            :lat,
+            :lng,
+            presence: true
 
   belongs_to :owner, class_name: :User, foreign_key: :owner_id
 
   has_many :favorites,
-    class_name: :Favorite,
-    foreign_key: :listing_id,
-    dependent: :destroy
+           class_name: :Favorite,
+           foreign_key: :listing_id,
+           dependent: :destroy
 
   has_many :favoriter, through: :favorites, source: :favoriter
 

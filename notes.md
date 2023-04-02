@@ -49,9 +49,13 @@
 
 ## Search
 [-] - Splash page
+    [ ] - Add unidentified search options. Just provide whole addresses - 
+          basically when user starts typing complete address starting with 
+          street address - NOTE(mlkz): Is it really necessary? For sure not 
+          for now
     [X] - route for search with state
     [X] - Add dropdown to search bar for suggestions
-    [-] - style default dropdown - TODO(mlkz):
+    [X] - style default dropdown
     [X] - complete styling of dropdown
         [X] - styling for search results - include onClick listener
     [X] - search identified by city
@@ -68,9 +72,11 @@
         [X] - Fetch based on state
         [X] - Fetch based on city
         [X] - Fetch based on zipcode
-    [-] - Add onClick event listener to search button
+    [X] - Add onClick event listener to search button - Grabs all listings
+[-] - Index Page
+    [-] - Create custom search bar for index page
+    [ ] - Add filters - Check them on zillow
 
-    [ ] - Add unidentified search options. Just provide whole addresses - basically when user starts typing complete address starting with street address
 
 
 
@@ -78,6 +84,7 @@
 
 
 ## Fix
+[ ] - Listing index doesn't work if user is not signed in.
 [ ] - If user is not signed in, search suggestion click breaks index page 
 [ ] - For splash search, when you make initial requst to the database for
       suggestions, after your receive suggestions from DB, on every additional

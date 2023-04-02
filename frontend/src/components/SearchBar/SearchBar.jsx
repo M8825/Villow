@@ -1,145 +1,105 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams, useLocation } from "react-router-dom";
+
 import {
-    cleanSearchSuggestions,
-    getSuggestions,
-    searchSuggestions,
+  cleanSearchSuggestions,
+  getSuggestions,
+  searchSuggestions,
 } from "../../store/search";
-import SuggestionItem from "./SuggestionItem";
-import SearchIcon from "./SearchIcon";
-import InitialSearchBox from "./InitialSearchBox";
-import { statesMatch, citiesMatch } from "./searchUtils";
-import { zipCodeMatch } from "./searchUtils";
+import { fetchSearchListings } from "../../store/listingsReducer";
+import { statesMatch, citiesMatch, zipCodeMatch } from "./searchUtils";
+
+import SplashSearchInput from "./SearchInput";
 
 import "./SearchBar.scss";
-import { fetchSearchListings } from "../../store/listingsReducer";
-import { useHistory } from "react-router-dom";
+import IndexSearchInput from "./IndexSearchInput";
 
 const SearchBar = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const suggestions = useSelector(getSuggestions());
-    const [dropdownEmpty, setDropdownEmpty] = useState(false);
-    const [term, setTerm] = useState("");
-    const [value, setValue] = useState("");
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    useEffect(() => {
-        if (dropdownEmpty) {
-            dispatch(cleanSearchSuggestions());
-        }
+  const isAtListinIndex = location.pathname === "/listings";
+  debugger
 
-        // clean on unmount
-        return () => {
-            dispatch(cleanSearchSuggestions());
-        };
-    }, [dispatch, dropdownEmpty]);
+  const suggestions = useSelector(getSuggestions());
+  const [suggestionsBox, setSuggestionsBox] = useState(false);
+  const [term, setTerm] = useState("");
+  const [value, setValue] = useState("");
 
-    const handleSearchOnChange = (e) => {
-        const searchString = e.target.value;
+  useEffect(() => {
+    if (suggestionsBox) {
+      dispatch(cleanSearchSuggestions());
+    }
 
-        setValue(searchString);
-
-        if (searchString.length === 0) {
-            setDropdownEmpty(true);
-        } else if (statesMatch(searchString)) {
-            setDropdownEmpty(false);
-            setTerm("state");
-
-            dispatch(searchSuggestions(statesMatch(searchString), "state"));
-        } else if (
-            searchString.length >= 3 &&
-            citiesMatch(searchString).length > 0
-        ) {
-            setDropdownEmpty(false);
-            setTerm("city");
-            // fetch suggestions based on city name
-            dispatch(searchSuggestions(citiesMatch(searchString), "city"));
-        } else if (searchString.length >= 3 && zipCodeMatch(searchString)) {
-            setDropdownEmpty(false);
-            setTerm("zipcode");
-
-            // fetch suggestions based on zip code
-            dispatch(searchSuggestions(searchString, "zipcode"));
-        } else if (searchString.length >= 3) {
-            setDropdownEmpty(false);
-            setTerm("streetAddress");
-
-            dispatch(searchSuggestions(searchString, "streetAddress"));
-        } else {
-            debugger;
-            setDropdownEmpty(true);
-            dispatch(cleanSearchSuggestions());
-        }
+    // clean on unmount
+    return () => {
+      dispatch(cleanSearchSuggestions());
     };
+  }, [dispatch, suggestionsBox]);
 
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
+  const handleSearchOnChange = (e) => {
+    const searchString = e.target.value;
 
-        dispatch(fetchSearchListings(term, suggestions[0]));
-        history.push("/listings");
-    };
-    return (
-        <div
-            className="search-input-dropdown-wrapper"
-            onMouseLeave={(e) => {
-                setDropdownEmpty(false);
+    setValue(searchString);
 
-                if (
-                    e.target.parentElement.className
-                        .split(" ")
-                        .includes("search-container")
-                ) {
-                    e.target.parentElement.classList.remove("focused");
-                }
-            }}
-            onMouseEnter={(e) => {
-                if (
-                    e.target.parentElement.className
-                        .split(" ")
-                        .includes("search-container")
-                ) {
-                    e.target.parentElement.classList.add("focused");
-                }
-            }}
-        >
-            <div className="search-container">
-                <input
-                    className="search_container__search_bar"
-                    type="text"
-                    value={value}
-                    placeholder="Enter address, neighborhood, city, or ZIP code"
-                    onChange={handleSearchOnChange}
-                    onClick={(e) => setDropdownEmpty(true)}
-                />
-                <div
-                    className="search_container__search_button"
-                    onClick={handleSearchSubmit}
-                >
-                    <SearchIcon />
-                </div>
-            </div>
+    if (searchString.length === 0) {
+      setSuggestionsBox(true);
+    } else if (statesMatch(searchString)) {
+      setSuggestionsBox(false);
+      setTerm("state");
 
-            {dropdownEmpty ? (
-                <InitialSearchBox />
-            ) : (
-                <div className="dropdown">
-                    <ul>
-                        {suggestions &&
-                            suggestions.map((suggestion, idx) => {
-                                return (
-                                    <SuggestionItem
-                                        key={idx}
-                                        term={term}
-                                        value={value}
-                                        suggestion={suggestion}
-                                    />
-                                );
-                            })}
-                    </ul>
-                </div>
-            )}
-        </div>
-    );
+      dispatch(searchSuggestions(statesMatch(searchString), "state"));
+    } else if (
+      searchString.length >= 3 &&
+      citiesMatch(searchString).length > 0
+    ) {
+      setSuggestionsBox(false);
+      setTerm("city");
+      // fetch suggestions based on city name
+      dispatch(searchSuggestions(citiesMatch(searchString), "city"));
+    } else if (searchString.length >= 3 && zipCodeMatch(searchString)) {
+      setSuggestionsBox(false);
+      setTerm("zipcode");
+
+      // fetch suggestions based on zip code
+      dispatch(searchSuggestions(searchString, "zipcode"));
+    } else if (searchString.length >= 3) {
+      setSuggestionsBox(false);
+      setTerm("streetAddress");
+
+      dispatch(searchSuggestions(searchString, "streetAddress"));
+    } else {
+      // Clear search suggestions in state and display initial search box
+      setSuggestionsBox(true);
+      dispatch(cleanSearchSuggestions());
+    }
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(fetchSearchListings(term, suggestions[0]));
+    history.push("/listings");
+  };
+  return (
+    <>
+      {isAtListinIndex ? (
+        <IndexSearchInput />
+      ) : (
+        <SplashSearchInput
+          handleSearchSubmit={handleSearchSubmit}
+          handleSearchOnChange={handleSearchOnChange}
+          value={value}
+          term={term}
+          setSuggestionsBox={setSuggestionsBox}
+          suggestionsBox={suggestionsBox}
+          suggestions={suggestions}
+        />
+      )}
+    </>
+  );
 };
 
 export default SearchBar;

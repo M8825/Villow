@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Layout = () => {
 	return (
 		<div className="cards-container">
-			<Link to="/listings/">
+			<Link to="/listings">
 				<Card
 					headerImg={buyHome.headerImg}
 					header={buyHome.header}
