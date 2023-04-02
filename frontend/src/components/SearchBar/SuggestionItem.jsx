@@ -17,8 +17,10 @@ const SuggestionItem = ({ term, suggestion, value }) => {
 
 
     const handleSearchOnClickItem = (e) => {
+        e.stopPropagation()
         e.preventDefault();
 
+        debugger
         dispatch(fetchSearchListings(term, suggestion));
 
         history.push('/listings')

@@ -143,7 +143,6 @@ export const fetchSearchListings =
     // Make sure to encode for URL safe character like #
     // prevent params from being cut off
     const encodedSeachValue = encodeURIComponent(searchInputValueStr);
-      debugger
 
     const res = await csrfFetch(
       `/api/search?term=${term}&search_phrase=${encodedSeachValue}&search_filter=listings`
