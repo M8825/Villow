@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import {
   cleanSearchSuggestions,
@@ -17,22 +17,36 @@ import IndexSearchInput from "./IndexSearchInput";
 
 const SearchBar = () => {
   const location = useLocation();
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const searchRef = useRef(null);
 
   const isAtListinIndex = location.pathname === "/listings";
-  debugger
 
   const suggestions = useSelector(getSuggestions());
   const [suggestionsBox, setSuggestionsBox] = useState(false);
   const [term, setTerm] = useState("");
   const [value, setValue] = useState("");
 
+  // IndexSearchInput - hide search icon when clicked outside component
+  const [focuseSearch, setFocuseSearch] = useState(false);
+
+  useEffect(() => {
+    const hideSearchIcon = (e) => {
+      if (e.target !== searchRef.current) {
+        setFocuseSearch(false);
+      }
+    };
+
+    document.body.addEventListener("click", hideSearchIcon);
+
+    return () => document.body.removeEventListener("click", hideSearchIcon);
+  }, []);
+
   useEffect(() => {
     if (suggestionsBox) {
       dispatch(cleanSearchSuggestions());
     }
-
     // clean on unmount
     return () => {
       dispatch(cleanSearchSuggestions());
@@ -43,7 +57,6 @@ const SearchBar = () => {
     const searchString = e.target.value;
 
     setValue(searchString);
-
     if (searchString.length === 0) {
       setSuggestionsBox(true);
     } else if (statesMatch(searchString)) {
@@ -83,10 +96,18 @@ const SearchBar = () => {
     dispatch(fetchSearchListings(term, suggestions[0]));
     history.push("/listings");
   };
+
   return (
     <>
       {isAtListinIndex ? (
-        <IndexSearchInput />
+        <>
+          <hr />
+          <IndexSearchInput
+            focuseSearch={focuseSearch}
+            setFocuseSearch={setFocuseSearch}
+            searchRef={searchRef}
+          />
+        </>
       ) : (
         <SplashSearchInput
           handleSearchSubmit={handleSearchSubmit}

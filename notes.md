@@ -1,5 +1,3 @@
-## Migration
-### Listing
     - NOTE: I'm setting boolean for conto, garage, and ac. On creation WITHOUT `null: false`;
 
 ### Cards - TODO!
@@ -74,7 +72,8 @@
         [X] - Fetch based on zipcode
     [X] - Add onClick event listener to search button - Grabs all listings
 [-] - Index Page
-    [-] - Create custom search bar for index page
+    [-] - Create custom search bar for index page. Only implemnet Input 
+          element. Filters should go in separate component.
     [ ] - Add filters - Check them on zillow
 
 
