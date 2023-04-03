@@ -6,47 +6,62 @@
   padding: 0px 12px;
   cursor: pointer;
 
-  .search-input {
-    display: flex;
-    width: 298px;
-    height: 42px;
-    border: 1px groove lightgray;
-    border-radius: 4px;
-    padding: 5px 0px 5px 8px;
+  .search-input-wrapper {
+    z-index: 1;
+    position: relative;
 
-    .text-input {
-      width: 100%;
+    .search-input {
+      display: flex;
+      width: 298px;
+      height: 42px;
+      border: 1px groove lightgray;
+      border-radius: 4px;
+      padding: 5px 0px 5px 8px;
 
-      &:focus {
-        outline: none;
+      .text-input {
+        width: 100%;
+
+        &:focus {
+          outline: none;
+        }
       }
-    }
 
-    .search-icon-wrapper {
-      height: 100%;
-      max-width: 16px;
-      margin: 0px 10px;
-
-      .search_container__search_button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 16px;
+      .search-icon-wrapper {
         height: 100%;
+        max-width: 16px;
+        margin: 0px 10px;
 
-        svg {
-          fill: #666;
+        .search_container__search_button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 16px;
+          height: 100%;
+
+          svg {
+            fill: #666;
+          }
         }
       }
     }
-  }
 
-  .focused {
-    box-shadow: rgb(255 255 255) 0px 0px 0px 1px,
-      rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
-  }
+    .focused {
+      border: none;
+      box-shadow: rgb(255 255 255) 0px 0px 0px 1px,
+        rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
+    }
 
-  .hovered {
-    border-color: #006aff !important;
+    .hovered {
+      border-color: #006aff !important;
+    }
+
+    .indexSearchDropdown {
+      position: absolute;
+      min-width: 298px; /* Match the width of .search-input */
+      width: auto; /* Let the width grow if needed */
+      margin-top: 8px;
+      background-color: white;
+      border-radius: 6px;
+    }
   }
 }

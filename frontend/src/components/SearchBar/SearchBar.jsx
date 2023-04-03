@@ -106,6 +106,13 @@ const SearchBar = () => {
             focuseSearch={focuseSearch}
             setFocuseSearch={setFocuseSearch}
             searchRef={searchRef}
+            handleSearchSubmit={handleSearchSubmit}
+            handleSearchOnChange={handleSearchOnChange}
+            value={value}
+            term={term}
+            setSuggestionsBox={setSuggestionsBox}
+            suggestionsBox={suggestionsBox}
+            suggestions={suggestions}
           />
         </>
       ) : (
