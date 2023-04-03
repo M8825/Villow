@@ -5,6 +5,7 @@ import SuggestionItem from "./SuggestionItem";
 
 import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
+import { useRef } from "react";
 
 const IndexSearchInput = ({
   focuseSearch,
@@ -20,6 +21,7 @@ const IndexSearchInput = ({
   suggestions,
 }) => {
   const dispatch = useDispatch();
+  const inputRef = useRef();
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
   const [searchWord, setSearchWord] = useState("");
@@ -43,6 +45,8 @@ const IndexSearchInput = ({
     e.preventDefault();
     e.stopPropagation();
 
+    if (inputRef.current) inputRef.current.focus();
+
     setFocuseSearch(true);
   };
 
@@ -50,11 +54,11 @@ const IndexSearchInput = ({
     <div className="search-component-wrapper">
       <div
         className={
-          "search-input-wrapper " + (focuseSearch ? "focused-wrapper" : null)
+          "search-input-wrapper " + (focuseSearch && searchWord ? "focused-wrapper" : "")
         }
       >
         <div
-          className={"search-input " + (focuseSearch ? "focused" : null)}
+          className={"search-input " + (focuseSearch ? "focused" : "")}
           onMouseEnter={handleHover}
           onMouseLeave={onHoverLeave}
           onClick={handleOnClick}
@@ -62,6 +66,7 @@ const IndexSearchInput = ({
         >
           <SearchInputContainer
             searchWord={searchWord}
+            inputRef={inputRef}
             setSearchWord={setSearchWord}
             focuseSearch={focuseSearch}
             value={value}
