@@ -1,9 +1,21 @@
+import { CloseSearchWordIcon } from "./assets/CloseSearchWordIcon";
 import "./SearchWord.scss";
 
-export const SearchWord = ({ word }) => {
+export const SearchWord = ({ searchWord, setSearchWord }) => {
+  const handleOnClickClose = (e) => {
+    e.preventDefault();
+
+    setSearchWord("");
+  }
+
   return (
-    <div className="search-word-wrapper">
-      <span>{word.trim()}</span>
-    </div>
+    searchWord && (
+      <div className="search-word-wrapper">
+        <span>{searchWord.trim()}</span>
+        <div className="search-word-close-icon" onClick={handleOnClickClose}>
+          <CloseSearchWordIcon />
+        </div>
+      </div>
+    )
   );
 };

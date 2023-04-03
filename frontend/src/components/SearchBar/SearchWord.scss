@@ -1,4 +1,29 @@
 .search-word-wrapper {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 4px;
   background-color: lightgray;
+
+  span {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .search-word-close-icon {
+    width: 16px;
+    height: 16px;
+
+  }
 }
+
+.search-word-wrapper:empty {
+  padding: 0;
+}
+
+.search-word-wrapper:not(:empty){
+  padding: 3px 10px;
+  margin-right: 5px;
+}
+

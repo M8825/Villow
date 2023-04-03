@@ -48,8 +48,6 @@ const IndexSearchInput = ({
     setFocuseSearch(true);
   };
 
-  console.log("searchWord", searchWord);
-
   return (
     <div className="search-component-wrapper">
       <div className="search-input-wrapper">
@@ -62,7 +60,7 @@ const IndexSearchInput = ({
           onClick={handleOnClick}
           ref={searchRef}
         >
-          <SearchWord word={searchWord} />
+          <SearchWord searchWord={searchWord} setSearchWord={setSearchWord}/>
           <input
             className="text-input"
             type="text"
