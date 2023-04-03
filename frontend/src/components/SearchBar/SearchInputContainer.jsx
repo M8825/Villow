@@ -1,8 +1,7 @@
 import { SearchWord } from "./SearchWord";
 
-
-import "./SearchInputContainer.scss"
-
+import "./SearchInputContainer.scss";
+import SearchIcon from "./SearchIcon";
 
 export const SearchInputContainer = ({
   searchWord,
@@ -26,18 +25,8 @@ export const SearchInputContainer = ({
     </div>
   ) : (
     <>
-      {SearchWord ? (
-        <>
-          <SearchWord searchWord={searchWord} setSearchWord={setSearchWord} />
-          <input
-            className="text-input"
-            type="text"
-            value={value}
-            onChange={handleSearchOnChange}
-            onClick={() => setSuggestionsBox(true)}
-            placeholder="Address, City, ZIP, state"
-          />
-        </>
+      {searchWord ? (
+        <SearchWord searchWord={searchWord} setSearchWord={setSearchWord} />
       ) : (
         <input
           className="text-input"
@@ -47,6 +36,12 @@ export const SearchInputContainer = ({
           onClick={() => setSuggestionsBox(true)}
           placeholder="Address, City, ZIP, state"
         />
+      )}
+
+      {!focuseSearch && (
+        <div className="search-icon-wrapper">
+          <SearchIcon />
+        </div>
       )}
     </>
   );

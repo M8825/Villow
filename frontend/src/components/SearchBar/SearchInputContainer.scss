@@ -1,5 +1,6 @@
 .clicked-search-with-search-word {
-  background-color: red;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 
   .text-input {

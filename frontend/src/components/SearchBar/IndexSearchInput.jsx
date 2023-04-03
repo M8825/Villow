@@ -35,7 +35,6 @@ const IndexSearchInput = ({
   const handleItemClick = (e) => {
     e.preventDefault();
 
-    debugger;
     setSearchWord(e.target.parentElement.innerText);
     setValue("");
     setCloseDropDown({ isClosed: true });
@@ -68,12 +67,6 @@ const IndexSearchInput = ({
             handleSearchOnChange={handleSearchOnChange}
             setSuggestionsBox={setSuggestionsBox}
           />
-
-          {!focuseSearch && (
-            <div className="search-icon-wrapper">
-              <SearchIcon />
-            </div>
-          )}
         </div>
 
         {suggestionsBox ? (
