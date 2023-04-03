@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanSearchSuggestions } from "../../store/search";
-import SearchIcon from "./SearchIcon";
 import SuggestionItem from "./SuggestionItem";
 
 import "./IndexSearchInput.scss";
@@ -49,11 +48,13 @@ const IndexSearchInput = ({
 
   return (
     <div className="search-component-wrapper">
-      <div className="search-input-wrapper">
+      <div
+        className={
+          "search-input-wrapper " + (focuseSearch ? "focused-wrapper" : null)
+        }
+      >
         <div
-          className={
-            "search-input " + (focuseSearch ? "focused" : "not_focused")
-          }
+          className={"search-input " + (focuseSearch ? "focused" : null)}
           onMouseEnter={handleHover}
           onMouseLeave={onHoverLeave}
           onClick={handleOnClick}
