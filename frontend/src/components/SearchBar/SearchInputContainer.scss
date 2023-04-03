@@ -1,0 +1,13 @@
+.clicked-search-with-search-word {
+  background-color: red;
+  width: 100%;
+
+  .text-input {
+    flex: 1;
+    overflow: hidden;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

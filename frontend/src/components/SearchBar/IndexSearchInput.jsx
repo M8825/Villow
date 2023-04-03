@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanSearchSuggestions } from "../../store/search";
 import SearchIcon from "./SearchIcon";
-import { SearchWord } from "./SearchWord";
 import SuggestionItem from "./SuggestionItem";
 
 import "./IndexSearchInput.scss";
+import { SearchInputContainer } from "./SearchInputContainer";
 
 const IndexSearchInput = ({
   focuseSearch,
@@ -35,8 +35,8 @@ const IndexSearchInput = ({
   const handleItemClick = (e) => {
     e.preventDefault();
 
-    debugger
-    setSearchWord(e.target.innerText);
+    debugger;
+    setSearchWord(e.target.parentElement.innerText);
     setValue("");
     setCloseDropDown({ isClosed: true });
   };
@@ -60,15 +60,15 @@ const IndexSearchInput = ({
           onClick={handleOnClick}
           ref={searchRef}
         >
-          <SearchWord searchWord={searchWord} setSearchWord={setSearchWord}/>
-          <input
-            className="text-input"
-            type="text"
+          <SearchInputContainer
+            searchWord={searchWord}
+            setSearchWord={setSearchWord}
+            focuseSearch={focuseSearch}
             value={value}
-            onChange={handleSearchOnChange}
-            onClick={(e) => setSuggestionsBox(true)}
-            placeholder="Address, City, ZIP, state"
+            handleSearchOnChange={handleSearchOnChange}
+            setSuggestionsBox={setSuggestionsBox}
           />
+
           {!focuseSearch && (
             <div className="search-icon-wrapper">
               <SearchIcon />
