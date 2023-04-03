@@ -19,10 +19,8 @@ const SuggestionItem = ({ term, suggestion, value }) => {
   const [start, end] = findMatchingIndices(suggestion, value);
 
   const handleSearchOnClickItem = (e) => {
-    e.stopPropagation();
     e.preventDefault();
 
-    debugger;
     dispatch(fetchSearchListings(term, suggestion));
 
     history.push("/listings");
@@ -30,7 +28,7 @@ const SuggestionItem = ({ term, suggestion, value }) => {
 
   return (
     <li
-    className={splash ? "suggestion-item-splash" : "suggestion-item-index"}
+      className={splash ? "suggestion-item-splash" : "suggestion-item-index"}
       onClick={handleSearchOnClickItem}
     >
       {end ? (

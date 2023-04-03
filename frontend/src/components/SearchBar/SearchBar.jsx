@@ -109,6 +109,7 @@ const SearchBar = () => {
             handleSearchSubmit={handleSearchSubmit}
             handleSearchOnChange={handleSearchOnChange}
             value={value}
+            setValue={setValue}
             term={term}
             setSuggestionsBox={setSuggestionsBox}
             suggestionsBox={suggestionsBox}

@@ -18,8 +18,11 @@
       border-radius: 4px;
       padding: 5px 0px 5px 8px;
 
+
       .text-input {
-        width: 100%;
+        background: orange;
+        flex: 1;
+        overflow: hidden;
 
         &:focus {
           outline: none;
