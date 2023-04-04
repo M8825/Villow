@@ -1,41 +1,30 @@
-.searchw-word-container {
-  width: 100%;
-
+.search-word-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
 
-  .add-another {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+  width: 100%;
+  border-radius: 4px;
+  background-color: lightgray;
+  gap: 10px;
+
+  span {
+    font-weight: bold;
+    font-size: 14px;
   }
 
-  .search-word-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    border-radius: 4px;
-    background-color: lightgray;
-    flex-shrink: 0;
-
-    span {
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .search-word-close-icon {
-      width: 16px;
-      height: 16px;
-    }
+  .search-word-close-icon {
+    min-width: 16px;
+    height: 16px;
+    margin: 0 5px 0 0;
   }
+}
 
-  .search-word-wrapper:empty {
-    padding: 0;
-  }
+.search-word-wrapper:not(:empty) {
+  padding: 5px;
 
-  .search-word-wrapper:not(:empty) {
-    padding: 3px 10px;
-    margin-right: 10px;
-  }
+}
+
+.search-word-wrapper:empty {
+  padding: 0;
 }

@@ -21,9 +21,7 @@ const SuggestionItem = ({ term, suggestion, value, setSearchWord }) => {
   const handleSearchOnClickItem = (e) => {
     e.preventDefault();
 
-    debugger
     setSearchWord(suggestion);
-
     dispatch(fetchSearchListings(term, suggestion));
 
     history.push("/listings");
