@@ -5,6 +5,7 @@
   height: 55px;
   padding: 0px 12px;
   cursor: pointer;
+  gap: 15px;
 
   .focused-wrapper {
       margin-top: 10px;
@@ -12,7 +13,6 @@
   }
 
   .search-input-wrapper {
-    padding: 10px;
     z-index: 1;
 
     .search-input {

@@ -1,7 +1,8 @@
-import "./HomeListingType.scss";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+
+import "./HomeListingType.scss";
 
 export const HomeListingType = () => {
   const [dropDown, setDropDown] = useState(false);
@@ -33,12 +34,21 @@ export const HomeListingType = () => {
         <span>For Sale</span>
         <FontAwesomeIcon icon={faAngleDown} />
       </button>
+
       {dropDown && (
         <div className="dropdown" onClick={(e) => e.stopPropagation()}>
-          <lable htmlFor="for-sale">
-            <input type="checkbox" id="for-sale" />
-            <span>For Sale</span>
-          </lable>
+          <form className={"dropdown-form"}>
+            <lable htmlFor="for-sale">
+              <input type="radio" id="for-sale" name={"type"} />
+              <span>For Sale</span>
+            </lable>
+            <lable htmlFor="for-rent">
+              <input type="radio" id="for-rent" name={"type"} />
+              <span>For Rent</span>
+            </lable>
+
+            <input type="submit" value="Apply" />
+          </form>
         </div>
       )}
     </div>

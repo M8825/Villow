@@ -1,50 +1,64 @@
 /* TODO Add site wide styles */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 @import url("https://fonts.cdnfonts.com/css/times-new-roman");
 
-@import url("./components/ShowListing/style/galery.scss");
+$primary-theme-blue-color: rgb(41 92 247);
+$primary-btn-color-hover: rgb(30 59 138);
+
+@mixin primary-btn($width, $height) {
+    height: $height;
+    width: $width;
+    font-weight: 700;
+    color: white;
+    background-color: $primary-theme-blue-color;
+    font-size: 16px;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: $primary-btn-color-hover,
+  }
+}
 
 * {
-	font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 
-	h1 {
-		font-size: 20px;
-		color: #2a2a33;
-		font-weight: 700;
-		line-height: 40px;
-		text-align: center;
-		--webkit-font-smoothing: antialiased;
-		--webkit-tap-highlight-color: transparent;
-	}
+  h1 {
+    font-size: 20px;
+    color: #2a2a33;
+    font-weight: 700;
+    line-height: 40px;
+    text-align: center;
+    --webkit-font-smoothing: antialiased;
+    --webkit-tap-highlight-color: transparent;
+  }
 }
 
 *,
 *:before,
 *:after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .App {
-	width: 90%;
-	max-width: 700px;
-	margin: 2em auto;
+  width: 90%;
+  max-width: 700px;
+  margin: 2em auto;
 }
 
 .bttn {
-	background-color: #0061FF;
-	min-height: 44px;
-	min-width: 44px;
-	font-size: 16px;
-	padding: 10px 15px;
-	border-radius: 5px;
-	font-weight: 700;
+  background-color: #0061ff;
+  min-height: 44px;
+  min-width: 44px;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 700;
 }
-

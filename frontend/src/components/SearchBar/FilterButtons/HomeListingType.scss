@@ -1,3 +1,5 @@
+@import "../../../index";
+
 .filter-btn {
   display: flex;
   align-items: center;
@@ -20,15 +22,66 @@
     font-size: 14px;
   }
 
- .dropdown {
+  .dropdown {
     background-color: white;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: auto;
     position: absolute;
+    margin-top: 8px;
+  }
+}
 
-    .dropdown-checkbox {
+.dropdown-form {
+  width: 262px;
+
+  lable {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 55px;
+    font-size: 18px;
+
+    input[type="radio"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: inline-block;
+      position: relative;
+      border-radius: 50%;
+      border: 2px solid #999;
+      margin-right: 10px;
+      vertical-align: middle;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
       display: flex;
-      flex-direction: row;
-      gap: 10px;
+      justify-content: center;
+      align-items: center;
     }
+
+    input[type="radio"]:checked {
+      border: 5px solid $primary-theme-blue-color;
+    }
+
+    input[type="radio"]:checked::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+    }
+  }
+
+  input[type="submit"] {
+    @include primary-btn(258px, 44px);
+    margin-top: 25px;
+    align-self: center;
+    width: 100%
   }
 }
