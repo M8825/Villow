@@ -6,6 +6,7 @@ import SuggestionItem from "./SuggestionItem";
 import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
 import { useRef } from "react";
+import { HomeListingType } from "./FilterButtons/HomeListingType";
 
 const IndexSearchInput = ({
   focuseSearch,
@@ -53,7 +54,8 @@ const IndexSearchInput = ({
     <div className="search-component-wrapper">
       <div
         className={
-          "search-input-wrapper " + (focuseSearch && searchWord ? "focused-wrapper" : "")
+          "search-input-wrapper " +
+          (focuseSearch && searchWord ? "focused-wrapper" : "")
         }
       >
         <div
@@ -97,9 +99,12 @@ const IndexSearchInput = ({
           </div>
         )}
       </div>
+      <div className="filter-buttons">
+        <HomeListingType />
+      </div>
 
       <button onClick={handleSearchSubmit} className="search-button">
-        Value{" "}
+        foobar{" "}
       </button>
     </div>
   );
