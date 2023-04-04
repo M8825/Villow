@@ -36,7 +36,6 @@ const IndexSearchInput = ({
   const handleItemClick = (e) => {
     e.preventDefault();
 
-    setSearchWord(e.target.parentElement.innerText);
     setValue("");
     setCloseDropDown({ isClosed: true });
   };
@@ -90,6 +89,7 @@ const IndexSearchInput = ({
                       term={term}
                       value={value}
                       suggestion={suggestion}
+                      setSearchWord={setSearchWord}
                     />
                   );
                 })}

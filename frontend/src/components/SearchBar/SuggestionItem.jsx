@@ -6,7 +6,7 @@ import { findMatchingIndices } from "./searchUtils";
 
 import "./SuggestionItem.scss";
 
-const SuggestionItem = ({ term, suggestion, value }) => {
+const SuggestionItem = ({ term, suggestion, value, setSearchWord }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,6 +20,9 @@ const SuggestionItem = ({ term, suggestion, value }) => {
 
   const handleSearchOnClickItem = (e) => {
     e.preventDefault();
+
+    debugger
+    setSearchWord(suggestion);
 
     dispatch(fetchSearchListings(term, suggestion));
 

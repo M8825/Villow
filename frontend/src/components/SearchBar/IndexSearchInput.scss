@@ -7,17 +7,20 @@
   cursor: pointer;
 
   .focused-wrapper {
+      margin-top: 10px;
       align-self: flex-start;
-      background-color: white;
-
   }
 
   .search-input-wrapper {
+    padding: 10px;
     z-index: 1;
 
     .search-input {
+      background-color: #fff;
       display: flex;
+      justify-content: space-between;
       width: 298px;
+      max-width: 298px;
       height: 42px;
       border: 1px groove lightgray;
       border-radius: 4px;
@@ -33,23 +36,6 @@
         }
       }
 
-      .search-icon-wrapper {
-        height: 100%;
-        max-width: 16px;
-        margin: 0px 10px;
-
-        .search_container__search_button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 16px;
-          height: 100%;
-
-          svg {
-            fill: #666;
-          }
-        }
-      }
     }
 
     .focused {

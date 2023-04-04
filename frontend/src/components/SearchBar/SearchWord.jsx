@@ -17,7 +17,6 @@ export const SearchWord = ({ searchWord, setSearchWord }) => {
             <CloseSearchWordIcon />
           </div>
         </div>
-        <p>Add another...</p>
       </div>
     )
   );
