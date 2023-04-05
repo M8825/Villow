@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanSearchSuggestions } from "../../store/search";
 import SuggestionItem from "./SuggestionItem";
@@ -6,7 +6,12 @@ import SuggestionItem from "./SuggestionItem";
 import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
 import { useRef } from "react";
-import { HomeListingType } from "./FilterButtons/HomeListingType";
+import { ListingType } from "./FilterButtons/HomeListingType";
+
+export const SearchContext = createContext();
+export const Term = createContext();
+
+
 
 const IndexSearchInput = ({
   focuseSearch,
@@ -99,9 +104,11 @@ const IndexSearchInput = ({
           </div>
         )}
       </div>
-      <div className="filter-buttons">
-        <HomeListingType />
-      </div>
+      <SearchContext.Provider value={{ searchWord, term }}>
+        <div className="filter-buttons">
+          <ListingType />
+        </div>
+      </SearchContext.Provider>
 
       <button onClick={handleSearchSubmit} className="search-button">
         foobar{" "}

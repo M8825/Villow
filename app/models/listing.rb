@@ -45,11 +45,29 @@ class Listing < ApplicationRecord
 
   # receives a string representing state city - "Brooklyn" and returns
   # an array of suffestion "City, State" names from database based on the city_names_str
-  def self.getsuggestions_by_city(city_names_str)
-    city_names_arr = city_names_str.split(',')
+  def self.get_suggestions_by_city(params_hash)
+    debugger
+    city_names_arr = params_hash[:city].split(',')
+
+    query_orm_hash = new Hash
+
+    filters_hash.except(:city).each do |key, value|
+      if Listing.column_names.include?(key)
+        query_orm_hash["#{key}::text ILIKE :#{key}"] =
+          { "#{key}": "%#{Listing.sanitize_sql_like(value)}%" }
+      end
+    end
+
+    query = where("LOWER(TRIM(#{column_name}::text)) ILIKE :search_string",
+                  search_string: "%#{Listing.sanitize_sql_like(search_string)}%").take(5)
 
     suggestions =
       city_names_arr.map do |city_name|
+        listings = where('city ILIKE :city', city: "%#{Listing.sanitize_sql_like(city_name.strip)}%")
+        unless query_orm_hash.empty?
+          listings = listings.where(query_orm_hash.keys.join(' AND '),
+                                    query_orm_hash.values.join(', '))
+        end
         city_record = query_db_suggestions(city_name.strip, 'city')
         city_record.empty? ? nil : city_record.first.join(', ') # return nil if city_record is empty
       end
@@ -65,18 +83,19 @@ class Listing < ApplicationRecord
 
   # receives a string like "New York, NY" and return an array of listings
   # based on the search_sting
-  def self.search_city_state_zip(search_string, column_name)
-    # Separate content of search_string and select relevant element from array
-    # based on the column_name flag
-    search_word = search_string.split(',')
-    search_word = column_name == 'state' ? search_word[1] : search_word[0]
+  def self.search_city_state_zip(filters_hash)
+    query_orm_hash = new Hash
 
-    search_word = search_word.strip.to_s
+    filters_hash.each do |key, value|
+      if Listing.column_names.include?(key)
+        query_orm_hash["#{key}::text ILIKE :#{key}"] = { "#{key}": "%#{Listing.sanitize_sql_like(value)}%" }
+      end
+    end
 
-    where(
-      "#{column_name}::text ILIKE :search_string",
-      search_string: "%#{Listing.sanitize_sql_like(search_word)}%"
-    )
+    return unless query_orm_hash.empty?
+
+    debugger
+    where(query_orm_hash.keys.join(' AND '), query_orm_hash.values.join(', '))
   end
 
   def self.search_street_address(street_address, _term)

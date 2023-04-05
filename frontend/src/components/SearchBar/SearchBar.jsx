@@ -11,9 +11,9 @@ import { fetchSearchListings } from "../../store/listingsReducer";
 import { statesMatch, citiesMatch, zipCodeMatch } from "./searchUtils";
 
 import SplashSearchInput from "./SearchInput";
+import IndexSearchInput from "./IndexSearchInput";
 
 import "./SearchBar.scss";
-import IndexSearchInput from "./IndexSearchInput";
 
 const SearchBar = () => {
   const location = useLocation();

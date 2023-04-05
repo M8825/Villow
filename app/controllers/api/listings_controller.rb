@@ -26,12 +26,42 @@ module Api
     end
 
     def search
-      term = params[:term]
-      search_filter = params[:search_filter]
-      search_str = params[:search_phrase]
+      # TODO(mlkz): address needs some modification to adjust JS streetAddress convention
+      major_search_column_names = %w[city state zipcode address]
       @current_user = current_user
 
-      search_by_term(term, search_filter, search_str)
+      term = major_search_column_names.find { |column_name| params.key?(column_name) }
+
+      expected_response = params[:expected_response] # 'listings' or 'suggestions'
+      cities = params[:city]
+
+      query_hash = {}
+
+      params.except(:term).each do |key, value|
+        next unless Listing.column_names.include?(key)
+
+        escaped_value = Listing.sanitize_sql_like(value)
+        debugger
+
+        query_hash["#{key}::text ILIKE :#{key}"] =
+          { "#{key}": "%#{escaped_value}%" }
+      end
+
+      debugger
+
+      @listings = if query_hash.empty?
+                    Listing.all
+                  else
+                    Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
+                  end
+
+      if expected_response == 'listings'
+        render 'api/listings/index'
+      else
+        suggestions = @listings.take(5).pluck(term).uniq
+
+        render 'api/listings/search_suggestions', locals: { states: suggestions }
+      end
     end
 
     def show
@@ -102,6 +132,10 @@ module Api
           photos: []
         )
         .deep_transform_keys!(&:underscore)
+    end
+
+    def search_listing_params
+      params.permit
     end
   end
 end

@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { objectToQuerySting } from "./utils";
 
 const RECEIVE_LISTINGS = "api/listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "api/listings/RECEIVE_LISTING";
@@ -139,14 +140,23 @@ export const removeFavorite = (userId, listingId) => async (dispatch) => {
 };
 
 export const fetchSearchListings =
-  (term, searchInputValueStr) => async (dispatch) => {
+  (term, searchInputValueStr, extraParams = {}) =>
+  async (dispatch) => {
     // Make sure to encode for URL safe character like #
     // prevent params from being cut off
     const encodedSeachValue = encodeURIComponent(searchInputValueStr);
 
-    const res = await csrfFetch(
-      `/api/search?term=${term}&search_phrase=${encodedSeachValue}&search_filter=listings`
-    );
+    const baseParams = {
+      expected_response: "listings", // Flag for backend. Rails may receive suggestions flag
+      [term]: encodedSeachValue,
+    };
+
+    const queryParams = { ...baseParams, ...extraParams };
+
+    const queryString = objectToQuerySting(queryParams);
+    debugger;
+
+    const res = await csrfFetch(`/api/search?${queryString}`);
 
     if (res.ok) {
       const listings = await res.json();

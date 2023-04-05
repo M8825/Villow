@@ -94,6 +94,12 @@
 ## Can't delete listing properly in user profile
 
 
+### Params query stirng
+
+- `expected_response = listings || suggestions`
+- term: city || state || address || zipcode
+- city/state/address/zipcode: New York, NY || 10028 || 514 E 82nd St.
+- <exstra_params>: "Sale" || "Rent"
 
 
 
