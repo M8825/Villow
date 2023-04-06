@@ -10,7 +10,6 @@ import "./HomeListingType.scss";
 export const ListingType = () => {
   const dispatch = useDispatch();
   const { searchWord, term } = useContext(SearchContext);
-  console.log("HomeListingType", searchWord);
 
   const [dropDown, setDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState(""); // ["for-sale", "for-rent"
@@ -52,13 +51,8 @@ export const ListingType = () => {
     // or when searchWord is a street address
     if (term === "city") {
       cleanSearchWord = searchWord.split(",")[0]; // Grab City from "city, state"
-    } else if ("state") {
-      cleanSearchWord = searchWord.split(",")[1]; // Grab State form "city, state"
     }
   
-    cleanSearchWord = cleanSearchWord.toString().trim();
-
-    debugger
     dispatch(
       fetchSearchListings(term, cleanSearchWord, {
         listing_type: e.target.value,

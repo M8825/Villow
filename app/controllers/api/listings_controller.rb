@@ -24,33 +24,18 @@ module Api
       render :index
     end
 
-    def parse_suggestions
-      term = params[:term]
-
-      response_columns = term == 'city' ? [term, :state] : [term]
-
-      suggestions = @listings.pluck(*response_columns).uniq
-
-      suggestions.map do |suggestion|
-        if term == 'city'
-          "#{suggestion[0]}, #{suggestion[1]}"
-        else
-          suggestion
-        end
-      end
-    end
-
     def search
       # TODO(mlkz): address needs some modification to adjust JS streetAddress convention
       @current_user = current_user
       @listings = query_listings
+
       expected_response = params[:expected_response] # 'listings' or 'suggestions'
 
       if expected_response == 'listings'
         render 'api/listings/index'
       else
-        suggestions = parse_suggestions
-
+        suggestions = parse_suggestions # search complition suggestions based on user input
+                                        # e.g. if user types 'San' we return 'San Francisco, CA'
         render 'api/listings/search_suggestions', locals: { states: suggestions }
       end
     end
@@ -151,6 +136,28 @@ module Api
       end
 
       safe_query_db(query_hash)
+    end
+
+    def parse_suggestions
+      # Grab the term we're searching for - city, state, zipcode or address
+      term = params[:term]
+
+      # If the term is 'city', we need to return both the city and state
+      response_columns = term == 'city' ? [term, :state] : [term]
+
+      # Grab all the unique values for the given listing
+      # attribute and return them as an array
+      suggestions = @listings.pluck(*response_columns)
+                             .uniq
+                             .map { |suggestion| suggestion.is_a?(Integer) ? suggestion.to_s : suggestion }
+
+      suggestions.map do |suggestion|
+        if term == 'city'
+          "#{suggestion[0]}, #{suggestion[1]}"
+        else
+          suggestion
+        end
+      end
     end
   end
 end

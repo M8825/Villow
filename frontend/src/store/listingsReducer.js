@@ -161,7 +161,6 @@ export const fetchSearchListings =
     if (res.ok) {
       const listings = await res.json();
 
-      debugger;
       dispatch(receiveListings(listings));
     }
   };

@@ -51,4 +51,3 @@ const citiesMatch = (searchString) => {
     return matchingCities;
 }
 
-console.log(citiesMatch("At"));
