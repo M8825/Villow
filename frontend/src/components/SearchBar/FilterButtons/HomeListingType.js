@@ -1,4 +1,4 @@
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -55,38 +55,38 @@ export const ListingType = () => {
     if (storedListingType) {
       setSelectedOption(storedListingType);
     } else {
-      setSelectedOption("Sale");
+      setSelectedOption("For Sale");
     }
   }, []);
 
   const handleOnChangeRadioBtn = (e) => {
     e.stopPropagation();
+    const listingType = e.target.name;
 
-    setSelectedOption(e.target.value);
-    localStorage.setItem("listingType", e.target.value);
+    setSelectedOption(listingType);
+    // Add clicked listing type "For Sale" or "For Rent" to localStorage
+    localStorage.setItem("listingType", listingType);
 
+    // Clean up search word for request
     const cleanSearchWord = cleanUpWord(searchWord, term);
 
     dispatch(
       fetchSearchListings(term, cleanSearchWord, {
-        listing_type: e.target.value,
+        listing_type: listingType,
       })
     );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(
-      fetchSearchListings(term, searchWord, { listing_type: selectedOption })
-    );
+    setDropDown(false);
   };
 
   return (
     <div className="home-listing-type-wrapper">
       <button className={`filter-btn ${selectedOption ? "selected" : ""}`} ref={buttonRef} onClick={onButtonClick}>
-        <span>For Sale</span>
-        <FontAwesomeIcon icon={faAngleDown} />
+        <span>For {selectedOption}</span>
+        <FontAwesomeIcon icon={dropDown ? faAngleUp : faAngleDown} />
       </button>
 
       {dropDown && (
@@ -99,8 +99,8 @@ export const ListingType = () => {
               <input
                 type="radio"
                 id="for-sale"
-                name={"type"}
-                value="Sale"
+                name="Sale"
+                value="For Sale"
                 checked={selectedOption === "Sale"}
                 onChange={handleOnChangeRadioBtn}
               />
@@ -110,8 +110,8 @@ export const ListingType = () => {
               <input
                 type="radio"
                 id="for-rent"
-                name={"type"}
-                value="Rent"
+                name="Rent"
+                value="For Rent"
                 onChange={handleOnChangeRadioBtn}
                 checked={selectedOption === "Rent"}
               />

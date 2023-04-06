@@ -157,7 +157,6 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 	// TODO: add styling to input focus
 	return (
 		<>
-			{/* TODO: It's not index page but we still call this isIndex. change it to something abstract */}
 			<hr />
 			<div className="form-container">
 				<form onSubmit={handleSubmit}>

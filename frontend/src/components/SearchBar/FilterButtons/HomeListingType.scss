@@ -13,8 +13,8 @@
   position: relative;
 
   span {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 800;
   }
 
   &:hover {
@@ -38,11 +38,11 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
+    border-radius: 0px 0px 5px;
     padding: 10px 15px;
     width: auto;
     position: absolute;
-    margin-top: 8px;
+    margin-top: 7px;
   }
 }
 

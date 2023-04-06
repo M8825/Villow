@@ -1,37 +1,33 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  getListings,
-  fetchListings,
-  fetchSearchListings,
-} from "../../store/listingsReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { getActiveUser } from "../../store/usersReducer";
-import { getLocalStorageAll } from "../utils/fetchLocalStorage";
+import { getLocalStorageAll } from "../utils/fetchLocalStorage"
+
+import { getListings, fetchListings, fetchSearchListings } from "../../store/listingsReducer";
 
 import ListingItem from "../ListingItem/ListingItem";
 import "./ListingsIndex.scss";
 
 const ListingsPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const listings = useSelector(getListings);
-  const [reversed, setReversed] = useState(false);
+
 
   useEffect(() => {
     if (listings.length === 0) {
       // fetch based on state, becase "city" actually requires "City, State"
-      // format. <search> action will not query the databse with empty
+      // format. <search> action will not query the databse with empty 
       // string when term flag is "city"
-      dispatch(
-        fetchSearchListings("city", "New York", getLocalStorageAll())
-      );
+      dispatch(fetchSearchListings("city", "New York", getLocalStorageAll()));
     }
   }, []);
 
-  const history = useHistory();
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [reversed, setReversed] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
