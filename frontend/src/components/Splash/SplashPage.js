@@ -2,7 +2,7 @@ import ListingsCarousel from "../ListingsCarousel/ListingsCarousel";
 import Layout from "../Cards";
 import Footer from "../Footer";
 import Navigation from "../Header/Navigation";
-import { generateRandomString } from "../utils/urils";
+import { generateRandomString } from "../utils/utils";
 
 const SplashPage = () => {
 
