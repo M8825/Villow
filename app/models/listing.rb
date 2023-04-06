@@ -46,7 +46,6 @@ class Listing < ApplicationRecord
   # receives a string representing state city - "Brooklyn" and returns
   # an array of suffestion "City, State" names from database based on the city_names_str
   def self.get_suggestions_by_city(params_hash)
-    debugger
     city_names_arr = params_hash[:city].split(',')
 
     query_orm_hash = new Hash
@@ -94,7 +93,6 @@ class Listing < ApplicationRecord
 
     return unless query_orm_hash.empty?
 
-    debugger
     where(query_orm_hash.keys.join(' AND '), query_orm_hash.values.join(', '))
   end
 

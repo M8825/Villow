@@ -55,9 +55,10 @@ export const ListingType = () => {
     } else if ("state") {
       cleanSearchWord = searchWord.split(",")[1]; // Grab State form "city, state"
     }
-
+  
     cleanSearchWord = cleanSearchWord.toString().trim();
 
+    debugger
     dispatch(
       fetchSearchListings(term, cleanSearchWord, {
         listing_type: e.target.value,

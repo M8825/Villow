@@ -22,7 +22,16 @@ const SuggestionItem = ({ term, suggestion, value, setSearchWord }) => {
     e.preventDefault();
 
     setSearchWord(suggestion);
-    dispatch(fetchSearchListings(term, suggestion));
+
+    let cleanSuggesstion = "";
+
+    if (term === "city") {
+      cleanSuggesstion = suggestion.split(",")[0];
+    } else {
+      cleanSuggesstion = suggestion;
+    }
+
+    dispatch(fetchSearchListings(term, cleanSuggesstion));
 
     history.push("/listings");
   };

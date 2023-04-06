@@ -1,9 +1,7 @@
-# frozen_string_literal: true
 require 'uri'
 
 module Api
   class ListingsController < ApplicationController
-    include Searchable
     # only allow index action if URL includes user_id
     # without a user session
     before_action :require_logged_in,
@@ -26,38 +24,32 @@ module Api
       render :index
     end
 
+    def parse_suggestions
+      term = params[:term]
+
+      response_columns = term == 'city' ? [term, :state] : [term]
+
+      suggestions = @listings.pluck(*response_columns).uniq
+
+      suggestions.map do |suggestion|
+        if term == 'city'
+          "#{suggestion[0]}, #{suggestion[1]}"
+        else
+          suggestion
+        end
+      end
+    end
+
     def search
       # TODO(mlkz): address needs some modification to adjust JS streetAddress convention
-      major_search_column_names = %w[city state zipcode address]
       @current_user = current_user
-
-      term = major_search_column_names.find { |column_name| params.key?(column_name) }
-
+      @listings = query_listings
       expected_response = params[:expected_response] # 'listings' or 'suggestions'
 
-      query_hash = {}
-
-      params.except(:term).each do |key, value|
-        next unless Listing.column_names.include?(key)
-
-        escaped_value = Listing.sanitize_sql_like(value)
-        decoded_query_string = URI.decode_www_form_component(escaped_value)
-
-        query_hash["#{key}::text ILIKE :#{key}"] =
-          { "#{key}": "%#{decoded_query_string}%" }
-      end
-
-      @listings = if query_hash.empty?
-                    Listing.all
-                  else
-                    Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
-                  end
-
       if expected_response == 'listings'
-
         render 'api/listings/index'
       else
-        suggestions = @listings.take(5).pluck(term).uniq
+        suggestions = parse_suggestions
 
         render 'api/listings/search_suggestions', locals: { states: suggestions }
       end
@@ -135,6 +127,30 @@ module Api
 
     def search_listing_params
       params.permit
+    end
+
+    def safe_query_db(query_hash)
+      if query_hash.empty?
+        []
+      else
+        Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
+      end
+    end
+
+    def query_listings
+      query_hash = {}
+
+      params.except(:term).each do |key, value|
+        next unless Listing.column_names.include?(key)
+
+        escaped_value = Listing.sanitize_sql_like(value)
+        decoded_query_string = URI.decode_www_form_component(escaped_value)
+
+        query_hash["#{key}::text ILIKE :#{key}"] =
+          { "#{key}": "%#{decoded_query_string}%" }
+      end
+
+      safe_query_db(query_hash)
     end
   end
 end

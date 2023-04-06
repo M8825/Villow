@@ -105,6 +105,7 @@ const IndexSearchInput = ({
         )}
       </div>
       <SearchContext.Provider value={{ searchWord, term }}>
+        {console.log("IndexSearchInput:", searchWord)}
         <div className="filter-buttons">
           <ListingType />
         </div>

@@ -149,17 +149,19 @@ export const fetchSearchListings =
     const baseParams = {
       expected_response: "listings", // Flag for backend. Rails may receive suggestions flag
       [term]: encodedSeachValue,
+      term,
     };
 
     const queryParams = { ...baseParams, ...extraParams };
 
     const queryString = objectToQuerySting(queryParams);
-    debugger;
 
     const res = await csrfFetch(`/api/search?${queryString}`);
 
     if (res.ok) {
       const listings = await res.json();
+
+      debugger;
       dispatch(receiveListings(listings));
     }
   };

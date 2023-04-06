@@ -31,7 +31,6 @@ module Searchable
 
   def search_by_state(search_filter, search_str, filters_hash_arr)
     if search_filter == 'listings'
-      debugger
       @listings = Listing.search_city_state_zip(search_str, filters_hash_arr)
 
       render 'api/listings/index'
