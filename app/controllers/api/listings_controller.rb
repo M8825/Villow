@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'uri'
 
 module Api
   class ListingsController < ApplicationController
@@ -33,7 +34,6 @@ module Api
       term = major_search_column_names.find { |column_name| params.key?(column_name) }
 
       expected_response = params[:expected_response] # 'listings' or 'suggestions'
-      cities = params[:city]
 
       query_hash = {}
 
@@ -41,13 +41,11 @@ module Api
         next unless Listing.column_names.include?(key)
 
         escaped_value = Listing.sanitize_sql_like(value)
-        debugger
+        decoded_query_string = URI.decode_www_form_component(escaped_value)
 
         query_hash["#{key}::text ILIKE :#{key}"] =
-          { "#{key}": "%#{escaped_value}%" }
+          { "#{key}": "%#{decoded_query_string}%" }
       end
-
-      debugger
 
       @listings = if query_hash.empty?
                     Listing.all
@@ -56,6 +54,7 @@ module Api
                   end
 
       if expected_response == 'listings'
+
         render 'api/listings/index'
       else
         suggestions = @listings.take(5).pluck(term).uniq
