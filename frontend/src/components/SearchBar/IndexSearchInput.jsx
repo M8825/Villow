@@ -30,7 +30,7 @@ const IndexSearchInput = ({
   const inputRef = useRef();
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
-  const [searchWord, setSearchWord] = useState("");
+  const [searchWord, setSearchWord] = useState("New York, NY");
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());
@@ -71,8 +71,8 @@ const IndexSearchInput = ({
           ref={searchRef}
         >
           <SearchInputContainer
-            searchWord={searchWord}
             inputRef={inputRef}
+            searchWord={searchWord}
             setSearchWord={setSearchWord}
             focuseSearch={focuseSearch}
             value={value}
