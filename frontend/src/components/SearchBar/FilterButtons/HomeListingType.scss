@@ -1,5 +1,6 @@
 @import "../../../index";
 
+
 .filter-btn {
   display: flex;
   align-items: center;
@@ -15,6 +16,16 @@
     font-size: 12px;
     font-weight: 600;
   }
+
+  &:hover {
+    background: rgb(241 241 244);
+    border: 1px solid rgb(167 166 171);
+  }
+}
+
+.selected {
+  background-color: rgb(243 250 254);
+  border-color: $primary-theme-blue-color;
 }
 
 .home-listing-type-wrapper {
@@ -38,7 +49,7 @@
 .dropdown-form {
   width: 262px;
 
-  lable {
+  .lbl {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -63,9 +74,6 @@
       align-items: center;
     }
 
-    input[type="radio"]:checked {
-      border: 5px solid $primary-theme-blue-color;
-    }
 
     input[type="radio"]:checked::before {
       content: "";
@@ -76,12 +84,16 @@
       border-radius: 50%;
       background: #fff;
     }
+
+    input[type="radio"]:checked {
+      border: 5px solid $primary-theme-blue-color;
+    }
   }
 
   input[type="submit"] {
     @include primary-btn(258px, 44px);
     margin-top: 25px;
     align-self: center;
-    width: 100%
+    width: 100%;
   }
 }

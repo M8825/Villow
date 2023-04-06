@@ -7,7 +7,6 @@ import { SearchContext } from "../IndexSearchInput";
 
 import "./HomeListingType.scss";
 
-
 function cleanUpWord(searchWord, term) {
   let cleanSearchWord = searchWord;
 
@@ -34,7 +33,6 @@ export const ListingType = () => {
         buttonRef.current &&
         !buttonRef.current.contains(e.target)
       ) {
-        console.log(dropDown);
         setDropDown(false);
       }
     };
@@ -46,19 +44,20 @@ export const ListingType = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, [dropDown]);
 
-  const onButtonClick = (e) => {
+  function onButtonClick(e) {
     if (e.currentTarget === buttonRef.current) {
       setDropDown(!dropDown);
     }
-  };
+  }
 
   useEffect(() => {
     const storedListingType = localStorage.getItem("listingType");
     if (storedListingType) {
       setSelectedOption(storedListingType);
+    } else {
+      setSelectedOption("Sale");
     }
-  })
-
+  }, []);
 
   const handleOnChangeRadioBtn = (e) => {
     e.stopPropagation();
@@ -85,15 +84,18 @@ export const ListingType = () => {
 
   return (
     <div className="home-listing-type-wrapper">
-      <button className="filter-btn" ref={buttonRef} onClick={onButtonClick}>
+      <button className={`filter-btn ${selectedOption ? "selected" : ""}`} ref={buttonRef} onClick={onButtonClick}>
         <span>For Sale</span>
         <FontAwesomeIcon icon={faAngleDown} />
       </button>
 
       {dropDown && (
-        <div className="dropdown" onClick={(e) => e.stopPropagation()}>
-          <form className={"dropdown-form"} onSubmit={handleSubmit}>
-            <lable htmlFor="for-sale">
+        <div
+          className="dropdown"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <form className="dropdown-form"  onSubmit={handleSubmit}>
+            <div htmlFor="for-sale" className="lbl">
               <input
                 type="radio"
                 id="for-sale"
@@ -103,8 +105,8 @@ export const ListingType = () => {
                 onChange={handleOnChangeRadioBtn}
               />
               <span>For Sale</span>
-            </lable>
-            <lable htmlFor="for-rent">
+            </div>
+            <div htmlFor="for-rent" className="lbl">
               <input
                 type="radio"
                 id="for-rent"
@@ -114,7 +116,7 @@ export const ListingType = () => {
                 checked={selectedOption === "Rent"}
               />
               <span>For Rent</span>
-            </lable>
+            </div>
 
             <input type="submit" value="Apply" />
           </form>

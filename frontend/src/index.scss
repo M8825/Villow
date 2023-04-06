@@ -4,6 +4,7 @@
 
 $primary-theme-blue-color: rgb(41 92 247);
 $primary-btn-color-hover: rgb(30 59 138);
+$primary-focus-color: rgb(44 104 246);
 
 @mixin primary-btn($width, $height) {
     height: $height;
