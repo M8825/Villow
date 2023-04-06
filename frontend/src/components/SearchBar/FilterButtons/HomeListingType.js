@@ -7,6 +7,18 @@ import { SearchContext } from "../IndexSearchInput";
 
 import "./HomeListingType.scss";
 
+
+function cleanUpWord(searchWord, term) {
+  let cleanSearchWord = searchWord;
+
+  // Split in if condition to avoid error when searchWord is empty
+  // or when searchWord is a street address
+  if (term === "city") {
+    cleanSearchWord = searchWord.split(",")[0]; // Grab City from "city, state"
+  }
+  return cleanSearchWord;
+}
+
 export const ListingType = () => {
   const dispatch = useDispatch();
   const { searchWord, term } = useContext(SearchContext);
@@ -40,23 +52,34 @@ export const ListingType = () => {
     }
   };
 
+  useEffect(() => {
+    const storedListingType = localStorage.getItem("listingType");
+    if (storedListingType) {
+      setSelectedOption(storedListingType);
+    }
+  })
+
+
   const handleOnChangeRadioBtn = (e) => {
     e.stopPropagation();
 
     setSelectedOption(e.target.value);
+    localStorage.setItem("listingType", e.target.value);
 
-    let cleanSearchWord = searchWord;
+    const cleanSearchWord = cleanUpWord(searchWord, term);
 
-    // Split in if condition to avoid error when searchWord is empty
-    // or when searchWord is a street address
-    if (term === "city") {
-      cleanSearchWord = searchWord.split(",")[0]; // Grab City from "city, state"
-    }
-  
     dispatch(
       fetchSearchListings(term, cleanSearchWord, {
         listing_type: e.target.value,
       })
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(
+      fetchSearchListings(term, searchWord, { listing_type: selectedOption })
     );
   };
 
@@ -69,13 +92,14 @@ export const ListingType = () => {
 
       {dropDown && (
         <div className="dropdown" onClick={(e) => e.stopPropagation()}>
-          <form className={"dropdown-form"}>
+          <form className={"dropdown-form"} onSubmit={handleSubmit}>
             <lable htmlFor="for-sale">
               <input
                 type="radio"
                 id="for-sale"
                 name={"type"}
                 value="Sale"
+                checked={selectedOption === "Sale"}
                 onChange={handleOnChangeRadioBtn}
               />
               <span>For Sale</span>
@@ -87,6 +111,7 @@ export const ListingType = () => {
                 name={"type"}
                 value="Rent"
                 onChange={handleOnChangeRadioBtn}
+                checked={selectedOption === "Rent"}
               />
               <span>For Rent</span>
             </lable>
