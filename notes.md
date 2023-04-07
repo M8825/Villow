@@ -102,6 +102,11 @@
 - <exstra_params>: "Sale" || "Rent"
 
 
+## localStorage used places
+- IndexSearchInput :: line 33, grab searchWord
+- useSuggestionItem :: line 26, set searchWord
+
+
 
 
 

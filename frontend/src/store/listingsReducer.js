@@ -5,28 +5,35 @@ const RECEIVE_LISTINGS = "api/listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "api/listings/RECEIVE_LISTING";
 const REMOVE_LISTINGS = "api/listings/REMOVE_LISTINGS";
 const RECEIVE_FAVORITES = "api/listings/RECEIVE_FAVORITES";
+const CLEAR_LISTINGS = "api/listings/CLEAR_LISTINGS";
 
 // TODO: add remove and update listing
 
-export const receiveListings = (listings) => ({
+const receiveListings = (listings) => ({
   type: RECEIVE_LISTINGS,
   listings,
 });
 
-export const receiveListing = (listing) => ({
+const receiveListing = (listing) => ({
   type: RECEIVE_LISTING,
   listing,
 });
 
-export const receiveFavorites = (favorites) => ({
+const receiveFavorites = (favorites) => ({
   type: RECEIVE_FAVORITES,
   favorites,
 });
 
-export const removeListings = (listingIds) => ({
+const removeListings = (listingIds) => ({
   type: REMOVE_LISTINGS,
   listingIds,
 });
+
+const clearListings = () => ({
+  type: CLEAR_LISTINGS,
+})
+
+
 
 export const getListings = (state) => {
   if (state && state.listings) {
@@ -165,6 +172,10 @@ export const fetchSearchListings =
     }
   };
 
+export const clearAllListings = () => async (dispatch) => {
+  dispatch(clearListings());
+}
+
 const listingsReducer = (state = {}, action) => {
   const newState = { ...state };
 
@@ -179,6 +190,8 @@ const listingsReducer = (state = {}, action) => {
     case REMOVE_LISTINGS:
       action.listingIds.forEach((listingId) => delete newState[listingId]);
       return newState;
+    case CLEAR_LISTINGS:
+      return {};
     default:
       return state;
   }

@@ -1,50 +1,35 @@
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Dropdown } from "bootstrap";
-import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchSearchListings } from "../../../store/listingsReducer";
-import { SearchContext } from "../IndexSearchInput";
-import { cleanUpWord } from "../../utils/utils";
 import DropDown from "./DropDown";
+import { useDropdown } from "./useCleanUp";
 
 import "./HomeListingType.scss";
+import { getLocalStorageSearchCredentials } from "../getLocalStorageSearchCredentials";
 
-export const ListingType = () => {
+function cleanUpSearchWord(SearchWord, term) {
+  let cleanSearchWord = SearchWord;
+  // Split in if condition to avoid error when searchWord is empty
+  // or when searchWord is a street addrewss
+  if (term === "city") {
+    cleanSearchWord = SearchWord.split(",")[0]; // Grab City from "city, state"
+  }
+  return cleanSearchWord;
+}
+
+export const HomeListingType = () => {
   const dispatch = useDispatch();
-  const buttonRef = useRef();
-  const { searchWord, term } = useContext(SearchContext);
 
-  const [dropDown, setDropDown] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(""); // ["for-sale", "for-rent"
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        dropDown &&
-        buttonRef.current &&
-        !buttonRef.current.contains(e.target)
-      ) {
-        setDropDown(false);
-      }
-    };
-
-    if (dropDown) {
-      document.addEventListener("click", handleClickOutside);
-    }
-
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [dropDown]);
-
-  useEffect(() => {
-    const storedListingType = localStorage.getItem("listingType");
-
-    if (storedListingType) {
-      setSelectedOption(storedListingType);
-    } else {
-      setSelectedOption("For Sale");
-    }
-  }, []);
+  const {
+    searchWord,
+    term,
+    dropDown,
+    setDropDown,
+    selectedOption,
+    setSelectedOption,
+    buttonRef,
+  } = useDropdown();
 
   function handleOnChangeRadioBtn(e) {
     e.stopPropagation();
@@ -55,13 +40,25 @@ export const ListingType = () => {
     localStorage.setItem("listingType", listingType);
 
     // Clean up search word for request
-    const cleanSearchWord = cleanUpWord(searchWord, term);
+    const cleanSearchWord = cleanUpSearchWord(searchWord, term);
 
-    dispatch(
-      fetchSearchListings(term, cleanSearchWord, {
-        listing_type: listingType,
-      })
-    );
+    if (!(term && cleanSearchWord)) {
+      let { localStorageTerm, localStorageSearchWord } =
+        getLocalStorageSearchCredentials();
+
+      localStorageSearchWord = localStorageSearchWord.split(",")[0] // Grab only city form "City, State" string
+      dispatch(
+        fetchSearchListings(localStorageTerm, localStorageSearchWord, {
+          listing_type: listingType,
+        })
+      );
+    } else {
+      dispatch(
+        fetchSearchListings(term, cleanSearchWord, {
+          listing_type: listingType,
+        })
+      );
+    }
   }
 
   function onForSaleButtonClick(e) {

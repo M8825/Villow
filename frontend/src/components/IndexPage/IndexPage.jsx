@@ -9,7 +9,10 @@ const IndexPage = () => {
 		<>
 			<SearchBar />
 			<div className="index-page-container">
-				<Map />
+        <div style={{ width: "50vw", height: "100vh"}} >
+          MAP COMMING
+
+          </div>
 				<ListingsPage />
 			</div>
 		</>

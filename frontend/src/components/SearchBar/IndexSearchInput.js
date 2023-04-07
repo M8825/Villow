@@ -2,16 +2,14 @@ import { createContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanSearchSuggestions } from "../../store/search";
 import SuggestionItem from "./SuggestionItem";
+import { getLocalStorageSearchCredentials } from "./getLocalStorageSearchCredentials"
 
 import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
 import { useRef } from "react";
-import { ListingType } from "./FilterButtons/HomeListingType";
+import { HomeListingType } from "./FilterButtons/HomeListingType";
 
 export const SearchContext = createContext();
-export const Term = createContext();
-
-
 
 const IndexSearchInput = ({
   focuseSearch,
@@ -30,7 +28,13 @@ const IndexSearchInput = ({
   const inputRef = useRef();
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
-  const [searchWord, setSearchWord] = useState("New York, NY");
+  const [searchWord, setSearchWord] = useState("");
+
+  useEffect(() => {
+    const { localStorageSearchWord } = getLocalStorageSearchCredentials();
+
+    setSearchWord(localStorageSearchWord ? localStorageSearchWord : "New York, NY");
+  }, []);
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());
@@ -106,10 +110,9 @@ const IndexSearchInput = ({
       </div>
       <SearchContext.Provider value={{ searchWord, term }}>
         <div className="filter-buttons">
-          <ListingType />
+          <HomeListingType />
         </div>
       </SearchContext.Provider>
-
       <button onClick={handleSearchSubmit} className="search-button">
         foobar{" "}
       </button>

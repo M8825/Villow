@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchListings, getListings } from "../../store/listingsReducer";
+import { getListings } from "../../store/listingsReducer";
 import Carousel from "./Carousel";
 
 import "./ListingsCarousel.scss";
@@ -9,10 +8,6 @@ const ListingsCarousel = ({ header, paragraph, prevButtonClassName, nextButtonCl
 	const dispatch = useDispatch();
 
 	const listings = useSelector(getListings);
-
-	useEffect(() => {
-		dispatch(fetchListings());
-	}, [dispatch]);
 
 	const sampleListings = listings ? listings.slice(0, 15) : [];
 

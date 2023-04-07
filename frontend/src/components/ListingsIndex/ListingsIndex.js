@@ -18,11 +18,25 @@ const ListingsPage = () => {
 
 
   useEffect(() => {
+    // Prevent fetching if user is coming from spash page search bar
+    // In that case splash page listingItem component will feth the data
     if (listings.length === 0) {
       // fetch based on state, becase "city" actually requires "City, State"
       // format. <search> action will not query the databse with empty
       // string when term flag is "city"
-      dispatch(fetchSearchListings("city", "New York", getLocalStorageAll()));
+      const localStorageObj = getLocalStorageAll();
+
+      let term;
+      let termValue;
+
+      if (localStorageObj.search_word) {
+        term = Object.keys(localStorageObj.search_word)[0];
+        termValue = Object.values(localStorageObj.search_word)[0];
+        delete localStorageObj.search_word;
+      };
+
+
+      dispatch(fetchSearchListings(term, termValue, localStorageObj));
     }
   }, []);
 
