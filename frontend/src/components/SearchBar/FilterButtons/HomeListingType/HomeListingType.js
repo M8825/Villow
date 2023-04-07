@@ -1,116 +1,100 @@
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { fetchSearchListings } from "../../../../store/listingsReducer";
-import DropDown from "./DropDown";
-import { useDropdown } from "./useCleanUp";
+import DropDown from "../DropDown";
 
 import "./HomeListingType.scss";
 import { getLocalStorageSearchCredentials } from "../../getLocalStorageSearchCredentials";
-
-function cleanUpSearchWord(SearchWord, term) {
-  let cleanSearchWord = SearchWord;
-  // Split in if condition to avoid error when searchWord is empty
-  // or when searchWord is a street addrewss
-  if (term === "city") {
-    cleanSearchWord = SearchWord.split(",")[0]; // Grab City from "city, state"
-  }
-  return cleanSearchWord;
-}
+import { useEffect, useState } from "react";
+import { SearchContext } from "../../IndexSearchInput";
+import { useContext } from "react";
 
 export const HomeListingType = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const { searchWord, term } = useContext(SearchContext);
 
-  const {
-    searchWord,
-    term,
-    dropDown,
-    setDropDown,
-    selectedOption,
-    setSelectedOption,
-    buttonRef,
-  } = useDropdown();
+	const [selectedOption, setSelectedOption] = useState(""); // ["for-sale", "for-rent"
 
-  function handleOnChangeRadioBtn(e) {
-    e.stopPropagation();
-    const listingType = e.target.name;
+	useEffect(() => {
+		const storedListingType = localStorage.getItem("listingType");
 
-    setSelectedOption(listingType);
-    // Add clicked listing type "For Sale" or "For Rent" to localStorage
-    localStorage.setItem("listingType", listingType);
+		if (storedListingType) {
+			setSelectedOption(storedListingType);
+		} else {
+			setSelectedOption("For Sale");
+		}
+	}, []);
 
-    // Clean up search word for request
-    const cleanSearchWord = cleanUpSearchWord(searchWord, term);
+	function handleOnChangeRadioBtn(e) {
+		e.stopPropagation();
+		const listingType = e.target.name;
 
-    if (!(term && cleanSearchWord)) {
-      let { localStorageTerm, localStorageSearchWord } =
-        getLocalStorageSearchCredentials();
+		setSelectedOption(listingType);
+		// Add clicked listing type "For Sale" or "For Rent" to localStorage
+		localStorage.setItem("listingType", listingType);
 
-      localStorageSearchWord = localStorageSearchWord.split(",")[0] // Grab only city form "City, State" string
-      dispatch(
-        fetchSearchListings(localStorageTerm, localStorageSearchWord, {
-          listing_type: listingType,
-        })
-      );
-    } else {
-      dispatch(
-        fetchSearchListings(term, cleanSearchWord, {
-          listing_type: listingType,
-        })
-      );
-    }
-  }
+		// Clean up search word for request
+		const cleanSearchWord = cleanUpSearchWord(searchWord, term);
 
-  function onForSaleButtonClick(e) {
-    if (e.currentTarget === buttonRef.current) {
-      setDropDown(!dropDown);
-    }
-  }
+		if (!(term && cleanSearchWord)) {
+			let { localStorageTerm, localStorageSearchWord } =
+				getLocalStorageSearchCredentials();
 
-  function handleSubmit(e) {
+			localStorageSearchWord = localStorageSearchWord.split(",")[0]; // Grab only city form "City, State" string
+			dispatch(
+				fetchSearchListings(localStorageTerm, localStorageSearchWord, {
+					listing_type: listingType,
+				})
+			);
+		} else {
+			dispatch(
+				fetchSearchListings(term, cleanSearchWord, {
+					listing_type: listingType,
+				})
+			);
+		}
+	}
+
+  const handleSubmit = (e, setdropdown) => {
     e.preventDefault();
-    setDropDown(false);
+    setdropdown(false);
   }
 
-  return (
-    <div className="home-listing-type-wrapper">
-      <button
-        className={`filter-btn ${selectedOption ? "selected" : ""}`}
-        ref={buttonRef}
-        onClick={onForSaleButtonClick}
-      >
-        <span>For {selectedOption}</span>
-        <FontAwesomeIcon icon={dropDown ? faAngleUp : faAngleDown} />
-      </button>
+	return (
+		<DropDown buttonValue={selectedOption} handleSubmit={handleSubmit}>
+			<div htmlFor="for-sale" className="lbl">
+				<input
+					type="radio"
+					id="for-sale"
+					name="Sale"
+					value="For Sale"
+					checked={selectedOption === "Sale"}
+					onChange={handleOnChangeRadioBtn}
+				/>
+				<span>For Sale</span>
+			</div>
+			<div htmlFor="for-rent" className="lbl">
+				<input
+					type="radio"
+					id="for-rent"
+					name="Rent"
+					value="For Rent"
+					onChange={handleOnChangeRadioBtn}
+					checked={selectedOption === "Rent"}
+				/>
+				<span>For Rent</span>
+			</div>
 
-      {dropDown && (
-        <DropDown handleSubmit={handleSubmit}>
-          <div htmlFor="for-sale" className="lbl">
-            <input
-              type="radio"
-              id="for-sale"
-              name="Sale"
-              value="For Sale"
-              checked={selectedOption === "Sale"}
-              onChange={handleOnChangeRadioBtn}
-            />
-            <span>For Sale</span>
-          </div>
-          <div htmlFor="for-rent" className="lbl">
-            <input
-              type="radio"
-              id="for-rent"
-              name="Rent"
-              value="For Rent"
-              onChange={handleOnChangeRadioBtn}
-              checked={selectedOption === "Rent"}
-            />
-            <span>For Rent</span>
-          </div>
-
-          <input type="submit" value="Apply" />
-        </DropDown>
-      )}
-    </div>
-  );
+			<input type="submit" value="Apply" />
+		</DropDown>
+	);
 };
+
+function cleanUpSearchWord(SearchWord, term) {
+	let cleanSearchWord = SearchWord;
+	// Split in if condition to avoid error when searchWord is empty
+	// or when searchWord is a street addrewss
+	if (term === "city") {
+		cleanSearchWord = SearchWord.split(",")[0]; // Grab City from "city, state"
+	}
+	return cleanSearchWord;
+}
