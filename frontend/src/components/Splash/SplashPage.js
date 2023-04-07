@@ -35,7 +35,7 @@ const SplashPage = () => {
         header={"Trending Homes in New York, NY"}
         paragraph={"Popular listings in the area"}
       />
-      <ListingsCarousel
+     <ListingsCarousel
         prevButtonClassName={generateRandomString(10)}
         nextButtonClassName={generateRandomString(10)}
         header={"Selling Soon Homes in New York, NY"}
