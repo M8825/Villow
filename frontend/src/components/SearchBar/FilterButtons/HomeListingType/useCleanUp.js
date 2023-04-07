@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { SearchContext } from "../IndexSearchInput";
+import { SearchContext } from "../../IndexSearchInput";
 
 // Custom hook invoked in ListingType component
 export function useDropdown() {

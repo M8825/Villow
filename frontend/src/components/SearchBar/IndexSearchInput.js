@@ -7,7 +7,7 @@ import { getLocalStorageSearchCredentials } from "./getLocalStorageSearchCredent
 import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
 import { useRef } from "react";
-import { HomeListingType } from "./FilterButtons/HomeListingType";
+import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType";
 
 export const SearchContext = createContext();
 

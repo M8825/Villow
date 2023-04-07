@@ -19,8 +19,8 @@ export const useSuggestionItem = (term, suggestion, setSearchWord) => {
   const history = useHistory();
 
   const splash = location.pathname === "/";
-
   const handleSearchOnClickItem = (e) => {
+
     e.preventDefault();
 
     setSearchWord(suggestion);

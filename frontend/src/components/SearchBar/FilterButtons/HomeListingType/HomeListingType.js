@@ -1,12 +1,12 @@
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { fetchSearchListings } from "../../../store/listingsReducer";
+import { fetchSearchListings } from "../../../../store/listingsReducer";
 import DropDown from "./DropDown";
 import { useDropdown } from "./useCleanUp";
 
 import "./HomeListingType.scss";
-import { getLocalStorageSearchCredentials } from "../getLocalStorageSearchCredentials";
+import { getLocalStorageSearchCredentials } from "../../getLocalStorageSearchCredentials";
 
 function cleanUpSearchWord(SearchWord, term) {
   let cleanSearchWord = SearchWord;
