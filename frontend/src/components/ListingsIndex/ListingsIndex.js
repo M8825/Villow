@@ -6,7 +6,7 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { getActiveUser } from "../../store/usersReducer";
 import { getLocalStorageAll } from "../utils/fetchLocalStorage"
 
-import { getListings, fetchListings, fetchSearchListings } from "../../store/listingsReducer";
+import { getListings, fetchSearchListings } from "../../store/listingsReducer";
 
 import ListingItem from "../ListingItem/ListingItem";
 import "./ListingsIndex.scss";
@@ -20,7 +20,7 @@ const ListingsPage = () => {
   useEffect(() => {
     if (listings.length === 0) {
       // fetch based on state, becase "city" actually requires "City, State"
-      // format. <search> action will not query the databse with empty 
+      // format. <search> action will not query the databse with empty
       // string when term flag is "city"
       dispatch(fetchSearchListings("city", "New York", getLocalStorageAll()));
     }
