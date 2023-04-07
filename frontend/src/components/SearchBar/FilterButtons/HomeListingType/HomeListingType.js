@@ -60,7 +60,7 @@ export const HomeListingType = () => {
   }
 
 	return (
-		<DropDown buttonValue={selectedOption} handleSubmit={handleSubmit}>
+		<DropDown buttonValue={"For " + selectedOption} handleSubmit={handleSubmit}>
 			<div htmlFor="for-sale" className="lbl">
 				<input
 					type="radio"

@@ -8,6 +8,7 @@ import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
 import { useRef } from "react";
 import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType";
+import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
 export const SearchContext = createContext();
 
@@ -111,6 +112,9 @@ const IndexSearchInput = ({
       <SearchContext.Provider value={{ searchWord, term }}>
         <div className="filter-buttons">
           <HomeListingType />
+        </div>
+        <div className="filter-buttons">
+          <PriceRange />
         </div>
       </SearchContext.Provider>
       <button onClick={handleSearchSubmit} className="search-button">
