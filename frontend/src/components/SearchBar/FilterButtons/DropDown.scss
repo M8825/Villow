@@ -4,13 +4,20 @@
   }
 
   .dropdown {
-    background-color: aliceblue;
+    background-color: white;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    border-radius: 0px 0px 5px;
+    border-radius: 0px 0px 5px 5px;
     position: absolute;
-    padding: 10px 15px;
     margin-top: 7px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+      rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  }
+
+  .non-for-sale-dropdown {
+    background-color: red;
+    padding: 0px;
+    margin: 0px;
   }
 }

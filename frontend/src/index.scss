@@ -7,16 +7,16 @@ $primary-btn-color-hover: rgb(30 59 138);
 $primary-focus-color: rgb(44 104 246);
 
 @mixin primary-btn($width, $height) {
-    height: $height;
-    width: $width;
-    font-weight: 700;
-    color: white;
-    background-color: $primary-theme-blue-color;
-    font-size: 16px;
-    border-radius: 4px;
+  height: $height;
+  width: $width;
+  font-weight: 700;
+  color: white;
+  background-color: $primary-theme-blue-color;
+  font-size: 16px;
+  border-radius: 4px;
 
-    &:hover {
-        background-color: $primary-btn-color-hover,
+  &:hover {
+    background-color: $primary-btn-color-hover;
   }
 }
 
@@ -62,4 +62,25 @@ body {
   padding: 10px 15px;
   border-radius: 5px;
   font-weight: 700;
+}
+
+@mixin primary-input() {
+  width: 100%;
+  padding: 9px 16px !important;
+  margin-top: 5px !important;
+  border-radius: 4px !important;
+  border: 1px solid rgb(209, 209, 213) !important;
+  background-color: rgb(246, 246, 250) !important;
+  font-size: 16px !important;
+  outline: none !important;
+  height: 44px !important;
+
+  &:focus {
+    box-shadow: rgb(255 255 255) 0px 0px 0px 1px,
+      rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
+  }
+
+  &:hover {
+    border-color: #006aff !important;
+  }
 }

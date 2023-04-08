@@ -55,7 +55,7 @@ export const HomeListingType = () => {
 	}
 
 	return (
-		<DropDown buttonValue={selectedOption}>
+		<DropDown buttonValue={"For " + selectedOption}>
 			<div htmlFor="for-sale" className="lbl">
 				<input
 					type="radio"

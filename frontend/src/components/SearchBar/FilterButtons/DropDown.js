@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import "./DropDown.scss";
 
 const DropDown = (props) => {
-  const { children, buttonValue, handleSubmit, filterBtnStyle, containerWidth } = props;
+  const { children, buttonValue, handleSubmit, containerWidth } = props;
   const buttonRef = useRef();
-  const contentRef = useRef(null);
 
   const [dropDown, setDropDown] = useState(false);
   const [dropDownWidth, setDropDownWidth] = useState("auto");
@@ -39,11 +38,18 @@ const DropDown = (props) => {
     }
   }
 
+  console.log("buttonValue: ", buttonValue)
+
   return (
     <div className="home-listing-type-wrapper">
       <button
         className={`filter-btn ${buttonValue ? "selected" : ""}`}
-        style={{ width: buttonValue !== "For Sale" ? "140px" : "auto" }} // Every button has 140px width except "For Sale" button
+        style={{
+          width:
+            buttonValue !== "For Sale" && buttonValue !== "For Rent"
+              ? "140px"
+              : "auto",
+        }} // Every button has 140px width except "For Sale" button
         ref={buttonRef}
         onClick={onForSaleButtonClick}
       >
@@ -57,8 +63,11 @@ const DropDown = (props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <form
-            ref={contentRef}
-            className="dropdown-form"
+            className={
+              "" + buttonValue === "For Sale" || buttonValue === "For Rent"
+                ? "listing-type-dropdown-form"
+                : "non-listing_type-dropdown-form"
+            }
             onSubmit={(e) => handleSubmit(e, setDropDown)}
           >
             {children}
