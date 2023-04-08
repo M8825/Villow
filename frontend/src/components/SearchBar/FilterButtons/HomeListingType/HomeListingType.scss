@@ -28,24 +28,6 @@
   border-color: $primary-theme-blue-color;
 }
 
-.home-listing-type-wrapper {
-  li {
-    font-size: 14px;
-  }
-
-  .dropdown {
-    background-color: white;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0px 0px 5px;
-    padding: 10px 15px;
-    width: auto;
-    position: absolute;
-    margin-top: 7px;
-  }
-}
-
 .dropdown-form {
   width: 262px;
 

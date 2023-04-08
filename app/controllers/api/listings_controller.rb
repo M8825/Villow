@@ -35,7 +35,7 @@ module Api
         render 'api/listings/index'
       else
         suggestions = parse_suggestions # search complition suggestions based on user input
-                                        # e.g. if user types 'San' we return 'San Francisco, CA'
+        # e.g. if user types 'San' we return 'San Francisco, CA'
         render 'api/listings/search_suggestions', locals: { states: suggestions }
       end
     end

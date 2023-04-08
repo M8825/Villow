@@ -1,22 +1,24 @@
 import DropDown from "../DropDown";
+import "./PriceRange.scss";
 
 const PriceRange = () => {
-  const filterBtnStyle = {
-    width: "140px",
-  }
-
-	return (
-		<>
-      <DropDown buttonValue={"Price"} filterBtnStyle={filterBtnStyle}>
-			<div>
-				<h2>Price Range</h2>
-			</div>
-			<label>
-				<input type="text" />
-			</label>
-      </DropDown >
-		</>
-	);
+  return (
+    <>
+      <DropDown buttonValue={"Price"} containerWidth={"393px"}>
+        <div className="title">
+          <p>Price Range</p>
+        </div>
+        <label forHtml="min">
+          <span>Minimun</span>
+          <input type="text" name="min" placeholder="No Min" />
+        </label>
+        <label forHtml>
+          <span>Maximum</span>
+          <input type="text" name="max" placeholder="No Max" />
+        </label>
+      </DropDown>
+    </>
+  );
 };
 
 export default PriceRange;

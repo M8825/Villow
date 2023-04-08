@@ -1,0 +1,16 @@
+.home-listing-type-wrapper {
+  li {
+    font-size: 14px;
+  }
+
+  .dropdown {
+    background-color: aliceblue;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px 0px 5px;
+    position: absolute;
+    padding: 10px 15px;
+    margin-top: 7px;
+  }
+}
