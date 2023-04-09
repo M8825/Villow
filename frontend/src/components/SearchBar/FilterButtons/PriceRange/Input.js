@@ -5,7 +5,7 @@ const Input = () => {
   const inputContainerRef = useRef();
   const inputRef = useRef();
   const [focused, setFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState({ isHovered: true });
+  const [isHovered, setIsHovered] = useState({ isHovered: false });
   const [classNames, setClassNames] = useState("input-container");
 
   useEffect(() => {
@@ -28,40 +28,65 @@ const Input = () => {
     };
   }, [focused]);
 
-  function handleClick() {
-    if (!focused) {
-      setFocused(true);
-    }
-    inputRef.current.focus();
-  }
-
   useEffect(() => {
-    debugger
-    if (classNames !== "input-container") {
-      setClassNames("input-container");
-    } else {
+    if (isHovered.isHovered) {
       setClassNames(
-        `input-container ${focused ? "focused" : ""} ${
-          isHovered ? "hovered" : ""
-        }`
+        (prev) => prev + `${isHovered.isHovered ? " hovered" : ""}`
       );
+    } else {
+      let newClassNames = "input-container"
+
+      if (classNames.includes("focused")) {
+        newClassNames += "focused"
+      } 
+
+      setClassNames(newClassNames)
     }
   }, [isHovered]);
 
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (focused && !inputContainerRef.current.containes(e.target)) {
+        setFocused(false);
+      }
+    }
+
+    if (focused) {
+      debugger;
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [focused]);
+
   function handleHover() {
-    if (!isHovered.isHovered){
+    if (!isHovered.isHovered) {
       setIsHovered({ isHovered: true });
-    } else {
+    }
+  }
+
+  function handleLeave() {
+    if (isHovered.isHovered) {
       setIsHovered({ isHovered: false });
     }
   }
+
+  function handleClick() {
+    if (!focused) {
+      debugger;
+      setFocused(true);
+    }
+
+    inputRef.current.focus();
+  }
+
   return (
     <div
-      onClick={handleClick}
       ref={inputContainerRef}
+      onClick={handleClick}
       className={classNames}
       onMouseEnter={handleHover}
-      onMouseLeave={handleHover}
+      onMouseLeave={handleLeave}
     >
       <input ref={inputRef} type="text" />
     </div>
