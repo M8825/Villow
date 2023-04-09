@@ -12,7 +12,7 @@ import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
 export const SearchContext = createContext();
 
-const IndexSearchInput = ({
+const IndexSearch = ({
   focuseSearch,
   setFocuseSearch,
   searchRef,
@@ -124,4 +124,4 @@ const IndexSearchInput = ({
   );
 };
 
-export default IndexSearchInput;
+export default IndexSearch;

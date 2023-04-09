@@ -31,7 +31,8 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
-    "swiper": "^9.0.4"
+    "swiper": "^9.0.4",
+    "sass": "^1.58.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -56,6 +57,5 @@
   },
   "proxy": "http://localhost:8000",
   "devDependencies": {
-    "sass": "^1.58.0"
   }
 }

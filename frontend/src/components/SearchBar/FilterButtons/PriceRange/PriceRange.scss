@@ -40,17 +40,5 @@
       font-weight: bold;
       color: #2a2a33;
     }
-
-    input {
-      @include primary-input();
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:focus {
-        background-color: red;
-      }
-    }
   }
 }

@@ -1,4 +1,10 @@
+import { fabackgroundAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import DropDown from "../DropDown";
+import Input from "./Input";
+
+
 import "./PriceRange.scss";
 
 const PriceRange = () => {
@@ -11,12 +17,12 @@ const PriceRange = () => {
         <div className="price-range-labels-container">
           <label forHtml="min" className="price-range-lbl">
             <span>Minimun</span>
-            <input type="text" name="min" placeholder="No Min" />
+            <Input />
           </label>
           <span className="line"></span>
-          <label forHtml className="price-range-lbl">
+          <label forHtml="max" className="price-range-lbl">
             <span>Maximum</span>
-            <input type="text" name="max" placeholder="No Max" />
+            <Input />
           </label>
         </div>
       </DropDown>

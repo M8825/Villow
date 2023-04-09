@@ -1,0 +1,32 @@
+.input-container {
+  margin: 10px;
+
+  display: inline-block;
+  outline: 1px solid #A7A6AB;
+  padding: 10px;
+  width: auto;
+  border-radius: 4px;
+  width: 146px;
+
+
+  input {
+    border: none;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+}
+
+.focused {
+  border: none;
+  box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(166 229 255) 0px 0px 2px 3px,
+    rgb(0 106 255) 0px 0px 2px 4px;
+  height: auto;
+}
+
+.hovered {
+  outline: 1px solid #006aff;
+}
