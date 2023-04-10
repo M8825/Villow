@@ -4,18 +4,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Input.scss";
 
-const Input = () => {
+const Input = ({ value, setValue, rangeDropdown }) => {
   const inputContainerRef = useRef();
   const inputRef = useRef();
 
   const [focused, setFocused] = useState({ isFocused: false });
-  const [classNames, setClassNames] = useState("input-container");
 
   useEffect(() => {
     function handleOutside(e) {
       if (inputContainerRef.current !== e.target) {
         const inputWrapper = document.getElementsByClassName("focused")[0];
-        inputWrapper.classList.remove("focused");
+
+        if (inputWrapper) {
+          inputWrapper.classList.remove("focused");
+        }
+
         setFocused({ isFocused: false });
       }
     }
@@ -24,11 +27,15 @@ const Input = () => {
     dropDownElement.addEventListener("click", handleOutside);
   }, [focused]);
 
-  function handleHover() {
+  function handleHover(e) {
+    e.preventDefault();
+
     inputContainerRef.current.classList.add("hovered");
   }
 
-  function handleLeave() {
+  function handleLeave(e) {
+    e.preventDefault();
+
     inputContainerRef.current.classList.remove("hovered");
   }
 
@@ -41,16 +48,27 @@ const Input = () => {
     inputContainerRef.current.classList.add("focused");
   }
 
+  function handleOnChange(e) {
+    e.preventDefault();
+    setValue(e.target.value);
+  }
+
   return (
     <div
       ref={inputContainerRef}
       onClick={handleClick}
-      className={classNames}
+      className="input-container"
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
     >
-      <input ref={inputRef} type="text" id="input" />
-      <FontAwesomeIcon icon={focused.isFocused ? faAngleDown : faAngleUp } />
+      <input
+        ref={inputRef}
+        type="text"
+        id="input"
+        value={value}
+        onChange={handleOnChange}
+      />
+      <FontAwesomeIcon icon={focused.isFocused ? faAngleDown : faAngleUp} />
     </div>
   );
 };

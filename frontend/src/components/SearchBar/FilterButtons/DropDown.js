@@ -38,8 +38,6 @@ const DropDown = (props) => {
     }
   }
 
-  console.log("buttonValue: ", buttonValue);
-
   return (
     <div className="home-listing-type-wrapper" id="dropdown-wrapper">
       <button

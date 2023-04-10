@@ -1,0 +1,18 @@
+.price-listPriceDropDown {
+  background-color: white;
+  width: 146px;
+  background-color: red;
+  border-radius: 4px;
+  margin-top: 10px;
+  position: absolute;
+  z-index: 1;
+
+  li {
+    list-style: none;
+    padding: 10px;
+
+    &:hover{
+      background-color: #F4FAFF;
+    }
+  }
+}
