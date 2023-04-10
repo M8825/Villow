@@ -4,80 +4,38 @@ import "./Input.scss";
 const Input = () => {
   const inputContainerRef = useRef();
   const inputRef = useRef();
-  const [focused, setFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState({ isHovered: false });
+
+  const [focused, setFocused] = useState({ isFocused: false });
   const [classNames, setClassNames] = useState("input-container");
 
   useEffect(() => {
-    function handleClickOutside(e) {
-      if (
-        focused &&
-        inputContainerRef.current &&
-        !inputContainerRef.current.contains(e.target)
-      ) {
-        setFocused(false);
+    function handleOutside(e) {
+      if (inputContainerRef.current !== e.target) {
+        const inputWrapper = document.getElementsByClassName("focused")[0];
+        inputWrapper.classList.remove("focused");
+        setFocused({ isFocused: false });
       }
     }
 
-    if (focused) {
-      document.addEventListener("click", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [focused]);
-
-  useEffect(() => {
-    if (isHovered.isHovered) {
-      setClassNames(
-        (prev) => prev + `${isHovered.isHovered ? " hovered" : ""}`
-      );
-    } else {
-      let newClassNames = "input-container"
-
-      if (classNames.includes("focused")) {
-        newClassNames += "focused"
-      } 
-
-      setClassNames(newClassNames)
-    }
-  }, [isHovered]);
-
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (focused && !inputContainerRef.current.containes(e.target)) {
-        setFocused(false);
-      }
-    }
-
-    if (focused) {
-      debugger;
-      document.addEventListener("click", handleClickOutside);
-    }
-
-    return () => document.removeEventListener("click", handleClickOutside);
+    const dropDownElement = document.getElementById("drpdwn");
+    dropDownElement.addEventListener("click", handleOutside);
   }, [focused]);
 
   function handleHover() {
-    if (!isHovered.isHovered) {
-      setIsHovered({ isHovered: true });
-    }
+    inputContainerRef.current.classList.add("hovered");
   }
 
   function handleLeave() {
-    if (isHovered.isHovered) {
-      setIsHovered({ isHovered: false });
-    }
+    inputContainerRef.current.classList.remove("hovered");
   }
 
-  function handleClick() {
-    if (!focused) {
-      debugger;
-      setFocused(true);
-    }
+  function handleClick(e) {
+    e.preventDefault();
 
     inputRef.current.focus();
+    setFocused({ isFocused: true });
+
+    inputContainerRef.current.classList.add("focused");
   }
 
   return (
@@ -88,7 +46,7 @@ const Input = () => {
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
     >
-      <input ref={inputRef} type="text" />
+      <input ref={inputRef} type="text" id="input" />
     </div>
   );
 };

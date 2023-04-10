@@ -38,10 +38,10 @@ const DropDown = (props) => {
     }
   }
 
-  console.log("buttonValue: ", buttonValue)
+  console.log("buttonValue: ", buttonValue);
 
   return (
-    <div className="home-listing-type-wrapper">
+    <div className="home-listing-type-wrapper" id="dropdown-wrapper">
       <button
         className={`filter-btn ${buttonValue ? "selected" : ""}`}
         style={{
@@ -60,6 +60,7 @@ const DropDown = (props) => {
         <div
           style={{ width: dropDownWidth, display: "inline-block" }}
           className="dropdown"
+          id="drpdwn"
           onClick={(e) => e.stopPropagation()}
         >
           <form
