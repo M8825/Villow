@@ -59,16 +59,12 @@ const PriceRange = () => {
         </div>
         <div className="price-range-labels-container">
           <div className="input-dropbox-wrapper">
-            <label
-              htmlFor="min"
-              className="price-range-lbl"
-              onClick={handleClickMin}
-            >
+            <label htmlFor="min" className="price-range-lbl">
               <span>Minimun</span>
               <Input
                 value={minValue}
                 setValue={setMinValue}
-                rangeDropdown={minRangeDropdown}
+                clickLable={handleClickMin}
               />
             </label>
             {minRangeDropdown && <PriceDropDown setPrice={setMinValue} />}
@@ -77,16 +73,12 @@ const PriceRange = () => {
           <span className="line"></span>
 
           <div className="input-dropbox-wrapper">
-            <label
-              htmlFor="max"
-              className="price-range-lbl"
-              onClick={handleClickMax}
-            >
+            <label htmlFor="max" className="price-range-lbl">
               <span>Maximum</span>
               <Input
                 value={maxValue}
                 setValue={setMaxValue}
-                rangeDropdown={maxRangeDropdown}
+                clickLable={handleClickMax}
               />
             </label>
             {maxRangeDropdown && <PriceDropDown setPrice={setMaxValue} />}

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Input.scss";
 
-const Input = ({ value, setValue, rangeDropdown }) => {
+const Input = ({ value, setValue, clickLable }) => {
   const inputContainerRef = useRef();
   const inputRef = useRef();
 
@@ -23,8 +23,19 @@ const Input = ({ value, setValue, rangeDropdown }) => {
       }
     }
 
-    const dropDownElement = document.getElementById("drpdwn");
-    dropDownElement.addEventListener("click", handleOutside);
+    if (focused) {
+      const dropDownElement = document.getElementById("drpdwn");
+
+      dropDownElement.addEventListener("click", handleOutside);
+    }
+
+    return () => {
+      const dropDownElement = document.getElementById("drpdwn");
+
+      if (dropDownElement) {
+        dropDownElement.removeEventListener("click", handleOutside);
+      }
+    };
   }, [focused]);
 
   function handleHover(e) {
@@ -46,6 +57,7 @@ const Input = ({ value, setValue, rangeDropdown }) => {
     setFocused({ isFocused: true });
 
     inputContainerRef.current.classList.add("focused");
+    clickLable(e);
   }
 
   function handleOnChange(e) {
@@ -68,7 +80,7 @@ const Input = ({ value, setValue, rangeDropdown }) => {
         value={value}
         onChange={handleOnChange}
       />
-      <FontAwesomeIcon icon={focused.isFocused ? faAngleDown : faAngleUp} />
+      <FontAwesomeIcon icon={focused.isFocused ? faAngleUp : faAngleDown} />
     </div>
   );
 };
