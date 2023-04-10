@@ -12,14 +12,31 @@ const PriceRange = () => {
   const [maxRangeDropdown, setMaxRangeDropdown] = useState(false);
 
   useEffect(() => {
-    if(minValue.length > 3) {
-      setMinRangeDropdown(prev => !prev);
+    if (minValue.length > 3) {
+      setMinRangeDropdown(false);
     }
 
-    if(minValue.length < 3 && minValue.length > 1 && minRangeDropdown === false) {
-      setMinRangeDropdown(true);
+    if (
+      minValue.length < 3 &&
+      minValue.length > 1 &&
+      minRangeDropdown === false
+    ) {
     }
-  }, [minValue, maxValue]);
+    setMinRangeDropdown(true);
+
+    if (maxValue.length > 3) {
+      setMaxRangeDropdown(false);
+    }
+
+    if (
+      maxValue.length < 3 &&
+      maxValue.length > 1 &&  
+      maxRangeDropdown === false
+    ) {
+      setMaxRangeDropdown(true);
+    }
+    // eslint-disable-next-line
+  }, [minValue, maxValue, setMinRangeDropdown, setMaxRangeDropdown]);
 
   function handleClickMin(e) {
     e.preventDefault();
@@ -47,7 +64,11 @@ const PriceRange = () => {
               onClick={handleClickMin}
             >
               <span>Minimun</span>
-              <Input value={minValue} setValue={setMinValue} rangeDropdown={minRangeDropdown}/>
+              <Input
+                value={minValue}
+                setValue={setMinValue}
+                rangeDropdown={minRangeDropdown}
+              />
             </label>
             {minRangeDropdown && minValue.length <= 3 ? (
               <PriceDropDown setPrice={setMinValue} />
@@ -56,14 +77,21 @@ const PriceRange = () => {
 
           <span className="line"></span>
 
-          <label
-            htmlFor="max"
-            className="price-range-lbl"
-            onClick={handleClickMax}
-          >
-            <span>Maximum</span>
-            <Input />
-          </label>
+          <div className="input-dropbox-wrapper">
+            <label
+              htmlFor="max"
+              className="price-range-lbl"
+              onClick={handleClickMax}
+            >
+              <span>Maximum</span>
+              <Input
+                value={maxValue}
+                setValue={setMaxValue}
+                rangeDropdown={maxRangeDropdown}
+              />
+            </label>
+            {maxRangeDropdown && <PriceDropDown setPrice={setMaxValue} />}
+          </div>
         </div>
       </DropDown>
     </>
