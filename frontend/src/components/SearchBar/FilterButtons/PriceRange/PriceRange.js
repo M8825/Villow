@@ -21,9 +21,8 @@ const PriceRange = () => {
       minValue.length > 1 &&
       minRangeDropdown === false
     ) {
+      setMinRangeDropdown(true);
     }
-    setMinRangeDropdown(true);
-
     if (maxValue.length > 3) {
       setMaxRangeDropdown(false);
     }
@@ -40,9 +39,7 @@ const PriceRange = () => {
 
   function handleClickMin(e) {
     e.preventDefault();
-    setMinRangeDropdown((prev) => {
-      return !prev;
-    });
+    setMinRangeDropdown(true)
   }
 
   function handleClickMax(e) {
@@ -70,9 +67,7 @@ const PriceRange = () => {
                 rangeDropdown={minRangeDropdown}
               />
             </label>
-            {minRangeDropdown && minValue.length <= 3 ? (
-              <PriceDropDown setPrice={setMinValue} />
-            ) : null}
+            {minRangeDropdown && <PriceDropDown setPrice={setMinValue} />}
           </div>
 
           <span className="line"></span>

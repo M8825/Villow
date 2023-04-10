@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { faA, faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Input.scss";
