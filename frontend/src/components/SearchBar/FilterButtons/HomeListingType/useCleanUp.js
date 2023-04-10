@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { SearchContext } from "../../IndexSearchInput";
 
 // Custom hook invoked in ListingType component
-export function useDropdown() {
+export function useCleanUp() {
   const buttonRef = useRef();
   const { searchWord, term } = useContext(SearchContext);
 

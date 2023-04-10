@@ -29,17 +29,18 @@ const PriceRange = () => {
 
     if (
       maxValue.length < 3 &&
-      maxValue.length > 1 &&  
+      maxValue.length > 1 &&
       maxRangeDropdown === false
     ) {
       setMaxRangeDropdown(true);
     }
+
     // eslint-disable-next-line
   }, [minValue, maxValue, setMinRangeDropdown, setMaxRangeDropdown]);
 
   function handleClickMin(e) {
     e.preventDefault();
-    setMinRangeDropdown(true)
+    setMinRangeDropdown(true);
   }
 
   function handleClickMax(e) {
@@ -49,7 +50,10 @@ const PriceRange = () => {
 
   return (
     <>
-      <DropDown buttonValue={"Price"}>
+      <DropDown
+        buttonValue={"Price"}
+        onClose={{ setMinRangeDropdown, setMaxRangeDropdown }}
+      >
         <div className="title">
           <p>Price Range</p>
         </div>

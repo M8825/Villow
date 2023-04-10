@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import "./DropDown.scss";
 
 const DropDown = (props) => {
-  const { children, buttonValue, handleSubmit, containerWidth } = props;
+  const { children, buttonValue, handleSubmit, containerWidth, onClose } = props;
   const buttonRef = useRef();
 
   const [dropDown, setDropDown] = useState(false);
@@ -21,7 +21,14 @@ const DropDown = (props) => {
         buttonRef.current &&
         !buttonRef.current.contains(e.target)
       ) {
+        // Close button main dropdown window
         setDropDown(false);
+
+        // Close inner price range dropdown windows in children
+        const { setMinRangeDropdown, setMaxRangeDropdown} = onClose;
+
+        setMinRangeDropdown(false)
+        setMaxRangeDropdown(false);
       }
     };
 
@@ -30,6 +37,7 @@ const DropDown = (props) => {
     }
 
     return () => document.removeEventListener("click", handleClickOutside);
+
   }, [dropDown]);
 
   function onForSaleButtonClick(e) {
@@ -68,6 +76,7 @@ const DropDown = (props) => {
                 : "non-listing_type-dropdown-form"
             }
             onSubmit={(e) => handleSubmit(e, setDropDown)}
+            key={dropDown}
           >
             {children}
           </form>

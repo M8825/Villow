@@ -90,37 +90,4 @@
       onChange BEFORE you make new request to the database, check if search 
       input substring matches any record in redux state first. If there are
       no matching state suggestions, THAN make new request to DB.
-
-## Can't delete listing properly in user profile
-
-
-### Params query stirng
-
-- `expected_response = listings || suggestions`
-- term: city || state || address || zipcode
-- city/state/address/zipcode: New York, NY || 10028 || 514 E 82nd St.
-- <exstra_params>: "Sale" || "Rent"
-
-
-## localStorage used places
-- IndexSearchInput :: line 33, grab searchWord
-- useSuggestionItem :: line 26, set searchWord
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[ ] - Unutorithed users shouldn't be able to land listing createion page
