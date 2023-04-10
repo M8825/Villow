@@ -1,4 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import { faA, faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import "./Input.scss";
 
 const Input = () => {
@@ -47,6 +50,7 @@ const Input = () => {
       onMouseLeave={handleLeave}
     >
       <input ref={inputRef} type="text" id="input" />
+      <FontAwesomeIcon icon={focused.isFocused ? faAngleDown : faAngleUp } />
     </div>
   );
 };

@@ -1,5 +1,7 @@
 .input-container {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   outline: 1px solid #a7a6ab;
   padding: 10px;
   width: auto;
