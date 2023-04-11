@@ -4,7 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Input.scss";
 
-const Input = ({ value, setValue, clickLable, setMaxValueOnClick, placeholder }) => {
+const Input = ({
+  value,
+  setValue,
+  clickLable,
+  setMaxValueOnClick=null,
+  placeholder,
+}) => {
   const inputContainerRef = useRef();
   const inputRef = useRef();
 
@@ -58,13 +64,15 @@ const Input = ({ value, setValue, clickLable, setMaxValueOnClick, placeholder })
 
     inputContainerRef.current.classList.add("focused");
     clickLable(e);
-    // Set max value value to false on each click at Maximum lable or 
+    // Set max value value to false on each click at Maximum lable or
     // Maximum input. We need this to change prop for <PriceRangeDown >in PriceRange.js.
     // This way when user selects maximum price by clicking on displayed options, dorpdown
-    // menu for maximum price close automatically. 
-    // Manually typing max price will not trigger fetch from database. We use apply button 
+    // menu for maximum price close automatically.
+    // Manually typing max price will not trigger fetch from database. We use apply button
     // for that functionality.
-    setMaxValueOnClick(false);
+    if (setMaxValueOnClick) {
+      setMaxValueOnClick(false);
+    }
   }
 
   function handleOnChange(e) {

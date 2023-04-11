@@ -1,6 +1,14 @@
 import "./PriceDropDown.scss";
 
-const PriceDropDown = ({ setPrice, rangeFlag, rangeMarker, setMaxValueOnClick }) => {
+const PriceDropDown = ({
+  setPrice,
+  rangeFlag,
+  rangeMarker,
+  setMaxValueOnClick = null,
+}) => {
+  // Get rid of the , in rangeMarker sting the represents a price for the other input
+  rangeMarker = rangeMarker.split(',').join('');
+
   const priceRange = [
     0, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
     1000000, 1200000, 1300000,
@@ -22,24 +30,35 @@ const PriceDropDown = ({ setPrice, rangeFlag, rangeMarker, setMaxValueOnClick })
     return range;
   }
 
+  // Takes string with digits and return comma separated number in string format
+  function parsePrice(number) {
+    return parseInt(number).toLocaleString(undefined, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  }
+
   function handleClick(e) {
     e.preventDefault();
     e.stopPropagation();
 
-    setPrice(e.target.textContent);
-    setMaxValueOnClick(true)
+    setPrice(e.target.textContent.slice(1));
+
+    if (setMaxValueOnClick) {
+      setMaxValueOnClick(true);
+    }
   }
 
   return (
     <ul className="price-listPriceDropDown" onClick={handleClick}>
       {rangeFlag === "min"
         ? generateMin().map((price, i) => {
-            return <li key={i}>{price}</li>;
+            return <li key={i}>${parsePrice(price)}</li>;
           })
         : null}
       {rangeFlag === "max"
         ? generateMax().map((price, i) => {
-            return <li key={i}>{price}</li>;
+            return <li key={i}>${parsePrice(price)}</li>;
           })
         : null}
     </ul>

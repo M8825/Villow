@@ -96,8 +96,8 @@ const PriceRange = () => {
                 value={maxValue ? maxValue : ""}
                 setValue={setMaxValue}
                 clickLable={handleClickMax}
-                setMaxValueOnClick={setMaxValueOnClick}
                 placeholder="No Max"
+                setMaxValueOnClick={setMaxValueOnClick}
               />
             </label>
             {maxRangeDropdown && (
