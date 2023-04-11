@@ -6,11 +6,15 @@ import PriceDropDown from "./PriceDropDown";
 import "./PriceRange.scss";
 
 const PriceRange = () => {
-  const [minValue, setMinValue] = useState(undefined);
-  const [maxValue, setMaxValue] = useState(undefined);
-  const [maxValueOnClick, setMaxValueOnClick] = useState(false);
+  const [minValue, setMinValue] = useState();
+  const [maxValue, setMaxValue] = useState();
   const [minRangeDropdown, setMinRangeDropdown] = useState(false);
   const [maxRangeDropdown, setMaxRangeDropdown] = useState(false);
+
+  // Indicator to close price range dropdown when user select
+  // maximum price option
+  const [maxValueOnClick, setMaxValueOnClick] = useState(false); 
+
 
   useEffect(() => {
     if (minValue) {
@@ -71,6 +75,7 @@ const PriceRange = () => {
                 value={minValue ? minValue : ""}
                 setValue={setMinValue}
                 clickLable={handleClickMin}
+                placeholder="No Min"
               />
             </label>
             {minRangeDropdown && (
@@ -92,6 +97,7 @@ const PriceRange = () => {
                 setValue={setMaxValue}
                 clickLable={handleClickMax}
                 setMaxValueOnClick={setMaxValueOnClick}
+                placeholder="No Max"
               />
             </label>
             {maxRangeDropdown && (

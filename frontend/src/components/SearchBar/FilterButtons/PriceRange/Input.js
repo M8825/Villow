@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Input.scss";
 
-const Input = ({ value, setValue, clickLable, setMaxValueOnClick }) => {
+const Input = ({ value, setValue, clickLable, setMaxValueOnClick, placeholder }) => {
   const inputContainerRef = useRef();
   const inputRef = useRef();
 
@@ -86,6 +86,7 @@ const Input = ({ value, setValue, clickLable, setMaxValueOnClick }) => {
         id="input"
         value={value}
         onChange={handleOnChange}
+        placeholder={placeholder}
       />
       <FontAwesomeIcon icon={focused.isFocused ? faAngleUp : faAngleDown} />
     </div>
