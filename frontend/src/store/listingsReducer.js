@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf";
 import { objectToQuerySting } from "./utils";
+import { getLocalStorageSearchCredentials } from "../components/SearchBar/getLocalStorageSearchCredentials";
 
 const RECEIVE_LISTINGS = "api/listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "api/listings/RECEIVE_LISTING";
@@ -31,9 +32,7 @@ const removeListings = (listingIds) => ({
 
 const clearListings = () => ({
   type: CLEAR_LISTINGS,
-})
-
-
+});
 
 export const getListings = (state) => {
   if (state && state.listings) {
@@ -146,11 +145,13 @@ export const removeFavorite = (userId, listingId) => async (dispatch) => {
   }
 };
 
+
 export const fetchSearchListings =
   (term, searchInputValueStr, extraParams = {}) =>
   async (dispatch) => {
     // Make sure to encode for URL safe character like #
     // prevent params from being cut off
+
     const encodedSeachValue = encodeURIComponent(searchInputValueStr);
 
     const baseParams = {
@@ -174,7 +175,7 @@ export const fetchSearchListings =
 
 export const clearAllListings = () => async (dispatch) => {
   dispatch(clearListings());
-}
+};
 
 const listingsReducer = (state = {}, action) => {
   const newState = { ...state };

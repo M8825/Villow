@@ -91,3 +91,8 @@
       input substring matches any record in redux state first. If there are
       no matching state suggestions, THAN make new request to DB.
 [ ] - Unutorithed users shouldn't be able to land listing createion page
+
+
+# NOTE:
+- Last workin commit - Ref: fetch on praice range option selection - to fetch
+    - on branch price-range

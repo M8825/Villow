@@ -10,6 +10,7 @@ const PriceRange = () => {
   const [minValue, setMinValue] = useState();
   const [minRangeDropdown, setMinRangeDropdown] = useState(false);
   const [maxRangeDropdown, setMaxRangeDropdown] = useState(false);
+
   // Indicator to close price range dropdown when user select
   // maximum price option
   const [maxValueOnClick, setMaxValueOnClick] = useState(false);
@@ -53,10 +54,6 @@ const PriceRange = () => {
   function handleClickMax(e) {
     e.preventDefault();
     setMaxRangeDropdown(true);
-  }
-
-  function handleSubmit(e, setDropDown) {
-
   }
 
   return (
