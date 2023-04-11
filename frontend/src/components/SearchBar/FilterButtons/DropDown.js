@@ -4,7 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import "./DropDown.scss";
 
 const DropDown = (props) => {
-  const { children, buttonValue, handleSubmit, containerWidth, onClose } = props;
+  const {
+    children,
+    buttonValue,
+    handleSubmit,
+    containerWidth,
+    maxValue,
+    onClose,
+  } = props;
   const buttonRef = useRef();
 
   const [dropDown, setDropDown] = useState(false);
@@ -25,9 +32,9 @@ const DropDown = (props) => {
         setDropDown(false);
 
         // Close inner price range dropdown windows in children
-        const { setMinRangeDropdown, setMaxRangeDropdown} = onClose;
+        const { setMinRangeDropdown, setMaxRangeDropdown } = onClose;
 
-        setMinRangeDropdown(false)
+        setMinRangeDropdown(false);
         setMaxRangeDropdown(false);
       }
     };
@@ -37,8 +44,14 @@ const DropDown = (props) => {
     }
 
     return () => document.removeEventListener("click", handleClickOutside);
-
   }, [dropDown]);
+
+  // Close dropdown if in PriceRange user sets Max Price for listing
+  useEffect(() => {
+    if (maxValue) {
+      setDropDown(false);
+    }
+  }, [maxValue]);
 
   function onForSaleButtonClick(e) {
     if (e.currentTarget === buttonRef.current) {

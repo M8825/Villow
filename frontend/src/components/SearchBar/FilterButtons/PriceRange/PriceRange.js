@@ -8,6 +8,7 @@ import "./PriceRange.scss";
 const PriceRange = () => {
   const [minValue, setMinValue] = useState(undefined);
   const [maxValue, setMaxValue] = useState(undefined);
+  const [maxValueOnClick, setMaxValueOnClick] = useState(false);
   const [minRangeDropdown, setMinRangeDropdown] = useState(false);
   const [maxRangeDropdown, setMaxRangeDropdown] = useState(false);
 
@@ -57,6 +58,7 @@ const PriceRange = () => {
       <DropDown
         buttonValue={"Price"}
         onClose={{ setMinRangeDropdown, setMaxRangeDropdown }}
+        maxValue={maxValueOnClick}
       >
         <div className="title">
           <p>Price Range</p>
@@ -75,7 +77,7 @@ const PriceRange = () => {
               <PriceDropDown
                 setPrice={setMinValue}
                 rangeFlag="min"
-                rangeMarker={maxValue}
+                rangeMarker={maxValue ? maxValue : 1000000}
               />
             )}
           </div>
@@ -89,13 +91,15 @@ const PriceRange = () => {
                 value={maxValue ? maxValue : ""}
                 setValue={setMaxValue}
                 clickLable={handleClickMax}
+                setMaxValueOnClick={setMaxValueOnClick}
               />
             </label>
             {maxRangeDropdown && (
               <PriceDropDown
                 setPrice={setMaxValue}
                 rangeFlag="max"
-                rangeMarker={minValue}
+                rangeMarker={minValue ? minValue : 0}
+                setMaxValueOnClick={setMaxValueOnClick}
               />
             )}
           </div>

@@ -1,11 +1,13 @@
 import "./PriceDropDown.scss";
 
-const PriceDropDown = ({ setPrice, rangeFlag, rangeMarker=200000 }) => {
-
-  const priceRange = [0, 100000, 200000, 300000, 400000, 500000, 600000];
+const PriceDropDown = ({ setPrice, rangeFlag, rangeMarker, setMaxValueOnClick }) => {
+  const priceRange = [
+    0, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
+    1000000, 1200000, 1300000,
+  ];
 
   function generateMax() {
-    return priceRange.filter((price) => price > rangeMarker)
+    return priceRange.filter((price) => price > rangeMarker);
   }
 
   function generateMin() {
@@ -22,8 +24,10 @@ const PriceDropDown = ({ setPrice, rangeFlag, rangeMarker=200000 }) => {
 
   function handleClick(e) {
     e.preventDefault();
+    e.stopPropagation();
 
-    setPrice(e.target.textContent)
+    setPrice(e.target.textContent);
+    setMaxValueOnClick(true)
   }
 
   return (
