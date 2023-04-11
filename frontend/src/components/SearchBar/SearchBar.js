@@ -8,7 +8,7 @@ import {
   searchSuggestions,
 } from "../../store/search";
 import { fetchSearchListings } from "../../store/listingsReducer";
-import { statesMatch, citiesMatch, zipCodeMatch } from "./searchUtils";
+import { statesMatch, citiesMatch, digitsMatcher } from "./searchUtils";
 
 import SplashSearchInput from "./SearchInput";
 import IndexSearchInput from "./IndexSearchInput";
@@ -73,7 +73,7 @@ const SearchBar = () => {
       setTerm("city");
       // fetch suggestions based on city name
       dispatch(searchSuggestions(searchString, "city"));
-    } else if (searchString.length >= 3 && zipCodeMatch(searchString)) {
+    } else if (searchString.length >= 3 && digitsMatcher(searchString)) {
       setSuggestionsBox(false);
       setTerm("zipcode");
 

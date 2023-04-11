@@ -1,14 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { parsePrice } from "../../../utils/utils";
 
 import "./Input.scss";
+import { digitsMatcher } from "../../searchUtils";
 
 const Input = ({
   value,
   setValue,
   clickLable,
-  setMaxValueOnClick=null,
+  setMaxValueOnClick = null,
   placeholder,
 }) => {
   const inputContainerRef = useRef();
@@ -77,7 +79,17 @@ const Input = ({
 
   function handleOnChange(e) {
     e.preventDefault();
-    setValue(e.target.value);
+    // Clean input to check if user provided input with only digits
+    const deleteCommas = e.target.value.split(',').join('')
+
+    if (digitsMatcher(deleteCommas)) {
+      if (e.target.value.length > 0) {
+        const parsedNumber = parsePrice(e.target.value);
+        setValue(parsedNumber);
+      } else {
+        setValue(e.target.value); // Set input value at onChange for empty string 
+      }
+    }
   }
 
   return (
