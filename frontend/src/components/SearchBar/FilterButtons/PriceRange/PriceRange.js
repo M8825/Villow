@@ -3,8 +3,8 @@ import DropDown from "../DropDown";
 import Input from "./Input";
 import PriceDropDown from "./PriceDropDown";
 
-
 import "./PriceRange.scss";
+
 const PriceRange = () => {
   const [maxValue, setMaxValue] = useState();
   const [minValue, setMinValue] = useState();
@@ -12,8 +12,7 @@ const PriceRange = () => {
   const [maxRangeDropdown, setMaxRangeDropdown] = useState(false);
   // Indicator to close price range dropdown when user select
   // maximum price option
-  const [maxValueOnClick, setMaxValueOnClick] = useState(false); 
-
+  const [maxValueOnClick, setMaxValueOnClick] = useState(false);
 
   useEffect(() => {
     if (minValue) {
@@ -108,6 +107,9 @@ const PriceRange = () => {
               />
             )}
           </div>
+        </div>
+        <div className="btn-container">
+          <input type="submit" className="submit-btn" value="Apply" />
         </div>
       </DropDown>
     </>

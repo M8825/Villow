@@ -3,6 +3,7 @@ import { fetchSearchListings } from "../../../../store/listingsReducer";
 import DropDown from "../DropDown";
 
 import "./HomeListingType.scss";
+
 import { getLocalStorageSearchCredentials } from "../../getLocalStorageSearchCredentials";
 import { useEffect, useState } from "react";
 import { SearchContext } from "../../IndexSearchInput";
@@ -79,7 +80,7 @@ export const HomeListingType = () => {
 				<span>For Rent</span>
 			</div>
 
-			<input type="submit" value="Apply" />
+      <input type="submit" value="Apply" className="submit-btn" />
 		</DropDown>
 	);
 };

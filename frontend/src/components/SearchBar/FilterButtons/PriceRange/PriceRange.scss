@@ -46,3 +46,13 @@
     positon: relative;
   }
 }
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+
+  .submit-btn {
+    @include primary-btn(100%, 44px);
+  }
+}
