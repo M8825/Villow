@@ -1,8 +1,7 @@
-# frozen_string_literal: true
+require 'uri'
 
 module Api
   class ListingsController < ApplicationController
-    include Searchable
     # only allow index action if URL includes user_id
     # without a user session
     before_action :require_logged_in,
@@ -26,12 +25,19 @@ module Api
     end
 
     def search
-      term = params[:term]
-      search_filter = params[:search_filter]
-      search_str = params[:search_phrase]
+      # TODO(mlkz): address needs some modification to adjust JS streetAddress convention
       @current_user = current_user
+      @listings = query_listings
 
-      search_by_term(term, search_filter, search_str)
+      expected_response = params[:expected_response] # 'listings' or 'suggestions'
+
+      if expected_response == 'listings'
+        render 'api/listings/index'
+      else
+        suggestions = parse_suggestions # search complition suggestions based on user input
+        # e.g. if user types 'San' we return 'San Francisco, CA'
+        render 'api/listings/search_suggestions', locals: { states: suggestions }
+      end
     end
 
     def show
@@ -102,6 +108,56 @@ module Api
           photos: []
         )
         .deep_transform_keys!(&:underscore)
+    end
+
+    def search_listing_params
+      params.permit
+    end
+
+    def safe_query_db(query_hash)
+      if query_hash.empty?
+        []
+      else
+        Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
+      end
+    end
+
+    def query_listings
+      query_hash = {}
+
+      params.except(:term).each do |key, value|
+        next unless Listing.column_names.include?(key)
+
+        escaped_value = Listing.sanitize_sql_like(value)
+        decoded_query_string = URI.decode_www_form_component(escaped_value)
+
+        query_hash["#{key}::text ILIKE :#{key}"] =
+          { "#{key}": "%#{decoded_query_string}%" }
+      end
+
+      safe_query_db(query_hash)
+    end
+
+    def parse_suggestions
+      # Grab the term we're searching for - city, state, zipcode or address
+      term = params[:term]
+
+      # If the term is 'city', we need to return both the city and state
+      response_columns = term == 'city' ? [term, :state] : [term]
+
+      # Grab all the unique values for the given listing
+      # attribute and return them as an array
+      suggestions = @listings.pluck(*response_columns)
+                             .uniq
+                             .map { |suggestion| suggestion.is_a?(Integer) ? suggestion.to_s : suggestion }
+
+      suggestions.map do |suggestion|
+        if term == 'city'
+          "#{suggestion[0]}, #{suggestion[1]}"
+        else
+          suggestion
+        end
+      end
     end
   end
 end

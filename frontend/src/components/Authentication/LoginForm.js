@@ -95,19 +95,6 @@ const LoginForm = ({ closeModal }) => {
 					>
 						Demo User
 					</Button>
-
-					{/* TODO: Decide about Forgot your password functionality */}
-					{/* <Button
-						variant={"none"}
-						color={"#004494"}
-						marginTop="0px"
-						_hover={{
-							color: "#74ACF1",
-							textDecoration: "underline",
-						}}
-					>
-						Forgot your password?
-					</Button> */}
 					<FollowButtonLinks />
 				</div>
 			</form>

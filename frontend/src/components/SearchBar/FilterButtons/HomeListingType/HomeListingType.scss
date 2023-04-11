@@ -1,0 +1,82 @@
+@import "../../../../index";
+
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  gap: 10px;
+  position: relative;
+
+  span {
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  &:hover {
+    background: rgb(241 241 244);
+    border: 1px solid rgb(167 166 171);
+  }
+}
+
+.selected {
+  background-color: rgb(243 250 254);
+  border-color: $primary-theme-blue-color;
+}
+
+.listing-type-dropdown-form {
+  width: 262px;
+  margin: 10px 15px;
+
+  .lbl {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 55px;
+    font-size: 18px;
+
+    input[type="radio"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: inline-block;
+      position: relative;
+      border-radius: 50%;
+      border: 2px solid #999;
+      margin-right: 10px;
+      vertical-align: middle;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    input[type="radio"]:checked::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    input[type="radio"]:checked {
+      border: 5px solid $primary-theme-blue-color;
+    }
+  }
+
+  input[type="submit"] {
+    @include primary-btn(258px, 44px);
+    margin-top: 25px;
+    align-self: center;
+    width: 100%;
+  }
+}

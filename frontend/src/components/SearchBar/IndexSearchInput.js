@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanSearchSuggestions } from "../../store/search";
 import SuggestionItem from "./SuggestionItem";
+import { getLocalStorageSearchCredentials } from "./getLocalStorageSearchCredentials"
 
 import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
 import { useRef } from "react";
+import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType";
+import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
-const IndexSearchInput = ({
+export const SearchContext = createContext();
+
+const IndexSearch = ({
   focuseSearch,
   setFocuseSearch,
   searchRef,
@@ -25,6 +30,12 @@ const IndexSearchInput = ({
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
   const [searchWord, setSearchWord] = useState("");
+
+  useEffect(() => {
+    const { localStorageSearchWord } = getLocalStorageSearchCredentials();
+
+    setSearchWord(localStorageSearchWord ? localStorageSearchWord : "New York, NY");
+  }, []);
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());
@@ -53,7 +64,8 @@ const IndexSearchInput = ({
     <div className="search-component-wrapper">
       <div
         className={
-          "search-input-wrapper " + (focuseSearch && searchWord ? "focused-wrapper" : "")
+          "search-input-wrapper " +
+          (focuseSearch && searchWord ? "focused-wrapper" : "")
         }
       >
         <div
@@ -64,8 +76,8 @@ const IndexSearchInput = ({
           ref={searchRef}
         >
           <SearchInputContainer
-            searchWord={searchWord}
             inputRef={inputRef}
+            searchWord={searchWord}
             setSearchWord={setSearchWord}
             focuseSearch={focuseSearch}
             value={value}
@@ -97,12 +109,19 @@ const IndexSearchInput = ({
           </div>
         )}
       </div>
-
+      <SearchContext.Provider value={{ searchWord, term }}>
+        <div className="filter-buttons">
+          <HomeListingType />
+        </div>
+        <div className="filter-buttons">
+          <PriceRange />
+        </div>
+      </SearchContext.Provider>
       <button onClick={handleSearchSubmit} className="search-button">
-        Value{" "}
+        foobar{" "}
       </button>
     </div>
   );
 };
 
-export default IndexSearchInput;
+export default IndexSearch;

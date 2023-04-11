@@ -90,26 +90,4 @@
       onChange BEFORE you make new request to the database, check if search 
       input substring matches any record in redux state first. If there are
       no matching state suggestions, THAN make new request to DB.
-
-## Can't delete listing properly in user profile
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[ ] - Unutorithed users shouldn't be able to land listing createion page

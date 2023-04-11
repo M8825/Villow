@@ -1,4 +1,3 @@
-import Map from "../Map/Map";
 import ListingsPage from "../ListingsIndex/ListingsIndex";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -9,7 +8,10 @@ const IndexPage = () => {
 		<>
 			<SearchBar />
 			<div className="index-page-container">
-				<Map />
+        <div style={{ width: "50vw", height: "100vh"}} >
+          MAP COMMING
+
+          </div>
 				<ListingsPage />
 			</div>
 		</>

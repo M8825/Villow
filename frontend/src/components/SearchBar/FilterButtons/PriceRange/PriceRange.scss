@@ -1,0 +1,48 @@
+@import "../../../../index";
+
+.non-listing_type-dropdown-form {
+  width: auto;
+}
+.title {
+  font-size: 14px;
+  height: 48px;
+  width: 363px;
+  padding: 12px 16px;
+  color: #596b82;
+  background-color: #f6f6fa;
+  font-weight: bold;
+}
+
+.price-range-labels-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 16px;
+  gap: 10px;
+  background-color: #fff;
+
+  .line {
+    content: " ";
+    align-self: center;
+    margin-top: 25px;
+    width: 7px;
+    height: 1px;
+    background-color: black;
+  }
+
+  .price-range-lbl {
+    display: flex;
+    flex-direction: column;
+    width: 146px;
+    gap: 10px;
+
+    span {
+      font-size: 14px;
+      font-weight: bold;
+      color: #2a2a33;
+    }
+  }
+
+  .input-dropbox-wrapper {
+    positon: relative;
+  }
+}

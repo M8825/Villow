@@ -11,8 +11,8 @@ import { BrowserRouter } from "react-router-dom";
 import { createUser, loginUser, logoutUser } from "./store/usersReducer.js";
 import { createListing } from "./store/listingsReducer";
 
-const domNode = document.getElementById("root");
-const root = createRoot(domNode);
+const  domNode = document.getElementById("root");
+const  root = createRoot(domNode);
 
 let currentUser;
 
@@ -30,14 +30,14 @@ if (currentUser) {
 	};
 }
 
-const store = configureStore(initialState);
+const  store = configureStore(initialState);
 
 window.createUser = createUser;
 window.loginUser = loginUser;
 window.logoutUser = logoutUser;
 window.createLIsting = createListing;
 
-const InitializeApp = () => {
+const  InitializeApp = () => {
 	return (
 		<React.StrictMode>
 			<Provider store={store}>

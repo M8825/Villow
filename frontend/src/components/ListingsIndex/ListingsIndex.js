@@ -1,27 +1,50 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getListings, fetchListings } from "../../store/listingsReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { getActiveUser } from "../../store/usersReducer";
 
 import ListingItem from "../ListingItem/ListingItem";
+
+import { getActiveUser } from "../../store/usersReducer";
+import {
+  getListings,
+  fetchSearchListings,
+  clearAllListings,
+} from "../../store/listingsReducer";
+import { getLocalStorageAll } from "../utils/fetchLocalStorage";
+
 import "./ListingsIndex.scss";
 
 const ListingsPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const listings = useSelector(getListings);
-  const [reversed, setReversed] = useState(false);
 
   useEffect(() => {
-    if (listings.length === 0) {
-      dispatch(fetchListings());
-    }
-  }, [dispatch, listings]);
+    // fetch based on state, becase "city" actually requires "City, State"
+    // format. <search> action will not query the databse with empty
+    // string when term flag is "city"
+    const localStorageObj = getLocalStorageAll();
 
-  const history = useHistory();
+    let term;
+    let termValue;
+
+    if (localStorageObj.search_word) {
+      term = Object.keys(localStorageObj.search_word)[0];
+      termValue = Object.values(localStorageObj.search_word)[0];
+      delete localStorageObj.search_word;
+
+      dispatch(fetchSearchListings(term, termValue, localStorageObj));
+    }
+
+    return () => {
+      dispatch(clearAllListings());
+    };
+  }, []);
+
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [reversed, setReversed] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);

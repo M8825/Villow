@@ -1,31 +1,19 @@
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import { fetchSearchListings } from "../../store/listingsReducer";
-
 import { findMatchingIndices } from "./searchUtils";
+import { useSuggestionItem } from "./useSuggestionItem";
 
 import "./SuggestionItem.scss";
 
 const SuggestionItem = ({ term, suggestion, value, setSearchWord }) => {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const splash = location.pathname === "/";
+  const { splash, handleSearchOnClickItem } = useSuggestionItem(
+    term,
+    suggestion,
+    setSearchWord
+  );
 
   // returns start and end indecies of the matching substring
   // of the suggestion and the value. It's beeing used to
   // highlight the matching substring in the suggestion
   const [start, end] = findMatchingIndices(suggestion, value);
-
-  const handleSearchOnClickItem = (e) => {
-    e.preventDefault();
-
-    setSearchWord(suggestion);
-    dispatch(fetchSearchListings(term, suggestion));
-
-    history.push("/listings");
-  };
 
   return (
     <li

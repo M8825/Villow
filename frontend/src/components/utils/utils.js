@@ -7,3 +7,4 @@ export function generateRandomString(length) {
 
     return result;
 }
+
