@@ -7,7 +7,7 @@ const PriceDropDown = ({
   setMaxValueOnClick = null,
 }) => {
   // Get rid of the , in rangeMarker sting the represents a price for the other input
-  rangeMarker = rangeMarker.split(',').join('');
+  rangeMarker = rangeMarker.split(",").join("");
 
   const priceRange = [
     0, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
