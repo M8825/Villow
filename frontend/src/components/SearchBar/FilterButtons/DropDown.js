@@ -7,7 +7,6 @@ const DropDown = (props) => {
   const {
     children,
     buttonValue,
-    handleSubmit,
     containerWidth,
     maxValue,
     onClose,
@@ -59,6 +58,13 @@ const DropDown = (props) => {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setDropDown(false);
+
+  }
+
   return (
     <div className="home-listing-type-wrapper" id="dropdown-wrapper">
       <button
@@ -88,8 +94,8 @@ const DropDown = (props) => {
                 ? "listing-type-dropdown-form"
                 : "non-listing_type-dropdown-form"
             }
-            onSubmit={(e) => handleSubmit(e, setDropDown)}
             key={dropDown}
+            onSubmit={handleSubmit}
           >
             {children}
           </form>

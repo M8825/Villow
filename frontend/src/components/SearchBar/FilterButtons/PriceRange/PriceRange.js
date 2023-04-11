@@ -55,6 +55,10 @@ const PriceRange = () => {
     setMaxRangeDropdown(true);
   }
 
+  function handleSubmit(e, setDropDown) {
+
+  }
+
   return (
     <>
       <DropDown
