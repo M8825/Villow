@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanSearchSuggestions } from "../../store/search";
 import SuggestionItem from "./SuggestionItem";
-import { getLocalStorageSearchCredentials } from "./getLocalStorageSearchCredentials"
 
 import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
@@ -10,7 +9,11 @@ import { useRef } from "react";
 import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType";
 import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
+import { getLocalStorageSearchCredentials } from "../../store/utils";
+
+
 export const SearchContext = createContext();
+
 
 const IndexSearch = ({
   focuseSearch,

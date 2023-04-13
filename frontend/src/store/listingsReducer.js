@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 import { objectToQuerySting } from "./utils";
-import { getLocalStorageSearchCredentials } from "../components/SearchBar/getLocalStorageSearchCredentials";
+import { cleanLocalStorageSearchCredentials } from "./utils";
 
 const RECEIVE_LISTINGS = "api/listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "api/listings/RECEIVE_LISTING";
@@ -152,13 +152,7 @@ export const fetchSearchListings =
     // Make sure to encode for URL safe character like #
     // prevent params from being cut off
 
-    const encodedSeachValue = encodeURIComponent(searchInputValueStr);
-
-    const baseParams = {
-      expected_response: "listings", // Flag for backend. Rails may receive suggestions flag
-      [term]: encodedSeachValue,
-      term,
-    };
+    const baseParams = cleanLocalStorageSearchCredentials();
 
     const queryParams = { ...baseParams, ...extraParams };
 

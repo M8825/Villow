@@ -50,5 +50,6 @@ group :development do
   # gem "spring"
   gem "faker"
   gem "annotate"
+  gem "rake"
 end
 

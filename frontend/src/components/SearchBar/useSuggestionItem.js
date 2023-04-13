@@ -1,17 +1,8 @@
-import { getRoles } from "@testing-library/react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { fetchSearchListings } from "../../store/listingsReducer";
-import { getLocalStorageSearchCredentials } from "./getLocalStorageSearchCredentials";
-
-function strigifySearchWordObj(citySuffix, cleanSuggestion, term ) {
-  const searchWordObj = JSON.stringify({
-    [term]: cleanSuggestion,
-    citySuffix: citySuffix,
-    term: term,
-  });
-  return searchWordObj;
-}
+import { getLocalStorageSearchCredentials } from "../../store/utils";
+import { stringifySearchWordObj } from "../../store/utils";
 
 export const useSuggestionItem = (term, suggestion, setSearchWord) => {
   const location = useLocation();
@@ -35,7 +26,7 @@ export const useSuggestionItem = (term, suggestion, setSearchWord) => {
       cleanSuggestion = suggestion;
     }
 
-    const searchWordObj = strigifySearchWordObj(citySuffix, cleanSuggestion, term);
+    const searchWordObj = stringifySearchWordObj(citySuffix, cleanSuggestion, term);
 
     localStorage.setItem("searchWord", searchWordObj);
 

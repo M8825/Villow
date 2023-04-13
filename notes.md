@@ -96,3 +96,6 @@
 # NOTE:
 - Last workin commit - Ref: fetch on praice range option selection - to fetch
     - on branch price-range
+
+# Git commits for today.
+- Git log --since=midnight --until=now --oneline
