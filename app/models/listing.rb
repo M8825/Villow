@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+config/initializers/content_security_policy.rb
 # == Schema Information
 # Table name: listings
 #

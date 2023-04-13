@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+#source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.1"
@@ -52,7 +52,3 @@ group :development do
   gem "annotate"
 end
 
-gem "sorbet", group: :development
-gem "sorbet-runtime"
-gem "tapioca", require: false, group: :development
-gem "ruby-lsp", "0.3.6"
