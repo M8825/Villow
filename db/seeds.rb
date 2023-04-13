@@ -42,6 +42,8 @@ ApplicationRecord.transaction do
       ac: true,
       garage: true,
       price_sqft: 467,
+      lat: 40.776157, 
+      lng: -73.952102,
       overview:
         "Spacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
     This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
@@ -72,6 +74,8 @@ ApplicationRecord.transaction do
       ac: true,
       garage: true,
       price_sqft: 450,
+      lat: 40.776157, 
+      lng: -73.952102,
       overview:
         "Spacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
     This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
@@ -100,6 +104,8 @@ ApplicationRecord.transaction do
       ac: true,
       garage: false,
       price_sqft: 500,
+      lat: 40.776157, 
+      lng: -73.952102,
       overview:
         "Spacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
     This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
@@ -128,6 +134,8 @@ ApplicationRecord.transaction do
       ac: true,
       garage: true,
       price_sqft: 470,
+      lat: 40.776157, 
+      lng: -73.952102,
       overview:
         "Spacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
     This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
@@ -156,6 +164,8 @@ ApplicationRecord.transaction do
       ac: true,
       garage: false,
       price_sqft: 462,
+      lat: 40.776157, 
+      lng: -73.952102,
       overview:
         "Spacious 4BR 3BA condo with stunning views of Central Park Stylish, Spacious Alcove Studio just steps from Central Park, Fifth Avenue and Carnegie Hall! You can live in the middle of it all!  Priced for an all cash deal!
     This huge alcove studio (approx. 600sf) has been completely gut renovated and cleverly converted into a Junior 2 bedroom apartment.   The gorgeous full separate kitchen features granite counters and flooring, subway tile backsplash, tons of cabinet space... a kitchen that is beautiful to look at and functional for entertaining. The stunning bathroom has marble walls and floors, and lovely mosaic tiled shower, European style pedestal sink and Kohler fixtures.
@@ -189,7 +199,9 @@ ApplicationRecord.transaction do
       key_words: "1BR ELEVATOR DOORMAN GYM HARDWOOD FLOORS LAUNDRY",
       views: 0,
       zipcode: 10_162,
-      owner_id: 1
+      owner_id: 1,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   # ---
@@ -215,7 +227,9 @@ ApplicationRecord.transaction do
       key_words: "3BR CONDO ELEVATOR DOORMAN GYM LAUNDRY ROOF DECK",
       views: 0,
       zipcode: 10_065,
-      owner_id: 1
+      owner_id: 1,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l8 =
@@ -241,7 +255,9 @@ ApplicationRecord.transaction do
         "STUDIO HARDWOOD FLOORS UPDATED KITCHEN UPDATED BATHROOM LAUNDRY",
       views: 0,
       zipcode: 10_028,
-      owner_id: 2
+      owner_id: 2,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l9 =
@@ -266,7 +282,9 @@ ApplicationRecord.transaction do
       key_words: "1BR HARDWOOD FLOORS RENOVATED KITCHEN DOORMAN LAUNDRY",
       views: 0,
       zipcode: 10_021,
-      owner_id: 2
+      owner_id: 2,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l10 =
@@ -291,7 +309,9 @@ ApplicationRecord.transaction do
       key_words: "3BR CONDO CENTRAL PARK VIEWS DOORMAN FITNESS TERRACE",
       views: 0,
       zipcode: 10_029,
-      owner_id: 2
+      owner_id: 2,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l11 =
@@ -316,7 +336,9 @@ ApplicationRecord.transaction do
       key_words: "2BR RENOVATED CO-OP DOORMAN ROOF DECK CUSTOM BUILT-INS",
       views: 0,
       zipcode: 10_021,
-      owner_id: 2
+      owner_id: 2,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l12 =
@@ -341,7 +363,9 @@ ApplicationRecord.transaction do
       key_words: "3BR PRE-WAR CO-OP DOORMAN FIREPLACE ROOF GARDEN",
       views: 0,
       zipcode: 10_021,
-      owner_id: 1
+      owner_id: 1,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l13 =
@@ -366,7 +390,9 @@ ApplicationRecord.transaction do
       key_words: "2BR CONDO BALCONY CITY VIEWS DOORMAN FITNESS PLAYROOM",
       views: 0,
       zipcode: 10_128,
-      owner_id: 2
+      owner_id: 2,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l14 =
@@ -391,7 +417,9 @@ ApplicationRecord.transaction do
       key_words: "4BR PRE-WAR CO-OP DOORMAN FIREPLACE HOME OFFICE ROOF TERRACE",
       views: 0,
       zipcode: 10_128,
-      owner_id: 1
+      owner_id: 1,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l15 =
@@ -417,7 +445,9 @@ ApplicationRecord.transaction do
         "5BR CONDO TERRACE HOME OFFICE WINE CELLAR DOORMAN FITNESS ROOF DECK",
       views: 0,
       zipcode: 10_128,
-      owner_id: 2
+      owner_id: 2,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   l16 =
@@ -442,7 +472,9 @@ ApplicationRecord.transaction do
       key_words: "1BR HARDWOOD FLOORS SEPARATE KITCHEN LAUNDRY",
       views: 0,
       zipcode: 10_075,
-      owner_id: 1
+      owner_id: 1,
+      lat: 40.776157, 
+      lng: -73.952102
     )
 
   puts "> Attaching Photos..."
