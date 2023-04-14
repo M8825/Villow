@@ -35,13 +35,15 @@ const Input = ({
       }
     }
 
-    if (focused) {
+
+    if (focused.isFocused) {
       const dropDownElement = document.getElementById("drpdwn");
 
       dropDownElement.addEventListener("click", handleOutside);
     }
 
-    if (value) {
+    if (!focused.isFocused) {
+      debugger
 
       const priceObj = stringifyPriceObj(placeholder, value);
 

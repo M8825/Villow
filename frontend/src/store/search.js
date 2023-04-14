@@ -4,6 +4,16 @@ import { objectToQuerySting } from "./utils";
 const RECEIVE_SUGGESTIONS = "api/search/RECEIVE_SUGGESTIONS";
 const CLEAN_SUGGESTIONS = "CLEAN_SUGGESTIONS";
 
+// Searching
+const RECEIVE_SERCHING_DATA = "localstorage/RECEIVE_SERCHING_DATA";
+
+
+const receiveSearchData = (payload) => ({
+  type: RECEIVE_SERCHING_DATA,
+  payload,
+});
+
+
 export const getSuggestions = () => (state) => {
   if (state && state.search) {
     return Object.values(state.search);
@@ -20,6 +30,13 @@ const receiveSuggestions = (suggestions) => ({
 const cleanSuggestions = () => ({
   type: CLEAN_SUGGESTIONS,
 });
+
+
+export const setInitialSearchingData = (localStorageData) => (dispatch) => {
+  if (localStorageData) {
+    dispatch(receiveSearchData(localStorageData));
+  }
+};
 
 export const searchSuggestions =
   (searchString, term = null) =>
@@ -59,6 +76,8 @@ const searchSuggestionsReducer = (state = {}, action) => {
       return { ...action.suggestions };
     case CLEAN_SUGGESTIONS:
       return {};
+    case RECEIVE_SERCHING_DATA:
+      return { ...state, ...action.payload };
     default:
       return state;
   }
