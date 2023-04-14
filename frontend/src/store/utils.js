@@ -17,6 +17,8 @@ export const stringifySearchWordObj = (citySuffix, cleanSuggestion, term) => {
 export const getLocalStorageSearchCredentials = () => {
   const localStorageObj = JSON.parse(localStorage.getItem("searchWord"));
   let listingType = localStorage.getItem("listingType");
+  const  minPrice =  localStorage.getItem('minPrice');
+  const  maxPrice =  localStorage.getItem('maxPrice');
 
   let searchWord;
   let term;
@@ -37,12 +39,14 @@ export const getLocalStorageSearchCredentials = () => {
     const searchWordObj = stringifySearchWordObj("NY", "New York", "city");
     localStorage.setItem("searchWord", searchWordObj);
     localStorage.setItem("listingType", "Sale");
+    localStorage.setItem("minPrice", null);
+    localStorage.setItem("maxPrice", null);
 
     // Recursively set default credentials for seach functinality
     return getLocalStorageSearchCredentials()
   }
 
-  return { term, searchWord, listingType };
+  return { term, searchWord, listingType, minPrice, maxPrice };
 };
 
 // Grab search filters from localstorage and
