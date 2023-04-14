@@ -10,10 +10,9 @@ import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType
 import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
 import { getLocalStorageSearchCredentials } from "../../store/utils";
-
+import { getSearchWord } from "../../store/searchFilters";
 
 export const SearchContext = createContext();
-
 
 const IndexSearch = ({
   focuseSearch,
@@ -30,15 +29,11 @@ const IndexSearch = ({
 }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
+  const  initialSearchWord =  dispatch(getSearchWord());
+  debugger
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
-  const [searchWord, setSearchWord] = useState("");
-
-  useEffect(() => {
-    const { localStorageSearchWord } = getLocalStorageSearchCredentials();
-
-    setSearchWord(localStorageSearchWord ? localStorageSearchWord : "New York, NY");
-  }, []);
+  const [searchWord, setSearchWord] = useState(initialSearchWord);
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());

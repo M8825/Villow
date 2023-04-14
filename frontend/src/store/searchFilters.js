@@ -6,6 +6,16 @@ const receiveSearchData = (payload) => ({
   payload,
 });
 
+
+export const getSearchWord = () => (state) => {
+  debugger
+  if (state && state.searchFilter) {
+    return  state.searchFilter.searchWord
+  }
+
+  return  null
+}
+
 export const setInitialSearchingData = (localStorageData) => (dispatch) => {
   if (localStorageData) {
     dispatch(receiveSearchData(localStorageData));
