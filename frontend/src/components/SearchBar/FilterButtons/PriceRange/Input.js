@@ -5,6 +5,9 @@ import { parsePrice } from "../../../utils/utils";
 
 import "./Input.scss";
 import { digitsMatcher } from "../../searchUtils";
+import { useDispatch } from "react-redux";
+import { fetchSearchListings } from "../../../../store/listingsReducer";
+import { stringifyPriceObj } from "../../../../store/utils";
 
 const Input = ({
   value,
@@ -13,6 +16,7 @@ const Input = ({
   setMaxValueOnClick = null,
   placeholder,
 }) => {
+  const dispatch = useDispatch();
   const inputContainerRef = useRef();
   const inputRef = useRef();
 
@@ -35,6 +39,15 @@ const Input = ({
       const dropDownElement = document.getElementById("drpdwn");
 
       dropDownElement.addEventListener("click", handleOutside);
+    }
+
+    if (value) {
+
+      const priceObj = stringifyPriceObj(placeholder, value);
+
+      localStorage.setItem("price", priceObj);
+
+      dispatch(fetchSearchListings());
     }
 
     return () => {
@@ -80,14 +93,14 @@ const Input = ({
   function handleOnChange(e) {
     e.preventDefault();
     // Clean input to check if user provided input with only digits
-    const deleteCommas = e.target.value.split(',').join('')
+    const deleteCommas = e.target.value.split(",").join("");
 
     if (digitsMatcher(deleteCommas)) {
       if (e.target.value.length > 0) {
         const parsedNumber = parsePrice(e.target.value);
         setValue(parsedNumber);
       } else {
-        setValue(e.target.value); // Set input value at onChange for empty string 
+        setValue(e.target.value); // Set input value at onChange for empty string
       }
     }
   }

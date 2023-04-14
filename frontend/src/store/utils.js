@@ -34,9 +34,12 @@ export const getLocalStorageSearchCredentials = () => {
     term = localStorageObj.term;
   } else {
     // If there is no localStorage for an User, set default values
-    searchWord = "New York, NY";
-    term = "city";
-    listingType = "Sale";
+    const searchWordObj = stringifySearchWordObj("NY", "New York", "city");
+    localStorage.setItem("searchWord", searchWordObj);
+    localStorage.setItem("listingType", "Sale");
+
+    // Recursively set default credentials for seach functinality
+    return getLocalStorageSearchCredentials()
   }
 
   return { term, searchWord, listingType };
@@ -57,3 +60,11 @@ export const cleanLocalStorageSearchCredentials = () => {
     listing_type: listingType,
   };
 };
+
+
+export const stringifyPriceObj  = (placeholder, value) => {
+      const priceRangeLable = placeholder === "No Min" ? "Min" : "Max";
+      const priceNumber = parseInt(value.split(",").join(""));
+
+      return JSON.stringify({ priceRangeLable, priceNumber });
+}
