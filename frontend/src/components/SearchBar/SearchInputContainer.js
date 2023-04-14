@@ -5,7 +5,6 @@ import SearchIcon from "./SearchIcon";
 
 export const SearchInputContainer = ({
   searchWord,
-  setSearchWord,
   inputRef,
   value,
   handleSearchOnChange,
@@ -15,7 +14,7 @@ export const SearchInputContainer = ({
   return (
     <>
       <div className={"clicked-search-with-search-word"}>
-        <SearchWord searchWord={searchWord} setSearchWord={setSearchWord} />
+        <SearchWord searchWord={searchWord} />
         <input
           className="text-input"
           ref={inputRef}

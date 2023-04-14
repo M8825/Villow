@@ -1,11 +1,15 @@
+import { useDispatch } from "react-redux";
 import { CloseSearchWordIcon } from "./assets/CloseSearchWordIcon";
 import "./SearchWord.scss";
+import { setSearchWordToLocalStorage } from "../../store/searchFilters";
 
-export const SearchWord = ({ searchWord, setSearchWord }) => {
+export const SearchWord = ({ searchWord }) => {
+  const dispatch = useDispatch();
   const handleOnClickClose = (e) => {
     e.preventDefault();
 
-    setSearchWord("");
+    dispatch(setSearchWordToLocalStorage(""));
+
   };
 
   return (

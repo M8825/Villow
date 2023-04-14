@@ -3,11 +3,10 @@ import { useSuggestionItem } from "./useSuggestionItem";
 
 import "./SuggestionItem.scss";
 
-const SuggestionItem = ({ term, suggestion, value, setSearchWord }) => {
+const SuggestionItem = ({ term, suggestion, value }) => {
   const { splash, handleSearchOnClickItem } = useSuggestionItem(
     term,
     suggestion,
-    setSearchWord
   );
 
   // returns start and end indecies of the matching substring

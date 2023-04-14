@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cleanSearchSuggestions } from "../../store/search";
 import SuggestionItem from "./SuggestionItem";
 
@@ -9,7 +9,6 @@ import { useRef } from "react";
 import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType";
 import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
-import { getLocalStorageSearchCredentials } from "../../store/utils";
 import { getSearchWord } from "../../store/searchFilters";
 
 export const SearchContext = createContext();
@@ -29,11 +28,12 @@ const IndexSearch = ({
 }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
-  const  initialSearchWord =  dispatch(getSearchWord());
-  debugger
+  const searchWord =  useSelector(getSearchWord());
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
-  const [searchWord, setSearchWord] = useState(initialSearchWord);
+  // const [searchWord, setSearchWord] = useState(initialSearchWord);
+
+  console.log("Search word: ",  searchWord);
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());
@@ -76,7 +76,6 @@ const IndexSearch = ({
           <SearchInputContainer
             inputRef={inputRef}
             searchWord={searchWord}
-            setSearchWord={setSearchWord}
             focuseSearch={focuseSearch}
             value={value}
             handleSearchOnChange={handleSearchOnChange}
@@ -99,7 +98,6 @@ const IndexSearch = ({
                       term={term}
                       value={value}
                       suggestion={suggestion}
-                      setSearchWord={setSearchWord}
                     />
                   );
                 })}
