@@ -5,6 +5,7 @@ import DropDown from "../DropDown";
 import { SearchContext } from "../../IndexSearchInput";
 
 import "./HomeListingType.scss";
+import { setListingType } from "../../../../store/searchFilters";
 
 export const HomeListingType = () => {
   const dispatch = useDispatch();
@@ -27,10 +28,7 @@ export const HomeListingType = () => {
     const listingType = e.target.name;
 
     setSelectedOption(listingType);
-    // Add clicked listing type "For Sale" or "For Rent" to localStorage
-    localStorage.setItem("listingType", listingType);
-
-    dispatch(fetchSearchListings("foo", "bar"));
+    dispatch(setListingType(listingType));
   }
 
   return (

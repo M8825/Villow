@@ -2,7 +2,10 @@ import { stringifySearchWordObj } from "./utils";
 
 // Searching
 const RECEIVE_SERCHING_DATA = "localstorage/RECEIVE_SERCHING_DATA";
-const SET_SEARCH_WORD = "localstorage/SET_SEARCH_WORD";
+const RECEIVE_SEARCH_WORD = "localstorage/RECEIVE_SEARCH_WORD";
+const RECEIVE_LISTING_TYPE = "localstorage/RECEIVE_LISTING_TYPE";
+
+
 
 const receiveSearchData = (payload) => ({
 	type: RECEIVE_SERCHING_DATA,
@@ -10,8 +13,13 @@ const receiveSearchData = (payload) => ({
 });
 
 const setSearchWord = (payload) => ({
-	type: SET_SEARCH_WORD,
+	type: RECEIVE_SEARCH_WORD,
 	payload,
+});
+
+const receiveListingType = (payload) => ({
+  type: RECEIVE_LISTING_TYPE,
+  payload,
 });
 
 export const getSearchWord = () => (state) => {
@@ -20,6 +28,10 @@ export const getSearchWord = () => (state) => {
 	}
 
 	return null;
+};
+
+export const setHomeListingType = (listingType) => (dispatch) => {
+  localStorage.setItem("listingType", listingType);
 };
 
 export const setSearchWordToLocalStorage =
@@ -42,11 +54,19 @@ export const setInitialSearchingData = (localStorageData) => (dispatch) => {
 	}
 };
 
+export const setListingType = (listingType) => (dispatch) => {
+
+  localStorage.setItem("listingType", listingType);
+
+  dispatch(receiveListingType(listingType));
+
+};
+
 const searchFiltersReducer = (state = {}, action) => {
 	switch (action.type) {
 		case RECEIVE_SERCHING_DATA:
 			return { ...state, ...action.payload };
-		case SET_SEARCH_WORD:
+		case RECEIVE_SEARCH_WORD:
 			const searchWord =
 				action.payload.term === "city"
 					? action.payload.cleanSuggestion +
@@ -60,6 +80,8 @@ const searchFiltersReducer = (state = {}, action) => {
 				searchWord,
 				term: action.payload.term,
 			};
+    case RECEIVE_LISTING_TYPE:
+      return {...state, listingType: action.payload}
 		default:
 			return state;
 	}
