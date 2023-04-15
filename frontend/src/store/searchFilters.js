@@ -49,7 +49,6 @@ export const setSearchWordToLocalStorage =
     );
 
     localStorage.setItem("searchWord", searchWordObj);
-    debugger;
 
     dispatch(setSearchWord({ citySuffix, cleanSuggestion, term }));
   };
@@ -89,7 +88,6 @@ const searchFiltersReducer = (state = {}, action) => {
           ? action.payload.cleanSuggestion + ", " + action.payload.citySuffix
           : action.payload.cleanSuggestion;
 
-      debugger;
       return {
         ...state,
         searchWord,

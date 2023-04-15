@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getPrice } from "../../../../store/searchFilters";
 import DropDown from "../DropDown";
 import Input from "./Input";
 import PriceDropDown from "./PriceDropDown";
@@ -6,8 +8,25 @@ import PriceDropDown from "./PriceDropDown";
 import "./PriceRange.scss";
 
 const PriceRange = () => {
-  const [maxValue, setMaxValue] = useState();
-  const [minValue, setMinValue] = useState();
+  const localStorageMinPrice = useSelector(getPrice("No Min"));
+  const localStorageMaxPrice = useSelector(getPrice("No Max"));
+
+
+  const [maxValue, setMaxValue] = useState(localStorageMaxPrice);
+  const [minValue, setMinValue] = useState(localStorageMinPrice);
+
+
+  useEffect(() => {
+    if (localStorageMaxPrice) {
+      setMaxValue(localStorageMaxPrice);
+    }
+
+    if (localStorageMinPrice) {
+     setMinValue(localStorageMinPrice);
+    }
+
+  }, [localStorageMaxPrice, localStorageMinPrice]);
+
   const [minRangeDropdown, setMinRangeDropdown] = useState(false);
   const [maxRangeDropdown, setMaxRangeDropdown] = useState(false);
 

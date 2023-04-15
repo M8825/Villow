@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+
+import { digitsMatcher } from "../../searchUtils";
 import { parsePrice } from "../../../utils/utils";
+import { getPrice, setPrice } from "../../../../store/searchFilters";
 
 import "./Input.scss";
-import { digitsMatcher } from "../../searchUtils";
-import { useDispatch, useSelector } from "react-redux";
-import { getPrice, setPrice } from "../../../../store/searchFilters";
 
 const Input = ({
   value,
@@ -32,6 +33,20 @@ const Input = ({
         }
 
         setFocused({ isFocused: false });
+
+        // Check if user click on price dropdown
+        if (e.target.offsetParent.className === "price-listPriceDropDown") {
+          // Grab price from dropdown
+          const dropdownPrice = e.target.innerText.slice(1);
+
+          // Check if clicked price is different from current price 
+          // for relevant input in state. By relevant input I mean
+          // it checks based on the placeholder value, which input 
+          // value is being changed - min or max.
+          if (dropdownPrice !== filterPrice ) {
+            dispatch(setPrice(placeholder, dropdownPrice)); // Dispatch to update store and localStorage
+          }
+        }
       }
     }
 
@@ -39,12 +54,6 @@ const Input = ({
       const dropDownElement = document.getElementById("drpdwn");
 
       dropDownElement.addEventListener("click", handleOutside);
-    }
-
-    if (!focused.isFocused) {
-      if (value !== "" && filterPrice !== value) {
-        dispatch(setPrice(placeholder, value));
-      }
     }
 
     return () => {

@@ -17,8 +17,8 @@ export const stringifySearchWordObj = (citySuffix, cleanSuggestion, term) => {
 export const getLocalStorageSearchCredentials = () => {
   const localStorageObj = JSON.parse(localStorage.getItem("searchWord"));
   let listingType = localStorage.getItem("listingType");
-  const  minPrice =  localStorage.getItem('minPrice');
-  const  maxPrice =  localStorage.getItem('maxPrice');
+  const minPrice = localStorage.getItem("minPrice");
+  const maxPrice = localStorage.getItem("maxPrice");
 
   let searchWord;
   let term;
@@ -43,7 +43,7 @@ export const getLocalStorageSearchCredentials = () => {
     localStorage.setItem("maxPrice", null);
 
     // Recursively set default credentials for seach functinality
-    return getLocalStorageSearchCredentials()
+    return getLocalStorageSearchCredentials();
   }
 
   return { term, searchWord, listingType, minPrice, maxPrice };
@@ -65,10 +65,9 @@ export const cleanLocalStorageSearchCredentials = () => {
   };
 };
 
+export const stringifyPriceObj = (placeholder, value) => {
+  const priceRangeLable = placeholder === "No Min" ? "Min" : "Max";
+  const priceNumber = parseInt(value.split(",").join(""));
 
-export const stringifyPriceObj  = (placeholder, value) => {
-      const priceRangeLable = placeholder === "No Min" ? "Min" : "Max";
-      const priceNumber = parseInt(value.split(",").join(""));
-
-      return JSON.stringify({ priceRangeLable, priceNumber });
-}
+  return JSON.stringify({ priceRangeLable, priceNumber });
+};
