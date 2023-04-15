@@ -28,12 +28,10 @@ const IndexSearch = ({
 }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
-  const searchWord =  useSelector(getSearchWord());
+  const searchWord = useSelector(getSearchWord());
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
   // const [searchWord, setSearchWord] = useState(initialSearchWord);
-
-  console.log("Search word: ",  searchWord);
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());

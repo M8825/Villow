@@ -16,11 +16,7 @@ export const getSuggestions = () => (state) => {
   return null;
 };
 
-export const getPrice = ()  =>  (state) => {
-  if (state && state.search) {
 
-  }
-}
 const receiveSuggestions = (suggestions) => ({
   type: RECEIVE_SUGGESTIONS,
   suggestions,

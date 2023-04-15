@@ -5,9 +5,8 @@ import { parsePrice } from "../../../utils/utils";
 
 import "./Input.scss";
 import { digitsMatcher } from "../../searchUtils";
-import { useDispatch } from "react-redux";
-import { fetchSearchListings } from "../../../../store/listingsReducer";
-import { stringifyPriceObj } from "../../../../store/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { getPrice, setPrice } from "../../../../store/searchFilters";
 
 const Input = ({
   value,
@@ -17,6 +16,7 @@ const Input = ({
   placeholder,
 }) => {
   const dispatch = useDispatch();
+  const filterPrice = useSelector(getPrice(placeholder));
   const inputContainerRef = useRef();
   const inputRef = useRef();
 
@@ -35,7 +35,6 @@ const Input = ({
       }
     }
 
-
     if (focused.isFocused) {
       const dropDownElement = document.getElementById("drpdwn");
 
@@ -43,13 +42,9 @@ const Input = ({
     }
 
     if (!focused.isFocused) {
-      debugger
-
-      const priceObj = stringifyPriceObj(placeholder, value);
-
-      localStorage.setItem("price", priceObj);
-
-      dispatch(fetchSearchListings());
+      if (value !== "" && filterPrice !== value) {
+        dispatch(setPrice(placeholder, value));
+      }
     }
 
     return () => {
