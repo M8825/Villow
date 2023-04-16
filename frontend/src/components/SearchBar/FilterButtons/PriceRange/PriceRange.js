@@ -99,6 +99,7 @@ const PriceRange = () => {
                 placeholder="No Min"
                 focused={minFocused}
                 setFocused={setMinFocused}
+                rangeDropdown={setMinRangeDropdown}
               />
             </label>
             {minRangeDropdown && (
@@ -123,6 +124,7 @@ const PriceRange = () => {
                 setMaxValueOnClick={setMaxValueOnClick}
                 focused={maxFocused}
                 setFocused={setMaxFocused}
+                rangeDropdown={setMaxRangeDropdown}
               />
             </label>
             {maxRangeDropdown && (

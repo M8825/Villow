@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +17,7 @@ const Input = ({
   placeholder,
   focused,
   setFocused,
+  rangeDropdown
 }) => {
   const dispatch = useDispatch();
   const filterPrice = useSelector(getPrice(placeholder));
@@ -42,6 +43,7 @@ const Input = ({
         }
 
         setFocused({ isFocused: false });
+        rangeDropdown(false);
 
         // Check if user click on price dropdown
         if (e.target.offsetParent.className === "price-listPriceDropDown") {
