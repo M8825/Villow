@@ -6,7 +6,6 @@ import Input from "./Input";
 import PriceDropDown from "./PriceDropDown";
 
 import "./PriceRange.scss";
-
 const PriceRange = () => {
   const localStorageMinPrice = useSelector(getPrice("No Min"));
   const localStorageMaxPrice = useSelector(getPrice("No Max"));
@@ -14,6 +13,8 @@ const PriceRange = () => {
   const [maxValue, setMaxValue] = useState(localStorageMaxPrice);
   const [minValue, setMinValue] = useState(localStorageMinPrice);
 
+  const [minFocused, setMinFocused] = useState({ isFocused: false });
+  const [maxFocused, setMaxFocused] = useState({ isFocused: false });
 
   useEffect(() => {
     if (localStorageMaxPrice) {
@@ -21,9 +22,8 @@ const PriceRange = () => {
     }
 
     if (localStorageMinPrice) {
-     setMinValue(localStorageMinPrice);
+      setMinValue(localStorageMinPrice);
     }
-
   }, [localStorageMaxPrice, localStorageMinPrice]);
 
   const [minRangeDropdown, setMinRangeDropdown] = useState(false);
@@ -79,7 +79,11 @@ const PriceRange = () => {
       <DropDown
         buttonValue={"Price"}
         onClose={{ setMinRangeDropdown, setMaxRangeDropdown }}
-        maxValue={maxValueOnClick}
+        minValue={minValue}
+        maxValue={maxValue}
+        maxValueOnClick={maxValueOnClick}
+        setMinFocused={setMinFocused}
+        setMaxFocused={setMaxFocused}
       >
         <div className="title">
           <p>Price Range</p>
@@ -93,6 +97,8 @@ const PriceRange = () => {
                 setValue={setMinValue}
                 clickLable={handleClickMin}
                 placeholder="No Min"
+                focused={minFocused}
+                setFocused={setMinFocused}
               />
             </label>
             {minRangeDropdown && (
@@ -115,6 +121,8 @@ const PriceRange = () => {
                 clickLable={handleClickMax}
                 placeholder="No Max"
                 setMaxValueOnClick={setMaxValueOnClick}
+                focused={maxFocused}
+                setFocused={setMaxFocused}
               />
             </label>
             {maxRangeDropdown && (

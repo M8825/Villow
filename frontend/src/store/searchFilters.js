@@ -27,6 +27,16 @@ export const getSearchWord = () => (state) => {
   return null;
 };
 
+export const getPrice = (priceLabel) => (state) => {
+  if (state && state.searchFilter) {
+    priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice";
+
+    return state.searchFilter[priceLabel];
+  }
+
+  return null;
+};
+
 export const setSearchWordToLocalStorage =
   (citySuffix, cleanSuggestion, term) => (dispatch) => {
     const searchWordObj = stringifySearchWordObj(
@@ -40,11 +50,6 @@ export const setSearchWordToLocalStorage =
     dispatch(setSearchWord({ citySuffix, cleanSuggestion, term }));
   };
 
-export const setInitialSearchingData = (localStorageData) => (dispatch) => {
-  if (localStorageData) {
-    dispatch(receiveSearchData(localStorageData));
-  }
-};
 
 export const setListingType = (listingType) => (dispatch) => {
   localStorage.setItem("listingType", listingType);
@@ -64,14 +69,10 @@ export const setPrice = (priceLabel, price) => (dispatch) => {
   dispatch(receiveSearchData({ [label]: price }));
 };
 
-export const getPrice = (priceLabel) => (state) => {
-  if (state && state.searchFilter) {
-    priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice";
-
-    return state.searchFilter[priceLabel];
+export const setInitialSearchingData = (localStorageData) => (dispatch) => {
+  if (localStorageData) {
+    dispatch(receiveSearchData(localStorageData));
   }
-
-  return null;
 };
 
 const searchFiltersReducer = (state = {}, action) => {

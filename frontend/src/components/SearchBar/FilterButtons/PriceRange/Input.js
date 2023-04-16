@@ -15,13 +15,22 @@ const Input = ({
   clickLable,
   setMaxValueOnClick = null,
   placeholder,
+  focused,
+  setFocused,
 }) => {
   const dispatch = useDispatch();
   const filterPrice = useSelector(getPrice(placeholder));
   const inputContainerRef = useRef();
   const inputRef = useRef();
+  const focusRef = useRef(focused);
 
-  const [focused, setFocused] = useState({ isFocused: false });
+  const priceValue = useRef(value);
+
+  useEffect(() => {
+    priceValue.current = value;
+    focusRef.current = focused;
+  }, [value, focused]);
+
 
   useEffect(() => {
     function handleOutside(e) {
@@ -39,23 +48,22 @@ const Input = ({
           // Grab price from dropdown
           const dropdownPrice = e.target.innerText.slice(1);
 
-          // Check if clicked price is different from current price 
+          // Check if clicked price is different from current price
           // for relevant input in state. By relevant input I mean
-          // it checks based on the placeholder value, which input 
+          // it checks based on the placeholder value, which input
           // value is being changed - min or max.
-          if (dropdownPrice !== filterPrice ) {
+          if (dropdownPrice !== filterPrice) {
             dispatch(setPrice(placeholder, dropdownPrice)); // Dispatch to update store and localStorage
           }
         } else {
-          if (value !== filterPrice) {
-            debugger
-            dispatch(setPrice(placeholder, value)); // Dispatch to update store and localStorage
+          if (priceValue.current !== filterPrice) {
+            dispatch(setPrice(placeholder, priceValue.current)); // Dispatch to update store and localStorage
           }
         }
       }
     }
 
-    if (focused.isFocused) {
+    if (focusRef.current.isFocused) {
       const dropDownElement = document.getElementById("drpdwn");
 
       dropDownElement.addEventListener("click", handleOutside);
@@ -86,6 +94,7 @@ const Input = ({
     e.preventDefault();
 
     inputRef.current.focus();
+
     setFocused({ isFocused: true });
 
     inputContainerRef.current.classList.add("focused");
@@ -132,7 +141,7 @@ const Input = ({
         onChange={handleOnChange}
         placeholder={placeholder}
       />
-      <FontAwesomeIcon icon={focused.isFocused ? faAngleUp : faAngleDown} />
+      <FontAwesomeIcon icon={focusRef.current.isFocused ? faAngleUp : faAngleDown} />
     </div>
   );
 };

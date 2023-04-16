@@ -1,6 +1,7 @@
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useRef, useState } from "react";
+import { useDropdown } from "./useDropdown";
+
 import "./DropDown.scss";
 
 const DropDown = (props) => {
@@ -8,49 +9,20 @@ const DropDown = (props) => {
     children,
     buttonValue,
     containerWidth,
+    minValue,
     maxValue,
+    maxValueOnClick,
     onClose,
   } = props;
-  const buttonRef = useRef();
 
-  const [dropDown, setDropDown] = useState(false);
-  const [dropDownWidth, setDropDownWidth] = useState("auto");
-
-  useEffect(() => {
-    setDropDownWidth(containerWidth);
-  }, [dropDown, children]);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        dropDown &&
-        buttonRef.current &&
-        !buttonRef.current.contains(e.target)
-      ) {
-        // Close button main dropdown window
-        setDropDown(false);
-
-        // Close inner price range dropdown windows in children
-        const { setMinRangeDropdown, setMaxRangeDropdown } = onClose;
-
-        setMinRangeDropdown(false);
-        setMaxRangeDropdown(false);
-      }
-    };
-
-    if (dropDown) {
-      document.addEventListener("click", handleClickOutside);
-    }
-
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [dropDown]);
-
-  // Close dropdown if in PriceRange user sets Max Price for listing
-  useEffect(() => {
-    if (maxValue) {
-      setDropDown(false);
-    }
-  }, [maxValue]);
+  // Costum hook
+  const { dropDown, setDropDown, dropDownWidth, buttonRef } = useDropdown(
+    containerWidth,
+    minValue,
+    maxValue,
+    maxValueOnClick,
+    onClose
+  );
 
   function onForSaleButtonClick(e) {
     if (e.currentTarget === buttonRef.current) {
@@ -62,7 +34,6 @@ const DropDown = (props) => {
     e.preventDefault();
 
     setDropDown(false);
-
   }
 
   return (
