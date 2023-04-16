@@ -26,11 +26,6 @@ const receiveFavorites = (favorites) => ({
   favorites,
 });
 
-const removeListings = (listingIds) => ({
-  type: REMOVE_LISTINGS,
-  listingIds,
-});
-
 const clearListings = () => ({
   type: CLEAR_LISTINGS,
 });
