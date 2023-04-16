@@ -1,19 +1,8 @@
 import { stringifySearchWordObj } from "./utils";
 
-// Searching
 const RECEIVE_SERCHING_DATA = "localstorage/RECEIVE_SERCHING_DATA";
 const RECEIVE_SEARCH_WORD = "localstorage/RECEIVE_SEARCH_WORD";
 const RECEIVE_LISTING_TYPE = "localstorage/RECEIVE_LISTING_TYPE";
-
-export const getPrice = (priceLabel) => (state) => {
-  if (state && state.searchFilter) {
-    priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice";
-
-    return state.searchFilter[priceLabel];
-  }
-
-  return null;
-};
 
 const receiveSearchData = (payload) => ({
   type: RECEIVE_SERCHING_DATA,
@@ -37,8 +26,6 @@ export const getSearchWord = () => (state) => {
 
   return null;
 };
-
-
 
 export const setSearchWordToLocalStorage =
   (citySuffix, cleanSuggestion, term) => (dispatch) => {
@@ -65,9 +52,8 @@ export const setListingType = (listingType) => (dispatch) => {
   dispatch(receiveListingType(listingType));
 };
 
-
 function getPriceLabel(priceLabel) {
-  return priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice";
+  return (priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice");
 }
 
 export const setPrice = (priceLabel, price) => (dispatch) => {
@@ -76,6 +62,16 @@ export const setPrice = (priceLabel, price) => (dispatch) => {
   localStorage.setItem(`${label}`, price);
 
   dispatch(receiveSearchData({ [label]: price }));
+};
+
+export const getPrice = (priceLabel) => (state) => {
+  if (state && state.searchFilter) {
+    priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice";
+
+    return state.searchFilter[priceLabel];
+  }
+
+  return null;
 };
 
 const searchFiltersReducer = (state = {}, action) => {

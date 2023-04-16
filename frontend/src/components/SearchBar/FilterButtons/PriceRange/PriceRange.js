@@ -11,7 +11,6 @@ const PriceRange = () => {
   const localStorageMinPrice = useSelector(getPrice("No Min"));
   const localStorageMaxPrice = useSelector(getPrice("No Max"));
 
-
   const [maxValue, setMaxValue] = useState(localStorageMaxPrice);
   const [minValue, setMinValue] = useState(localStorageMinPrice);
 

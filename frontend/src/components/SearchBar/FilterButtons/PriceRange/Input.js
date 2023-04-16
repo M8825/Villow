@@ -46,6 +46,11 @@ const Input = ({
           if (dropdownPrice !== filterPrice ) {
             dispatch(setPrice(placeholder, dropdownPrice)); // Dispatch to update store and localStorage
           }
+        } else {
+          if (value !== filterPrice) {
+            debugger
+            dispatch(setPrice(placeholder, value)); // Dispatch to update store and localStorage
+          }
         }
       }
     }
