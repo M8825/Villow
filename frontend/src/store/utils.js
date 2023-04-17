@@ -39,8 +39,8 @@ export const getLocalStorageSearchCredentials = () => {
     const searchWordObj = stringifySearchWordObj("NY", "New York", "city");
     localStorage.setItem("searchWord", searchWordObj);
     localStorage.setItem("listingType", "Sale");
-    localStorage.setItem("minPrice", null);
-    localStorage.setItem("maxPrice", null);
+    localStorage.setItem("minPrice", "");
+    localStorage.setItem("maxPrice", "");
 
     // Recursively set default credentials for seach functinality
     return getLocalStorageSearchCredentials();
@@ -51,7 +51,8 @@ export const getLocalStorageSearchCredentials = () => {
 
 // Grab search filters from localstorage and
 export const cleanLocalStorageSearchCredentials = () => {
-  let { term, searchWord, listingType } = getLocalStorageSearchCredentials();
+  let { term, searchWord, listingType, minPrice, maxPrice } =
+    getLocalStorageSearchCredentials();
 
   searchWord = searchWord.split(",")[0]; // Grab only city form "City, State" string
 
@@ -62,12 +63,7 @@ export const cleanLocalStorageSearchCredentials = () => {
     [term]: encodedSeachValue,
     term,
     listing_type: listingType,
+    min_price: minPrice,
+    max_price: maxPrice,
   };
-};
-
-export const stringifyPriceObj = (placeholder, value) => {
-  const priceRangeLable = placeholder === "No Min" ? "Min" : "Max";
-  const priceNumber = parseInt(value.split(",").join(""));
-
-  return JSON.stringify({ priceRangeLable, priceNumber });
 };

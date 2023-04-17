@@ -1,62 +1,39 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 import ListingItem from "../ListingItem/ListingItem";
 
 import { getActiveUser } from "../../store/usersReducer";
+import { getFilter } from "../../store/searchFilters";
 import {
   getListings,
   fetchSearchListings,
   clearAllListings,
 } from "../../store/listingsReducer";
-import { getLocalStorageAll } from "../utils/fetchLocalStorage";
 
 import "./ListingsIndex.scss";
 
 const ListingsPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const filter = useSelector(getFilter());
+  const currentUser = useSelector(getActiveUser());
   const listings = useSelector(getListings);
 
+  const [reversed, setReversed] = useState(false);
+
+  // Fetch listings from database based on the search search filters
+  // on filter change
   useEffect(() => {
-    // fetch based on state, becase "city" actually requires "City, State"
-    // format. <search> action will not query the databse with empty
-    // string when term flag is "city"
-    const localStorageObj = getLocalStorageAll();
+    dispatch(fetchSearchListings());
 
-    let term;
-    let termValue;
-
-    if (localStorageObj.search_word) {
-      term = Object.keys(localStorageObj.search_word)[0];
-      termValue = Object.values(localStorageObj.search_word)[0];
-      delete localStorageObj.search_word;
-
-      dispatch(fetchSearchListings(term, termValue, localStorageObj));
-    }
-
+    // Clean up listings
     return () => {
       dispatch(clearAllListings());
     };
-  }, []);
-
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const [reversed, setReversed] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-    history.push("/listings/listingId");
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    history.push("/listings");
-  };
-
-  const currentUser = useSelector(getActiveUser());
+  }, [filter]);
 
   const listingStyling = {
     flexBasis: "49%",

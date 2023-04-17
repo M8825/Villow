@@ -8,7 +8,6 @@ const REMOVE_LISTINGS = "api/listings/REMOVE_LISTINGS";
 const RECEIVE_FAVORITES = "api/listings/RECEIVE_FAVORITES";
 const CLEAR_LISTINGS = "api/listings/CLEAR_LISTINGS";
 
-
 // TODO: add remove and update listing
 
 const receiveListings = (listings) => ({
@@ -50,7 +49,6 @@ export const getListing = (id) => (state) => {
 
   return null;
 };
-
 
 export const fetchListings = () => async (dispatch) => {
   const res = await csrfFetch("/api/listings");
@@ -136,7 +134,7 @@ export const addFavorite = (userId, listingId) => async (dispatch) => {
 };
 
 export const removeFavorite = (userId, listingId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/users/${userId}/favorites/${listingId}`, {
+  const res = await csrfFetch(`/api/users/listings${userId}/favorites/${listingId}`, {
     method: "DELETE",
     body: JSON.stringify({ listing: { listing_id: listingId } }),
   });

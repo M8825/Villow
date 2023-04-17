@@ -5,9 +5,6 @@ const RECEIVE_SUGGESTIONS = "api/search/RECEIVE_SUGGESTIONS";
 const CLEAN_SUGGESTIONS = "CLEAN_SUGGESTIONS";
 
 
-
-
-
 export const getSuggestions = () => (state) => {
   if (state && state.search) {
     return Object.values(state.search);

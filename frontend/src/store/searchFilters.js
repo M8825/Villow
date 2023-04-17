@@ -27,6 +27,15 @@ export const getSearchWord = () => (state) => {
   return null;
 };
 
+export const getFilter = () => (state) => {
+  if (state && state.searchFilter) {
+    return state.searchFilter
+  }
+
+  return null
+}
+
+
 export const getPrice = (priceLabel) => (state) => {
   if (state && state.searchFilter) {
     priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice";
@@ -64,6 +73,7 @@ function getPriceLabel(priceLabel) {
 export const setPrice = (priceLabel, price) => (dispatch) => {
   const label = getPriceLabel(priceLabel);
 
+  debugger
   localStorage.setItem(`${label}`, price);
 
   dispatch(receiveSearchData({ [label]: price }));

@@ -1,7 +1,6 @@
 import "./PriceDropDown.scss";
 
 const PriceDropDown = ({
-  setPrice,
   rangeFlag,
   rangeMarker,
   setMaxValueOnClick = null,
@@ -41,8 +40,6 @@ const PriceDropDown = ({
   function handleClick(e) {
     e.preventDefault();
     e.stopPropagation();
-
-    setPrice(e.target.textContent.slice(1));
 
     if (setMaxValueOnClick) {
       setMaxValueOnClick(true);

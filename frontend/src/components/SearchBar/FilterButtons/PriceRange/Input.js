@@ -17,7 +17,7 @@ const Input = ({
   placeholder,
   focused,
   setFocused,
-  rangeDropdown
+  rangeDropdown,
 }) => {
   const dispatch = useDispatch();
   const filterPrice = useSelector(getPrice(placeholder));
@@ -31,7 +31,6 @@ const Input = ({
     priceValue.current = value;
     focusRef.current = focused;
   }, [value, focused]);
-
 
   useEffect(() => {
     function handleOutside(e) {
@@ -55,6 +54,7 @@ const Input = ({
           // it checks based on the placeholder value, which input
           // value is being changed - min or max.
           if (dropdownPrice !== filterPrice) {
+            debugger
             dispatch(setPrice(placeholder, dropdownPrice)); // Dispatch to update store and localStorage
           }
         } else {
@@ -78,6 +78,7 @@ const Input = ({
         dropDownElement.removeEventListener("click", handleOutside);
       }
     };
+    // eslint-disable-next-line
   }, [focused]);
 
   function handleHover(e) {
@@ -143,7 +144,9 @@ const Input = ({
         onChange={handleOnChange}
         placeholder={placeholder}
       />
-      <FontAwesomeIcon icon={focusRef.current.isFocused ? faAngleUp : faAngleDown} />
+      <FontAwesomeIcon
+        icon={focusRef.current.isFocused ? faAngleUp : faAngleDown}
+      />
     </div>
   );
 };
