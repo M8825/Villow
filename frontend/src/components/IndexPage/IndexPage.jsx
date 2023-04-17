@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocalStorageSearchCredentials } from "../../store/utils";
-import ListingsPage from "../ListingsIndex/ListingsIndex";
+import Listings from "../ListingsIndex/Listings";
 import SearchBar from "../SearchBar/SearchBar";
 import { setInitialSearchingData } from "../../store/searchFilters";
 
@@ -22,7 +22,7 @@ const IndexPage = () => {
       <SearchBar />
       <div className="index-page-container">
         <div style={{ width: "50vw", height: "100vh" }}>MAP COMMING</div>
-        <ListingsPage />
+        <Listings />
       </div>
     </>
   );

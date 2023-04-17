@@ -14,9 +14,9 @@ import {
   clearAllListings,
 } from "../../store/listingsReducer";
 
-import "./ListingsIndex.scss";
+import "./Listings.scss";
 
-const ListingsPage = () => {
+const Listings = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter());
   const currentUser = useSelector(getActiveUser());
@@ -104,4 +104,4 @@ const ListingsPage = () => {
   );
 };
 
-export default ListingsPage;
+export default Listings;
