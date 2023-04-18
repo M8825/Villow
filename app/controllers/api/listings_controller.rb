@@ -4,9 +4,8 @@ require 'uri'
 
 module Api
   class ListingsController < ApplicationController
-    # rubocop:disable Metrics/MethodLength
-    # only allow index action if URL includes user_id
     # without a user session
+    # only allow index action if URL includes user_id
     before_action :require_logged_in,
                   only: [:index],
                   if: proc { params[:user_id] && !current_user }
@@ -123,13 +122,13 @@ module Api
     def add_price_constraints_to_query_hash
       price_constains = {}
 
-      if params[:min_price] # add minumin constain
+      unless params[:min_price].empty? # add minumin constain
         min_int_price = price_to_int(params[:min_price])
 
         price_constains['price >= :mininum_price'] = { mininum_price: min_int_price }
       end
 
-      return unless params[:max_price] # return or add maximum constains
+      return price_constains if params[:max_price].empty? # return or add maximum constains
 
       max_int_price = price_to_int(params[:max_price])
 
@@ -172,12 +171,13 @@ module Api
       Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
     end
 
-    def parse_suggestions
-      # Grab the term we're searching for - city, state, zipcode or address
-      term = params[:term]
+    # If the term is 'city', we need to return both the city and state
+    def parse_term
+      params[:term] == 'city' ? [term, :state] : [term]
+    end
 
-      # If the term is 'city', we need to return both the city and state
-      response_columns = term == 'city' ? [term, :state] : [term]
+    def parse_suggestions
+      term = parse_term
 
       # Grab all the unique values for the given listing
       # attribute and return them as an array
@@ -186,11 +186,7 @@ module Api
                              .map { |suggestion| suggestion.is_a?(Integer) ? suggestion.to_s : suggestion }
 
       suggestions.map do |suggestion|
-        if term == 'city'
-          "#{suggestion[0]}, #{suggestion[1]}"
-        else
-          suggestion
-        end
+        term == 'city' ? "#{suggestion[0]}, #{suggestion[1]}" : suggestion
       end
     end
   end

@@ -83,15 +83,19 @@
 
 
 ## Fix
-[ ] - Listing index doesn't work if user is not signed in.
+[ ] - Listing index doesn't work i user is not signed in.
 [ ] - If user is not signed in, search suggestion click breaks index page 
-[ ] - For splash search, when you make initial requst to the database for
+[ ] - NOT IMPORTANT :: For splash search, when you make initial requst to the database for
       suggestions, after your receive suggestions from DB, on every additional
       onChange BEFORE you make new request to the database, check if search 
       input substring matches any record in redux state first. If there are
       no matching state suggestions, THAN make new request to DB.
 [ ] - Unutorithed users shouldn't be able to land listing createion page
 
+### Price range
+[-] - When the user clicks on minimum price range option button, the dropdown 
+      menu closes automatically. It should only close automatically when the 
+      user clicks on the maximum price range option.
 
 # NOTE:
 - Last workin commit - Ref: fetch on praice range option selection - to fetch
@@ -99,9 +103,10 @@
 
 # Git commits for today.
 
-- Gifeat: A new feature has been added
+- Git log --since=midnight --until=now --oneline
 
 ## Important abbreviations
+
 fix: A bug has been fixed
 docs: Changes have been made to documentation
 style: Changes have been made to code formatting, but not to functionality

@@ -80,9 +80,8 @@ const Footer = () => {
 							LinkedIn
 						</a>
 					</li>
-					{/* TODO: Change AngelList profile link */}
 					<li>
-						<a href="https://angel.co/">AngelList</a>
+						<a href="https://wellfound.com/u/malkhaz-mamulashvili">AngelList</a>
 					</li>
 				</ul>
 				<hr />

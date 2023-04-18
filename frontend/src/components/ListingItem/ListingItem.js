@@ -118,17 +118,6 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
                   {" "}
                   LISTING BY: {"Mlkz".toUpperCase()}
                 </p>
-                {userId === listing.ownerId ? (
-                  <button
-                    onMouseEnter={() => setColor("rgb(44, 104, 246)")}
-                    onMouseLeave={() => setColor("black")}
-                    style={{ color: color }}
-                  >
-                    <Link to={`/listings/${listing.id}/edit`}>
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                    </Link>
-                  </button>
-                ) : null}
               </div>
             </div>
           </div>
