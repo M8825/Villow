@@ -47,7 +47,7 @@ export const useDropdown = (
 
         // Update state if input values have changed
         if (minValueRef.current && minValueRef.current !== stateMinPrice) {
-          debugger
+          debugger;
           dispatch(setPrice("No Min", minValueRef.current)); // Dispatch to update store and localStorage
         }
 
@@ -64,16 +64,19 @@ export const useDropdown = (
           setMaxRangeDropdown(false);
         }
 
+        document.removeEventListener("click", handleClickOutside);
         // Close active search filter button's dropdown window
         setDropDown(false);
       }
     };
 
     if (dropDown) {
-      document.addEventListener("click", (e) => handleClickOutside(e));
+      document.addEventListener("click", handleClickOutside);
     }
 
-    return () => document.removeEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, [dropDown]);
 
   // Close dropdown if in PriceRange user sets Max Price for listing

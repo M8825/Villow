@@ -74,7 +74,6 @@ export const setPrice = (priceLabel, price) => (dispatch) => {
   const label = getPriceLabel(priceLabel);
 
   localStorage.setItem(`${label}`, price);
-
   dispatch(receiveSearchData({ [label]: price }));
 };
 
