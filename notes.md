@@ -99,4 +99,16 @@
 
 # Git commits for today.
 
-- Git log --since=midnight --until=now --oneline
+- Gifeat: A new feature has been added
+
+## Important abbreviations
+fix: A bug has been fixed
+docs: Changes have been made to documentation
+style: Changes have been made to code formatting, but not to functionality
+refactor: Changes have been made to code that does not affect functionality
+test: Changes have been made to test cases
+chore: Changes have been made to build processes or tools
+perf: A performance improvement has been made
+ci: Changes have been made to the Continuous Integration (CI) pipeline
+build: Changes have been made to the build process
+revert: A previous commit has been revertedt log --since=midnight --until=now --oneline

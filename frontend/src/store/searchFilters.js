@@ -73,7 +73,6 @@ function getPriceLabel(priceLabel) {
 export const setPrice = (priceLabel, price) => (dispatch) => {
   const label = getPriceLabel(priceLabel);
 
-  debugger
   localStorage.setItem(`${label}`, price);
 
   dispatch(receiveSearchData({ [label]: price }));

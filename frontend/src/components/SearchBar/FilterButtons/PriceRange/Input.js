@@ -54,7 +54,6 @@ const Input = ({
           // it checks based on the placeholder value, which input
           // value is being changed - min or max.
           if (dropdownPrice !== filterPrice) {
-            debugger
             dispatch(setPrice(placeholder, dropdownPrice)); // Dispatch to update store and localStorage
           }
         } else {

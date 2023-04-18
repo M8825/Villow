@@ -150,7 +150,6 @@ export const fetchSearchListings =
   async (dispatch) => {
     // Make sure to encode for URL safe character like #
     // prevent params from being cut off
-    //
 
     const baseParams = cleanLocalStorageSearchCredentials();
 

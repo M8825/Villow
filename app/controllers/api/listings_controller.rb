@@ -125,7 +125,7 @@ module Api
     def query_listings
       query_hash = {}
 
-      params.except(:term).each do |key, value|
+      params.except(:term, :min_price, :max_price).each do |key, value|
         next unless Listing.column_names.include?(key)
 
         escaped_value = Listing.sanitize_sql_like(value)
@@ -133,6 +133,22 @@ module Api
 
         query_hash["#{key}::text ILIKE :#{key}"] =
           { "#{key}": "%#{decoded_query_string}%" }
+      end
+
+      # Add price where clause if it exists
+      #
+      # sanitizing params[:min_price] avoids sql injection by removing any
+      # character that can be used to perform SQL injection
+      #
+      # decode_www_form_component - decode percent-encoded (spaces in query params)
+      if params[:min_price]
+        # Clean and convert minimum price into integer
+        min_price_int = params[:min_price].split(',').join('').to_i
+
+        # min_price =
+        #   Listing.sanitize_sql_like(min_price_int)
+
+        query_hash['price >= :mininum_price'] = { mininum_price: min_price_int }
       end
 
       safe_query_db(query_hash)
