@@ -14,7 +14,6 @@ import SplashSearchInput from "./SearchInput";
 import IndexSearchInput from "./IndexSearchInput";
 
 import "./SearchBar.scss";
-import { SearchWord } from "./SearchWord";
 
 const SearchBar = () => {
   const location = useLocation();
@@ -41,13 +40,17 @@ const SearchBar = () => {
 
     document.body.addEventListener("click", hideSearchIcon);
 
-    return () => document.body.removeEventListener("click", hideSearchIcon);
+    return () => {
+      document.body.removeEventListener("click", hideSearchIcon);
+    };
+
   }, []);
 
   useEffect(() => {
     if (suggestionsBox) {
       dispatch(cleanSearchSuggestions());
     }
+
     // clean on unmount
     return () => {
       dispatch(cleanSearchSuggestions());

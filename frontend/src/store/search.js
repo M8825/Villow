@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-import { objectToQuerySting } from "./utils";
+import { cleanLocalStorageSearchCredentials, objectToQuerySting } from "./utils";
 
 const RECEIVE_SUGGESTIONS = "api/search/RECEIVE_SUGGESTIONS";
 const CLEAN_SUGGESTIONS = "CLEAN_SUGGESTIONS";
@@ -31,11 +31,14 @@ export const searchSuggestions =
     let res;
 
     const baseParams = {
+      expected_response: 'suggestions',
       term: term,
-      [term]: searchString,
+      [term]: searchString
     };
 
-    const queryString = objectToQuerySting(baseParams);
+    const localStorageParams = cleanLocalStorageSearchCredentials();
+
+    const queryString = objectToQuerySting({...localStorageParams, ...baseParams});
 
     if (term) {
       res = await csrfFetch(

@@ -27,7 +27,6 @@ module Api
     end
 
     def search
-      # TODO(mlkz): address needs some modification to adjust JS streetAddress convention
       @current_user = current_user
       @listings = query_listings
 
@@ -173,11 +172,13 @@ module Api
 
     # If the term is 'city', we need to return both the city and state
     def parse_term
-      params[:term] == 'city' ? [term, :state] : [term]
+      term = params[:term]
+
+      term == 'city' ? [term, :state] : [term]
     end
 
     def parse_suggestions
-      term = parse_term
+      response_columns = parse_term
 
       # Grab all the unique values for the given listing
       # attribute and return them as an array
@@ -186,7 +187,7 @@ module Api
                              .map { |suggestion| suggestion.is_a?(Integer) ? suggestion.to_s : suggestion }
 
       suggestions.map do |suggestion|
-        term == 'city' ? "#{suggestion[0]}, #{suggestion[1]}" : suggestion
+        params[:term] == 'city' ? "#{suggestion[0]}, #{suggestion[1]}" : suggestion
       end
     end
   end

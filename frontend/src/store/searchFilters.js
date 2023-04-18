@@ -21,6 +21,7 @@ const receiveListingType = (payload) => ({
 
 export const getSearchWord = () => (state) => {
   if (state && state.searchFilter) {
+    debugger
     return state.searchFilter.searchWord;
   }
 
@@ -47,16 +48,13 @@ export const getPrice = (priceLabel) => (state) => {
 };
 
 export const setSearchWordToLocalStorage =
-  (citySuffix, cleanSuggestion, term) => (dispatch) => {
-    const searchWordObj = stringifySearchWordObj(
-      citySuffix,
-      cleanSuggestion,
-      term
-    );
+  (citySuffix, searchWord, term) => (dispatch) => {
 
-    localStorage.setItem("searchWord", searchWordObj);
+    localStorage.setItem("citySuffix", citySuffix);
+    localStorage.setItem("searchWord", searchWord);
+    localStorage.setItem("term", term);
 
-    dispatch(setSearchWord({ citySuffix, cleanSuggestion, term }));
+    dispatch(setSearchWord({ citySuffix, searchWord, term }));
   };
 
 

@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { fetchSearchListings } from "../../store/listingsReducer";
 import { getLocalStorageSearchCredentials } from "../../store/utils";
-import { stringifySearchWordObj } from "../../store/utils";
 import { setSearchWordToLocalStorage } from "../../store/searchFilters";
 
 export const useSuggestionItem = (term, suggestion) => {
@@ -20,10 +19,12 @@ export const useSuggestionItem = (term, suggestion) => {
     let cleanSuggestion = "";
     let citySuffix;
 
+    // Separate suggestions components if it's city - City, State
     if (term === "city") {
-      cleanSuggestion = suggestion.split(",")[0];
+      cleanSuggestion = suggestion.split(",")[0]
       citySuffix = suggestion.split(",")[1];
     } else {
+      // In case of zipcode or state there is nothing to separate
       cleanSuggestion = suggestion;
     }
 

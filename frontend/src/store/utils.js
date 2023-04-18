@@ -15,29 +15,21 @@ export const stringifySearchWordObj = (citySuffix, cleanSuggestion, term) => {
 };
 
 export const getLocalStorageSearchCredentials = () => {
-  const localStorageObj = JSON.parse(localStorage.getItem("searchWord"));
+  const searchWord = localStorage.getItem("searchWord");
+  const term = localStorage.getItem("term");
+  const citySuffix = localStorage.getItem("citySuffix");
   let listingType = localStorage.getItem("listingType");
   const minPrice = localStorage.getItem("minPrice");
   const maxPrice = localStorage.getItem("maxPrice");
 
-  let searchWord;
-  let term;
-
-  // Check if there is localStorage for an User
-  if (localStorageObj && listingType) {
-    searchWord = Object.values(localStorageObj)[0];
-
-    // If there is a city suffix, add it to the search word
-    // It should be a State like - NY, CA, FL, etc.
-    if (localStorageObj.citySuffix) {
-      searchWord += `,${localStorageObj.citySuffix}`;
-    }
-
-    term = localStorageObj.term;
+  // Check if there is localStorage items
+  if (term && searchWord && listingType && citySuffix) {
+    return { term, searchWord, listingType, minPrice, maxPrice, citySuffix };
   } else {
-    // If there is no localStorage for an User, set default values
-    const searchWordObj = stringifySearchWordObj("NY", "New York", "city");
-    localStorage.setItem("searchWord", searchWordObj);
+    // If there is no localStois there a way to arage for an User, set default values
+    localStorage.setItem("searchWord", "New York");
+    localStorage.setItem("term", "city");
+    localStorage.setItem("citySuffix", "NY");
     localStorage.setItem("listingType", "Sale");
     localStorage.setItem("minPrice", "");
     localStorage.setItem("maxPrice", "");
@@ -45,25 +37,26 @@ export const getLocalStorageSearchCredentials = () => {
     // Recursively set default credentials for seach functinality
     return getLocalStorageSearchCredentials();
   }
-
-  return { term, searchWord, listingType, minPrice, maxPrice };
 };
 
 // Grab search filters from localstorage and
 export const cleanLocalStorageSearchCredentials = () => {
-  let { term, searchWord, listingType, minPrice, maxPrice } =
+  let { term, searchWord, listingType, minPrice, maxPrice, citySuffix } =
     getLocalStorageSearchCredentials();
-
-  searchWord = searchWord.split(",")[0]; // Grab only city form "City, State" string
 
   const encodedSeachValue = encodeURIComponent(searchWord);
 
-  return {
-    expected_response: "listings", // Flag for back-end. Rails may receive suggestions flag
+  let queryObject = {
+    expected_response: "listings", // Flag for back-end. Rails may rqueryStringeceive suggestions flag
     [term]: encodedSeachValue,
     term,
+    citySuffix,
     listing_type: listingType,
     min_price: minPrice,
     max_price: maxPrice,
   };
+
+  delete queryObject["undefined"];
+
+  return queryObject;
 };

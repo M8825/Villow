@@ -47,7 +47,6 @@ export const useDropdown = (
 
         // Update state if input values have changed
         if (minValueRef.current && minValueRef.current !== stateMinPrice) {
-          debugger;
           dispatch(setPrice("No Min", minValueRef.current)); // Dispatch to update store and localStorage
         }
 

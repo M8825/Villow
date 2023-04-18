@@ -5,11 +5,13 @@ import { setSearchWordToLocalStorage } from "../../store/searchFilters";
 
 export const SearchWord = ({ searchWord }) => {
   const dispatch = useDispatch();
+
   const handleOnClickClose = (e) => {
     e.preventDefault();
 
-    dispatch(setSearchWordToLocalStorage(""));
 
+    // TODO: Reset search word
+    dispatch(setSearchWordToLocalStorage(""));
   };
 
   return (
