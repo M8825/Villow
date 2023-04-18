@@ -1,7 +1,11 @@
 // Build dynamic query string
 export const objectToQuerySting = (obj) => {
   return Object.keys(obj)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]))
+    .map((key) => {
+      const value = obj[key];
+
+      return encodeURIComponent(key) + "=" + encodeURIComponent(value);
+    })
     .join("&");
 };
 
@@ -17,19 +21,17 @@ export const stringifySearchWordObj = (citySuffix, cleanSuggestion, term) => {
 export const getLocalStorageSearchCredentials = () => {
   const searchWord = localStorage.getItem("searchWord");
   const term = localStorage.getItem("term");
-  const citySuffix = localStorage.getItem("citySuffix");
   let listingType = localStorage.getItem("listingType");
   const minPrice = localStorage.getItem("minPrice");
   const maxPrice = localStorage.getItem("maxPrice");
 
   // Check if there is localStorage items
-  if (term && searchWord && listingType && citySuffix) {
-    return { term, searchWord, listingType, minPrice, maxPrice, citySuffix };
+  if (term && searchWord && listingType) {
+    return { term, searchWord, listingType, minPrice, maxPrice };
   } else {
     // If there is no localStois there a way to arage for an User, set default values
-    localStorage.setItem("searchWord", "New York");
+    localStorage.setItem("searchWord", "New York, NY");
     localStorage.setItem("term", "city");
-    localStorage.setItem("citySuffix", "NY");
     localStorage.setItem("listingType", "Sale");
     localStorage.setItem("minPrice", "");
     localStorage.setItem("maxPrice", "");
@@ -44,7 +46,10 @@ export const cleanLocalStorageSearchCredentials = () => {
   let { term, searchWord, listingType, minPrice, maxPrice, citySuffix } =
     getLocalStorageSearchCredentials();
 
-  const encodedSeachValue = encodeURIComponent(searchWord);
+  const parsedSearchWord =
+    term === "city" ? searchWord.split(",")[0] : searchWord;
+
+  const encodedSeachValue = encodeURIComponent(parsedSearchWord);
 
   let queryObject = {
     expected_response: "listings", // Flag for back-end. Rails may rqueryStringeceive suggestions flag

@@ -86,7 +86,7 @@ const SearchBar = () => {
       setSuggestionsBox(false);
       setTerm("streetAddress");
 
-      dispatch(searchSuggestions(searchString, "streetAddress"));
+      dispatch(searchSuggestions(searchString, "address"));
     } else {
       // Clear search suggestions in state and display initial search box
       setSuggestionsBox(true);

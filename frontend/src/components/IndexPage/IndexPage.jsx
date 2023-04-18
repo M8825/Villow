@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { getLocalStorageSearchCredentials } from "../../store/utils";
 import Listings from "../ListingsIndex/Listings";
 import SearchBar from "../SearchBar/SearchBar";
 import { setInitialSearchingData } from "../../store/searchFilters";
 
 import "./IndexPage.scss";
-import { fetchSearchListings, getListings } from "../../store/listingsReducer";
 
 const IndexPage = () => {
   const dispatch = useDispatch();

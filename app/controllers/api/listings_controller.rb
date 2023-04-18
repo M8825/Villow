@@ -122,16 +122,12 @@ module Api
       price_constains = {}
 
       unless params[:min_price].empty? # add minumin constain
-        min_int_price = price_to_int(params[:min_price])
-
-        price_constains['price >= :mininum_price'] = { mininum_price: min_int_price }
+        price_constains['price >= ?'] = price_to_int(params[:min_price])
       end
 
       return price_constains if params[:max_price].empty? # return or add maximum constains
 
-      max_int_price = price_to_int(params[:max_price])
-
-      price_constains['price <= :maximum_price'] = { maximum_price: max_int_price }
+      price_constains['price <= ?'] = price_to_int(params[:max_price])
 
       price_constains
     end
@@ -151,12 +147,12 @@ module Api
 
         # Prevent SQL injection
         escaped_value = Listing.sanitize_sql_like(value)
+
         # Decode percent-encoded
         decoded_query_string = URI.decode_www_form_component(escaped_value)
 
         # build qury
-        query_hash["#{key}::text ILIKE :#{key}"] =
-          { "#{key}": "%#{decoded_query_string}%" }
+        query_hash["#{key}::text ILIKE ?"] = "%#{decoded_query_string}%"
       end
 
       query_hash
@@ -167,7 +163,7 @@ module Api
 
       query_hash.merge!(add_price_constraints_to_query_hash)
 
-      Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
+      Listing.where(query_hash.keys.join(' AND '), *query_hash.values)
     end
 
     # If the term is 'city', we need to return both the city and state

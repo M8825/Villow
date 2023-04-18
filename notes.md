@@ -117,3 +117,4 @@ perf: A performance improvement has been made
 ci: Changes have been made to the Continuous Integration (CI) pipeline
 build: Changes have been made to the build process
 revert: A previous commit has been revertedt log --since=midnight --until=now --oneline
+

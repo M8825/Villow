@@ -1,9 +1,11 @@
 import { csrfFetch } from "./csrf";
-import { cleanLocalStorageSearchCredentials, objectToQuerySting } from "./utils";
+import {
+  cleanLocalStorageSearchCredentials,
+  objectToQuerySting,
+} from "./utils";
 
 const RECEIVE_SUGGESTIONS = "api/search/RECEIVE_SUGGESTIONS";
 const CLEAN_SUGGESTIONS = "CLEAN_SUGGESTIONS";
-
 
 export const getSuggestions = () => (state) => {
   if (state && state.search) {
@@ -12,7 +14,6 @@ export const getSuggestions = () => (state) => {
 
   return null;
 };
-
 
 const receiveSuggestions = (suggestions) => ({
   type: RECEIVE_SUGGESTIONS,
@@ -23,28 +24,31 @@ const cleanSuggestions = () => ({
   type: CLEAN_SUGGESTIONS,
 });
 
-
-
 export const searchSuggestions =
   (searchString, term = null) =>
   async (dispatch) => {
     let res;
 
     const baseParams = {
-      expected_response: 'suggestions',
+      expected_response: "suggestions",
       term: term,
-      [term]: searchString
+      [term]: searchString,
     };
 
-    const localStorageParams = cleanLocalStorageSearchCredentials();
+    const { listing_type, min_price, max_price } =
+      cleanLocalStorageSearchCredentials();
 
-    const queryString = objectToQuerySting({...localStorageParams, ...baseParams});
+    const queryString = objectToQuerySting({
+      listing_type,
+      min_price,
+      max_price,
+      ...baseParams,
+    });
 
     if (term) {
-      res = await csrfFetch(
-        `/api/search?${queryString}`
-      );
-    } else { // TODO(mlkz): I think I have to get rid of it. this case never hits
+      res = await csrfFetch(`/api/search?${queryString}`);
+    } else {
+      // TODO(mlkz): I think I have to get rid of it. this case never hits
       res = await csrfFetch(
         `/api/listings?search_string${searchString}?search_term=${term}`
       );

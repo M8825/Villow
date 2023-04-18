@@ -46,8 +46,6 @@ export const getPrice = (priceLabel) => (state) => {
 
 export const setSearchWordToLocalStorage =
   (citySuffix, searchWord, term) => (dispatch) => {
-
-    localStorage.setItem("citySuffix", citySuffix);
     localStorage.setItem("searchWord", searchWord);
     localStorage.setItem("term", term);
 
@@ -83,14 +81,9 @@ const searchFiltersReducer = (state = {}, action) => {
     case RECEIVE_SERCHING_DATA:
       return { ...state, ...action.payload };
     case RECEIVE_SEARCH_WORD:
-      const searchWord =
-        action.payload.term === "city"
-          ? action.payload.searchWord + ", " + action.payload.citySuffix
-          : action.payload.searchWord;
-
       return {
         ...state,
-        searchWord,
+        searchWord: action.payload.searchWord,
         term: action.payload.term,
       };
     case RECEIVE_LISTING_TYPE:

@@ -20,15 +20,7 @@ export const useSuggestionItem = (term, suggestion) => {
     let citySuffix;
 
     // Separate suggestions components if it's city - City, State
-    if (term === "city") {
-      cleanSuggestion = suggestion.split(",")[0]
-      citySuffix = suggestion.split(",")[1];
-    } else {
-      // In case of zipcode or state there is nothing to separate
-      cleanSuggestion = suggestion;
-    }
-
-    dispatch(setSearchWordToLocalStorage(citySuffix, cleanSuggestion, term));
+    dispatch(setSearchWordToLocalStorage(citySuffix, suggestion, term));
 
 
     const { listingType } = getLocalStorageSearchCredentials();
