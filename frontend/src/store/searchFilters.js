@@ -1,5 +1,3 @@
-import { stringifySearchWordObj } from "./utils";
-
 const RECEIVE_SERCHING_DATA = "localstorage/RECEIVE_SERCHING_DATA";
 const RECEIVE_SEARCH_WORD = "localstorage/RECEIVE_SEARCH_WORD";
 const RECEIVE_LISTING_TYPE = "localstorage/RECEIVE_LISTING_TYPE";
@@ -21,7 +19,6 @@ const receiveListingType = (payload) => ({
 
 export const getSearchWord = () => (state) => {
   if (state && state.searchFilter) {
-    debugger
     return state.searchFilter.searchWord;
   }
 
@@ -88,8 +85,8 @@ const searchFiltersReducer = (state = {}, action) => {
     case RECEIVE_SEARCH_WORD:
       const searchWord =
         action.payload.term === "city"
-          ? action.payload.cleanSuggestion + ", " + action.payload.citySuffix
-          : action.payload.cleanSuggestion;
+          ? action.payload.searchWord + ", " + action.payload.citySuffix
+          : action.payload.searchWord;
 
       return {
         ...state,
