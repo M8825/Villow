@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :email,
             format: {
               with: URI::MailTo::EMAIL_REGEXP,
-              message: "- Invalid email format"
+              message: '- Invalid email format'
             },
             uniqueness: true
 
@@ -36,14 +36,10 @@ class User < ApplicationRecord
   end
 
   def self.find_by_credentials(email, password)
-    user = User.find_by(email: email)
+    user = User.find_by(email:)
 
     # has_secure_password enables the authenticate method
-    if user&.authenticate(password)
-      return user
-    else
-      nil
-    end
+    return user if user&.authenticate(password)
   end
 
   def reset_session_token!

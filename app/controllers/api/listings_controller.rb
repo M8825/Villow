@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'uri'
 
 module Api
   class ListingsController < ApplicationController
+    # rubocop:disable Metrics/MethodLength
     # only allow index action if URL includes user_id
     # without a user session
     before_action :require_logged_in,
@@ -110,48 +113,63 @@ module Api
         .deep_transform_keys!(&:underscore)
     end
 
-    def search_listing_params
-      params.permit
+    # Price from front-end is send in comman separated form
+    # return query accaptable format in
+    def price_to_int(price)
+      price.split(',').join('').to_i
     end
 
-    def safe_query_db(query_hash)
-      if query_hash.empty?
-        []
-      else
-        Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
+    # Add price (min, max) constains to query hash if they are in query stirng
+    def add_price_constraints_to_query_hash
+      price_constains = {}
+
+      if params[:min_price] # add minumin constain
+        min_int_price = price_to_int(params[:min_price])
+
+        price_constains['price >= :mininum_price'] = { mininum_price: min_int_price }
       end
+
+      return unless params[:max_price] # return or add maximum constains
+
+      max_int_price = price_to_int(params[:max_price])
+
+      price_constains['price <= :maximum_price'] = { maximum_price: max_int_price }
+
+      price_constains
     end
 
-    def query_listings
+    # Exclude params that need exact match or numerical
+    def exclude_non_like_params
+      params.except(:term, :min_price, :max_price)
+    end
+
+    # Build query has for LIKE params
+    def build_query_hash
       query_hash = {}
 
-      params.except(:term, :min_price, :max_price).each do |key, value|
+      # Iterate over LIKE params and build query hash
+      exclude_non_like_params.each do |key, value|
         next unless Listing.column_names.include?(key)
 
+        # Prevent SQL injection
         escaped_value = Listing.sanitize_sql_like(value)
+        # Decode percent-encoded
         decoded_query_string = URI.decode_www_form_component(escaped_value)
 
+        # build qury
         query_hash["#{key}::text ILIKE :#{key}"] =
           { "#{key}": "%#{decoded_query_string}%" }
       end
 
-      # Add price where clause if it exists
-      #
-      # sanitizing params[:min_price] avoids sql injection by removing any
-      # character that can be used to perform SQL injection
-      #
-      # decode_www_form_component - decode percent-encoded (spaces in query params)
-      if params[:min_price]
-        # Clean and convert minimum price into integer
-        min_price_int = params[:min_price].split(',').join('').to_i
+      query_hash
+    end
 
-        # min_price =
-        #   Listing.sanitize_sql_like(min_price_int)
+    def query_listings
+      query_hash = build_query_hash
 
-        query_hash['price >= :mininum_price'] = { mininum_price: min_price_int }
-      end
+      query_hash.merge!(add_price_constraints_to_query_hash)
 
-      safe_query_db(query_hash)
+      Listing.where(query_hash.keys.join(' AND '), query_hash.values.reduce(&:merge))
     end
 
     def parse_suggestions

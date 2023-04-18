@@ -10,13 +10,13 @@ class ApplicationController < ActionController::API
   end
 
   def require_logged_in
-    if !logged_in?
-      render json: { errors: ["Must be logged in"] }, status: :unauthorized
-    end
+    return if logged_in?
+
+    render json: { errors: ['Must be logged in'] }, status: :unauthorized
   end
 
   def require_logged_out
-    render json: { errors: ["Must be logged out"] }, status: 403 if logged_in?
+    render json: { errors: ['Must be logged out'] }, status: 403 if logged_in?
   end
 
   def logged_in?
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::API
   private
 
   def attach_authenticity_token
-    headers["X-CSRF-Token"] = masked_authenticity_token(session)
+    headers['X-CSRF-Token'] = masked_authenticity_token(session)
     # headers["X-CSRF-Token"] = form_authenticity_token
   end
 end

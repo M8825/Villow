@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
     @user = current_user
 
     if @user
-      render "api/users/show"
+      render 'api/users/show'
     else
       render json: { user: nil }
     end
@@ -19,9 +19,9 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      render "api/users/show"
+      render 'api/users/show'
     else
-      render json: { errors: ["*Invalid email or password"] }, status: 401 # unauthorized
+      render json: { errors: ['*Invalid email or password'] }, status: 401 # unauthorized
     end
   end
 
@@ -30,4 +30,3 @@ class Api::SessionsController < ApplicationController
     head :no_content # populate http response with no content => no body
   end
 end
-

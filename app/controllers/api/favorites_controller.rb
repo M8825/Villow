@@ -5,7 +5,7 @@ class Api::FavoritesController < ApplicationController
     @listings = current_user.favorited_listings
     @current_user = current_user
 
-    render "/api/listings/index",
+    render '/api/listings/index',
            listings: @listings,
            current_user: @current_user
   end
@@ -13,7 +13,7 @@ class Api::FavoritesController < ApplicationController
   def create
     @favorite = current_user.favorites.new(favorite_params) if current_user
 
-    render "/api/listings/show" if @favorite.save
+    render '/api/listings/show' if @favorite.save
   end
 
   def destroy
@@ -21,9 +21,9 @@ class Api::FavoritesController < ApplicationController
       current_user.favorites.find_by(listing_id: favorite_params[:listing_id])
 
     if @favorite && @favorite.destroy
-      render "/api/listings/show",
+      render('/api/listings/show',
              listing: @favorite.listing,
-             current_user: current_user
+             current_user:)
     else
       render json: { message: @favorite.errors.full_messages }, status: 422
     end

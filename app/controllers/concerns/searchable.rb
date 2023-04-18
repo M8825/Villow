@@ -16,7 +16,7 @@ module Searchable
   # Return Array of listings or Array of search suggestions
   def search_by_term(term, search_filter, filters_hash_arr)
     # TODO: add filters_hash_arr to more terms
-    # TODO: key into clean_params  
+    # TODO: key into clean_params
     case term
     when 'state'
       search_by_state(search_filter, filters_hash_arr)

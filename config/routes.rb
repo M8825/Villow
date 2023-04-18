@@ -14,6 +14,6 @@ Rails.application.routes.draw do
 
     resource :session, only: %i[create show destroy]
 
-    get "/search", to: "listings#search"
+    get '/search', to: 'listings#search'
   end
 end
