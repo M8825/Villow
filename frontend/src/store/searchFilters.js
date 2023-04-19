@@ -1,6 +1,7 @@
 const RECEIVE_SERCHING_DATA = "localstorage/RECEIVE_SERCHING_DATA";
 const RECEIVE_SEARCH_WORD = "localstorage/RECEIVE_SEARCH_WORD";
 const RECEIVE_LISTING_TYPE = "localstorage/RECEIVE_LISTING_TYPE";
+const RECEIVE_BEDROOMS = "localstorage/RECEIVE_BEDROOMS";
 
 const receiveSearchData = (payload) => ({
   type: RECEIVE_SERCHING_DATA,
@@ -16,6 +17,11 @@ const receiveListingType = (payload) => ({
   type: RECEIVE_LISTING_TYPE,
   payload,
 });
+
+const receiveBedrooms = (payload) => ({
+  type: RECEIVE_BEDROOMS,
+  payload,
+})
 
 export const getSearchWord = () => (state) => {
   if (state && state.searchFilter) {
@@ -59,6 +65,12 @@ export const setListingType = (listingType) => (dispatch) => {
   dispatch(receiveListingType(listingType));
 };
 
+export const setBedrooms = (bedrooms) => (dispatch) => {
+  localStorage.setItem("bedrooms", bedrooms);
+
+  dispatch(receiveBedrooms(bedrooms));
+}
+
 function getPriceLabel(priceLabel) {
   return (priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice");
 }
@@ -88,6 +100,8 @@ const searchFiltersReducer = (state = {}, action) => {
       };
     case RECEIVE_LISTING_TYPE:
       return { ...state, listingType: action.payload };
+    case RECEIVE_BEDROOMS:
+      return { ...state, bedrooms: action.payload };
     default:
       return state;
   }
