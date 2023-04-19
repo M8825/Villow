@@ -1,0 +1,25 @@
+.squares-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 1px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.bedsandbaths-square {
+  box-shadow: 1px 0 0 0 #999;
+  padding: 15px;
+  box-sizing: border-box;
+  text-align: center;
+
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+
+  &:last-child {
+    box-shadow: none;
+  }
+}

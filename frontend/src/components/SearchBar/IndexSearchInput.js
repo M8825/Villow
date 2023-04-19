@@ -10,6 +10,7 @@ import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType
 import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
 import { getSearchWord } from "../../store/searchFilters";
+import BedsAndBaths from "./FilterButtons/BedsAndBaths/BedsAndBaths";
 
 export const SearchContext = createContext();
 
@@ -103,6 +104,7 @@ const IndexSearch = ({
           </div>
         )}
       </div>
+      {/* TODO: get rid of the context*/}
       <SearchContext.Provider value={{ searchWord, term }}>
         <div className="filter-buttons">
           <HomeListingType />
@@ -111,9 +113,9 @@ const IndexSearch = ({
           <PriceRange />
         </div>
       </SearchContext.Provider>
-      <button onClick={handleSearchSubmit} className="search-button">
-        foobar{" "}
-      </button>
+      <div className="filter-buttons">
+        <BedsAndBaths />
+      </div>
     </div>
   );
 };

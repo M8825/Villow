@@ -16,9 +16,10 @@ import IndexSearchInput from "./IndexSearchInput";
 import "./SearchBar.scss";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const history = useHistory();
-  const dispatch = useDispatch();
   const searchRef = useRef(null);
 
   const isAtListinIndex = location.pathname === "/listings";

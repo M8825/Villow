@@ -6,6 +6,7 @@ import Input from "./Input";
 import PriceDropDown from "./PriceDropDown";
 
 import "./PriceRange.scss";
+
 const PriceRange = () => {
   const localStorageMinPrice = useSelector(getPrice("No Min"));
   const localStorageMaxPrice = useSelector(getPrice("No Max"));
