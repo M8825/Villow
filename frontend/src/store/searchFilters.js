@@ -65,10 +65,10 @@ export const setListingType = (listingType) => (dispatch) => {
   dispatch(receiveListingType(listingType));
 };
 
-export const setBedrooms = (bedrooms) => (dispatch) => {
-  localStorage.setItem("bedrooms", bedrooms);
+export const setBedroom = (bedroom) => (dispatch) => {
+  localStorage.setItem("bedroom", bedroom);
 
-  dispatch(receiveBedrooms(bedrooms));
+  dispatch(receiveBedrooms(bedroom));
 }
 
 function getPriceLabel(priceLabel) {
@@ -101,7 +101,7 @@ const searchFiltersReducer = (state = {}, action) => {
     case RECEIVE_LISTING_TYPE:
       return { ...state, listingType: action.payload };
     case RECEIVE_BEDROOMS:
-      return { ...state, bedrooms: action.payload };
+      return { ...state, bedroom: action.payload };
     default:
       return state;
   }

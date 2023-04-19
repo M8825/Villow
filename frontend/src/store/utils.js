@@ -24,10 +24,11 @@ export const getLocalStorageSearchCredentials = () => {
   let listingType = localStorage.getItem("listingType");
   const minPrice = localStorage.getItem("minPrice");
   const maxPrice = localStorage.getItem("maxPrice");
+  const bedroom = localStorage.getItem("bedroom");  
 
   // Check if there is localStorage items
   if (term && searchWord && listingType) {
-    return { term, searchWord, listingType, minPrice, maxPrice };
+    return { term, searchWord, listingType, minPrice, maxPrice, bedroom };
   } else {
     // If there is no localStois there a way to arage for an User, set default values
     localStorage.setItem("searchWord", "New York, NY");
@@ -35,6 +36,7 @@ export const getLocalStorageSearchCredentials = () => {
     localStorage.setItem("listingType", "Sale");
     localStorage.setItem("minPrice", "");
     localStorage.setItem("maxPrice", "");
+    localStorage.setItem("bedroom", "");
 
     // Recursively set default credentials for seach functinality
     return getLocalStorageSearchCredentials();
@@ -43,7 +45,7 @@ export const getLocalStorageSearchCredentials = () => {
 
 // Grab search filters from localstorage and
 export const cleanLocalStorageSearchCredentials = () => {
-  let { term, searchWord, listingType, minPrice, maxPrice, citySuffix } =
+  let { term, searchWord, listingType, minPrice, maxPrice, bedroom } =
     getLocalStorageSearchCredentials();
 
   const parsedSearchWord =
@@ -55,10 +57,10 @@ export const cleanLocalStorageSearchCredentials = () => {
     expected_response: "listings", // Flag for back-end. Rails may rqueryStringeceive suggestions flag
     [term]: encodedSeachValue,
     term,
-    citySuffix,
     listing_type: listingType,
     min_price: minPrice,
     max_price: maxPrice,
+    bedroom,
   };
 
   delete queryObject["undefined"];

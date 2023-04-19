@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setBedrooms } from "../../../../store/searchFilters";
+import { setBedroom } from "../../../../store/searchFilters";
 
 import "./Squares.scss";
 
 const Squares = () => {
   const dispatch = useDispatch();
   const [selectedSquare, setSelectedSquare] = useState(null);
-
-  useEffect(() => {
-    if (selectedSquare) {
-      dispatch(setBedrooms(selectedSquare.id));
-    }
-  }, [selectedSquare]);
 
   function handleClick(e) {
     e.preventDefault();
@@ -26,6 +20,8 @@ const Squares = () => {
 
     setSelectedSquare(squareElement);
     squareElement.classList.add("selected-square");
+
+    dispatch(setBedroom(squareElement.id));
   }
 
   return (

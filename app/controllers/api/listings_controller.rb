@@ -117,6 +117,19 @@ module Api
       price.split(',').join('').to_i
     end
 
+    # constraints
+    def add_bedsbaths_constraints_to_query_hash
+      beds_baths_constains = {}
+
+      beds_baths_constains['bedroom >= ?'] = params[:bedroom].to_i if params[:bedroom] && params[:bedroom] != 'any'
+
+      return beds_baths_constains unless params[:bathroom] && praams[:bathroom] != 'any'
+
+      beds_baths_constains['bathroom >= ?'] = params[:bathroom].to_i
+
+      beds_baths_constains
+    end
+
     # Add price (min, max) constains to query hash if they are in query stirng
     def add_price_constraints_to_query_hash
       price_constains = {}
@@ -134,7 +147,7 @@ module Api
 
     # Exclude params that need exact match or numerical
     def exclude_non_like_params
-      params.except(:term, :min_price, :max_price)
+      params.except(:term, :min_price, :max_price, :bedroom, :bathroom)
     end
 
     # Build query has for LIKE params
@@ -161,7 +174,11 @@ module Api
     def query_listings
       query_hash = build_query_hash
 
+      # Pricea constraints
       query_hash.merge!(add_price_constraints_to_query_hash)
+
+      # Number of bathrooms and bedrooms constraints
+      query_hash.merge!(add_bedsbaths_constraints_to_query_hash)
 
       Listing.where(query_hash.keys.join(' AND '), *query_hash.values)
     end
