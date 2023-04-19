@@ -2,12 +2,12 @@ import DropDown from "../DropDown";
 import Squares from "./Squares";
 
 import "./BedsAndBaths.scss";
+
 const BedsAndBaths = () => {
   return (
     <DropDown buttonValue="Beds & Baths">
-        <div className="title">
-          <p>Number of Bedrooms</p>
-        </div>
+      <h6 className="title">Number of Bedrooms</h6>
+
       <div className="beds-and-baths">
         <label>
           <legend>Bedrooms</legend>
