@@ -72,7 +72,7 @@ const SearchBar = () => {
       setSuggestionsBox(false);
       setTerm("city");
       // fetch suggestions based on city name
-      dispatch(searchSuggestions(searchString, "city"));
+      dispatch(searchSuggestions(SearchWord, "city"));
     } else if (searchString.length >= 3 && zipCodeMatch(searchString)) {
       setSuggestionsBox(false);
       setTerm("zipcode");

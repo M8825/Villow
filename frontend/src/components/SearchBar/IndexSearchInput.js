@@ -11,6 +11,7 @@ import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 
 import { getSearchWord } from "../../store/searchFilters";
 import BedsAndBaths from "./FilterButtons/BedsAndBaths/BedsAndBaths";
+import HomeType from "./FilterButtons/HomeType/HomeType";
 
 export const SearchContext = createContext();
 
@@ -115,6 +116,9 @@ const IndexSearch = ({
       </SearchContext.Provider>
       <div className="filter-buttons">
         <BedsAndBaths />
+      </div>
+      <div className="filter-buttons">
+        <HomeType />
       </div>
     </div>
   );
