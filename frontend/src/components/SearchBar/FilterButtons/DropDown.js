@@ -70,6 +70,10 @@ const DropDown = (props) => {
             onSubmit={handleSubmit}
           >
             {children}
+
+            <div className="btn-container">
+              <input type="submit" className="submit-btn" value="Apply" />
+            </div>
           </form>
         </div>
       )}

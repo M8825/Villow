@@ -138,9 +138,6 @@ const PriceRange = () => {
             )}
           </div>
         </div>
-        <div className="btn-container">
-          <input type="submit" className="submit-btn" value="Apply" />
-        </div>
       </DropDown>
     </>
   );

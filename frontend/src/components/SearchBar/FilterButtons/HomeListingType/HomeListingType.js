@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState, useContext } from "react";
-import { fetchSearchListings } from "../../../../store/listingsReducer";
+
 import DropDown from "../DropDown";
 import { SearchContext } from "../../IndexSearchInput";
 
-import "./HomeListingType.scss";
 import { setListingType } from "../../../../store/searchFilters";
+
+import "./HomeListingType.scss";
 
 export const HomeListingType = () => {
   const dispatch = useDispatch();
@@ -56,18 +57,6 @@ export const HomeListingType = () => {
         />
         <span>For Rent</span>
       </div>
-
-      <input type="submit" value="Apply" className="submit-btn" />
     </DropDown>
   );
 };
-
-function cleanUpSearchWord(SearchWord, term) {
-  let cleanSearchWord = SearchWord;
-  // Split in if condition to avoid error when searchWord is empty
-  // or when searchWord is a street addrewss
-  if (term === "city") {
-    cleanSearchWord = SearchWord.split(",")[0]; // Grab City from "city, state"
-  }
-  return cleanSearchWord;
-}
