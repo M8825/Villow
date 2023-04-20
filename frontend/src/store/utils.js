@@ -26,6 +26,7 @@ export const getLocalStorageSearchCredentials = () => {
   const maxPrice = localStorage.getItem("maxPrice");
   const bedroom = localStorage.getItem("bedroom");
   const bathroom = localStorage.getItem("bathroom");
+  const excludes = localStorage.getItem("excludes");
 
   // Check if there is localStorage items
   if (term && searchWord && listingType) {
@@ -37,6 +38,7 @@ export const getLocalStorageSearchCredentials = () => {
       maxPrice,
       bedroom,
       bathroom,
+      ...(excludes && { excludes: JSON.parse(excludes) })
     };
   } else {
     // If there is no localStois there a way to arage for an User, set default values
@@ -46,6 +48,7 @@ export const getLocalStorageSearchCredentials = () => {
     localStorage.setItem("minPrice", "");
     localStorage.setItem("maxPrice", "");
     localStorage.setItem("bedroom", "");
+    localStorage.setItem("bathroom", "");
 
     // Recursively set default credentials for seach functinality
     return getLocalStorageSearchCredentials();
@@ -54,8 +57,16 @@ export const getLocalStorageSearchCredentials = () => {
 
 // Grab search filters from localstorage and
 export const cleanLocalStorageSearchCredentials = () => {
-  let { term, searchWord, listingType, minPrice, maxPrice, bedroom, bathroom} =
-    getLocalStorageSearchCredentials();
+  let {
+    term,
+    searchWord, 
+    listingType,
+    minPrice,
+    maxPrice,
+    bedroom,
+    bathroom,
+    excludes,
+  } = getLocalStorageSearchCredentials();
 
   const parsedSearchWord =
     term === "city" ? searchWord.split(",")[0] : searchWord;
@@ -70,7 +81,8 @@ export const cleanLocalStorageSearchCredentials = () => {
     min_price: minPrice,
     max_price: maxPrice,
     bedroom,
-    bathroom
+    bathroom,
+    ...(excludes && { excludes })
   };
 
   delete queryObject["undefined"];

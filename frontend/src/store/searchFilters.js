@@ -3,6 +3,7 @@ const RECEIVE_SEARCH_WORD = "localstorage/RECEIVE_SEARCH_WORD";
 const RECEIVE_LISTING_TYPE = "localstorage/RECEIVE_LISTING_TYPE";
 const RECEIVE_BEDROOM = "localstorage/RECEIVE_BEDROOM";
 const RECEIVE_BATHROOM = "localstorage/RECEIVE_BATHROOM";
+const RECEIVE_EXCLUDES = "localstorage/RECEIVE_EXCLUDES";
 
 const receiveSearchData = (payload) => ({
   type: RECEIVE_SERCHING_DATA,
@@ -27,6 +28,12 @@ const receiveBedrooms = (numberOfBedroom) => ({
 const receiveBathrooms = (numberOfBathroom) => ({
   type: RECEIVE_BATHROOM,
   numberOfBathroom
+})
+
+
+const receiveExcludes = (excludes) => ({
+  type: RECEIVE_EXCLUDES,
+  excludes
 })
 
 export const getSearchWord = () => (state) => {
@@ -72,6 +79,15 @@ export const getNumberOfBathrooms = () => (state) => {
   return null;
 }
 
+
+export const getExcludes = () => (state) => {
+  if (state && state.searchFilter.excludes) {
+    return state.searchFilter.excludes;
+  }
+
+  return [];
+}
+
 export const setSearchWordToLocalStorage =
   (citySuffix, searchWord, term) => (dispatch) => {
     localStorage.setItem("searchWord", searchWord);
@@ -87,6 +103,17 @@ export const setListingType = (listingType) => (dispatch) => {
   dispatch(receiveListingType(listingType));
 };
 
+function getPriceLabel(priceLabel) {
+  return (priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice");
+}
+
+export const setPrice = (priceLabel, price) => (dispatch) => {
+  const label = getPriceLabel(priceLabel);
+
+  localStorage.setItem(`${label}`, price);
+  dispatch(receiveSearchData({ [label]: price }));
+};
+
 export const setBedroom = (bedroom) => (dispatch) => {
   localStorage.setItem("bedroom", bedroom);
 
@@ -99,16 +126,12 @@ export const setBathroom = (bathroom) => (dispatch) => {
   dispatch(receiveBathrooms(bathroom));
 };
 
-function getPriceLabel(priceLabel) {
-  return (priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice");
-}
-
-export const setPrice = (priceLabel, price) => (dispatch) => {
-  const label = getPriceLabel(priceLabel);
-
-  localStorage.setItem(`${label}`, price);
-  dispatch(receiveSearchData({ [label]: price }));
+export const setExcludes = (excludedListingsTypes) => (dispatch) => {
+  localStorage.setItem("excludes", JSON.stringify(excludedListingsTypes));
+  
+  dispatch(receiveExcludes(excludedListingsTypes));
 };
+
 
 export const setInitialSearchingData = (localStorageData) => (dispatch) => {
   if (localStorageData) {
@@ -132,6 +155,8 @@ const searchFiltersReducer = (state = {}, action) => {
       return { ...state, bedroom: action.numberOfBedroom };
     case RECEIVE_BATHROOM:
       return { ...state, bathroom: action.numberOfBathroom };
+    case RECEIVE_EXCLUDES:
+      return { ...state, excludes: action.excludes}
     default:
       return state;
   }
