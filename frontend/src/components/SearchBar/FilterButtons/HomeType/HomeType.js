@@ -1,31 +1,28 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import DropDown from "../DropDown";
 import CheckMarks from "./CheckMarks";
 
+import { getExcludes, setExcludes } from "../../../../store/searchFilters";
+
 import "./HomeType.scss";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getExcludes,
-  setExcludes,
-} from "../../../../store/searchFilters";
 
 const HomeType = () => {
   const dispatch = useDispatch();
 
   const stateExcludeHomeType = useSelector(getExcludes());
   const [deselctAll, setDeselctAll] = useState("Deselect All");
-
-  const [excludeHomeType, setExcludeHomeType] = useState(stateExcludeHomeType);
-  console.log("stateExcludeHomeType: ", stateExcludeHomeType);
+  const [excludeHomeType, setExcludeHomeType] = useState([]);
   console.log("excludeHomeType: ", excludeHomeType);
 
   useEffect(() => {
     if (stateExcludeHomeType) {
+      debugger
       setExcludeHomeType(stateExcludeHomeType);
-    }
+    }   
   }, [stateExcludeHomeType]);
 
   // Set localStorage and Update state with home types that will be
@@ -36,21 +33,18 @@ const HomeType = () => {
     if (stateExcludeHomeType !== excludeHomeType) {
       if (excludeHomeType && excludeHomeType.length !== 6) {
         dispatch(setExcludes(excludeHomeType));
-      } else if (excludeHomeType) {
-        // Fetch without home type constrains
-        dispatch(setExcludes([]));
-      }
+      }     
     }
   }, [excludeHomeType]);
 
   function handleDeselectClick(e) {
     e.preventDefault();
-    e.stopPropagation();
 
     // When user clicks on "Deselect All" button, add all home types to
     // excludeHomeType array
     if (deselctAll === "Deselect All") {
       setDeselctAll("Select All");
+      debugger
       setExcludeHomeType([
         "Houses",
         "Co-op",
@@ -61,6 +55,7 @@ const HomeType = () => {
       ]);
     } else {
       setDeselctAll("Deselect All");
+      setExcludeHomeType([]);
     }
   }
 

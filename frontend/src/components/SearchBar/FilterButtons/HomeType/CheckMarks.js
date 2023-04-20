@@ -8,7 +8,7 @@ const CheckMarks = ({ homeType, defChecked }) => {
         type="checkbox"
         id={homeType.toLowerCase()}
         name={homeType}
-        defaultChecked={defChecked}
+        checked={defChecked}
       />
       <span>{homeType}</span>
     </label>
