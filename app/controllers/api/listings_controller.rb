@@ -117,24 +117,33 @@ module Api
       price.split(',').join('').to_i
     end
 
-    # constraints
-    def add_bedsbaths_constraints_to_query_hash
-      beds_baths_constains = {}
+    def beds_constraint(room)
+      return {} unless params[room.to_sym] && params[room.to_sym] != '0'
 
-      beds_baths_constains['bedroom >= ?'] = params[:bedroom].to_i if params[:bedroom] && params[:bedroom] != 'any'
+      { "#{room} >= ?" => params[room.to_sym].to_i }
+    end
 
-      return beds_baths_constains unless params[:bathroom] && praams[:bathroom] != 'any'
+    # number of bedrooms and bathrooms constraints
+    def add_beds_baths_constraints
+      beds_and_baths_constraint = {}
 
-      beds_baths_constains['bathroom >= ?'] = params[:bathroom].to_i
+      # Attach numbers of bedrooms where clause to query stirng
+      beds_and_baths_constraint.merge!(beds_constraint('bedroom'))
 
-      beds_baths_constains
+      # Attach numbers of bathrooms where clause to query stirng
+      beds_and_baths_constraint.merge!(beds_constraint('bathroom'))
+
+      beds_and_baths_constraint
     end
 
     # Add price (min, max) constains to query hash if they are in query stirng
-    def add_price_constraints_to_query_hash
+    def add_price_constraints
       price_constains = {}
 
-      unless params[:min_price].empty? # add minumin constain
+      # TODO: Delete empty min_price and max_prime and simply check if they
+      # exist in the query string. This requires a change in the getLocalStorage
+      # in the front-end
+      unless params[:min_price].empty? # add minumin constraints
         price_constains['price >= ?'] = price_to_int(params[:min_price])
       end
 
@@ -174,11 +183,11 @@ module Api
     def query_listings
       query_hash = build_query_hash
 
-      # Pricea constraints
-      query_hash.merge!(add_price_constraints_to_query_hash)
+      # Price constraints
+      query_hash.merge!(add_price_constraints)
 
       # Number of bathrooms and bedrooms constraints
-      query_hash.merge!(add_bedsbaths_constraints_to_query_hash)
+      query_hash.merge!(add_beds_baths_constraints)
 
       Listing.where(query_hash.keys.join(' AND '), *query_hash.values)
     end
