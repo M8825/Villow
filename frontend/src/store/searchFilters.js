@@ -50,6 +50,14 @@ export const getPrice = (priceLabel) => (state) => {
   return null;
 };
 
+export const getNumberOfBedrooms = () => (state) => {
+  if (state && state.searchFilter) {
+    return state.searchFilter.bedroom;
+  }
+
+  return null;
+}
+
 export const setSearchWordToLocalStorage =
   (citySuffix, searchWord, term) => (dispatch) => {
     localStorage.setItem("searchWord", searchWord);

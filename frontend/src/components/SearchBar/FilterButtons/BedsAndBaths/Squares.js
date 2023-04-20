@@ -4,9 +4,24 @@ import { setBedroom } from "../../../../store/searchFilters";
 
 import "./Squares.scss";
 
-const Squares = () => {
+const Squares = ({ squareNumber }) => {
   const dispatch = useDispatch();
   const [selectedSquare, setSelectedSquare] = useState(null);
+
+
+  useEffect(() => {
+    if (selectedSquare) {
+      selectedSquare.classList.remove("selected-square");
+    }
+
+    const squareElement = document.getElementById(squareNumber);
+
+    if (squareElement) {
+      setSelectedSquare(squareElement);
+      squareElement.classList.add("selected-square");
+    }
+
+  }, []);
 
   function handleClick(e) {
     e.preventDefault();
