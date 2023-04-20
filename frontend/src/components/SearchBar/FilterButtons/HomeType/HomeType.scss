@@ -1,7 +1,6 @@
 .home-type-container {
   display: flex;
   flex-direction: column;
-  gap: 130px;
   background: blue;
 
   .deselect-all-title-container {
@@ -12,26 +11,41 @@
     padding: 12px 16px;
     font-weight: 700;
 
-    .deselect-title {
+    h6 {
+      font-size: 14px;
+    }
+
+    .deselect-btn-container {
       margin-top: 20px;
       display: flex;
       align-items: center;
-      width: 210px;
-      gap: 5px;
+      width: 178px;
+      gap: 10px;
+
+      &:hover .deselect-text {
+        text-decoration: underline;
+      }
 
       .deselect-btn {
-        border-radius: 50%;
-        width: 23px !important;
-        background: #0D4599;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 70%;
+        width: 20px !important;
+        height: 20px !important;
+        background: #0d4599;
         color: white;
+
+        .icon {
+          width: 12px;
+        }
       }
 
       h6 {
         font-size: 14px;
         font-weight: 700;
-        color: #0D4599;
+        color: #0d4599;
       }
-
     }
   }
 }

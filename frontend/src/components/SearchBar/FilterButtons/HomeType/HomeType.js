@@ -11,11 +11,11 @@ const HomeType = () => {
         <div className="deselect-all-title-container">
           <h6>Home Type</h6>
 
-          <div className="deselect-title">
+          <div className="deselect-btn-container">
             <button className="deselect-btn">
-              <FontAwesomeIcon icon={faCheck} />
+              <FontAwesomeIcon icon={faCheck} className="icon"/>
             </button>
-            <h6>Deselect All</h6>
+            <h6 className="deselect-text">Deselect All</h6>
           </div>
         </div>
       </div>
