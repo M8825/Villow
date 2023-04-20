@@ -1,7 +1,8 @@
 const RECEIVE_SERCHING_DATA = "localstorage/RECEIVE_SERCHING_DATA";
 const RECEIVE_SEARCH_WORD = "localstorage/RECEIVE_SEARCH_WORD";
 const RECEIVE_LISTING_TYPE = "localstorage/RECEIVE_LISTING_TYPE";
-const RECEIVE_BEDROOMS = "localstorage/RECEIVE_BEDROOMS";
+const RECEIVE_BEDROOM = "localstorage/RECEIVE_BEDROOM";
+const RECEIVE_BATHROOM = "localstorage/RECEIVE_BATHROOM";
 
 const receiveSearchData = (payload) => ({
   type: RECEIVE_SERCHING_DATA,
@@ -10,17 +11,22 @@ const receiveSearchData = (payload) => ({
 
 const setSearchWord = (payload) => ({
   type: RECEIVE_SEARCH_WORD,
-  payload,
+  payload
 });
 
 const receiveListingType = (payload) => ({
   type: RECEIVE_LISTING_TYPE,
-  payload,
+  payload
 });
 
-const receiveBedrooms = (payload) => ({
-  type: RECEIVE_BEDROOMS,
-  payload,
+const receiveBedrooms = (numberOfBedroom) => ({
+  type: RECEIVE_BEDROOM,
+  numberOfBedroom
+})
+
+const receiveBathrooms = (numberOfBathroom) => ({
+  type: RECEIVE_BATHROOM,
+  numberOfBathroom
 })
 
 export const getSearchWord = () => (state) => {
@@ -58,6 +64,14 @@ export const getNumberOfBedrooms = () => (state) => {
   return null;
 }
 
+export const getNumberOfBathrooms = () => (state) => { 
+  if (state && state.searchFilter) {
+    return state.searchFilter.bathroom;
+  }
+
+  return null;
+}
+
 export const setSearchWordToLocalStorage =
   (citySuffix, searchWord, term) => (dispatch) => {
     localStorage.setItem("searchWord", searchWord);
@@ -78,6 +92,12 @@ export const setBedroom = (bedroom) => (dispatch) => {
 
   dispatch(receiveBedrooms(bedroom));
 }
+
+export const setBathroom = (bathroom) => (dispatch) => {
+  localStorage.setItem("bathroom", bathroom);
+  
+  dispatch(receiveBathrooms(bathroom));
+};
 
 function getPriceLabel(priceLabel) {
   return (priceLabel = priceLabel === "No Min" ? "minPrice" : "maxPrice");
@@ -108,8 +128,10 @@ const searchFiltersReducer = (state = {}, action) => {
       };
     case RECEIVE_LISTING_TYPE:
       return { ...state, listingType: action.payload };
-    case RECEIVE_BEDROOMS:
-      return { ...state, bedroom: action.payload };
+    case RECEIVE_BEDROOM:
+      return { ...state, bedroom: action.numberOfBedroom };
+    case RECEIVE_BATHROOM:
+      return { ...state, bathroom: action.numberOfBathroom };
     default:
       return state;
   }

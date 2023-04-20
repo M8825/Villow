@@ -24,11 +24,20 @@ export const getLocalStorageSearchCredentials = () => {
   let listingType = localStorage.getItem("listingType");
   const minPrice = localStorage.getItem("minPrice");
   const maxPrice = localStorage.getItem("maxPrice");
-  const bedroom = localStorage.getItem("bedroom");  
+  const bedroom = localStorage.getItem("bedroom");
+  const bathroom = localStorage.getItem("bathroom");
 
   // Check if there is localStorage items
   if (term && searchWord && listingType) {
-    return { term, searchWord, listingType, minPrice, maxPrice, bedroom };
+    return {
+      term,
+      searchWord,
+      listingType,
+      minPrice,
+      maxPrice,
+      bedroom,
+      bathroom,
+    };
   } else {
     // If there is no localStois there a way to arage for an User, set default values
     localStorage.setItem("searchWord", "New York, NY");
@@ -45,7 +54,7 @@ export const getLocalStorageSearchCredentials = () => {
 
 // Grab search filters from localstorage and
 export const cleanLocalStorageSearchCredentials = () => {
-  let { term, searchWord, listingType, minPrice, maxPrice, bedroom } =
+  let { term, searchWord, listingType, minPrice, maxPrice, bedroom, bathroom} =
     getLocalStorageSearchCredentials();
 
   const parsedSearchWord =
@@ -61,6 +70,7 @@ export const cleanLocalStorageSearchCredentials = () => {
     min_price: minPrice,
     max_price: maxPrice,
     bedroom,
+    bathroom
   };
 
   delete queryObject["undefined"];

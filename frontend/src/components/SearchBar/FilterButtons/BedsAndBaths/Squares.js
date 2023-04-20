@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setBedroom } from "../../../../store/searchFilters";
 
 import "./Squares.scss";
 
-const Squares = ({ squareNumber }) => {
+const Squares = ({ squareType, squareNumber, setNumber }) => {
   const dispatch = useDispatch();
-  const [selectedSquare, setSelectedSquare] = useState(null);
 
+  const [selectedSquare, setSelectedSquare] = useState(null);
 
   useEffect(() => {
     if (selectedSquare) {
       selectedSquare.classList.remove("selected-square");
     }
 
-    const squareElement = document.getElementById(squareNumber);
+    const squareElement = document.getElementById(
+      `${squareType}-${squareNumber}`
+    );
 
     if (squareElement) {
       setSelectedSquare(squareElement);
       squareElement.classList.add("selected-square");
     }
-
   }, []);
 
   function handleClick(e) {
@@ -36,29 +36,23 @@ const Squares = ({ squareNumber }) => {
     setSelectedSquare(squareElement);
     squareElement.classList.add("selected-square");
 
-    dispatch(setBedroom(squareElement.id));
+    dispatch(setNumber(squareElement.id[`${squareType.length + 1}`]));
   }
 
   return (
     <div className="squares-container" onClick={handleClick}>
-      <div className="bedsandbaths-square start" id="any">
+      <div className={`bedsandbaths-square start`} id={`${squareType}-0`}>
         <span>Any</span>
       </div>
-      <div className="bedsandbaths-square" id="1">
-        <span>1+</span>
-      </div>
-      <div className="bedsandbaths-square" id="2">
-        <span>2+</span>
-      </div>
-      <div className="bedsandbaths-square" id="3">
-        <span>3+</span>
-      </div>
-      <div className="bedsandbaths-square" id="4">
-        <span>4+</span>
-      </div>
-      <div className="bedsandbaths-square end" id="5">
-        <span>5+</span>
-      </div>
+      {[...Array(5)].map((_, i) => (
+        <div
+          key={i}
+          className={`bedsandbaths-square${i === 4 ? " end" : ""}`}
+          id={`${squareType}-${i + 1}`}
+        >
+          <span>{i + 1}+</span>
+        </div>
+      ))}
     </div>
   );
 };
