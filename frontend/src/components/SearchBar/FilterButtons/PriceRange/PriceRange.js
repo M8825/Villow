@@ -11,8 +11,8 @@ const PriceRange = () => {
   const localStorageMinPrice = useSelector(getPrice("No Min"));
   const localStorageMaxPrice = useSelector(getPrice("No Max"));
 
-  const [maxValue, setMaxValue] = useState(localStorageMaxPrice);
-  const [minValue, setMinValue] = useState(localStorageMinPrice);
+  const [maxValue, setMaxValue] = useState(localStorageMaxPrice || "");
+  const [minValue, setMinValue] = useState(localStorageMinPrice || "");
 
   const [minFocused, setMinFocused] = useState({ isFocused: false });
   const [maxFocused, setMaxFocused] = useState({ isFocused: false });
@@ -83,25 +83,23 @@ const PriceRange = () => {
     setMaxRangeDropdown(true);
   }
 
-
   function getMinPriceLabel() {
     if (minValue && minValue !== "") {
       return `$${minValue.split(",")[0]}K` + (maxValue ? "-" : "+");
     } else {
-      if (maxValue)
-      return "Up to ";
+      if (maxValue !== "") {
+        return "Up to ";
+      }
     }
   }
 
-
   function getMaxPriceLabel() {
     if (maxValue && maxValue !== "") {
-      return '$' + maxValue.split(",")[0] + 'K';
+      return "$" + maxValue.split(",")[0] + "K";
     } else {
       return "";
     }
-
-  };
+  }
 
   return (
     <>

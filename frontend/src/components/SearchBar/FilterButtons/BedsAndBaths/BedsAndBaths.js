@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useEffect, useState  } from "react";
 
 import DropDown from "../DropDown";
 import Squares from "./Squares";
@@ -10,8 +11,6 @@ import {
   setBathroom,
   setBedroom,
 } from "../../../../store/searchFilters";
-import { useEffect } from "react";
-import { useState } from "react";
 
 const BedsAndBaths = () => {
   const numberOfBedrooms = useSelector(getNumberOfBedrooms());
