@@ -16,7 +16,7 @@
     }
 
     .deselect-btn-container {
-      margin-top: 20px;
+      margin-top: 15px;
       display: flex;
       align-items: center;
       width: 178px;
@@ -45,6 +45,7 @@
         font-size: 14px;
         font-weight: 700;
         color: #0d4599;
+        user-select: none;
       }
     }
   }
