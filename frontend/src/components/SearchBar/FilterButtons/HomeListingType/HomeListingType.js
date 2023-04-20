@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 
 import DropDown from "../DropDown";
-import { SearchContext } from "../../IndexSearchInput";
 
 import { setListingType } from "../../../../store/searchFilters";
 
@@ -10,7 +9,6 @@ import "./HomeListingType.scss";
 
 export const HomeListingType = () => {
   const dispatch = useDispatch();
-  const { searchWord, term } = useContext(SearchContext);
 
   const [selectedOption, setSelectedOption] = useState(""); // ["for-sale", "for-rent"
 
@@ -33,7 +31,7 @@ export const HomeListingType = () => {
   }
 
   return (
-    <DropDown buttonValue={"For " + selectedOption}>
+    <DropDown buttonValue={"For " + selectedOption} selectedButton={true}>
       <div htmlFor="for-sale" className="lbl">
         <input
           type="radio"

@@ -10,14 +10,35 @@ import {
   setBathroom,
   setBedroom,
 } from "../../../../store/searchFilters";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const BedsAndBaths = () => {
   const numberOfBedrooms = useSelector(getNumberOfBedrooms());
   const numberOfBathrooms = useSelector(getNumberOfBathrooms());
 
+  const [selectedButton, setSelectedButton] = useState(false);
+
+  useEffect(() => {
+      if (numberOfBedrooms !== "0" || numberOfBathrooms !== "0") {
+        setSelectedButton(true);
+      }
+
+    return () => {
+      setSelectedButton(false);
+    }
+  }, [numberOfBedrooms, numberOfBathrooms]);
+
   return (
     numberOfBedrooms && (
-      <DropDown buttonValue="Beds & Baths">
+      <DropDown
+        selectedButton={selectedButton}
+        buttonValue={
+          numberOfBedrooms === "0" && numberOfBathrooms === "0"
+            ? "Beds & Baths"
+            : numberOfBedrooms + " +bd" + " " + numberOfBathrooms + " +ba"
+        }
+      >
         <h6 className="title">Number of Bedrooms</h6>
 
         <div className="beds-and-baths">

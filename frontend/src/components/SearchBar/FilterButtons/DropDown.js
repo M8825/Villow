@@ -13,6 +13,7 @@ const DropDown = (props) => {
     minValue,
     maxValue,
     maxValueOnClick,
+    selectedButton,
     onClose,
   } = props;
 
@@ -40,7 +41,7 @@ const DropDown = (props) => {
   return (
     <div className="home-listing-type-wrapper" id="dropdown-wrapper">
       <button
-        className={`filter-btn ${buttonValue ? "selected" : ""}`}
+        className={`filter-btn ${selectedButton ? "selected" : ""}`}
         style={{
           width:
             buttonValue !== "For Sale" && buttonValue !== "For Rent"

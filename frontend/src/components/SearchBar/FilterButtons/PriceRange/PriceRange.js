@@ -17,6 +17,14 @@ const PriceRange = () => {
   const [minFocused, setMinFocused] = useState({ isFocused: false });
   const [maxFocused, setMaxFocused] = useState({ isFocused: false });
 
+  const [selectedButton, setSelectedButton] = useState(false);
+
+  useEffect(() => {
+    if (minValue !== "" || maxValue !== "") {
+      setSelectedButton(true);
+    }
+  }, [minValue, maxValue]);
+
   useEffect(() => {
     if (localStorageMaxPrice) {
       setMaxValue(localStorageMaxPrice);
@@ -75,16 +83,41 @@ const PriceRange = () => {
     setMaxRangeDropdown(true);
   }
 
+
+  function getMinPriceLabel() {
+    if (minValue && minValue !== "") {
+      return `$${minValue.split(",")[0]}K` + (maxValue ? "-" : "+");
+    } else {
+      if (maxValue)
+      return "Up to ";
+    }
+  }
+
+
+  function getMaxPriceLabel() {
+    if (maxValue && maxValue !== "") {
+      return '$' + maxValue.split(",")[0] + 'K';
+    } else {
+      return "";
+    }
+
+  };
+
   return (
     <>
       <DropDown
-        buttonValue={"Price"}
+        buttonValue={
+          minValue !== "" || maxValue !== ""
+            ? getMinPriceLabel() + getMaxPriceLabel()
+            : "Price Range"
+        }
         onClose={{ setMinRangeDropdown, setMaxRangeDropdown }}
         minValue={minValue}
         maxValue={maxValue}
         maxValueOnClick={maxValueOnClick}
         setMinFocused={setMinFocused}
         setMaxFocused={setMaxFocused}
+        selectedButton={selectedButton}
       >
         <div className="title">
           <p>Price Range</p>
