@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -10,60 +10,56 @@ import { getExcludes, setExcludes } from "../../../../store/searchFilters";
 
 import "./HomeType.scss";
 
+const HOME_TYPES = [
+  "Houses",
+  "Co-op",
+  "Apartment",
+  "Townhome",
+  "Multi-Family",
+  "Land",
+];
+
 const HomeType = () => {
   const dispatch = useDispatch();
 
-  const stateExcludeHomeType = useSelector(getExcludes());
-  const [deselctAll, setDeselctAll] = useState("Deselect All");
+  const excludes = useSelector(getExcludes());
+
   const [excludeHomeType, setExcludeHomeType] = useState([]);
-  console.log("excludeHomeType: ", excludeHomeType);
 
   useEffect(() => {
-    if (stateExcludeHomeType) {
-      debugger
-      setExcludeHomeType(stateExcludeHomeType);
-    }   
-  }, [stateExcludeHomeType]);
+    setExcludeHomeType(excludes);
+  }, [excludes]);
+
+  const deselectAll = useMemo(() => {
+    return excludeHomeType.length === 0 ? "Deselect All" : "Select All";
+  }, [excludeHomeType]);
 
   // Set localStorage and Update state with home types that will be
   // excluded from the search(db query)
   useEffect(() => {
     // If everything is excluded from the search, nothing is excluded
     // Basically it fetches listings without any home type constrains
-    if (stateExcludeHomeType !== excludeHomeType) {
-      if (excludeHomeType && excludeHomeType.length !== 6) {
-        dispatch(setExcludes(excludeHomeType));
-      }     
+    if (excludes && excludes !== excludeHomeType) {
+      dispatch(setExcludes(excludeHomeType));
     }
   }, [excludeHomeType]);
 
-  function handleDeselectClick(e) {
-    e.preventDefault();
+  const handleDeselectClick = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    // When user clicks on "Deselect All" button, add all home types to
-    // excludeHomeType array
-    if (deselctAll === "Deselect All") {
-      setDeselctAll("Select All");
-      debugger
-      setExcludeHomeType([
-        "Houses",
-        "Co-op",
-        "Apartment",
-        "Townhome",
-        "Multi-Family",
-        "Land",
-      ]);
-    } else {
-      setDeselctAll("Deselect All");
-      setExcludeHomeType([]);
-    }
-  }
+      // When user clicks on "Deselect All" button, add all home types to
+      // excludeHomeType array
+      let excludes;
+      if (deselectAll === "Deselect All") {
+        excludes = [...HOME_TYPES];
+      }
+      dispatch(setExcludes(excludes || []));
+    },
+    [deselectAll]
+  );
 
-  function handleCheckMarkClick(e) {
-    if (deselctAll == "Deselect All" && !e.target.checked) {
-      setDeselctAll("Select All");
-    }
-
+  const handleCheckMarkClick = useCallback((e) => {
     if (e.target.type === "checkbox" && !e.target.checked) {
       setExcludeHomeType((prev) => {
         return [...prev, e.target.name];
@@ -75,13 +71,13 @@ const HomeType = () => {
         let indexOfCheckType = prev.indexOf(e.target.name);
 
         if (indexOfCheckType !== -1) {
-          prev.splice(indexOfCheckType, 1); // Delete first accurance of the home type from and array
+          prev.splice(indexOfCheckType, 1);
         }
 
         return [...prev];
       });
     }
-  }
+  }, []);
 
   return (
     excludeHomeType && (
@@ -97,17 +93,10 @@ const HomeType = () => {
               <button className="deselect-btn">
                 <FontAwesomeIcon icon={faCheck} className="icon" />
               </button>
-              <h6 className="deselect-text">{deselctAll}</h6>
+              <h6 className="deselect-text">{deselectAll}</h6>
             </div>
           </div>
-          {[
-            "Houses",
-            "Co-op",
-            "Apartment",
-            "Townhome",
-            "Multi-Family",
-            "Land",
-          ].map((homeType, i) => {
+          {HOME_TYPES.map((homeType, i) => {
             return (
               <CheckMarks
                 key={i}

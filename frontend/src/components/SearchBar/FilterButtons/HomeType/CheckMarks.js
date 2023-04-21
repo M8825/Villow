@@ -1,4 +1,7 @@
 const CheckMarks = ({ homeType, defChecked }) => {
+  function handleChange(e) {
+  }
+
   return (
     <label
       htmlFor={homeType.toLowerCase()}
@@ -8,6 +11,7 @@ const CheckMarks = ({ homeType, defChecked }) => {
         type="checkbox"
         id={homeType.toLowerCase()}
         name={homeType}
+        onChange={handleChange}
         checked={defChecked}
       />
       <span>{homeType}</span>

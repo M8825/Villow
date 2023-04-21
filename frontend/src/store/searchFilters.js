@@ -85,7 +85,7 @@ export const getExcludes = () => (state) => {
     return state.searchFilter.excludes;
   }
 
-  return [];
+  return null;
 }
 
 export const setSearchWordToLocalStorage =
