@@ -35,13 +35,11 @@ export const searchSuggestions =
       [term]: searchString,
     };
 
-    const { listing_type, min_price, max_price } =
+    const localStorageParams =
       cleanLocalStorageSearchCredentials();
 
     const queryString = objectToQuerySting({
-      listing_type,
-      min_price,
-      max_price,
+      ...localStorageParams,
       ...baseParams,
     });
 

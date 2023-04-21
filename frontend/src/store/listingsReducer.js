@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 import { objectToQuerySting } from "./utils";
 import { cleanLocalStorageSearchCredentials } from "./utils";
 
+
 const RECEIVE_LISTINGS = "api/listings/RECEIVE_LISTINGS";
 const RECEIVE_LISTING = "api/listings/RECEIVE_LISTING";
 const REMOVE_LISTINGS = "api/listings/REMOVE_LISTINGS";
@@ -146,7 +147,7 @@ export const removeFavorite = (userId, listingId) => async (dispatch) => {
 };
 
 export const fetchSearchListings =
-  (term, searchInputValueStr, extraParams = {}) =>
+  (expected_response, extraParams = {}) =>
   async (dispatch) => {
     // Make sure to encode for URL safe character like #
     // prevent params from being cut off
@@ -161,8 +162,7 @@ export const fetchSearchListings =
 
     if (res.ok) {
       const listings = await res.json();
-
-      dispatch(receiveListings(listings));
+        dispatch(receiveListings(listings));
     }
   };
 

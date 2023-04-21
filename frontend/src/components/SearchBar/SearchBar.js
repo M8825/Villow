@@ -16,10 +16,9 @@ import IndexSearchInput from "./IndexSearchInput";
 import "./SearchBar.scss";
 
 const SearchBar = () => {
-  const dispatch = useDispatch();
-
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
   const searchRef = useRef(null);
 
   const isAtListinIndex = location.pathname === "/listings";
@@ -44,7 +43,6 @@ const SearchBar = () => {
     return () => {
       document.body.removeEventListener("click", hideSearchIcon);
     };
-
   }, []);
 
   useEffect(() => {
@@ -77,7 +75,10 @@ const SearchBar = () => {
       setTerm("city");
       // fetch suggestions based on city name
       dispatch(searchSuggestions(searchString, "city"));
-    } else if (searchString.length >= 3 && digitsMatcher(searchString)) {
+    } else if (
+      searchString.length >= 3 &&
+      digitsMatcher(searchString)
+    ) {
       setSuggestionsBox(false);
       setTerm("zipcode");
 

@@ -38,7 +38,7 @@ export const getLocalStorageSearchCredentials = () => {
       maxPrice,
       bedroom,
       bathroom,
-      ...(excludes && { excludes: JSON.parse(excludes) })
+      ...(excludes && { excludes: JSON.parse(excludes) }),
     };
   } else {
     // If there is no localStois there a way to arage for an User, set default values
@@ -59,7 +59,7 @@ export const getLocalStorageSearchCredentials = () => {
 export const cleanLocalStorageSearchCredentials = () => {
   let {
     term,
-    searchWord, 
+    searchWord,
     listingType,
     minPrice,
     maxPrice,
@@ -82,7 +82,7 @@ export const cleanLocalStorageSearchCredentials = () => {
     max_price: maxPrice,
     bedroom,
     bathroom,
-    ...(excludes && { excludes })
+    ...(excludes && excludes.length !== 0 && { excludes }),
   };
 
   delete queryObject["undefined"];

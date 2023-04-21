@@ -154,9 +154,13 @@ module Api
       price_constains
     end
 
-    # Exclude params that need exact match or numerical
-    def exclude_non_like_params
-      params.except(:term, :min_price, :max_price, :bedroom, :bathroom)
+    def add_excluded_home_type_constraints
+      return {} unless params[:excludes] &&
+                       params[:excludes].split(',').length != 6
+
+      values_arr = params[:excludes].split(',')
+
+      { 'building_type NOT IN (?)' => values_arr }
     end
 
     # Build query has for LIKE params
@@ -180,6 +184,11 @@ module Api
       query_hash
     end
 
+    # Exluded home types that are sent in the query string
+    def exclude_non_like_params
+      params.except(:term, :min_price, :max_price, :bedroom, :bathroom, :excludes)
+    end
+
     def query_listings
       query_hash = build_query_hash
 
@@ -188,6 +197,8 @@ module Api
 
       # Number of bathrooms and bedrooms constraints
       query_hash.merge!(add_beds_baths_constraints)
+
+      query_hash.merge!(add_excluded_home_type_constraints)
 
       Listing.where(query_hash.keys.join(' AND '), *query_hash.values)
     end
