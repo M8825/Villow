@@ -47,8 +47,8 @@ export const getLocalStorageSearchCredentials = () => {
     localStorage.setItem("listingType", "Sale");
     localStorage.setItem("minPrice", "");
     localStorage.setItem("maxPrice", "");
-    localStorage.setItem("bedroom", "");
-    localStorage.setItem("bathroom", "");
+    localStorage.setItem("bedroom", "0");
+    localStorage.setItem("bathroom", "0");
 
     // Recursively set default credentials for seach functinality
     return getLocalStorageSearchCredentials();

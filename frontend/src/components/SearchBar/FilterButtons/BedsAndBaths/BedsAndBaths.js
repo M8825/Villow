@@ -29,7 +29,6 @@ const BedsAndBaths = () => {
   }, [numberOfBedrooms, numberOfBathrooms]);
 
   return (
-    numberOfBedrooms && (
       <DropDown
         selectedButton={selectedButton}
         buttonValue={
@@ -64,7 +63,6 @@ const BedsAndBaths = () => {
           </label>
         </div>
       </DropDown>
-    )
   );
 };
 

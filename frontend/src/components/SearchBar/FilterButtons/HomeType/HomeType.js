@@ -27,11 +27,13 @@ const HomeType = () => {
   const [excludeHomeType, setExcludeHomeType] = useState([]);
 
   useEffect(() => {
-    setExcludeHomeType(excludes);
+    if (excludes) {
+      setExcludeHomeType(excludes);
+    }
   }, [excludes]);
 
   const deselectAll = useMemo(() => {
-    return excludeHomeType.length === 0 ? "Deselect All" : "Select All";
+    return excludeHomeType?.length === 0 ? "Deselect All" : "Select All";
   }, [excludeHomeType]);
 
   // Set localStorage and Update state with home types that will be
@@ -80,37 +82,32 @@ const HomeType = () => {
   }, []);
 
   return (
-    excludeHomeType && (
-      <DropDown buttonValue={"Home Type"} selectedButton={true}>
-        <div className="home-type-container" onClick={handleCheckMarkClick}>
-          <div className="deselect-all-title-container">
-            <h6>Home Type</h6>
+    <DropDown buttonValue={"Home Type"} selectedButton={true}>
+      <div className="home-type-container" onClick={handleCheckMarkClick}>
+        <div className="deselect-all-title-container">
+          <h6>Home Type</h6>
 
-            <div
-              className="deselect-btn-container"
-              onClick={handleDeselectClick}
-            >
-              <button className="deselect-btn">
-                <FontAwesomeIcon icon={faCheck} className="icon" />
-              </button>
-              <h6 className="deselect-text">{deselectAll}</h6>
-            </div>
+          <div className="deselect-btn-container" onClick={handleDeselectClick}>
+            <button className="deselect-btn">
+              <FontAwesomeIcon icon={faCheck} className="icon" />
+            </button>
+            <h6 className="deselect-text">{deselectAll}</h6>
           </div>
-          {HOME_TYPES.map((homeType, i) => {
-            return (
-              <CheckMarks
-                key={i}
-                homeType={homeType}
-                defChecked={
-                  excludeHomeType &&
-                  (excludeHomeType.includes(homeType) ? false : true)
-                }
-              />
-            );
-          })}
         </div>
-      </DropDown>
-    )
+        {HOME_TYPES.map((homeType, i) => {
+          return (
+            <CheckMarks
+              key={i}
+              homeType={homeType}
+              defChecked={
+                excludeHomeType &&
+                (excludeHomeType.includes(homeType) ? false : true)
+              }
+            />
+          );
+        })}
+      </div>
+    </DropDown>
   );
 };
 
