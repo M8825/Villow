@@ -12,6 +12,7 @@ import { getSearchWord } from "../../store/searchFilters";
 import { cleanSearchSuggestions } from "../../store/search";
 
 import "./IndexSearchInput.scss";
+import InitialSearchBox from "./InitialSearchBox";
 
 
 export const SearchContext = createContext();
@@ -78,9 +79,8 @@ const IndexSearch = ({
         </div>
 
         {suggestionsBox ? (
-          <div className="indexSearchDropdown">
-            <p>initial search box</p>
-          </div>
+          <InitialSearchBox />
+
         ) : (
           <div className="indexSearchDropdown" onClick={handleItemClick}>
             <ul>
