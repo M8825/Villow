@@ -86,7 +86,7 @@ const SearchBar = () => {
       dispatch(searchSuggestions(searchString, "zipcode"));
     } else if (searchString.length >= 3) {
       setSuggestionsBox(false);
-      setTerm("streetAddress");
+      setTerm("address");
 
       dispatch(searchSuggestions(searchString, "address"));
     } else {
@@ -109,17 +109,16 @@ const SearchBar = () => {
         <>
           <hr />
           <IndexSearchInput
-            focuseSearch={focuseSearch}
-            setFocuseSearch={setFocuseSearch}
-            searchRef={searchRef}
-            handleSearchSubmit={handleSearchSubmit}
             handleSearchOnChange={handleSearchOnChange}
             value={value}
-            setValue={setValue}
             term={term}
             setSuggestionsBox={setSuggestionsBox}
             suggestionsBox={suggestionsBox}
             suggestions={suggestions}
+            focuseSearch={focuseSearch}
+            setFocuseSearch={setFocuseSearch}
+            searchRef={searchRef}
+            setValue={setValue}
           />
         </>
       ) : (

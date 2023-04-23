@@ -2,7 +2,7 @@ import "./SearchIcon.scss";
 
 const SearchIcon = () => {
 	return (
-		<div className="search_container__search_button foo">
+		<div className="search_container__search_button">
 			<svg
 				viewBox="0 0 32 32"
 				aria-hidden="true"

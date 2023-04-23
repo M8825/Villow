@@ -47,9 +47,9 @@
 
 ## Search
 [-] - Splash page
-    [ ] - Add unidentified search options. Just provide whole addresses - 
-          basically when user starts typing complete address starting with 
-          street address - NOTE(mlkz): Is it really necessary? For sure not 
+    [ ] - Add unidentified search options. Just provide whole addresses -
+          basically when user starts typing complete address starting with
+          street address - NOTE(mlkz): Is it really necessary? For sure not
           for now
     [X] - route for search with state
     [X] - Add dropdown to search bar for suggestions
@@ -65,14 +65,14 @@
         [X] - Qury database for availabe listing zip codes
         [X] - Retun suggestions
         [X] - Make sure it's highlighted properly
-    [X] - Fetch lisitings based on search input - Important note is that 
-          it should make specific query to database based on the search term 
+    [X] - Fetch lisitings based on search input - Important note is that
+          it should make specific query to database based on the search term
         [X] - Fetch based on state
         [X] - Fetch based on city
         [X] - Fetch based on zipcode
     [X] - Add onClick event listener to search button - Grabs all listings
 [-] - Index Page
-    [-] - Create custom search bar for index page. Only implemnet Input 
+    [-] - Create custom search bar for index page. Only implemnet Input
           element. Filters should go in separate component.
     [ ] - Add filters - Check them on zillow
 
@@ -84,17 +84,17 @@
 
 ## Fix
 [ ] - Listing index doesn't work i user is not signed in.
-[ ] - If user is not signed in, search suggestion click breaks index page 
+[ ] - If user is not signed in, search suggestion click breaks index page
 [ ] - NOT IMPORTANT :: For splash search, when you make initial requst to the database for
       suggestions, after your receive suggestions from DB, on every additional
-      onChange BEFORE you make new request to the database, check if search 
+      onChange BEFORE you make new request to the database, check if search
       input substring matches any record in redux state first. If there are
       no matching state suggestions, THAN make new request to DB.
 [ ] - Unutorithed users shouldn't be able to land listing createion page
 
 ### Price range
-[-] - When the user clicks on minimum price range option button, the dropdown 
-      menu closes automatically. It should only close automatically when the 
+[-] - When the user clicks on minimum price range option button, the dropdown
+      menu closes automatically. It should only close automatically when the
       user clicks on the maximum price range option.
 
 # NOTE:

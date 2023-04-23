@@ -1,46 +1,39 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanSearchSuggestions } from "../../store/search";
-import SuggestionItem from "./SuggestionItem";
 
-import "./IndexSearchInput.scss";
 import { SearchInputContainer } from "./SearchInputContainer";
-import { useRef } from "react";
 import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType";
 import PriceRange from "./FilterButtons/PriceRange/PriceRange";
-
-import { getSearchWord } from "../../store/searchFilters";
+import SuggestionItem from "./SuggestionItem";
 import BedsAndBaths from "./FilterButtons/BedsAndBaths/BedsAndBaths";
 import HomeType from "./FilterButtons/HomeType/HomeType";
+import { getSearchWord } from "../../store/searchFilters";
+import { cleanSearchSuggestions } from "../../store/search";
+import "./IndexSearchInput.scss";
+
 
 export const SearchContext = createContext();
-
 const IndexSearch = ({
-  focuseSearch,
-  setFocuseSearch,
-  searchRef,
-  handleSearchSubmit,
   handleSearchOnChange,
   value,
-  setValue,
   term,
   setSuggestionsBox,
   suggestionsBox,
   suggestions,
+  focuseSearch,
+  setFocuseSearch,
+  searchRef,
+  setValue,
 }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
   const searchWord = useSelector(getSearchWord());
 
   const [closeDropDown, setCloseDropDown] = useState({ isClosed: false });
-  // const [searchWord, setSearchWord] = useState(initialSearchWord);
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());
   }, [closeDropDown]);
-
-  const handleHover = (e) => e.target.classList.add("hovered");
-  const onHoverLeave = (e) => e.target.classList.remove("hovered");
 
   const handleItemClick = (e) => {
     e.preventDefault();
@@ -68,8 +61,6 @@ const IndexSearch = ({
       >
         <div
           className={"search-input " + (focuseSearch ? "focused" : "")}
-          onMouseEnter={handleHover}
-          onMouseLeave={onHoverLeave}
           onClick={handleOnClick}
           ref={searchRef}
         >

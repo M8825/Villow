@@ -26,6 +26,10 @@
       border-radius: 4px;
       padding: 5px 0px 5px 8px;
 
+      &:hover {
+        border-color: #006aff !important;
+      }
+
 
       .text-input {
         flex: 1;
@@ -44,10 +48,6 @@
         rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
       height: auto;
       z-index: 2;
-    }
-
-    .hovered {
-      border-color: #006aff !important;
     }
 
     .indexSearchDropdown {

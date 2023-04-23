@@ -1,41 +1,64 @@
-import { SearchWord } from "./SearchWord";
+import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
+import { setSearchWordToLocalStorage } from "../../store/searchFilters";
+import { CloseSearchWordIcon } from "./assets/CloseSearchWordIcon";
 
 import "./SearchInputContainer.scss";
-import SearchIcon from "./SearchIcon";
 
 export const SearchInputContainer = ({
-  searchWord,
-  inputRef,
-  value,
-  handleSearchOnChange,
-  setSuggestionsBox,
-  focuseSearch,
+	searchWord,
+	inputRef,
+	value,
+	handleSearchOnChange,
+	setSuggestionsBox,
+	focuseSearch,
 }) => {
-  return (
-    <>
-      <div className={"clicked-search-with-search-word"}>
-        <SearchWord searchWord={searchWord} />
-        <input
-          className="text-input"
-          ref={inputRef}
-          type="text"
-          value={value}
-          onChange={handleSearchOnChange}
-          onClick={() => setSuggestionsBox(true)}
-          placeholder="Address, City, ZIP, state"
-        />
-      </div>
-      {!focuseSearch && (
-        <div className="search-icon-wrapper">
-          {searchWord && (
-            <div className="add-another">
-              <span>Add another location</span>
-            </div>
-          )}
+	const dispatch = useDispatch();
 
-          <SearchIcon />
-        </div>
-      )}
-    </>
-  );
+	const handleOnClickClose = (e) => {
+		e.preventDefault();
+
+		// TODO: Reset search word
+		dispatch(setSearchWordToLocalStorage(""));
+	};
+
+	return (
+		<div className="search-container">
+			<div className="search-word-row">
+				{searchWord && (
+					<div className="search-word-wrapper">
+						<p>{searchWord.trim()}</p>
+						<div
+							className="search-word-close-icon"
+							onClick={handleOnClickClose}
+						>
+							<CloseSearchWordIcon />
+						</div>
+					</div>
+				)}
+				{!focuseSearch && searchWord && (
+					<>
+						<div className="add-another-container">
+							<p>Add another location</p>
+						</div>
+						<div className="icon-container">
+							<FontAwesomeIcon icon={faMagnifyingGlass} />
+						</div>
+					</>
+				)}
+			</div>
+
+			<input
+				className="text-input"
+				ref={inputRef}
+				type="text"
+				value={value}
+				onChange={handleSearchOnChange}
+				onClick={() => setSuggestionsBox(true)}
+				placeholder="Address, City, ZIP, state"
+			/>
+		</div>
+	);
 };
