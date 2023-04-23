@@ -31,7 +31,7 @@
 
           // Look for the zip code in the address_components array
           const addressComponents = data.results[0].address_components;
-          return addressComponents[3].long_name + ", " + addressComponents[5].short_name;
+          return addressComponents[3].long_name
       }
 
       // If no zip code is found, return null

@@ -22,7 +22,6 @@ const SuggestionItem = ({ term, suggestion, value }) => {
 	const handleSearchOnClickItem = (e) => {
 		e.preventDefault();
 
-    debugger
 		dispatch(setSearchWord(suggestion, term));
 
 		if (splash) {

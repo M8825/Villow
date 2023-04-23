@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getLocation, getUserCity } from "./utils/userLocation";
 import { fetchSearchListings } from "../../store/listingsReducer";
-import { setSearchWord } from "../../store/searchFilters";
 
 const SplashSearchInput = ({
 	handleSearchOnChange,
@@ -52,7 +51,7 @@ const SplashSearchInput = ({
 		const userLocation = await getLocation();
 		const userCity = await getUserCity(userLocation);
 
-		dispatch(setSearchWord(userCity, "city"));
+		dispatch(fetchSearchListings("city", userCity));
 		history.push("/listings");
 	};
 

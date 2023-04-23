@@ -63,7 +63,6 @@ const IndexSearch = ({
 
 		const userLocation = await getLocation();
 		const userCity = await getUserCity(userLocation);
-    debugger
 
     dispatch(setSearchWord)
 
