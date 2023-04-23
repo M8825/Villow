@@ -10,7 +10,7 @@ const receiveSearchData = (payload) => ({
   payload,
 });
 
-const setSearchWord = (payload) => ({
+const receiveSearchWord = (payload) => ({
   type: RECEIVE_SEARCH_WORD,
   payload
 });
@@ -71,7 +71,7 @@ export const getNumberOfBedrooms = () => (state) => {
   return null;
 }
 
-export const getNumberOfBathrooms = () => (state) => { 
+export const getNumberOfBathrooms = () => (state) => {
   if (state && state.searchFilter) {
     return state.searchFilter.bathroom;
   }
@@ -88,12 +88,12 @@ export const getExcludes = () => (state) => {
   return null;
 }
 
-export const setSearchWordToLocalStorage =
-  (citySuffix, searchWord, term) => (dispatch) => {
+export const setSearchWord =
+  (searchWord, term) => (dispatch) => {
     localStorage.setItem("searchWord", searchWord);
     localStorage.setItem("term", term);
 
-    dispatch(setSearchWord({ citySuffix, searchWord, term }));
+    dispatch(receiveSearchWord({ searchWord, term }));
   };
 
 
@@ -122,13 +122,13 @@ export const setBedroom = (bedroom) => (dispatch) => {
 
 export const setBathroom = (bathroom) => (dispatch) => {
   localStorage.setItem("bathroom", bathroom);
-  
+
   dispatch(receiveBathrooms(bathroom));
 };
 
 export const setExcludes = (excludedListingsTypes) => (dispatch) => {
   localStorage.setItem("excludes", JSON.stringify(excludedListingsTypes));
-  
+
   dispatch(receiveExcludes(excludedListingsTypes));
 };
 

@@ -8,11 +8,13 @@ import BedsAndBaths from "./FilterButtons/BedsAndBaths/BedsAndBaths";
 import HomeType from "./FilterButtons/HomeType/HomeType";
 
 import { SearchInputContainer } from "./SearchInputContainer";
-import { getSearchWord } from "../../store/searchFilters";
+import { getSearchWord, setSearchWord } from "../../store/searchFilters";
 import { cleanSearchSuggestions } from "../../store/search";
 
 import "./IndexSearchInput.scss";
 import InitialSearchBox from "./InitialSearchBox";
+import { getLocation, getUserCity } from "./utils/userLocation";
+import { fetchSearchListings } from "../../store/listingsReducer";
 
 
 export const SearchContext = createContext();
@@ -55,6 +57,18 @@ const IndexSearch = ({
     setFocuseSearch(true);
   };
 
+  async function handleCurrentLocation(e) {
+		e.preventDefault();
+    debugger
+
+		const userLocation = await getLocation();
+		const userCity = await getUserCity(userLocation);
+
+    dispatch(setSearchWord)
+
+		dispatch(fetchSearchListings("city", userCity));
+	};
+
   return (
     <div className="search-component-wrapper">
       <div
@@ -79,7 +93,7 @@ const IndexSearch = ({
         </div>
 
         {suggestionsBox ? (
-          <InitialSearchBox />
+          <InitialSearchBox handleCurrentLocation={handleCurrentLocation}/>
 
         ) : (
           <div className="indexSearchDropdown" onClick={handleItemClick}>

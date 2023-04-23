@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-import { setSearchWordToLocalStorage } from "../../store/searchFilters";
+import { setSearchWord } from "../../store/searchFilters";
 import { CloseSearchWordIcon } from "./assets/CloseSearchWordIcon";
 
 import "./SearchInputContainer.scss";
@@ -21,7 +21,7 @@ export const SearchInputContainer = ({
 		e.preventDefault();
 
 		// TODO: Reset search word
-		dispatch(setSearchWordToLocalStorage(""));
+		dispatch(setSearchWord(""));
 	};
 
 	return (

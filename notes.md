@@ -1,8 +1,7 @@
     - NOTE: I'm setting boolean for conto, garage, and ac. On creation WITHOUT `null: false`;
 
-### Cards - TODO!
+### Cards - TODO FIX
     [ ] - Change layout of cards on window resize
-
 
 ## backend
 ### listing
@@ -97,16 +96,7 @@
       menu closes automatically. It should only close automatically when the
       user clicks on the maximum price range option.
 
-# NOTE:
-- Last workin commit - Ref: fetch on praice range option selection - to fetch
-    - on branch price-range
-
-# Git commits for today.
-
-- Git log --since=midnight --until=now --oneline
-
 ## Important abbreviations
-
 fix: A bug has been fixed
 docs: Changes have been made to documentation
 style: Changes have been made to code formatting, but not to functionality
