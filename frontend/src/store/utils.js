@@ -27,9 +27,10 @@ export const getLocalStorageSearchCredentials = () => {
   const bedroom = localStorage.getItem("bedroom");
   const bathroom = localStorage.getItem("bathroom");
   const excludes = localStorage.getItem("excludes");
+  const searchHistory = localStorage.getItem("searchHistory")
 
   // Check if there is localStorage items
-  if (term && searchWord && listingType) {
+  if (term && searchWord && listingType && searchHistory) {
     return {
       term,
       searchWord,
@@ -39,6 +40,7 @@ export const getLocalStorageSearchCredentials = () => {
       bedroom,
       bathroom,
       ...(excludes && { excludes: JSON.parse(excludes) }),
+      searchHistory: JSON.parse(searchHistory),
     };
   } else {
     // If there is no localStois there a way to arage for an User, set default values
@@ -49,6 +51,7 @@ export const getLocalStorageSearchCredentials = () => {
     localStorage.setItem("maxPrice", "");
     localStorage.setItem("bedroom", "0");
     localStorage.setItem("bathroom", "0");
+    localStorage.setItem("searchHistory", JSON.stringify([]));
 
     // Recursively set default credentials for seach functinality
     return getLocalStorageSearchCredentials();
@@ -66,16 +69,17 @@ export const cleanLocalStorageSearchCredentials = () => {
     bedroom,
     bathroom,
     excludes,
+    searchHistory,
   } = getLocalStorageSearchCredentials();
 
   const parsedSearchWord =
     term === "city" ? searchWord.split(",")[0] : searchWord;
 
-  const encodedSeachValue = encodeURIComponent(parsedSearchWord);
+  const encodedSearchValue = encodeURIComponent(parsedSearchWord);
 
   let queryObject = {
     expected_response: "listings", // Flag for back-end. Rails may rqueryStringeceive suggestions flag
-    [term]: encodedSeachValue,
+    [term]: encodedSearchValue,
     term,
     listing_type: listingType,
     min_price: minPrice,
@@ -83,6 +87,7 @@ export const cleanLocalStorageSearchCredentials = () => {
     bedroom,
     bathroom,
     ...(excludes && excludes.length !== 0 && { excludes }),
+    searchHistory,
   };
 
   delete queryObject["undefined"];

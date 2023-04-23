@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { setSearchWord } from "../../store/searchFilters";
+import { setSearchHistory, setSearchWord } from "../../store/searchFilters";
 import { findMatchingIndices } from "./searchUtils";
 
 import "./SuggestionItem.scss";
@@ -22,8 +22,9 @@ const SuggestionItem = ({ term, suggestion, value }) => {
 	const handleSearchOnClickItem = (e) => {
 		e.preventDefault();
 
-    debugger
 		dispatch(setSearchWord(suggestion, term));
+    dispatch(setSearchHistory(suggestion, term));
+
 
 		if (splash) {
 			history.push("/listings");
