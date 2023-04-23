@@ -1,18 +1,21 @@
 import { createContext, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { SearchInputContainer } from "./SearchInputContainer";
-import { HomeListingType } from "./FilterButtons/HomeListingType/HomeListingType";
+import HomeListingType from "./FilterButtons/HomeListingType/HomeListingType";
 import PriceRange from "./FilterButtons/PriceRange/PriceRange";
 import SuggestionItem from "./SuggestionItem";
 import BedsAndBaths from "./FilterButtons/BedsAndBaths/BedsAndBaths";
 import HomeType from "./FilterButtons/HomeType/HomeType";
+
+import { SearchInputContainer } from "./SearchInputContainer";
 import { getSearchWord } from "../../store/searchFilters";
 import { cleanSearchSuggestions } from "../../store/search";
+
 import "./IndexSearchInput.scss";
 
 
 export const SearchContext = createContext();
+
 const IndexSearch = ({
   handleSearchOnChange,
   value,
@@ -96,15 +99,12 @@ const IndexSearch = ({
           </div>
         )}
       </div>
-      {/* TODO: get rid of the context*/}
-      <SearchContext.Provider value={{ searchWord, term }}>
         <div className="filter-buttons">
           <HomeListingType />
         </div>
         <div className="filter-buttons">
           <PriceRange />
         </div>
-      </SearchContext.Provider>
       <div className="filter-buttons">
         <BedsAndBaths />
       </div>

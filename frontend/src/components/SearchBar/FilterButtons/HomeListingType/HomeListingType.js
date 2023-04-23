@@ -7,7 +7,7 @@ import { setListingType } from "../../../../store/searchFilters";
 
 import "./HomeListingType.scss";
 
-export const HomeListingType = () => {
+const HomeListingType = () => {
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState(""); // ["for-sale", "for-rent"
@@ -58,3 +58,5 @@ export const HomeListingType = () => {
     </DropDown>
   );
 };
+
+export default HomeListingType;
