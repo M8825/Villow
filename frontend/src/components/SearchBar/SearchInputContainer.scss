@@ -1,7 +1,6 @@
 .search-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 
   .search-word-row {
     display: grid;
@@ -50,8 +49,13 @@
 
 .text-input {
   overflow: hidden;
+  margin-top: 10px;
 
   &:focus {
     outline: none;
   }
+}
+
+.no-search-word {
+  margin-top: 0;
 }

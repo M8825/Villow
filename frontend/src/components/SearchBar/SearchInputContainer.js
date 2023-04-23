@@ -6,6 +6,7 @@ import { setSearchWord } from "../../store/searchFilters";
 import { CloseSearchWordIcon } from "./assets/CloseSearchWordIcon";
 
 import "./SearchInputContainer.scss";
+import { useState } from "react";
 
 export const SearchInputContainer = ({
 	searchWord,
@@ -17,11 +18,17 @@ export const SearchInputContainer = ({
 }) => {
 	const dispatch = useDispatch();
 
+  const [searchWordPresent, setSearchWordPresent] = useState(true);
+
 	const handleOnClickClose = (e) => {
 		e.preventDefault();
 
-		// TODO: Reset search word
-		dispatch(setSearchWord(""));
+    setSearchWordPresent(false);
+
+		// NOTE: It clear search word, but when app checks localStorage
+		// it still has the search word. So, when user refreshes the page
+		// the search word will be set to initial search New York, NY
+		dispatch(setSearchWord("", ""));
 	};
 
 	return (
@@ -49,16 +56,15 @@ export const SearchInputContainer = ({
 					</>
 				)}
 			</div>
-
-			<input
-				className="text-input"
-				ref={inputRef}
-				type="text"
-				value={value}
-				onChange={handleSearchOnChange}
-				onClick={() => setSuggestionsBox(true)}
-				placeholder="Address, City, ZIP, state"
-			/>
+				<input
+					className={"text-input " + (searchWordPresent ? "" : "no-search-word")}
+					ref={inputRef}
+					type="text"
+					value={value}
+					onChange={handleSearchOnChange}
+					onClick={() => setSuggestionsBox(true)}
+					placeholder="Address, City, ZIP, state"
+				/>
 		</div>
 	);
 };
