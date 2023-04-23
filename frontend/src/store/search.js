@@ -35,13 +35,9 @@ export const searchSuggestions =
       [term]: searchString,
     };
 
-    const localStorageParams =
-      cleanLocalStorageSearchCredentials();
+    const localStorageParams = cleanLocalStorageSearchCredentials();
 
-    const queryString = objectToQuerySting({
-      ...localStorageParams,
-      ...baseParams,
-    });
+    const queryString = objectToQuerySting({...localStorageParams, ...baseParams});
 
     if (term) {
       res = await csrfFetch(`/api/search?${queryString}`);

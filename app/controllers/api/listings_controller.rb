@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'uri'
+require "uri"
 
 module Api
   class ListingsController < ApplicationController
@@ -15,7 +15,7 @@ module Api
       search_term = params[:search_term]
 
       @listings =
-        if search_term == 'state'
+        if search_term == "state"
           Listing.search(search_string)
         else
           Listing.all
@@ -32,12 +32,15 @@ module Api
 
       expected_response = params[:expected_response] # 'listings' or 'suggestions'
 
-      if expected_response == 'listings'
-        render 'api/listings/index'
+      if expected_response == "listings"
+        render "api/listings/index"
       else
         suggestions = parse_suggestions # search complition suggestions based on user input
         # e.g. if user types 'San' we return 'San Francisco, CA'
-        render 'api/listings/search_suggestions', locals: { states: suggestions }
+        render "api/listings/search_suggestions",
+               locals: {
+                 states: suggestions
+               }
       end
     end
 
@@ -114,11 +117,11 @@ module Api
     # Price from front-end is send in comman separated form
     # return query accaptable format in
     def price_to_int(price)
-      price.split(',').join('').to_i
+      price.split(",").join("").to_i
     end
 
     def beds_constraint(room)
-      return {} unless params[room.to_sym] && params[room.to_sym] != '0'
+      return {} unless params[room.to_sym] && params[room.to_sym] != "0"
 
       { "#{room} >= ?" => params[room.to_sym].to_i }
     end
@@ -128,10 +131,29 @@ module Api
       beds_and_baths_constraint = {}
 
       # Attach numbers of bedrooms where clause to query stirng
-      beds_and_baths_constraint.merge!(beds_constraint('bedroom'))
+      beds_and_baths_constraint.merge!(beds_constraint("bedroom"))
 
       # Attach numbers of bathrooms where clause to query stirng
-      beds_and_baths_constraint.merge!(beds_constraint('bathroom'))
+      beds_and_baths_constraint.merge!(beds_constraint("bathroom"))
+
+      beds_and_baths_constraint
+    end
+
+    def beds_constraint(room)
+      return {} unless params[room.to_sym] && params[room.to_sym] != "0"
+
+      { "#{room} >= ?" => params[room.to_sym].to_i }
+    end
+
+    # number of bedrooms and bathrooms constraints
+    def add_beds_baths_constraints
+      beds_and_baths_constraint = {}
+
+      # Attach numbers of bedrooms where clause to query stirng
+      beds_and_baths_constraint.merge!(beds_constraint("bedroom"))
+
+      # Attach numbers of bathrooms where clause to query stirng
+      beds_and_baths_constraint.merge!(beds_constraint("bathroom"))
 
       beds_and_baths_constraint
     end
@@ -144,23 +166,24 @@ module Api
       # exist in the query string. This requires a change in the getLocalStorage
       # in the front-end
       unless params[:min_price].empty? # add minumin constraints
-        price_constains['price >= ?'] = price_to_int(params[:min_price])
+        price_constains["price >= ?"] = price_to_int(params[:min_price])
       end
 
       return price_constains if params[:max_price].empty? # return or add maximum constains
 
-      price_constains['price <= ?'] = price_to_int(params[:max_price])
+      price_constains["price <= ?"] = price_to_int(params[:max_price])
 
       price_constains
     end
 
     def add_excluded_home_type_constraints
-      return {} unless params[:excludes] &&
-                       params[:excludes].split(',').length != 6
+      unless params[:excludes] && params[:excludes].split(",").length != 6
+        return {}
+      end
 
-      values_arr = params[:excludes].split(',')
+      values_arr = params[:excludes].split(",")
 
-      { 'building_type NOT IN (?)' => values_arr }
+      { "building_type NOT IN (?)" => values_arr }
     end
 
     # Build query has for LIKE params
@@ -186,7 +209,14 @@ module Api
 
     # Exluded home types that are sent in the query string
     def exclude_non_like_params
-      params.except(:term, :min_price, :max_price, :bedroom, :bathroom, :excludes)
+      params.except(
+        :term,
+        :min_price,
+        :max_price,
+        :bedroom,
+        :bathroom,
+        :excludes
+      )
     end
 
     def query_listings
@@ -200,14 +230,14 @@ module Api
 
       query_hash.merge!(add_excluded_home_type_constraints)
 
-      Listing.where(query_hash.keys.join(' AND '), *query_hash.values)
+      Listing.where(query_hash.keys.join(" AND "), *query_hash.values)
     end
 
     # If the term is 'city', we need to return both the city and state
     def parse_term
       term = params[:term]
 
-      term == 'city' ? [term, :state] : [term]
+      term == "city" ? [term, :state] : [term]
     end
 
     def parse_suggestions
@@ -215,12 +245,20 @@ module Api
 
       # Grab all the unique values for the given listing
       # attribute and return them as an array
-      suggestions = @listings.pluck(*response_columns)
-                             .uniq
-                             .map { |suggestion| suggestion.is_a?(Integer) ? suggestion.to_s : suggestion }
+      suggestions =
+        @listings
+          .pluck(*response_columns)
+          .uniq
+          .map do |suggestion|
+            suggestion.is_a?(Integer) ? suggestion.to_s : suggestion
+          end
 
       suggestions.map do |suggestion|
-        params[:term] == 'city' ? "#{suggestion[0]}, #{suggestion[1]}" : suggestion
+        if params[:term] == "city"
+          "#{suggestion[0]}, #{suggestion[1]}"
+        else
+          suggestion
+        end
       end
     end
   end

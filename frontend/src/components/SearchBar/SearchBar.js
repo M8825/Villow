@@ -10,7 +10,7 @@ import {
 import { fetchSearchListings } from "../../store/listingsReducer";
 import { statesMatch, citiesMatch, digitsMatcher } from "./searchUtils";
 
-import SplashSearchInput from "./SearchInput";
+import SplashSearchInput from "./SplashSearchInput";
 import IndexSearchInput from "./IndexSearchInput";
 
 import "./SearchBar.scss";
