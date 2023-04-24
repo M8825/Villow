@@ -8,6 +8,8 @@ import { getLocation, getUserCity } from "./utils/userLocation";
 import { setSearchWord } from "../../store/searchFilters";
 
 import "./SplashSearchInput.scss";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const SplashSearchInput = ({
 	handleSearchOnChange,
@@ -21,27 +23,27 @@ const SplashSearchInput = ({
 	const dispatch = useDispatch();
 	const history = useHistory();
 
-	const handleMouseLeave = (e) => {
-		e.preventDefault();
+	const [searchBarClicked, setSearchBarClicked] = useState(false);
 
-		setSuggestionsBox(false);
+	useEffect(() => {
 
-		if (
-			e.target.parentElement.className.split(" ").includes("search-container")
-		) {
-			e.target.parentElement.classList.remove("focused");
-		}
-	};
+		const handleClickOutside = (e) => {
+			if (e.target.classList.contains("splash-focused-search")) return;
 
-	const handleMouseEnter = (e) => {
-		e.preventDefault();
+			document
+				.getElementsByClassName("splash-focused-search")[0]
+				.classList.remove("splash-focused-search");
 
-		if (
-			e.target.parentElement.className.split(" ").includes("search-container")
-		) {
-			e.target.parentElement.classList.add("focused");
-		}
-	};
+			setSearchBarClicked(false);
+      debugger
+		};
+
+		document.body.addEventListener("click", handleClickOutside);
+
+		return () => {
+			document.body.removeEventListener("click", handleClickOutside);
+		};
+	}, [searchBarClicked]);
 
 	// Direct user to listings index page with listings close to their location
 	const handleCurrentLocation = async (e) => {
@@ -54,26 +56,32 @@ const SplashSearchInput = ({
 		history.push("/listings");
 	};
 
+	function handleInputClick(e) {
+		e.preventDefault();
+    e.stopPropagation();
+
+		e.currentTarget.classList.add("splash-focused-search");
+		setSearchBarClicked(true);
+	}
+
 	return (
-		<div
-			className="search-input-dropdown-wrapper"
-			onMouseLeave={handleMouseLeave}
-			onMouseEnter={handleMouseEnter}
-		>
-			<div className="search-container">
-				<input
-					className="search_container__search_bar"
-					type="text"
-					value={value}
-					placeholder="Enter address, neighborhood, city, or ZIP code"
-					onChange={handleSearchOnChange}
-					onClick={(e) => setSuggestionsBox(true)}
-				/>
-				<div
-					className="search_container__search_button"
-					onClick={handleSearchSubmit}
-				>
-					<SearchIcon />
+		<>
+			<div className="search-input-dropdown-wrapper">
+				<div className="splash-search-container" onClick={handleInputClick}>
+					<input
+						className="search_container__search_bar"
+						type="text"
+						value={value}
+						placeholder="Enter address, neighborhood, city, or ZIP code"
+						onChange={handleSearchOnChange}
+						onClick={(e) => setSuggestionsBox(true)}
+					/>
+					<div
+						className="search_container__search_button"
+						onClick={handleSearchSubmit}
+					>
+						<SearchIcon />
+					</div>
 				</div>
 			</div>
 
@@ -98,7 +106,7 @@ const SplashSearchInput = ({
 					</ul>
 				)}
 			</div>
-		</div>
+		</>
 	);
 };
 
