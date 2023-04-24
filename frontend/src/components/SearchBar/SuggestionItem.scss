@@ -23,8 +23,10 @@
 
 .suggestion-item-splash {
   @include shared-styles;
+  width: 95%;
 
   border-bottom: 1px solid #f0f0f0;
+
 
   &:hover {
     background-color: rgb(44 104 246);

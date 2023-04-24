@@ -1,15 +1,14 @@
+import { useState, useEffect  } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import SplashSearchHistorySuggestions from "./SplashSearchHistorySuggestions";
 import SearchIcon from "./SearchIcon";
 import SuggestionItem from "./SuggestionItem";
-import { getLocation, getUserCity } from "./utils/userLocation";
 import { setSearchWord } from "../../store/searchFilters";
+import { getLocation, getUserCity } from "./utils/userLocation";
 
 import "./SplashSearchInput.scss";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const SplashSearchInput = ({
 	handleSearchOnChange,
@@ -17,16 +16,15 @@ const SplashSearchInput = ({
 	value,
 	term,
 	suggestions,
-	suggestionsBox,
 	setSuggestionsBox,
 }) => {
+	console.log("suggestions: ", suggestions);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const [searchBarClicked, setSearchBarClicked] = useState(false);
 
 	useEffect(() => {
-
 		const handleClickOutside = (e) => {
 			if (e.target.classList.contains("splash-focused-search")) return;
 
@@ -35,7 +33,6 @@ const SplashSearchInput = ({
 				.classList.remove("splash-focused-search");
 
 			setSearchBarClicked(false);
-      debugger
 		};
 
 		document.body.addEventListener("click", handleClickOutside);
@@ -58,14 +55,14 @@ const SplashSearchInput = ({
 
 	function handleInputClick(e) {
 		e.preventDefault();
-    e.stopPropagation();
+		e.stopPropagation();
 
 		e.currentTarget.classList.add("splash-focused-search");
 		setSearchBarClicked(true);
 	}
 
 	return (
-		<>
+		<div style={{ zIndex: 5}}>
 			<div className="search-input-dropdown-wrapper">
 				<div className="splash-search-container" onClick={handleInputClick}>
 					<input
@@ -85,13 +82,13 @@ const SplashSearchInput = ({
 				</div>
 			</div>
 
-			<div className="suggestions-dropdown">
-				{suggestionsBox ? (
+			<div className="splash-suggestions-dropdown">
+				{searchBarClicked && suggestions.length === 0 ? (
 					<SplashSearchHistorySuggestions
 						handleCurrentLocation={handleCurrentLocation}
 					/>
 				) : (
-					<ul>
+					<ul className="fetched-suggestions">
 						{suggestions &&
 							suggestions.map((suggestion, idx) => {
 								return (
@@ -106,7 +103,7 @@ const SplashSearchInput = ({
 					</ul>
 				)}
 			</div>
-		</>
+		</div>
 	);
 };
 
