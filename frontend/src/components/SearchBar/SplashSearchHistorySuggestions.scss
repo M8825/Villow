@@ -1,0 +1,59 @@
+.splash-search-history-list-item {
+  display: flex;
+  width: 100%;
+
+  &:hover {
+    background-color: rgb(44 104 246);
+    color: #fff;
+
+    .splash-search-suggestion-icon {
+      svg {
+        g {
+          stroke: #fff;
+
+          path {
+            stroke: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .suggestions-item-container {
+    width: 100%;
+  }
+}
+
+.empty-search-wrapper {
+  display: flex;
+  width: 100%;
+  height: 51px;
+
+
+  &:hover {
+    background-color: rgb(44 104 246);
+
+    .current-location {
+      border-bottom: none;
+
+    }
+
+    p {
+      color: #fff;
+    }
+
+    svg {
+      path {
+        stroke: #fff;
+      }
+    }
+
+  }
+
+  .current-location {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #ededed;
+  }
+}
