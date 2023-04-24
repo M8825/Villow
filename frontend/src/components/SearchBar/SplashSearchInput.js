@@ -1,11 +1,13 @@
-import InitialSearchBox from "./InitialSearchBox";
-import SuggestionItem from "./SuggestionItem";
-import SearchIcon from "./SearchIcon";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+import SplashSearchHistorySuggestions from "./SplashSearchHistorySuggestions";
+import SearchIcon from "./SearchIcon";
+import SuggestionItem from "./SuggestionItem";
 import { getLocation, getUserCity } from "./utils/userLocation";
-import { fetchSearchListings } from "../../store/listingsReducer";
 import { setSearchWord } from "../../store/searchFilters";
+
+import "./SplashSearchInput.scss";
 
 const SplashSearchInput = ({
 	handleSearchOnChange,
@@ -25,9 +27,7 @@ const SplashSearchInput = ({
 		setSuggestionsBox(false);
 
 		if (
-			e.target.parentElement.className
-				.split(" ")
-				.includes("search-container")
+			e.target.parentElement.className.split(" ").includes("search-container")
 		) {
 			e.target.parentElement.classList.remove("focused");
 		}
@@ -37,15 +37,13 @@ const SplashSearchInput = ({
 		e.preventDefault();
 
 		if (
-			e.target.parentElement.className
-				.split(" ")
-				.includes("search-container")
+			e.target.parentElement.className.split(" ").includes("search-container")
 		) {
 			e.target.parentElement.classList.add("focused");
 		}
 	};
 
-  // Direct user to listings index page with listings close to their location
+	// Direct user to listings index page with listings close to their location
 	const handleCurrentLocation = async (e) => {
 		e.preventDefault();
 
@@ -79,10 +77,12 @@ const SplashSearchInput = ({
 				</div>
 			</div>
 
-			{suggestionsBox ? (
-				<InitialSearchBox handleCurrentLocation={handleCurrentLocation} />
-			) : (
-				<div className="dropdown">
+			<div className="suggestions-dropdown">
+				{suggestionsBox ? (
+					<SplashSearchHistorySuggestions
+						handleCurrentLocation={handleCurrentLocation}
+					/>
+				) : (
 					<ul>
 						{suggestions &&
 							suggestions.map((suggestion, idx) => {
@@ -96,8 +96,8 @@ const SplashSearchInput = ({
 								);
 							})}
 					</ul>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 };

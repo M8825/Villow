@@ -21,13 +21,14 @@
   }
 }
 
-.suggestion-item {
+.suggestion-item-splash {
   @include shared-styles;
 
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #f0f0f0;
 
   &:hover {
     background-color: rgb(44 104 246);
+    border-bottom: 1px solid rgb(44 104 246);
   }
 
   &:hover span,

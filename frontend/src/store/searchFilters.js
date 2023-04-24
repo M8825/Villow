@@ -41,6 +41,14 @@ const receiveExcludes = (excludes) => ({
 	excludes,
 });
 
+export const getSearchHistory = () => (state) => {
+  if (state && state.searchFilter.searchHistory) {
+    return state.searchFilter.searchHistory;
+  }
+
+  return [];
+}
+
 export const getSearchWord = () => (state) => {
 	if (state && state.searchFilter) {
 		return state.searchFilter.searchWord;

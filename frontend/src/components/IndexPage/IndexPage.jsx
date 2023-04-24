@@ -10,9 +10,11 @@ import "./IndexPage.scss";
 const IndexPage = () => {
   const dispatch = useDispatch();
 
+  // TODO-next: move it to app level
   useEffect(() => {
     const localStorageData = getLocalStorageSearchCredentials();
 
+    debugger
     dispatch(setInitialSearchingData(localStorageData));
   }, []);
 

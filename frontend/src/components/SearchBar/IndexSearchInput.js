@@ -7,7 +7,7 @@ import { SearchInputContainer } from "./SearchInputContainer";
 import { getSearchWord, setSearchWord } from "../../store/searchFilters";
 import { cleanSearchSuggestions } from "../../store/search";
 
-import InitialSearchBox from "./InitialSearchBox";
+import SplashSearchHistorySuggestions from "./SplashSearchHistorySuggestions";
 import { getLocation, getUserCity } from "./utils/userLocation";
 import { fetchSearchListings } from "../../store/listingsReducer";
 
@@ -113,7 +113,7 @@ const IndexSearch = ({
 										})}
 								</ul>
 							) : (
-								<InitialSearchBox
+								<SplashSearchHistorySuggestions
 									handleCurrentLocation={
 										handleCurrentLocation
 									}
