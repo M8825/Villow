@@ -10,51 +10,39 @@ import { BrowserRouter } from "react-router-dom";
 // TODO: remove these imports and remove lines 35 to 38
 import { createUser, loginUser, logoutUser } from "./store/usersReducer.js";
 import { createListing } from "./store/listingsReducer";
+import { getLocalStorageSearchCredentials } from "./store/utils";
 
-const  domNode = document.getElementById("root");
-const  root = createRoot(domNode);
+const domNode = document.getElementById("root");
+const root = createRoot(domNode);
 
-let currentUser;
+const localStorageData = getLocalStorageSearchCredentials();
 
-if (sessionStorage.getItem("currentUser") !== "undefined") {
-	currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-}
+let initialState = {
+  searchFilter: {
+    foo: "bar",
+    ...localStorageData,
+  },
+};
 
-let initialState;
-
-if (currentUser) {
-	initialState = {
-		user: {
-			active: JSON.parse(sessionStorage.getItem("currentUser")),
-		},
-	};
-}
-
-const  store = configureStore(initialState);
+const store = configureStore(initialState);
 
 window.createUser = createUser;
 window.loginUser = loginUser;
 window.logoutUser = logoutUser;
 window.createLIsting = createListing;
 
-const  InitializeApp = () => {
-	return (
-		<React.StrictMode>
-			<Provider store={store}>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</Provider>
-		</React.StrictMode>
-	);
-};
-
 root.render(
-	<React.StrictMode>
-		<ChakraBaseProvider>
-			<InitializeApp />
-		</ChakraBaseProvider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <ChakraBaseProvider>
+      <React.StrictMode>
+        <Provider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Provider>
+      </React.StrictMode>
+    </ChakraBaseProvider>
+  </React.StrictMode>
 );
 
-restoreSession().then(InitializeApp);
+restoreSession();

@@ -19,7 +19,6 @@ const SplashSearchInput = ({
   suggestions,
   setSuggestionsBox,
 }) => {
-  console.log("suggestions: ", suggestions);
   const dispatch = useDispatch();
   const history = useHistory();
 
