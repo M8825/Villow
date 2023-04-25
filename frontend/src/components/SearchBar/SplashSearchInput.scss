@@ -1,69 +1,84 @@
 .search-input-dropdown-wrapper:hover {
-    border-radius: 3px;
+  border-radius: 3px;
 }
 
 .splash-focused-search {
-    box-shadow:
-        0 0 0 1px #272aff,
-        rgb(255 255 255) 0px 0px 0px 2px,
-        rgb(166 229 255) 0px 0px 2px 3px,
-        rgb(0 106 255) 0px 0px 2px 4px;
+  box-shadow: 0 0 0 1px #272aff, rgb(255 255 255) 0px 0px 0px 2px,
+    rgb(166 229 255) 0px 0px 2px 3px, rgb(0 106 255) 0px 0px 2px 4px;
 }
 
 .splash-search-container {
-    display: flex;
-    border-radius: 3px;
+  display: flex;
+  border-radius: 3px;
 
-    input {
-        border-radius: 3px 0 0 3px;
+  input {
+    border-radius: 3px 0 0 3px;
 
-        &:focus {
-            outline: none
-        }
+    &:focus {
+      outline: none;
     }
+  }
 
-    .search_container__search_button {
-        background-color: rgb(246 246 250);
-        padding: 0px 10px 0px 15px;
-        border-radius: 0px 3px 3px 0px;
+  .search_container__search_button {
+    background-color: rgb(246 246 250);
+    padding: 0px 10px 0px 15px;
+    border-radius: 0px 3px 3px 0px;
 
-        svg {
-            width: 22px;
-            height: 22px;
-            fill: rgb(64, 64, 64);
-        }
+    svg {
+      width: 22px;
+      height: 22px;
+      fill: rgb(64, 64, 64);
     }
+  }
 }
 
 .splash-suggestions-dropdown {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  margin-top: 1px;
+  border-radius: 0px 0px 3px 3px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  gap: 5px;
+
+  // Set styling rules of SuggestionItem for fetched suggestions
+  ul {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    width: 100%;
-    margin-top: 1px;
-    border-radius: 0px 0px 3px 3px;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     gap: 5px;
 
-    // Set styling rules of SuggestionItem for fetched suggestions
-    ul {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+    li {
+      list-style-type: none;
 
-        li {
-            list-style-type: none;
-            div {
-                border-bottom: none;
-                p {
-                    color: black;
-                    margin-left: 0;
-                }
-            }
+      div {
+        border-bottom: none;
+        p {
+          color: black;
+          margin-left: 0;
         }
-
-        li:last-child > div > p {
-            border-bottom: none;
-        }
+      }
     }
+
+    li:last-child > div > p {
+      border-bottom: none;
+    }
+  }
+}
+
+.fetched-suggestions-wrapper {
+  .item-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgb(44 104 246);
+    }
+
+    &:last-child:hover {
+      border-radius: 0px 0px 3px 3px;
+    }
+  }
 }
