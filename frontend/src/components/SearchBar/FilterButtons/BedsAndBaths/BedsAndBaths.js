@@ -30,7 +30,6 @@ const BedsAndBaths = () => {
     };
   }, [numberOfBedrooms, numberOfBathrooms]);
 
-  console.log("numberOfBathrooms: ", numberOfBathrooms);
   return (
     <DropDown
       selectedButton={selectedButton}

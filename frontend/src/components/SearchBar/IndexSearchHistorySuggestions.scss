@@ -1,0 +1,19 @@
+.index-empty-search-wrapper {
+  background-color: #fff;
+  font-size: 16px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+  
+
+  .index-current-location {
+    display: flex;
+    align-items: center;
+
+    .idnex-location-icon {
+      color: rgb(96 106 128);
+      width: 22px;
+      height: 22px;
+      margin: 20px 10px 20px 20px;
+    }
+  }
+}
