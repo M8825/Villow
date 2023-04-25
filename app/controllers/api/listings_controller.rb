@@ -163,10 +163,10 @@ module Api
       price_constains = {}
 
       # add minumin constraints
-      price_constains['price >= ?'] = price_to_int(params[:min_price]) if params[:min_price] 
+      price_constains['price >= ?'] = price_to_int(params[:min_price]) if params[:min_price]
 
       # return or add maximum constains
-      return price_constains unless params[:max_price] 
+      return price_constains unless params[:max_price]
 
       price_constains['price <= ?'] = price_to_int(params[:max_price])
 

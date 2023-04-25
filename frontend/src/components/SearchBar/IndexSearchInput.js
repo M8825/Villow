@@ -56,11 +56,9 @@ const IndexSearch = ({
 
 	async function handleCurrentLocation(e) {
 		e.preventDefault();
-		debugger;
 
 		const userLocation = await getLocation();
 		const userCity = await getUserCity(userLocation);
-		debugger;
 
 		dispatch(setSearchWord);
 

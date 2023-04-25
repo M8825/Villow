@@ -27,7 +27,7 @@ export const getLocalStorageSearchCredentials = () => {
   const bedroom = localStorage.getItem("bedroom");
   const bathroom = localStorage.getItem("bathroom");
   const excludes = localStorage.getItem("excludes");
-  const searchHistory = localStorage.getItem("searchHistory")
+  const searchHistory = localStorage.getItem("searchHistory");
 
   // Check if there is localStorage items
   if (term && searchWord && listingType && searchHistory) {
@@ -35,10 +35,10 @@ export const getLocalStorageSearchCredentials = () => {
       term,
       searchWord,
       listingType,
-      minPrice,
-      maxPrice,
-      bedroom,
-      bathroom,
+      ...(minPrice && { minPrice }),
+      ...(maxPrice && { maxPrice }),
+      ...(bedroom && { bedroom }),
+      ...(bathroom && { bathroom }),
       ...(excludes && { excludes: JSON.parse(excludes) }),
       searchHistory: JSON.parse(searchHistory),
     };
@@ -47,10 +47,10 @@ export const getLocalStorageSearchCredentials = () => {
     localStorage.setItem("searchWord", "New York, NY");
     localStorage.setItem("term", "city");
     localStorage.setItem("listingType", "Sale");
-    localStorage.setItem("minPrice", "");
-    localStorage.setItem("maxPrice", "");
-    localStorage.setItem("bedroom", "0");
-    localStorage.setItem("bathroom", "0");
+    // localStorage.setItem("minPrice", "");
+    // localStorage.setItem("maxPrice", "");
+    // localStorage.setItem("bedroom", "0");
+    // localStorage.setItem("bathroom", "0");
     localStorage.setItem("searchHistory", JSON.stringify([]));
 
     // Recursively set default credentials for seach functinality
@@ -77,17 +77,18 @@ export const cleanLocalStorageSearchCredentials = () => {
 
   const encodedSearchValue = encodeURIComponent(parsedSearchWord);
 
+  // TODO: use camel key to snake key in rails and delete this function 
   let queryObject = {
     expected_response: "listings", // Flag for back-end. Rails may rqueryStringeceive suggestions flag
     [term]: encodedSearchValue,
     term,
-    listing_type: listingType,
-    min_price: minPrice,
-    max_price: maxPrice,
-    bedroom,
-    bathroom,
+    ...(listingType && { listing_type: listingType }),
+    ...(minPrice && { min_price: minPrice }),
+    ...(maxPrice && { max_price: maxPrice }),
+    ...(bedroom && { bedroom }),
+    ...(bathroom && { bathroom }),
     ...(excludes && excludes.length !== 0 && { excludes }),
-    searchHistory,
+    searchHistory, // TODO: I think I don't need this key in the query string
   };
 
   delete queryObject["undefined"];
