@@ -25,7 +25,7 @@ const cleanSuggestions = () => ({
 });
 
 export const searchSuggestions =
-  (searchString, term = null) =>
+  (searchString, term = null, location) =>
   async (dispatch) => {
     let res;
 
@@ -37,7 +37,10 @@ export const searchSuggestions =
 
     const localStorageParams = cleanLocalStorageSearchCredentials();
 
-    const queryString = objectToQuerySting({...localStorageParams, ...baseParams});
+    const queryString = objectToQuerySting({
+      ...(location !== "splash" && {localStorageParams}), // if location is from splash page
+      ...baseParams,                                      // don't send parameters from local Storage 
+    });
 
     if (term) {
       res = await csrfFetch(`/api/search?${queryString}`);

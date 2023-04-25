@@ -22,7 +22,6 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const searchRef = useRef(null);
 
-  const isAtListinIndex = location.pathname === "/listings";
 
   const suggestions = useSelector(getSuggestions());
   const [suggestionsBox, setSuggestionsBox] = useState(false);
@@ -78,7 +77,7 @@ const SearchBar = () => {
       setTerm("zipcode");
 
       // fetch suggestions based on zip code
-      dispatch(searchSuggestions(searchString, "zipcode"));
+      dispatch(searchSuggestions(searchString, "zipcode", location.pathname));
     } else if (searchString.length >= 3) {
       setSuggestionsBox(false);
       setTerm("streetAddress");
@@ -100,7 +99,7 @@ const SearchBar = () => {
 
   return (
     <>
-      {isAtListinIndex ? (
+      {location.pathname == "/listings"? (
         <>
           <hr />
           <IndexSearchInput

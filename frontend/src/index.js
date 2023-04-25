@@ -19,7 +19,6 @@ const localStorageData = getLocalStorageSearchCredentials();
 
 let initialState = {
   searchFilter: {
-    foo: "bar",
     ...localStorageData,
   },
 };
