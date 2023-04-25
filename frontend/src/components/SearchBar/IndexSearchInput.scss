@@ -51,12 +51,14 @@
     }
 
     .indexSearchDropdown {
+      font-size: 16px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 8px;
       position: absolute;
       min-width: 298px; /* Match the width of .search-input */
       width: auto;
       margin-top: 8px;
-      background-color: white;
-      border-radius: 6px;
+      background-color: #fff;
     }
   }
 }

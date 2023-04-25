@@ -7,14 +7,13 @@ import { SearchInputContainer } from "./SearchInputContainer";
 import { getSearchWord, setSearchWord } from "../../store/searchFilters";
 import { cleanSearchSuggestions } from "../../store/search";
 
-import SplashSearchHistorySuggestions from "./SplashSearchHistorySuggestions";
 import { getLocation, getUserCity } from "./utils/userLocation";
 import { fetchSearchListings } from "../../store/listingsReducer";
 
 import FilterButtons from "./FilterButtons/FilterButtons";
+import IndexSearchHistorySuggestions from "./IndexSearchHistorySuggestions";
 
 import "./IndexSearchInput.scss";
-import IndexSearchHistorySuggestions from "./IndexSearchHistorySuggestions";
 
 export const SearchContext = createContext();
 

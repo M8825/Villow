@@ -1,10 +1,4 @@
 .index-empty-search-wrapper {
-  background-color: #fff;
-  font-size: 16px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 8px;
-  
-
   .index-current-location {
     display: flex;
     align-items: center;
@@ -12,8 +6,43 @@
     .idnex-location-icon {
       color: rgb(96 106 128);
       width: 22px;
-      height: 22px;
-      margin: 20px 10px 20px 20px;
+      height: 18px;
+      margin: 14px 10px 14px 20px;
+    }
+
+    &:hover {
+      background-color: rgb(244 250 254);
+    }
+  }
+
+  ul {
+    li.index-search-history-list-item {
+      align-items: center;
+      display: flex;
+      list-style: none;
+
+      .index-clock-icon {
+        color: rgb(96 106 128);
+        width: 16px;
+        height: 16px;
+        margin: 10px 14px 10px 22px;
+      }
+
+      .suggestion-item-index {
+        p {
+          margin-left: 0;
+          color: #000;
+          border-bottom: none;
+        }
+      }
+
+      &:hover {
+        background-color: rgb(244 250 254);
+      }
+      &:last-child:hover {
+        background-color: rgb(244 250 254);
+        border-radius: 0 0 8px 8px;
+      }
     }
   }
 }
