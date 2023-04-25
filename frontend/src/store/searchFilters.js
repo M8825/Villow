@@ -76,7 +76,7 @@ export const getPrice = (priceLabel) => (state) => {
 };
 
 export const getNumberOfBedrooms = () => (state) => {
-  if (state && state.searchFilter) {
+  if (state && state.searchFilter.bedroom) {
     return state.searchFilter.bedroom;
   }
 
@@ -84,7 +84,7 @@ export const getNumberOfBedrooms = () => (state) => {
 };
 
 export const getNumberOfBathrooms = () => (state) => {
-  if (state && state.searchFilter) {
+  if (state && state.searchFilter.bathroom) {
     return state.searchFilter.bathroom;
   }
 

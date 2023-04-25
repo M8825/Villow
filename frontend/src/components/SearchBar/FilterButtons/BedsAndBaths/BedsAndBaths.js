@@ -14,13 +14,14 @@ import {
 import "./BedsAndBaths.scss";
 
 const BedsAndBaths = () => {
-  const numberOfBedrooms = useSelector(getNumberOfBedrooms());
-  const numberOfBathrooms = useSelector(getNumberOfBathrooms());
+  const numberOfBedrooms = useSelector(getNumberOfBedrooms()) || "0";
+  const numberOfBathrooms = useSelector(getNumberOfBathrooms()) || "0";
 
   const [selectedButton, setSelectedButton] = useState(false);
 
   useEffect(() => {
     if (numberOfBedrooms !== "0" || numberOfBathrooms !== "0") {
+      debugger;
       setSelectedButton(true);
     }
 
@@ -29,6 +30,7 @@ const BedsAndBaths = () => {
     };
   }, [numberOfBedrooms, numberOfBathrooms]);
 
+  console.log("numberOfBathrooms: ", numberOfBathrooms);
   return (
     <DropDown
       selectedButton={selectedButton}

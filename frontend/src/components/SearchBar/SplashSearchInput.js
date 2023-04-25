@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import SplashSearchHistorySuggestions from "./SplashSearchHistorySuggestions";
 import SearchIcon from "./SearchIcon";
 import SuggestionItem from "./SuggestionItem";
+
 import { setSearchWord } from "../../store/searchFilters";
 import { getLocation, getUserCity } from "./utils/userLocation";
 import { cleanSearchSuggestions } from "../../store/search";
@@ -96,7 +97,7 @@ const SplashSearchInput = ({
                 return (
                   <div className="item-wrapper">
                     <SuggestionItem
-                      key={idx}
+                      key={idx * 3}
                       term={term}
                       value={value}
                       suggestion={suggestion}
