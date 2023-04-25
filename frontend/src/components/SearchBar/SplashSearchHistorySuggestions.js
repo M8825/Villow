@@ -1,40 +1,57 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import CurrentLocationIcon from "./assets/CurrentLocationIcon";
 import SuggestionItem from "./SuggestionItem";
-import { getSearchHistory } from "../../store/searchFilters";
+import { getSearchHistory, setSearchWord } from "../../store/searchFilters";
 
 import "./SplashSearchHistorySuggestions.scss";
 import SplashSearchHistorySuggestionIcon from "./assets/SplashSearchHistorySuggestionIcon";
+import { getLocation, getUserCity } from "./utils/userLocation";
+import { useHistory, useLocation } from "react-router-dom";
 
-const SplashSearchHistorySuggestions = ({ handleCurrentLocation }) => {
-	const searchHistory = useSelector(getSearchHistory());
+const SplashSearchHistorySuggestions = () => {
+  const searchHistory = useSelector(getSearchHistory());
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-	return (
-		searchHistory?.length > 0 && (
-			<>
-				<div className="empty-search-wrapper" onClick={handleCurrentLocation}>
-					<CurrentLocationIcon />
-					<div className="current-location">
-						<p>Current Location</p>
-					</div>
-				</div>
-				<ul >
-					{searchHistory.map((searchHistoryObj, idx) => (
-						<li className="splash-search-history-list-item">
+
+  const handleCurrentLocation = async (e) => {
+    e.preventDefault();
+
+    const userLocation = await getLocation();
+    const userCity = await getUserCity(userLocation);
+
+    dispatch(setSearchWord(userCity, "city"));
+
+    // Redirect user to listings index page with listings close to their location
+    history.push("/listings");
+  };
+
+  return (
+    searchHistory?.length > 0 && (
+      <>
+        <div className="empty-search-wrapper" onClick={handleCurrentLocation}>
+          <CurrentLocationIcon />
+          <div className="current-location">
+            <p>Current Location</p>
+          </div>
+        </div>
+        <ul>
+          {searchHistory.map((searchHistoryObj, idx) => (
+            <li className="splash-search-history-list-item">
               <SplashSearchHistorySuggestionIcon />
-							<SuggestionItem
-								key={idx}
-								term={searchHistoryObj.term}
-								suggestion={searchHistoryObj.suggestion}
-								value={""}
-							/>
-						</li>
-					))}
-				</ul>
-			</>
-		)
-	);
+              <SuggestionItem
+                key={idx}
+                term={searchHistoryObj.term}
+                suggestion={searchHistoryObj.suggestion}
+                value={""}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  );
 };
 
 export default SplashSearchHistorySuggestions;

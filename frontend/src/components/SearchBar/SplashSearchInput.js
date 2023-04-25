@@ -46,15 +46,15 @@ const SplashSearchInput = ({
   }, [searchBarClicked]);
 
   // Direct user to listings index page with listings close to their location
-  const handleCurrentLocation = async (e) => {
-    e.preventDefault();
+  // const handleCurrentLocation = async (e) => {
+  //   e.preventDefault();
 
-    const userLocation = await getLocation();
-    const userCity = await getUserCity(userLocation);
+  //   const userLocation = await getLocation();
+  //   const userCity = await getUserCity(userLocation);
 
-    dispatch(setSearchWord(userCity, "city"));
-    history.push("/listings");
-  };
+  //   dispatch(setSearchWord(userCity, "city"));
+  //   history.push("/listings");
+  // };
 
   function handleInputClick(e) {
     e.preventDefault();
@@ -87,9 +87,7 @@ const SplashSearchInput = ({
 
       <div className="splash-suggestions-dropdown">
         {searchBarClicked && suggestions.length === 0 ? (
-          <SplashSearchHistorySuggestions
-            handleCurrentLocation={handleCurrentLocation}
-          />
+          <SplashSearchHistorySuggestions />
         ) : (
           <ul className="fetched-suggestions-wrapper">
             {suggestions &&

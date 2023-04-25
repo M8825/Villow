@@ -1,13 +1,31 @@
-import { useSelector } from "react-redux";
-import { getSearchHistory } from "../../store/searchFilters";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchHistory, setSearchWord } from "../../store/searchFilters";
 import SuggestionItem from "./SuggestionItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faClock } from "@fortawesome/free-solid-svg-icons";
 
 import "./IndexSearchHistorySuggestions.scss";
+import { useHistory } from "react-router-dom";
+import { getLocation, getUserCity } from "./utils/userLocation";
 
-const IndexSearchHistorySuggestions = ({ handleCurrentLocation }) => {
+const IndexSearchHistorySuggestions = () => {
   const searchHistory = useSelector(getSearchHistory());
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+
+  const handleCurrentLocation = async (e) => {
+    e.preventDefault();
+
+    const userLocation = await getLocation();
+    const userCity = await getUserCity(userLocation);
+
+    dispatch(setSearchWord(userCity, "city"));
+
+    // Redirect user to listings index page with listings close to their location
+    history.push("/listings");
+  };
 
   return (
     <>
