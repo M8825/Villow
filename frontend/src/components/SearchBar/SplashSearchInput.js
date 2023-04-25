@@ -9,6 +9,8 @@ import { setSearchWord } from "../../store/searchFilters";
 import { getLocation, getUserCity } from "./utils/userLocation";
 
 import "./SplashSearchInput.scss";
+import { clearAllListings } from "../../store/listingsReducer";
+import { cleanSearchSuggestions } from "../../store/search";
 
 const SplashSearchInput = ({
 	handleSearchOnChange,
@@ -31,6 +33,8 @@ const SplashSearchInput = ({
 			document
 				.getElementsByClassName("splash-focused-search")[0]
 				.classList.remove("splash-focused-search");
+
+			dispatch(cleanSearchSuggestions())
 
 			setSearchBarClicked(false);
 		};
