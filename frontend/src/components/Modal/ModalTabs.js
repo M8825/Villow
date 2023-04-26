@@ -20,7 +20,7 @@ const ModalTabs = ({ closeModal }) => {
 					borderBottom={"1px solid "}
 					borderColor={"rgb(209 209 213)"}
 				>
-					<Tab className="form-tab">Use</Tab>
+					<Tab className="form-tab">Sign in</Tab>
 					<Tab>New Account</Tab>
 				</TabList>
 				<TabPanels>
