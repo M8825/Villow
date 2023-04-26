@@ -21,6 +21,7 @@ export const getActiveUser = () => (state) => {
 
 	return null;
 };
+
 export const loginUser = (userCredentials) => async (dispatch) => {
 	let res = await csrfFetch("/api/session", {
 		method: "POST",
@@ -28,7 +29,7 @@ export const loginUser = (userCredentials) => async (dispatch) => {
 	});
 
 	if (res.ok) {
-		const { user } = await res.json();
+		const  user  = await res.json();
 		sessionStorage.setItem("currentUser", JSON.stringify(user));
 
 		dispatch(receiveUser(user));
