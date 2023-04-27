@@ -1,20 +1,17 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import ModalContainer from "../Modal/ModalContainer";
 import AuthorizedUser from "./AuthorizedUser";
 import ModalTabs from "../Modal/ModalTabs";
 import ModalWelcomeHeader from "./Welcome";
-import { Link } from "react-router-dom";
-import Layout from "../Cards";
-import Footer from "../Footer";
-
-import ListingsCarousel from "../ListingsCarousel/ListingsCarousel";
-import villow from "../assets/villow.png";
-
-import "./Navigation.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
 import SearchBar from "../SearchBar/SearchBar";
+
+import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
+
+import villow from "../assets/villow.png";
+import "./Navigation.scss";
 
 const Navigation = ({ isIndex }) => {
   const dispatch = useDispatch();
@@ -70,6 +67,7 @@ const Navigation = ({ isIndex }) => {
             )}
           </div>
         </nav>
+
         {!isIndex && (
           <div className="search_container">
             <h1>Find it. Tour it. Own it.</h1>

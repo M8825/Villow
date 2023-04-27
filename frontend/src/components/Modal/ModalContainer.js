@@ -8,71 +8,67 @@ import ShowListing from "../ShowListing";
 import "./ModalContainer.scss";
 
 const ModalContainer = ({
-	modalAreaStyling,
-	ModalWelcomeHeader,
-	ModalTabs,
+  modalAreaStyling,
+  ModalWelcomeHeader,
+  ModalTabs,
 }) => {
-	const { listingId } = useParams();
-	let [popup, setPopup] = useState({ isShown: false }); // isShown is false by default for modal
+  const { listingId } = useParams();
+  let [popup, setPopup] = useState({ isShown: false }); // isShown is false by default for modal
 
-	const showModal = () => {
-		setPopup({ isShown: true });
-		toggleScrollLock();
-	};
+  const showModal = () => {
+    setPopup({ isShown: true });
+    toggleScrollLock();
+  };
 
+  const closeModal = () => {
+    setPopup({ isShown: false });
+    toggleScrollLock();
+  };
 
-	const closeModal = () => {
-		setPopup({ isShown: false });
-		toggleScrollLock();
-	};
+  // On click outside of modal, close modal if user clicks
+  // outside of modal. If user clicks inside modal, do nothing.
+  // Modal box is located in another div with class name "modal-cover"
+  // when user clicks modal container, we close modal.
+  const onClickOutside = (event) => {
+    if (event.target.className === "modal-container") {
+      closeModal();
+    }
+  };
 
-	// On click outside of modal, close modal if user clicks
-	// outside of modal. If user clicks inside modal, do nothing.
-	// Modal box is located in another div with class name "modal-cover"
-	// when user clicks modal container, we close modal.
-	const onClickOutside = (event) => {
-		if (event.target.className === "modal-container") {
-			closeModal();
-		}
-	};
+  const toggleScrollLock = () => {
+    document.querySelector("html").classList.toggle("scroll-lock");
+  };
 
-	const toggleScrollLock = () => {
-		document.querySelector("html").classList.toggle("scroll-lock");
-	};
-
-	return (
-		<>
-			{listingId ? (
-				<>
-					<Modal
-						closeModal={closeModal}
-						onClickOutside={onClickOutside}
-						modalAreaStyling={modalAreaStyling}
-					>
-						<ModalWelcomeHeader />
-						<ModalTabs />
-					</Modal>
-				</>
-			) : (
-				<div>
-					<SessionButton
-						showModal={showModal}
-						triggerText={"Sign in"}
-					/>
-					{popup.isShown ? (
-						<Modal
-							closeModal={closeModal}
-							onClickOutside={onClickOutside}
-							modalAreaStyling={modalAreaStyling}
-						>
-							<ModalWelcomeHeader />
-							<ModalTabs closeModal={closeModal} />
-						</Modal>
-					) : null}
-				</div>
-			)}
-		</>
-	);
+  return (
+    <>
+      {listingId ? (
+        <>
+          <Modal
+            closeModal={closeModal}
+            onClickOutside={onClickOutside}
+            modalAreaStyling={modalAreaStyling}
+          >
+            <ModalWelcomeHeader />
+            <ModalTabs />
+          </Modal>
+        </>
+      ) : (
+        <div>
+          <SessionButton showModal={showModal} triggerText={"Sign in"} />
+          {popup.isShown ? (
+            <Modal
+              closeModal={closeModal}
+              onClickOutside={onClickOutside}
+              modalAreaStyling={modalAreaStyling}
+            >
+              <ModalWelcomeHeader />
+              <ModalTabs closeModal={closeModal} />
+            </Modal>
+          ) : null}
+        </div>
+      )}
+    </>
+  );
 };
 
 export default ModalContainer;

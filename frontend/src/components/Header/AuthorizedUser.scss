@@ -1,44 +1,77 @@
-.authorized-user {
-    background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iQnVpbGRfTGF5ZXIiIGRhdGEtbmFtZT0iQnVpbGQgTGF5ZXIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE1MCAxNTAiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYjMzZjM3O30uY2xzLTJ7ZmlsbDojZDFkMWQ1O30uY2xzLTN7ZmlsbDojMDAxNzUxO30uY2xzLTR7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48dGl0bGU+aWNvbi1uYW1lLW1kLW91dGxpbmUgY29weSAxMjc8L3RpdGxlPjxjaXJjbGUgY2xhc3M9ImNscy0xIiBjeD0iNzUiIGN5PSI3NSIgcj0iNzUiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03My4zLDI3LjIxOWMtMS4zNjYsNy41Mi0zLjYyOCwyNS4zNDQtMy42MjgsMjUuMzQ0bDE1LjU4My0uODQ5QzgzLjQ3Niw0OC4xNTEsODMuMDM3LDI4LjA2Nyw3My4zLDI3LjIxOVoiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik05My4yODIsNDguOGM1LjEwOCwxNC45NzcsMTEuNjQ1LDI0LjI3MywxNi4zMDUsMzIuMzc0LDYuMTc0LDE2Ljc1MSw2LjI3NSwzMS40NzksMy42NjEsMzkuNiwxMy4zMDktOC4yMiwxNS40NTUtMTMuNDI1LDE3LjI3OS0yMC43M2E1MS42MjUsNTEuNjI1LDAsMCwwLS41ODMtMTQuMzU0bC0zLjYxLS4yMjUsMi45MzMtMy4yNzJjLTEuOC01Ljc2OC02LjI1NS0xMS45LTEyLjUyOC0yMy4yNDZsLTMuNi4xMjEsMi4wOTMtMi44MXMtNy41Ny0yNS41LTI1Ljc4OS0yNi40NjRaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNODIuOTM3LDI5Ljg2MmMtNi43MzUuMDcxLTE0LjgzNC0uNTM2LTE3LjE0NiwyLjI4NC0xLjY1NywyLjAyMSwzLjYxLDEwLjM3OSwzLjYxLDEwLjM3OSw0Ljg1LTEuOTE4LDcuODEtNi41MTYsMTIuNDY1LTUuODY2WiIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTEyMi4zMDcsOTYuMzUyYy03LjIxNS01LjQyMi0xMi44LTE0LjQyNC0xNy4wMzYtMjIuMzMyLTMuODUxLTcuMTg5LTguMTEtMTUuODY4LTEwLjI4LTIyLjcxLTQuNTMyLTE0LjI5MS0yLjIyLTIzLjY0Ny0xMS45NTQtMjQuNDk1QzgyLjU2OCwyOS4zOTIsODIsMzIuNjM4LDgxLjQ0MywzNi42YTEzLjksMTMuOSwwLDAsMC0yLjI2OC0uMmMtMTEuMTY2LS4wMzQtNDcuNDU2LDI0LTUyLjYxOCwyNy40MzEtNS4xNDYsMy40MjMtMS44ODEsMjAuMzE5LDQuMSwxOS42NDIsMy41LS40LDMyLjU3My00LjEzLDMyLjU3My00LjEzLDQuODgyLDAsNi4yMjYsMjAuMDcsOC42NTUsMzIuMjE5bDEuODQ0LDkuMjM5YTMuNTE3LDMuNTE3LDAsMCwwLDMuNywyLjgyOEE1Ny45NTksNTcuOTU5LDAsMCwwLDEyMi4zMDcsOTYuMzUyWiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTMwLjk3MSw2OC4wMTljLjM3NiwzLjgzNiwxLjg4LDE1LjE5Mi0uMTA2LDE1LjM5NC01Ljk4Ni42MDktOS4yNDQtMTYuMjE5LTQuMS0xOS42NDJDMjguNDE0LDYyLjQ1NCwzMC40MTIsNjIuMzE5LDMwLjk3MSw2OC4wMTlaIi8+PC9zdmc+");
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
+.authorized-user-container {
+  position: relative;
+  user-select: none;
 }
 
-.authorized-user > li {
-    padding-right: 150px;
-    list-style: none;
+.authorized-user {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iQnVpbGRfTGF5ZXIiIGRhdGEtbmFtZT0iQnVpbGQgTGF5ZXIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE1MCAxNTAiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYjMzZjM3O30uY2xzLTJ7ZmlsbDojZDFkMWQ1O30uY2xzLTN7ZmlsbDojMDAxNzUxO30uY2xzLTR7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48dGl0bGU+aWNvbi1uYW1lLW1kLW91dGxpbmUgY29weSAxMjc8L3RpdGxlPjxjaXJjbGUgY2xhc3M9ImNscy0xIiBjeD0iNzUiIGN5PSI3NSIgcj0iNzUiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03My4zLDI3LjIxOWMtMS4zNjYsNy41Mi0zLjYyOCwyNS4zNDQtMy42MjgsMjUuMzQ0bDE1LjU4My0uODQ5QzgzLjQ3Niw0OC4xNTEsODMuMDM3LDI4LjA2Nyw3My4zLDI3LjIxOVoiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik05My4yODIsNDguOGM1LjEwOCwxNC45NzcsMTEuNjQ1LDI0LjI3MywxNi4zMDUsMzIuMzc0LDYuMTc0LDE2Ljc1MSw2LjI3NSwzMS40NzksMy42NjEsMzkuNiwxMy4zMDktOC4yMiwxNS40NTUtMTMuNDI1LDE3LjI3OS0yMC43M2E1MS42MjUsNTEuNjI1LDAsMCwwLS41ODMtMTQuMzU0bC0zLjYxLS4yMjUsMi45MzMtMy4yNzJjLTEuOC01Ljc2OC02LjI1NS0xMS45LTEyLjUyOC0yMy4yNDZsLTMuNi4xMjEsMi4wOTMtMi44MXMtNy41Ny0yNS41LTI1Ljc4OS0yNi40NjRaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNODIuOTM3LDI5Ljg2MmMtNi43MzUuMDcxLTE0LjgzNC0uNTM2LTE3LjE0NiwyLjI4NC0xLjY1NywyLjAyMSwzLjYxLDEwLjM3OSwzLjYxLDEwLjM3OSw0Ljg1LTEuOTE4LDcuODEtNi41MTYsMTIuNDY1LTUuODY2WiIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTEyMi4zMDcsOTYuMzUyYy03LjIxNS01LjQyMi0xMi44LTE0LjQyNC0xNy4wMzYtMjIuMzMyLTMuODUxLTcuMTg5LTguMTEtMTUuODY4LTEwLjI4LTIyLjcxLTQuNTMyLTE0LjI5MS0yLjIyLTIzLjY0Ny0xMS45NTQtMjQuNDk1QzgyLjU2OCwyOS4zOTIsODIsMzIuNjM4LDgxLjQ0MywzNi42YTEzLjksMTMuOSwwLDAsMC0yLjI2OC0uMmMtMTEuMTY2LS4wMzQtNDcuNDU2LDI0LTUyLjYxOCwyNy40MzEtNS4xNDYsMy40MjMtMS44ODEsMjAuMzE5LDQuMSwxOS42NDIsMy41LS40LDMyLjU3My00LjEzLDMyLjU3My00LjEzLDQuODgyLDAsNi4yMjYsMjAuMDcsOC42NTUsMzIuMjE5bDEuODQ0LDkuMjM5YTMuNTE3LDMuNTE3LDAsMCwwLDMuNywyLjgyOEE1Ny45NTksNTcuOTU5LDAsMCwwLDEyMi4zMDcsOTYuMzUyWiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTMwLjk3MSw2OC4wMTljLjM3NiwzLjgzNiwxLjg4LDE1LjE5Mi0uMTA2LDE1LjM5NC01Ljk4Ni42MDktOS4yNDQtMTYuMjE5LTQuMS0xOS42NDJDMjguNDE0LDYyLjQ1NCwzMC40MTIsNjIuMzE5LDMwLjk3MSw2OC4wMTlaIi8+PC9zdmc+");
+  width: 32px;
+  height: 32px;
 }
 
 .authorized-user__dropdown {
-    background-color: white;
-    width: 100vw;
-    max-width: 294px;
-    height: 298px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  background-color: white;
+  max-width: 294px;
+  width: 294px;
+  position: absolute;
+  right: 0;
+  margin-top: 15px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 6px;
 }
 
-.authorized-user__dropdown > ul {
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
+.authorized-user__dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  z-index: 2;
 }
 
-.authorized-user__dropdown > ul > li {
-    height: 44px;
-    padding: 12px 16px;
-    list-style: none;
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 20px;
-    color: #2A2A33;
+.authorized-user__dropdown::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 10px solid rgba(60, 64, 67, 0.10);
+  z-index: 1;
 }
 
-.authorized-user__dropdown > ul > li:hover {
-    background-color: rgb(243 250 254);
+.authorized-user__dropdown li {
+  height: 44px;
+  padding: 12px 16px;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #2a2a33;
 }
 
-.authorized-user__dropdown > ul > hr {
-    border: 1px solid #E5E5E5;
-    margin-top: 10px;
+.authorized-user__dropdown > li {
+  height: 44px;
+}
+
+.authorized-user__dropdown > li:hover {
+  background-color: rgb(243 250 254);
+}
+
+.auth-menunav-link > li:hover {
+  background-color: rgb(243 250 254);
+}
+
+.authorized-user__dropdown > hr {
+  border: 1px solid #e5e5e5;
+  margin: 10px 0;
 }

@@ -6,8 +6,6 @@ import SplashSearchHistorySuggestions from "./SplashSearchHistorySuggestions";
 import SearchIcon from "./SearchIcon";
 import SuggestionItem from "./SuggestionItem";
 
-import { setSearchWord } from "../../store/searchFilters";
-import { getLocation, getUserCity } from "./utils/userLocation";
 import { cleanSearchSuggestions } from "../../store/search";
 
 import "./SplashSearchInput.scss";
@@ -65,7 +63,7 @@ const SplashSearchInput = ({
   }
 
   return (
-    <div style={{ zIndex: 5 }}>
+    <>
       <div className="search-input-dropdown-wrapper">
         <div className="splash-search-container" onClick={handleInputClick}>
           <input
@@ -106,7 +104,7 @@ const SplashSearchInput = ({
           </ul>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
