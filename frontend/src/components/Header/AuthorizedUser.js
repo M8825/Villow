@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -8,14 +8,32 @@ import "./AuthorizedUser.scss";
 
 const AuthorizedUser = () => {
   const dispatch = useDispatch();
-  const [menuIsActive, setMenuIsActive] = useState(false);
-
   const currentUser = useSelector(getActiveUser());
+
+  const [dropDown, setDropDown] = useState(false);
+
+  useEffect(() => {
+
+    function handleOutsideClick(e) {
+      if(!e.target.closest(".authorized-user-container")) {
+        setDropDown(false)
+      }
+    }
+
+    if(dropDown) {
+      document.addEventListener("click", handleOutsideClick)
+    }
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick)
+    }
+
+  }, [dropDown])
 
   const handleClick = (e) => {
     e.preventDefault();
 
-    menuIsActive ? setMenuIsActive(false) : setMenuIsActive(true);
+    setDropDown(!dropDown);
   };
 
   const handleSignOutClick = (e) => {
@@ -28,7 +46,7 @@ const AuthorizedUser = () => {
     currentUser && (
       <div className="authorized-user-container">
         <div className="authorized-user" onClick={handleClick}></div>
-        {menuIsActive && (
+        {dropDown && (
           <ul className="authorized-user__dropdown">
             <NavLink
               to={`/user/${currentUser.id}`}
