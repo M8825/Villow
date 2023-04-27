@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import SplashSearchHistorySuggestions from "./SplashSearchHistorySuggestions";
 import SearchIcon from "./SearchIcon";
@@ -19,10 +18,11 @@ const SplashSearchInput = ({
   setSuggestionsBox,
 }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [searchBarClicked, setSearchBarClicked] = useState(false);
 
+  // Handle outside search dropdown menu click. Close dropdown
+  // suggestions menu
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (e.target.classList.contains("splash-focused-search")) return;
@@ -43,17 +43,6 @@ const SplashSearchInput = ({
     };
   }, [searchBarClicked]);
 
-  // Direct user to listings index page with listings close to their location
-  // const handleCurrentLocation = async (e) => {
-  //   e.preventDefault();
-
-  //   const userLocation = await getLocation();
-  //   const userCity = await getUserCity(userLocation);
-
-  //   dispatch(setSearchWord(userCity, "city"));
-  //   history.push("/listings");
-  // };
-
   function handleInputClick(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -63,7 +52,7 @@ const SplashSearchInput = ({
   }
 
   return (
-    <>
+    <div>
       <div className="search-input-dropdown-wrapper">
         <div className="splash-search-container" onClick={handleInputClick}>
           <input
@@ -104,7 +93,7 @@ const SplashSearchInput = ({
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
