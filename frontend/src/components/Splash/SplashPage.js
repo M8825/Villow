@@ -1,12 +1,13 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import Navigation from "../Header/Navigation";
 import ListingsCarousel from "../ListingsCarousel/ListingsCarousel";
 import Layout from "../Cards";
 import Footer from "../Footer";
-import Navigation from "../Header/Navigation";
+
 import { generateRandomString } from "../utils/utils";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { fetchListings } from "../../store/listingsReducer";
-import { clearAllListings } from "../../store/listingsReducer";
+import { fetchListings, clearAllListings } from "../../store/listingsReducer";
 
 const SplashPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const SplashPage = () => {
         header={"Trending Homes in New York, NY"}
         paragraph={"Popular listings in the area"}
       />
-     <ListingsCarousel
+      <ListingsCarousel
         prevButtonClassName={generateRandomString(10)}
         nextButtonClassName={generateRandomString(10)}
         header={"Selling Soon Homes in New York, NY"}

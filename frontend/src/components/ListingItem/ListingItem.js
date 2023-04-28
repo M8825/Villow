@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import ListingIndexItemHeart from "./ListingHeart";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-
-import "./ListingItem.scss";
+import { useState,  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+import ListingIndexItemHeart from "./ListingHeart";
+
 import { addFavorite, removeFavorite } from "../../store/listingsReducer";
 import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
+
+import "./ListingItem.scss";
 
 const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
   const dispatch = useDispatch();

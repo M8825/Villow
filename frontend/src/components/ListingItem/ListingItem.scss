@@ -1,93 +1,95 @@
 .listing_item {
-    list-style: none;
-    border-radius: 5px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 2px 6px -1px;
+  list-style: none;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 2px 6px -1px;
+  width: 345px;
 }
 
 .listing_item:hover {
-    list-style: none;
-    border-radius: 5px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 10px -1px, rgba(0, 0, 0, 0.3) 0px 4px 6px -1px;
+  list-style: none;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 10px -1px,
+    rgba(0, 0, 0, 0.3) 0px 4px 6px -1px;
 }
 
 .listing_item__content_box {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    height: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  height: 100%;
 }
 
 .listing_item__thumbnail {
-    background-repeat: no-repeat;
-    border-radius: 5px 5px 0px 0px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+  background-repeat: no-repeat;
+  border-radius: 5px 5px 0px 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .listing_item__thumbnail__keyword {
-    background-color: #0A0A1499;
-    z-index: 1;
-    padding: 2px 8px;
-    color: #FFFFFF;
-    font-size: 12px;
-    border-radius: 10px;
-    font-weight: 700;
-    height: 22px;
+  background-color: #0a0a1499;
+  z-index: 1;
+  padding: 2px 8px;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  height: 22px;
 }
 
 .listing_item__info {
-    border-radius: 0px 0px 5px 5px;
-    padding: 8px;
-    width: 100%;
+  border-radius: 0px 0px 5px 5px;
+  padding: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+
+  h1 {
+    font-family: "Open Sans", "Time New Roman", arial !important;
+  }
+
+  p {
+    font-family: "Open Sans", "Time New Roman", arial !important;
+    font-size: 14px;
+  }
+
+  .listing_item__info__details__address {
     display: flex;
-    flex-direction: column;
-    gap: 1%;
-
-    h1{
-        font-family: "Open Sans", "Time New Roman", arial !important;
-    }
-
-    p {
-
-        font-family: "Open Sans", "Time New Roman", arial !important;
-        font-size: 14px;
-    }
-
-    .listing_item__info__details__address {
-        display: flex;
-    }
+  }
 }
 
-.listing_item__info>h1 {
-    font-size: 20px;
-    text-align: left;
-    color: 2A2A33;
-    font-weight: 700;
-    line-height: 24px;
+.listing_item__info > h1 {
+  font-size: 20px;
+  text-align: left;
+  color: 2A2A33;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .listing_item__info__details {
-    width: 270px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 14px;
+  width: 270px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
 }
 
 .listing_item__info__details__listing_by {
-    font-size: 10px;
-    font-weight: 400;
-    color: #596b82;
+  font-size: 10px;
+  font-weight: 400;
+  color: #596b82;
 }
 
 .listing_item__info__details__bold_span {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .listing_item__info__details__light_span {
-    color: gray;
+  color: gray;
 }
 
 .listing_item__info__details__address {
-    font-size: 14ps
+  font-size: 14ps;
 }

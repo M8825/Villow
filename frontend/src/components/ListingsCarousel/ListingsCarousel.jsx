@@ -1,36 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getListings } from "../../store/listingsReducer";
 import Carousel from "./Carousel";
 
 import "./ListingsCarousel.scss";
 
-const ListingsCarousel = ({ header, paragraph, prevButtonClassName, nextButtonClassName}) => {
-	const dispatch = useDispatch();
+const ListingsCarousel = ({
+  header,
+  paragraph,
+  prevButtonClassName,
+  nextButtonClassName,
+}) => {
+  const listings = useSelector(getListings);
 
-	const listings = useSelector(getListings);
+  const sampleListings = listings ? listings.slice(0, 15) : [];
 
-	const sampleListings = listings ? listings.slice(0, 15) : [];
-
-	return (
-		<>
-			<div className="splat_listing_container">
-				<div className="splat_listing_container__wrapper">
-					<div className="splat_listing_container__headers">
-						<h1>{header}</h1>
-						<p>{paragraph}</p>
-						<hr />
-					</div>
-					<ul className="carousel-container">
-						<Carousel
-							sampleListings={sampleListings}
-							prevButtonClassName={prevButtonClassName}
-							nextButtonClassName={nextButtonClassName}
-						/>
-					</ul>
-				</div>
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className="splat_listing_container">
+        <Carousel
+          sampleListings={sampleListings}
+          prevButtonClassName={prevButtonClassName}
+          nextButtonClassName={nextButtonClassName}
+          header={header}
+          paragraph={paragraph}
+        />
+      </div>
+    </>
+  );
 };
 
 export default ListingsCarousel;
