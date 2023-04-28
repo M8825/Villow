@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchHistory, setSearchWord } from "../../store/searchFilters";
 import SuggestionItem from "./SuggestionItem";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faClock } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,7 +14,6 @@ const IndexSearchHistorySuggestions = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-
 
   const handleCurrentLocation = async (e) => {
     e.preventDefault();
@@ -29,29 +29,26 @@ const IndexSearchHistorySuggestions = () => {
 
   return (
     <>
-      <div
-        className="index-empty-search-wrapper"
-        onClick={handleCurrentLocation}
-      >
-        <div className="index-current-location">
+      <div className="index-empty-search-wrapper">
+        <div className="index-current-location" onClick={handleCurrentLocation}>
           <FontAwesomeIcon
             icon={faLocationDot}
             className="idnex-location-icon"
           />
           <p>Current Location</p>
         </div>
-      <ul>
-        {searchHistory.map((searchHistoryObj, idx) => (
-          <li key={idx} className="index-search-history-list-item">
-            <FontAwesomeIcon icon={faClock} className="index-clock-icon" />
-            <SuggestionItem
-              term={searchHistoryObj.term}
-              suggestion={searchHistoryObj.suggestion}
-              value={""}
-            />
-          </li>
-        ))}
-      </ul>
+        <ul>
+          {searchHistory.map((searchHistoryObj, idx) => (
+            <li key={idx} className="index-search-history-list-item">
+              <FontAwesomeIcon icon={faClock} className="index-clock-icon" />
+              <SuggestionItem
+                term={searchHistoryObj.term}
+                suggestion={searchHistoryObj.suggestion}
+                value={""}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );
