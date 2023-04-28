@@ -38,8 +38,8 @@ const Carousel = ({
         <Swiper
           className="carousel-container__swiper"
           modules={[Navigation, A11y]}
-          spaceBetween={15}
-          slidesPerView={3.3}
+          spaceBetween={25}
+          slidesPerView={3.4}
           navigation={{
             prevEl: `.${prevButtonClassName}`,
             nextEl: `.${nextButtonClassName}`,

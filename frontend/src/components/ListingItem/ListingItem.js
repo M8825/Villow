@@ -1,4 +1,4 @@
-import { useState,  useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -28,7 +28,6 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
   }, []);
 
   const price = formatter.format(listing.price);
-  const [color, setColor] = useState("black");
 
   const handleFavoriteClick = (e, listingId) => {
     e.preventDefault();
@@ -103,9 +102,8 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling, userId }) => {
                 </p>
               </div>
               <p className="listing_item__info__details__address">
-                {listing.address}
+                {`${listing.address} ${listing.city }, ${listing.state} ${listing.zipcode}`}
               </p>
-              {/* TODO: FIX listing by */}
               <div
                 style={{
                   display: "flex",

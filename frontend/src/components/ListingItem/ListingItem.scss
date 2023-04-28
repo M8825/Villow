@@ -29,7 +29,6 @@
 
 .listing_item__thumbnail__keyword {
   background-color: #0a0a1499;
-  z-index: 1;
   padding: 2px 8px;
   color: #ffffff;
   font-size: 12px;
@@ -64,20 +63,18 @@
   font-size: 20px;
   text-align: left;
   color: 2A2A33;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 24px;
 }
 
 .listing_item__info__details {
   width: 270px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   font-size: 14px;
 }
 
 .listing_item__info__details__listing_by {
-  font-size: 10px;
+  font-size: 10px !important;
   font-weight: 400;
   color: #596b82;
 }
@@ -91,5 +88,7 @@
 }
 
 .listing_item__info__details__address {
+  margin-top: 5px;
+  margin-bottom: 3px;
   font-size: 14ps;
 }
