@@ -104,10 +104,9 @@ const SearchBar = () => {
   };
 
   return (
-    <>
+    <div className="search_bar_container">
       {isAtListinIndex ? (
         <>
-          <hr />
           <IndexSearchInput
             handleSearchOnChange={handleSearchOnChange}
             value={value}
@@ -132,7 +131,7 @@ const SearchBar = () => {
           suggestions={suggestions}
         />
       )}
-    </>
+    </div>
   );
 };
 

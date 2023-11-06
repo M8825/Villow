@@ -54,7 +54,7 @@ const Listings = () => {
     <>
       <div className="index-container">
         <div className="listing-container-header">
-          <h1>Manhattan NY Real Estate & Homes For Sale</h1>
+          <h1>Real Estate & Homes For Sale</h1>
           <div
             style={{
               display: "flex",
