@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
 import { getLatLngByAddress } from "../../store/geocodeReducer";
+import IndexMapConfig from "./IndexMapConfig.json"
 
 const containerStyle = {
-	width: "50vw",
-	height: "87vh",
+	width: "100%",
+	height: "100vh",
 };
 
+
 const Map = () => {
+	const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 	const dispatch = useDispatch();
 
 	const coordinates = useSelector((state) =>
@@ -27,12 +30,17 @@ const Map = () => {
 	}, []);
 
 	return (
-		<div style={{ minWidth: "50vw"}}>
-			<LoadScript googleMapsApiKey="AIzaSyDjeZ25bTcc8oOxF2TZiu9Co42kqbMKcBU">
+		<div style={{backgroundColor: "pink"}}>
+			<LoadScript googleMapsApiKey={`${MAPS_API_KEY}`}>
 				<GoogleMap
 					mapContainerStyle={containerStyle}
 					center={center}
 					zoom={15}
+					options={{
+						disableDefaultUI: true,
+						styles: IndexMapConfig,
+					}}
+
 				>
 					{/* Child components, such as markers, info windows, etc. */}
 					<>
