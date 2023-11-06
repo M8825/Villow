@@ -30,7 +30,6 @@ const SuggestionItem = ({ term, suggestion, value }) => {
     }
   };
 
-  console.log(splash);
   return (
     <div
       className={

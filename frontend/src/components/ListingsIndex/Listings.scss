@@ -1,69 +1,71 @@
 .index-container {
+  background: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  max-width: 750px;
+  min-width: 750px;
+
+  .listing-container-header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    height: 100%;
-    max-width: 50vw;
-    min-width: 50vw;
+    justify-content: flex-start;
+    padding: 0px 20px;
+    width: 100%;
+    color: #2a2a33;
+    gap: 8px;
+  }
 
-    .listing-container-header {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 0px 20px;
-        width: 100%;
-        color: #2A2A33;
-        gap: 8px;
+  h1 {
+    text-align: start;
+    font-size: 20px;
+  }
+
+  .listing-container-header__btn_container {
+    display: flex;
+    gap: 10px;
+    border-radius: 25px;
+    width: 50%;
+    border: 1px solid lightgray;
+
+    span {
+      font-weight: 800;
     }
 
-    h1 {
-        text-align: start;
-        font-size: 20px;
+    .btn1 {
+      width: 212px;
+      background-color: #006aff;
+      border-radius: 25px;
+      padding: 7px 0px;
+      height: 36px;
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 19px;
     }
 
-    .listing-container-header__btn_container {
-        display: flex;
-        gap: 10px;
-        border-radius: 25px;
-        width: 50%;
-        border: 1px solid lightgray;
-
-        span {
-            font-weight: 800;
-        }
-
-        .btn1 {
-            width: 212px;
-            background-color: #006AFF;
-            border-radius: 25px;
-            padding: 7px 0px;
-            height: 36px;
-            font-size: 16px;
-            color: #FFFFFF;
-            line-height: 19px;
-
-        }
-
-        .btn2 {
-            width: 212px;
-            background-color: rgb(248 248 250);
-            border-radius: 25px;
-            padding: 7px 0px;
-            height: 36px;
-            font-size: 16px;
-            color: #000;
-            line-height: 19px;
-        }
+    .btn2 {
+      width: 212px;
+      background-color: rgb(248 248 250);
+      border-radius: 25px;
+      padding: 7px 0px;
+      height: 36px;
+      font-size: 16px;
+      color: #000;
+      line-height: 19px;
     }
+  }
 
-    .listings-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding: 5px 10px;
-        gap: 8px;
-        overflow-y: scroll;
-        box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.5);
-    }
+  .listings-container {
+    background: red;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 5px 10px;
+    gap: 8px;
+    overflow-y: scroll;
+    box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.5);
+  }
 }

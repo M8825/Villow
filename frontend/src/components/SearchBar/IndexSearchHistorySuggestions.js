@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getSearchHistory, setSearchWord } from "../../store/searchFilters";
-import SuggestionItem from "./SuggestionItem";
 
+import SuggestionItem from "./SuggestionItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faClock } from "@fortawesome/free-solid-svg-icons";
+import { getLocation, getUserCity } from "./utils/userLocation";
 
 import "./IndexSearchHistorySuggestions.scss";
-import { useHistory } from "react-router-dom";
-import { getLocation, getUserCity } from "./utils/userLocation";
 
 const IndexSearchHistorySuggestions = () => {
   const searchHistory = useSelector(getSearchHistory());
@@ -33,7 +33,7 @@ const IndexSearchHistorySuggestions = () => {
         <div className="index-current-location" onClick={handleCurrentLocation}>
           <FontAwesomeIcon
             icon={faLocationDot}
-            className="idnex-location-icon"
+            className="index-location-icon"
           />
           <p>Current Location</p>
         </div>

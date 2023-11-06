@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
 import { setSearchWord } from "../../store/searchFilters";
 import { CloseSearchWordIcon } from "./assets/CloseSearchWordIcon";
 
 import "./SearchInputContainer.scss";
-import { useState } from "react";
 
 export const SearchInputContainer = ({
 	searchWord,
