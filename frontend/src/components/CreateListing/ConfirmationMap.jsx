@@ -1,4 +1,7 @@
 import { LoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
+import IndexMapConfig from "../Map/IndexMapConfig.json";
+
+const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const ConfirmationMap = ({
 	containerStyle,
@@ -11,11 +14,15 @@ const ConfirmationMap = ({
 
 	return (
 		<div className="confirm-location-map-wrapper">
-			<LoadScript googleMapsApiKey="AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA">
+			<LoadScript googleMapsApiKey={MAPS_API_KEY}>
 				<GoogleMap
 					mapContainerStyle={containerStyle}
 					center={selectedPosition}
 					zoom={20}
+					options={{
+						disableDefaultUI: true,
+						styles: IndexMapConfig,
+					}}
 				>
 					<>
 						<MarkerF

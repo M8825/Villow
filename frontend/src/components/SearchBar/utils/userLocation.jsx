@@ -20,10 +20,10 @@
 
   export async function getUserCity(coordinates) {
       const { lat, lng } = coordinates;
-      const API_KEY = "AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA";
+      const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
       const response = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${MAPS_API_KEY}`
       );
       const data = await response.json();
 

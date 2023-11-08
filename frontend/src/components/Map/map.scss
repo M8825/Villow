@@ -1,0 +1,18 @@
+.map_container {
+  position: relative;
+}
+
+/* Pseudo-element for right shadow */
+.map_container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px; /* Control the apparent depth */
+  height: 100%;
+  background: linear-gradient(to left,
+      rgba(74, 74, 74, 0.3) 20%,
+      transparent 80%
+    );
+  z-index: 1;
+}

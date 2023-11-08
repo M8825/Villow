@@ -26,7 +26,8 @@ const ConfirmLocation = ({ address, coordinates }) => {
 	};
 
 	const getCoordinatesFromCoordinates = async () => {
-		Geocode.setApiKey("AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA");
+		const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+		Geocode.setApiKey(MAPS_API_KEY);
 		const response = await Geocode.fromLatLng(selectedPosition.lat, selectedPosition.lng);
 
 		if (response.status === "OK") {

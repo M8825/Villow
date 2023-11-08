@@ -6,6 +6,8 @@ import GrabAddressForm from "./GrabAddressForm";
 import "./GrabAddress.scss";
 import "../ListingForm/ListingForm.scss";
 
+const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+
 // TODO: add update address functionality
 const GrabAddress = () => {
 	// State to keep track of whether to render next page
@@ -108,7 +110,7 @@ const GrabAddress = () => {
 	const getCoordinatesFromAddress = async () => {
 
 			const addressString = `${address.streetAddress} ${address.unit}, ${address.city}, ${address.state} ${address.zipcode}`;
-			Geocode.setApiKey("AIzaSyC4MyCm15p_Wxa7e-P1rYMgEWstpZXorSA");
+			Geocode.setApiKey(`${MAPS_API_KEY}`);
 			const response = await Geocode.fromAddress(addressString);
 
 			if (response.status === "OK") {
