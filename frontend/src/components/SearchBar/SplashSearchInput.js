@@ -29,7 +29,7 @@ const SplashSearchInput = ({
 
       document
         .getElementsByClassName("splash-focused-search")[0]
-        .classList.remove("splash-focused-search");
+        ?.classList.remove("splash-focused-search");
 
       dispatch(cleanSearchSuggestions());
 

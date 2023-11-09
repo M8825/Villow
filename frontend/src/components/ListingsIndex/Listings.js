@@ -55,24 +55,7 @@ const Listings = () => {
       <div className="index-container">
         <div className="listing-container-header">
           <h1>Real Estate & Homes For Sale</h1>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div className="listing-container-header__btn_container">
-              <button className="btn1">
-                <span>{listings.length}</span> Agent listings
-              </button>
-              <button className="btn2">
-                {" "}
-                <span>0</span> Agent listings
-              </button>
-            </div>
-            <FontAwesomeIcon icon={faArrowUp} onClick={handleClick} />
-          </div>
+            <FontAwesomeIcon className="arrow-icon" icon={faArrowUp} onClick={handleClick}/>
         </div>
         <div className="listings-container">
           {reversed
