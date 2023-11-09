@@ -54,7 +54,7 @@ const Map = () => {
 						draggable: true,
 					}}
 				>
-                    {listings.map((listing) => (
+                    {listings && listings.map((listing) => (
                                 <Marker
                                 key={listing.id}
                                 icon={{
