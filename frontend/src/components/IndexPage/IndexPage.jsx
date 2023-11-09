@@ -3,6 +3,7 @@ import SearchBar from "../SearchBar/SearchBar";
 
 import useLockBodyScroll from "./useLockScroll";
 import Map from "../Map/map";
+
 import "./IndexPage.scss";
 
 const IndexPage = () => {

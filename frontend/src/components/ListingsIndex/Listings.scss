@@ -4,7 +4,8 @@
   align-items: center;
   gap: 20px;
   height: 100%;
-  max-width: 750px;
+  max-width: 100%;
+  min-width: 600px;
 
   .listing-container-header {
     display: flex;
@@ -64,5 +65,11 @@
     gap: 8px;
     overflow-y: scroll;
     box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .listings-container {
+    flex-direction: column;
   }
 }
