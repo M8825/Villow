@@ -9,16 +9,13 @@ const IndexPage = () => {
   useLockBodyScroll();
 
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div className="index-page-container">
       <SearchBar />
       <div className="index-page-content-container">
-
-        <div style={{ width: "100%", height: "100%" }}>
+        <div className="map-wrapper">
           <Map />
         </div>
-
         <Listings />
-
       </div>
     </div>
   );

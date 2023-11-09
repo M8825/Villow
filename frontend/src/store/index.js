@@ -5,7 +5,7 @@ import usersReducer from './usersReducer';
 import listingsReducer from './listingsReducer';
 import geocodeReducer from './geocodeReducer';
 import searchSuggestionsReducer from './search';
-import searchFiltersReducer from './searchFilters'; 
+import searchFiltersReducer from './searchFilters';
 
 
 const rootReducer = combineReducers({
