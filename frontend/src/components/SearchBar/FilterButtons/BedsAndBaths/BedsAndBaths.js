@@ -21,7 +21,6 @@ const BedsAndBaths = () => {
 
   useEffect(() => {
     if (numberOfBedrooms !== "0" || numberOfBathrooms !== "0") {
-      debugger;
       setSelectedButton(true);
     }
 

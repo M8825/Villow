@@ -8,7 +8,7 @@ const Home = ({ listing }) => {
 	const formatter = useCurrencyFormatter();
 	const history = useHistory();
 
-	const listingPrice = formatter.format(listing.price);
+	const listingPrice = formatter.format(listing?.price);
 
 	const listingType = () => {
 		if (listing.listingType === "Sale") {

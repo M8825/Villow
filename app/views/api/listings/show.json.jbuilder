@@ -1,3 +1,3 @@
 json.partial! 'api/listings/listing',
-              listing: @favorite.listing,
-              current_user: @favorite.favoriter
+              listing: @listing,
+              current_user: @current_user

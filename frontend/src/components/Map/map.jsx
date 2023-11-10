@@ -54,21 +54,22 @@ const Map = () => {
 						draggable: true,
 					}}
 				>
-                    {listings && listings.map((listing) => (
-                                <Marker
-                                key={listing.id}
-                                icon={{
-                                    url: createMarkerIcon(
-                                    formatNumberToK(listing.price),
-                                    hoveredMarkerId === listing.id ? "green" : "red"
-                                    ),
-                                    scaledSize: new window.google.maps.Size(45, 23),
-                                }}
-                                position={{ lat: listing.lat, lng: listing.lng }}
-                                onMouseOver={() => handleMouseOver(listing.id)}
-                                onMouseOut={handleMouseOut}
-                                />
-                            ))}
+					{listings &&
+						listings.map((listing) => (
+							<Marker
+								key={listing.id}
+								icon={{
+									url: createMarkerIcon(
+										formatNumberToK(listing.price),
+										hoveredMarkerId === listing.id ? "green" : "red"
+									),
+									scaledSize: new window.google.maps.Size(45, 23),
+								}}
+								position={{ lat: listing.lat, lng: listing.lng }}
+								onMouseOver={() => handleMouseOver(listing.id)}
+								onMouseOut={handleMouseOut}
+							/>
+						))}
 				</GoogleMap>
 			</LoadScriptNext>
 		</div>

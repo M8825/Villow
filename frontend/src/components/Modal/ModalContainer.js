@@ -1,9 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import { Children, useState } from "react";
 import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
 import { useParams } from "react-router-dom";
-import ShowListing from "../ShowListing";
 
 import "./ModalContainer.scss";
 
@@ -11,6 +9,7 @@ const ModalContainer = ({
   modalAreaStyling,
   ModalWelcomeHeader,
   ModalTabs,
+  children,
 }) => {
   const { listingId } = useParams();
   let [popup, setPopup] = useState({ isShown: false }); // isShown is false by default for modal
@@ -43,14 +42,7 @@ const ModalContainer = ({
     <>
       {listingId ? (
         <>
-          <Modal
-            closeModal={closeModal}
-            onClickOutside={onClickOutside}
-            modalAreaStyling={modalAreaStyling}
-          >
-            <ModalWelcomeHeader />
-            <ModalTabs />
-          </Modal>
+          {children}
         </>
       ) : (
         <div>
