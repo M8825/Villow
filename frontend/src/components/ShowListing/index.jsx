@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getListing, fetchListing } from "../../store/listingsReducer";
+
+import ModalContainer from "../Modal/ModalContainer";
 import Gallery from "./gallery";
 import Home from "./Home";
 
-import "./style/gallery.scss";
-import "./style/home.scss";
-
-import ModalContainer from "../Modal/ModalContainer";
+import "./style/index.scss"
+import ListingHeader from "./ListingHeader";
 
 const ShowListing = ({ isOpen, onClose }) => {
 	const { listingId } = useParams();
@@ -23,16 +23,19 @@ const ShowListing = ({ isOpen, onClose }) => {
 	}, [dispatch, listingId]);
 
 	const modalAreaStyling = {
-		width: "68vw",
+        display: "flex",
+        flexDirection: "column",
+		width: "1248px",
 		height: "100vh",
 		backgroundColor: "rgb(255 255 255)",
-		display: "flex",
+        padding: "0px 34px",
 	};
 
 	return (
         listing &&
 		<>
 			<ModalContainer modalAreaStyling={modalAreaStyling}>
+                <ListingHeader />
 				<Gallery listing={listing} />
 				<Home listing={listing} />
 			</ModalContainer>

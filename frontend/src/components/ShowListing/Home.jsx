@@ -1,8 +1,21 @@
 import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
-import { Heart, Share, Hide, More,  Logo, Building, Calendar, Heating, Cooling } from "./assets/svgs";
+import {
+	Heart,
+	Share,
+	Hide,
+	More,
+	Logo,
+	Building,
+	Calendar,
+	Heating,
+	Cooling,
+} from "./assets/svgs";
 import { useHistory } from "react-router-dom";
 import ShowMore from "./ShowMore";
+
+
+import "./style/home.scss";
 
 const Home = ({ listing }) => {
 	const formatter = useCurrencyFormatter();
@@ -14,11 +27,10 @@ const Home = ({ listing }) => {
 		if (listing.listingType === "Sale") {
 			return (
 				<>
-				<div className="aprt_status">
-					<span className="sale" />
-					<p>For Sale</p>
-
-				</div>
+					<div className="aprt_status">
+						<span className="sale" />
+						<p>For Sale</p>
+					</div>
 				</>
 			);
 		} else {
@@ -42,102 +54,96 @@ const Home = ({ listing }) => {
 
 	return (
 		<>
-        <div className="left-pane">
-        		<header>
-					<Logo />
-                    <ul>
-                        <li><Heart /> Save</li>
-                        <li><Share /> Share</li>
-                        <li><Hide /> Hide</li>
-                        <li><More /> More</li>
-                    </ul>
-				</header>
-			<div className="listing-details-wrapper">
-				<div className="top-container">
-					<div className="top-container__header">
-						<h1>{listingPrice}</h1>
-                        <div>
-                        <p>
-							<span>{listing.bedroom}</span> bd |
-						</p>
+			<div className="left-pane">
+				<div className="listing-details-wrapper">
+					<div className="top-container">
+						<div className="top-container__header">
+							<h1>{listingPrice}</h1>
+							<div>
+								<p>
+									<span>{listing.bedroom}</span> bd |
+								</p>
+								<p>
+									<span>{listing.bathroom}</span> ba |
+								</p>
+								<p>
+									<span> {listing.sqft}</span> sqft
+								</p>
+							</div>
+						</div>
+						<p>{listing.address}</p>
+						{listingType(listing.listingType)}
 						<p>
-							<span>{listing.bathroom}</span> ba |
+							<span>Est. payment: </span>
+							{listing.estPayment}
 						</p>
+					</div>
+					<div className="follow-buttons-wrapper">
+						<button
+							className="github_btn"
+							onClick={(e) => history.push("/listings")}
+						>
+							Github
+							<p>View on Github</p>
+						</button>
+						<button className="linkedin_btn">LinkedIn</button>
+					</div>
+					<div className="listing-info">
+						<div className="listing-info__header-menu">
+							<ul className="menu">
+								<li>Overview</li>
+								<li>Facts and features</li>
+								<li>Home value</li>
+							</ul>
+
+							<ul className="details">
+								<li>
+									{<Building />}
+									{listing.buildingType}
+								</li>
+								<li>
+									{<Calendar />}Build in {listing.builtIn}
+								</li>
+								<li>
+									{<Heating />}
+									{listing.heating ? "Natural Gas, steam" : "No data"}
+								</li>
+								<li>
+									{<Cooling />}
+									{listing.ac ? "Wall unit(s)" : "No Data"}
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div className="overview">
+						<h1>Overview</h1>
+						<div className="keywords">
+							{listing.keyWords.split(",").map((keyword, idx) => {
+								return <p key={idx}>{keyword}</p>;
+							})}
+						</div>
+
 						<p>
-							 <span> {listing.sqft}</span> sqft
+							Listed by: <span>{listing.listingBy}</span>
 						</p>
-                        </div>
-					</div>
-					<p>{listing.address}</p>
-					{listingType(listing.listingType)}
-					<p><span>Est. payment: </span>{listing.estPayment}</p>
-				</div>
-				<div className="follow-buttons-wrapper">
-					<button className="github_btn" onClick={(e) => history.push("/listings")}>
-					Github
-					<p>View on Github</p>
-					</button>
-					<button className="linkedin_btn">LinkedIn</button>
-				</div>
-				<div className="listing-info">
-					<div className="listing-info__header-menu">
-						<ul className="menu">
-							<li>Overview</li>
-							<li>Facts and features</li>
-							<li>Home value</li>
-						</ul>
-
-						<ul className="details">
-							<li>
-								{<Building />}
-								{listing.buildingType}
-							</li>
-							<li>
-								{<Calendar />}Build in {listing.builtIn}
-							</li>
-							<li>
-								{<Heating />}
-								{listing.heating
-									? "Natural Gas, steam"
-									: "No data"}
-							</li>
-							<li>
-								{<Cooling />}
-								{listing.ac ? "Wall unit(s)" : "No Data"}
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div className="overview">
-                    <h1>Overview</h1>
-					<div className="keywords">
-						{listing.keyWords.split(",").map((keyword, idx) => {
-							return <p key={idx}>{keyword}</p>;
-						})}
+						<div>
+							<ShowMore text={listing.overview} />
+						</div>
 					</div>
 
-					<p>
-						Listed by: <span>{listing.listingBy}</span>
-					</p>
-					<div>
-						<ShowMore text={listing.overview} />
+					<div className="line-footer">
+						<p>
+							<span>{createdTime(listing.createdAt)} Hours </span>on Villow
+						</p>{" "}
+						|
+						<p>
+							<span>{listing.views}</span> views
+						</p>{" "}
+						|
 					</div>
-				</div>
-
-				<div className="line-footer">
-					<p>
-						<span>{createdTime(listing.createdAt)} Hours </span>on
-						Villow
-					</p>{" "}
-					|
-					<p>
-						<span>{listing.views}</span> views
-					</p>{" "}
-					|
 				</div>
 			</div>
-        </div>
 		</>
 	);
 };

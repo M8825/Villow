@@ -1,30 +1,28 @@
 import React from "react";
-
+import "./style/gallery.scss";
 
 const Gallery = ({ listing }) => {
-	return (
-		<div className="gallery-wrapper">
-			<img className="header_image" alt="home_image" src={listing.photoUrls.reverse()[0]} />
+  const largeImage = listing.photoUrls[0]; // The large image for the left side
+  const smallImages = listing.photoUrls.slice(1); // Rest of the images
 
-			<div className="rest_gallery">
-				{listing.photoUrls.reverse().map((photo, idx) => {
+  return (
+    <div className="gallery">
+      <img className="gallery-item large" alt="Large Home" src={largeImage} />
+      {smallImages.map((photo, idx) => {
+				const isLastTop = idx === 1;
+				const isLastBottom = idx === 3;
 
-					if (idx !== 0) {
-                        const classForImg = idx % 2 === 0 ? "right" :  "left"
-
-						return (
-							<img
-								src={photo}
-								alt="home_image"
-								key={idx}
-								className={classForImg}
-							/>
-						);
-					}
-				})}
-			</div>
-		</div>
-	);
+				return (
+					<img
+						className={`gallery-item small ${isLastTop ? 'last-top' : ''} ${isLastBottom ? 'last-bottom' : ''}`}
+						alt={`Home ${idx + 1}`}
+						src={photo}
+						key={idx}
+					/>
+				)
+			})}
+    </div>
+  );
 };
 
 export default Gallery;

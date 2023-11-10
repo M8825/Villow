@@ -1,0 +1,25 @@
+.listing_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 15px;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    color: rgb(0, 106, 255);
+
+    li {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}
