@@ -29,6 +29,7 @@ const ShowListing = ({ isOpen, onClose }) => {
 		height: "100vh",
 		backgroundColor: "rgb(255 255 255)",
         padding: "0px 34px",
+        overflow: "scroll",
 	};
 
 	return (

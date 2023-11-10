@@ -1,19 +1,8 @@
 import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
-import {
-	Heart,
-	Share,
-	Hide,
-	More,
-	Logo,
-	Building,
-	Calendar,
-	Heating,
-	Cooling,
-} from "./assets/svgs";
+import { Building, Calendar, Heating, Cooling } from "./assets/svgs";
 import { useHistory } from "react-router-dom";
 import ShowMore from "./ShowMore";
-
 
 import "./style/home.scss";
 
