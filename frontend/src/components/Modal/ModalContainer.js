@@ -41,9 +41,13 @@ const ModalContainer = ({
   return (
     <>
       {listingId ? (
-        <>
-          {children}
-        </>
+          <Modal
+            closeModal={closeModal}
+            onClickOutside={onClickOutside}
+            modalAreaStyling={modalAreaStyling}
+          >
+            {children}
+          </Modal>
       ) : (
         <div>
           <SessionButton showModal={showModal} triggerText={"Sign in"} />

@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { getListing, fetchListing } from "../../store/listingsReducer";
 import Gallery from "./gallery";
 import Home from "./Home";
+
+import "./style/gallery.scss";
 import "./style/home.scss";
 
 import ModalContainer from "../Modal/ModalContainer";

@@ -3,14 +3,8 @@ import React from "react";
 
 const Gallery = ({ listing }) => {
 	return (
-		<div
-			className="gallery-wrapper"
-		>
-			<img
-				className="header"
-				alt="home_image"
-				src={listing.photoUrls.reverse()[0]}
-			/>
+		<div className="gallery-wrapper">
+			<img className="header_image" alt="home_image" src={listing.photoUrls.reverse()[0]} />
 
 			<div className="rest_gallery">
 				{listing.photoUrls.reverse().map((photo, idx) => {
