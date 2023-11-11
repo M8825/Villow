@@ -206,3 +206,22 @@ export const Info = () => {
 		</svg>
 	);
 };
+
+export const BackArrow = () => {
+	return (
+		<svg
+			viewBox="0 0 32 32"
+			aria-hidden="true"
+			focusable="false"
+			role="img"
+			width={22}
+			height={22}
+			style={{ transform: 'rotate(90deg)' }} // Rotate the SVG to point left
+		>
+			<title>Chevron Left</title>
+			<g stroke="none" fill="#1E3A89">
+				<path d="M29.7 8.8a1 1 0 00-1.4 0L16 21 3.7 8.8a1 1 0 00-1.4 0 1 1 0 000 1.4l13 13a1 1 0 001.4 0l13-13a1 1 0 000-1.4z"></path>
+			</g>
+		</svg>
+	);
+};
