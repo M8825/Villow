@@ -1,6 +1,6 @@
 import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
-import { Building, Calendar, Heating, Cooling } from "./assets/svgs";
+import { Building, Calendar, Heating, Cooling, Info } from "./assets/svgs";
 import { useHistory } from "react-router-dom";
 import ShowMore from "./ShowMore";
 
@@ -47,25 +47,28 @@ const Home = ({ listing }) => {
 				<div className="listing-details-wrapper">
 					<div className="top-container">
 						<div className="top-container__header">
-							<h1>{listingPrice}</h1>
-							<div>
+							<div className="right-header">
+								<h1>{listingPrice}</h1>
+								<p className="show-address">{`${listing.address}, ${listing.city}, ${listing.state} ${listing.zipcode}`}</p>
+							</div>
+
+							<div className="left-header">
 								<p>
-									<span>{listing.bedroom}</span> bd |
+									<span>{listing.bedroom}</span> beds
 								</p>
 								<p>
-									<span>{listing.bathroom}</span> ba |
+									<span>{listing.bathroom}</span> baths
 								</p>
 								<p>
 									<span> {listing.sqft}</span> sqft
 								</p>
 							</div>
 						</div>
-						<p>{listing.address}</p>
-						{listingType(listing.listingType)}
-						<p>
-							<span>Est. payment: </span>
-							{listing.estPayment}
-						</p>
+						<div className="est-payment-container">
+							<div className="est-payment">
+								Est. payment: <span>{"$" + listing.estPayment}/mo</span> <Info /> <span className="info-link">Get pre-qualified</span>
+							</div>
+						</div>
 					</div>
 					<div className="follow-buttons-wrapper">
 						<button
@@ -79,12 +82,6 @@ const Home = ({ listing }) => {
 					</div>
 					<div className="listing-info">
 						<div className="listing-info__header-menu">
-							<ul className="menu">
-								<li>Overview</li>
-								<li>Facts and features</li>
-								<li>Home value</li>
-							</ul>
-
 							<ul className="details">
 								<li>
 									{<Building />}
@@ -106,9 +103,9 @@ const Home = ({ listing }) => {
 					</div>
 
 					<div className="overview">
-						<h1>Overview</h1>
+						<h1>What's Special</h1>
 						<div className="keywords">
-							{listing.keyWords.split(",").map((keyword, idx) => {
+							{listing.keyWords.split(" ").map((keyword, idx) => {
 								return <p key={idx}>{keyword}</p>;
 							})}
 						</div>

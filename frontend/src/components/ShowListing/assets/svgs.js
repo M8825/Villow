@@ -2,14 +2,17 @@ import React from "react";
 
 export const Building = () => {
 	return (
-		<svg viewBox="0 0 32 32" width={24} height={24}>
-			<title>Type</title>
-			<g stroke="none" className="details-icon">
-				<path d="M24 2H8a2 2 0 00-2 2v24a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-9 26v-5h2v5zm9 0h-5v-6.5a.5.5 0 00-.5-.5h-5a.5.5 0 00-.5.5V28H8V4h16z"></path>
-				<rect x="11" y="13" width="4" height="4" rx=".5"></rect>
-				<rect x="17" y="13" width="4" height="4" rx=".5"></rect>
-				<rect x="11" y="7" width="4" height="4" rx=".5"></rect>
-				<rect x="17" y="7" width="4" height="4" rx=".5"></rect>
+		<svg
+			viewBox="0 0 32 32"
+			aria-hidden="true"
+			focusable="false"
+			role="img"
+			class="Icon-c11n-8-84-3__sc-13llmml-0 jhZWWg"
+		>
+			<title>House Type</title>
+			<g stroke="none">
+				<path d="M28.34 7.06l-14-5a1 1 0 00-.92.12A1 1 0 0013 3v13.35l-2.33-2.09a1 1 0 00-1.34 0l-5.82 5.22A1.55 1.55 0 003 20.62v8.11A1.27 1.27 0 004.27 30H28a1 1 0 001-1V8a1 1 0 00-.66-.94zM11 28H9v-3h2zm4 0h-2v-3.5a1.5 1.5 0 00-1.5-1.5h-3A1.5 1.5 0 007 24.5V28H5v-7.17l5-4.49 5 4.49zm12 0H17v-7.38a1.55 1.55 0 00-.51-1.14L15 18.12V4.42l12 4.29z"></path>
+				<path d="M24 13v10a1 1 0 01-2 0V13a1 1 0 012 0zM20 11v12a1 1 0 01-2 0V11a1 1 0 012 0z"></path>
 			</g>
 		</svg>
 	);
@@ -141,12 +144,7 @@ export const Hide = () => {
 
 export const More = () => {
 	return (
-		<svg
-			viewBox="0 0 32 32"
-			aria-hidden="true"
-			width={22}
-			height={22}
-		>
+		<svg viewBox="0 0 32 32" aria-hidden="true" width={22} height={22}>
 			<title>More</title>
 			<g stroke="none">
 				<path
@@ -161,6 +159,27 @@ export const More = () => {
 					fill="rgb(0, 106, 255)"
 					d="M26,14a2,2,0,1,1-2,2,2,2,0,0,1,2-2m0-2a4,4,0,1,0,4,4,4,4,0,0,0-4-4Z"
 				></path>
+			</g>
+		</svg>
+	);
+};
+
+export const Info = () => {
+	return (
+		<svg
+			viewBox="0 0 32 32"
+			aria-hidden="true"
+			focusable="false"
+			role="img"
+			width={24}
+			height={24}
+			style={{ marginLeft: "5px" }}
+		>
+			<title>Information</title>
+			<g stroke="none" fill="#1E3A89">
+				<path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"></path>
+				<path d="M18.35,19.89h-.89V15.26A1.15,1.15,0,0,0,16.21,14H13.84a1.23,1.23,0,1,0,0,2.45h1.07v3.41H13.65a1.23,1.23,0,1,0,0,2.45h4.7a1.23,1.23,0,1,0,0-2.45Z"></path>
+				<path d="M15.91,12.71a1.53,1.53,0,0,0,0-3.05,1.53,1.53,0,1,0,0,3.05Z"></path>
 			</g>
 		</svg>
 	);

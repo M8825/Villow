@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./style/gallery.scss";
 
 const Gallery = ({ listing }) => {
