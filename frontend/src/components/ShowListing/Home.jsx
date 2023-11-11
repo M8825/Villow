@@ -1,6 +1,6 @@
 import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
-import { Building, Calendar, Heating, Cooling, Info } from "./assets/svgs";
+import { Building, Calendar, Heating, Cooling, Info, HOA, SQFT, SQFTLOT, ZESTIMATE } from "./assets/svgs";
 import { useHistory } from "react-router-dom";
 import ShowMore from "./ShowMore";
 
@@ -12,26 +12,6 @@ const Home = ({ listing }) => {
 
 	const listingPrice = formatter.format(listing?.price);
 
-	const listingType = () => {
-		if (listing.listingType === "Sale") {
-			return (
-				<>
-					<div className="aprt_status">
-						<span className="sale" />
-						<p>For Sale</p>
-					</div>
-				</>
-			);
-		} else {
-			return (
-				<div className="aprt_status">
-					<span className="rent" />
-					<p>Apartment For Rent</p>
-				</div>
-			);
-		}
-	};
-
 	const createdTime = (timeString) => {
 		const time = new Date(timeString);
 		const now = new Date();
@@ -42,7 +22,7 @@ const Home = ({ listing }) => {
 	};
 
 	return (
-		<>
+		<div className="home-container">
 			<div className="left-pane">
 				<div className="listing-details-wrapper">
 					<div className="top-container">
@@ -66,19 +46,9 @@ const Home = ({ listing }) => {
 						</div>
 						<div className="est-payment-container">
 							<div className="est-payment">
-								Est. payment: <span>{"$" + listing.estPayment}/mo</span> <Info /> <span className="info-link">Get pre-qualified</span>
+								Est. payment:&nbsp;<span>{"$" + listing.estPayment}/mo</span> <Info /> <span className="info-link">Get pre-qualified</span>
 							</div>
 						</div>
-					</div>
-					<div className="follow-buttons-wrapper">
-						<button
-							className="github_btn"
-							onClick={(e) => history.push("/listings")}
-						>
-							Github
-							<p>View on Github</p>
-						</button>
-						<button className="linkedin_btn">LinkedIn</button>
 					</div>
 					<div className="listing-info">
 						<div className="listing-info__header-menu">
@@ -88,15 +58,19 @@ const Home = ({ listing }) => {
 									{listing.buildingType}
 								</li>
 								<li>
-									{<Calendar />}Build in {listing.builtIn}
+									{<ZESTIMATE />} {listingPrice}<span>Vestimate<sup>®</sup></span>
 								</li>
 								<li>
-									{<Heating />}
-									{listing.heating ? "Natural Gas, steam" : "No data"}
+									{<Calendar />}Built in {listing.builtIn}
 								</li>
 								<li>
-									{<Cooling />}
-									{listing.ac ? "Wall unit(s)" : "No Data"}
+									{<SQFT />} ${listing.sqft}/sqft
+								</li>
+								<li>
+									{<SQFTLOT />} -- sqft lot
+								</li>
+								<li>
+									{<HOA />} $-- HOA
 								</li>
 							</ul>
 						</div>
@@ -130,7 +104,16 @@ const Home = ({ listing }) => {
 					</div>
 				</div>
 			</div>
-		</>
+			<div className="right-side-container">
+				<div className="follow-buttons-wrapper">
+					<button className="github_btn" onClick={(e) => window.location.href = "https://github.com/M8825"}>
+						Github
+						<p>View on Github</p>
+					</button>
+					<button className="linkedin_btn" onClick={(e) => window.location.href = "https://www.linkedin.com/in/malkhaz-mamulashvili-703a97208/"}>LinkedIn</button>
+				</div>
+			</div>
+		</div>
 	);
 };
 
