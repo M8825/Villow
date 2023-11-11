@@ -5,5 +5,5 @@ export function formatNumberToK(number) {
 
 export const containerStyle = {
 	width: "100%",
-	height: "100vh",
+	height: "100%",
 };

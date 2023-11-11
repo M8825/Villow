@@ -57,6 +57,15 @@
 .left-pane {
     width: 71vw;
     height: 100vh;
+
+    .show-page-map-container {
+        height: 318px;
+        width: 98%;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 30px;
+        margin-left: 10px;
+    }
 }
 
 .listing-details-wrapper {

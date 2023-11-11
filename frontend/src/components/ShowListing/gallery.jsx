@@ -8,20 +8,16 @@ const Gallery = ({ listing }) => {
 
   return (
     <div className="gallery">
-      <img className="gallery-item large" alt="Large Home" src={largeImage} />
+      <div className="gallery-item large">
+        <img alt="Large Home" src={largeImage} />
+      </div>
       {smallImages.map((photo, idx) => {
-				const isLastTop = idx === 1;
-				const isLastBottom = idx === 3;
-
-				return (
-					<img
-						className={`gallery-item small ${isLastTop ? 'last-top' : ''} ${isLastBottom ? 'last-bottom' : ''}`}
-						alt={`Home ${idx + 1}`}
-						src={photo}
-						key={idx}
-					/>
-				)
-			})}
+        return (
+          <div className={`gallery-item small`} key={idx}>
+            <img alt={`Home ${idx + 1}`} src={photo} />
+          </div>
+        );
+      })}
     </div>
   );
 };

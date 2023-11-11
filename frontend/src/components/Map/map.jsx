@@ -17,6 +17,8 @@ const Map = () => {
 
 	const [center, setCenter] = useState();
 	const [hoveredMarkerId, setHoveredMarkerId] = useState(null); // track hovered marker
+	const [mapsApiLoaded, setMapsApiLoaded] = useState(false); // state to track if the google maps api has loaded
+
 
 	useEffect(() => {
 		if (listings.length > 0) {
@@ -41,9 +43,13 @@ const Map = () => {
 		setHoveredMarkerId(null);
 	};
 
+	const onMapLoad = () => {
+		setMapsApiLoaded(true);
+	}
+
 	return (
 		<div className="map_container">
-			<LoadScriptNext googleMapsApiKey={`${MAPS_API_KEY}`}>
+			<LoadScriptNext googleMapsApiKey={`${MAPS_API_KEY}`} onLoad={onMapLoad}>
 				<GoogleMap
 					mapContainerStyle={containerStyle}
 					center={center}
@@ -54,22 +60,25 @@ const Map = () => {
 						draggable: true,
 					}}
 				>
-					{listings &&
-						listings.map((listing) => (
-							<Marker
-								key={listing.id}
-								icon={{
-									url: createMarkerIcon(
-										formatNumberToK(listing.price),
-										hoveredMarkerId === listing.id ? "green" : "red"
-									),
-									scaledSize: new window.google.maps.Size(45, 23),
-								}}
-								position={{ lat: listing.lat, lng: listing.lng }}
-								onMouseOver={() => handleMouseOver(listing.id)}
-								onMouseOut={handleMouseOut}
-							/>
-						))}
+					{mapsApiLoaded && listings &&
+						listings.map((listing) => {
+							return (
+								<Marker
+									key={listing.id}
+									icon={{
+										url: createMarkerIcon(
+											formatNumberToK(listing.price),
+											hoveredMarkerId === listing.id ? "green" : "red"
+										),
+										scaledSize: new window.google.maps.Size(45, 23),
+									}}
+									position={{ lat: listing.lat, lng: listing.lng }}
+									onMouseOver={() => handleMouseOver(listing.id)}
+									onMouseOut={handleMouseOut}
+								/>
+							);
+						})
+					}
 				</GoogleMap>
 			</LoadScriptNext>
 		</div>

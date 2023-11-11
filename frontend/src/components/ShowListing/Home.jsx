@@ -1,8 +1,10 @@
 import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
-import { Building, Calendar, Heating, Cooling, Info, HOA, SQFT, SQFTLOT, ZESTIMATE } from "./assets/svgs";
+import { Building, Calendar, Info, HOA, SQFT, SQFTLOT, ZESTIMATE } from "./assets/svgs";
 import { useHistory } from "react-router-dom";
 import ShowMore from "./ShowMore";
+
+import Map from "../Map/map";
 
 import "./style/home.scss";
 
@@ -102,6 +104,9 @@ const Home = ({ listing }) => {
 						</p>{" "}
 						|
 					</div>
+				</div>
+				<div className="show-page-map-container">
+					<Map />
 				</div>
 			</div>
 			<div className="right-side-container">

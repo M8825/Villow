@@ -7,6 +7,7 @@ import { getListing, fetchListing } from "../../store/listingsReducer";
 import ModalContainer from "../Modal/ModalContainer";
 import Gallery from "./gallery";
 import Home from "./Home";
+import Map from "../Map/map";
 
 import "./style/index.scss"
 import ListingHeader from "./ListingHeader";
