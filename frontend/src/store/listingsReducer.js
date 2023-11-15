@@ -1,6 +1,10 @@
 import { csrfFetch } from "./csrf";
 import { objectToQuerySting } from "./utils";
 import { cleanLocalStorageSearchCredentials } from "./utils";
+import { createSelector } from "reselect";
+
+
+const listingSelector = state => state.listings
 
 
 const RECEIVE_LISTINGS = "api/listings/RECEIVE_LISTINGS";
@@ -10,6 +14,7 @@ const RECEIVE_FAVORITES = "api/listings/RECEIVE_FAVORITES";
 const CLEAR_LISTINGS = "api/listings/CLEAR_LISTINGS";
 
 // TODO: add remove and update listing
+
 
 const receiveListings = (listings) => ({
   type: RECEIVE_LISTINGS,
@@ -26,22 +31,17 @@ const receiveFavorites = (favorites) => ({
   favorites,
 });
 
-const removeListings = (listingIds) => ({
-  type: REMOVE_LISTINGS,
-  listingIds,
-});
-
 const clearListings = () => ({
   type: CLEAR_LISTINGS,
 });
 
-export const getListings = (state) => {
-  if (state && state.listings) {
-    return Object.values(state.listings);
+export const getListings = createSelector([listingSelector], listings => {
+  if (listings) {
+    return Object.values(listings);
   }
 
   return [];
-};
+});
 
 export const getListing = (id) => (state) => {
   if (state && state.listings) {

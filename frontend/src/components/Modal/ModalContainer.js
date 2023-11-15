@@ -1,70 +1,81 @@
-import { Children, useState } from "react";
+import { useEffect, useState } from "react";
 import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
-import { useParams } from "react-router-dom";
 
 import "./ModalContainer.scss";
 
 const ModalContainer = ({
-  modalAreaStyling,
-  ModalWelcomeHeader,
-  ModalTabs,
-  children,
+	modalAreaStyling,
+	ModalWelcomeHeader,
+	ModalTabs,
+	listingId,
+  handleClickItem,
+	children,
 }) => {
-  const { listingId } = useParams();
-  let [popup, setPopup] = useState({ isShown: false }); // isShown is false by default for modal
+	let [popup, setPopup] = useState({ isShown: false });
 
-  const showModal = () => {
-    setPopup({ isShown: true });
-    toggleScrollLock();
-  };
-
-  const closeModal = () => {
-    setPopup({ isShown: false });
-    toggleScrollLock();
-  };
-
-  // On click outside of modal, close modal if user clicks
-  // outside of modal. If user clicks inside modal, do nothing.
-  // Modal box is located in another div with class name "modal-cover"
-  // when user clicks modal container, we close modal.
-  const onClickOutside = (event) => {
-    if (event.target.className === "modal-container") {
-      closeModal();
+  useEffect(() => {
+    if(listingId) {
+      setPopup({ isShown: true });
     }
-  };
 
-  const toggleScrollLock = () => {
-    document.querySelector("html").classList.toggle("scroll-lock");
-  };
+  }, [listingId]);
 
-  return (
-    <>
-      {listingId ? (
-          <Modal
-            closeModal={closeModal}
-            onClickOutside={onClickOutside}
-            modalAreaStyling={modalAreaStyling}
-          >
-            {children}
-          </Modal>
-      ) : (
-        <div>
-          <SessionButton showModal={showModal} triggerText={"Sign in"} />
-          {popup.isShown ? (
-            <Modal
-              closeModal={closeModal}
-              onClickOutside={onClickOutside}
-              modalAreaStyling={modalAreaStyling}
-            >
-              <ModalWelcomeHeader />
-              <ModalTabs closeModal={closeModal} />
-            </Modal>
-          ) : null}
-        </div>
-      )}
-    </>
-  );
+	const showModal = () => {
+		setPopup({ isShown: true });
+		toggleScrollLock();
+	};
+
+	const closeModal = () => {
+		setPopup({ isShown: false });
+		window.history.pushState({}, "", `/listings`);
+    handleClickItem();
+		toggleScrollLock();
+	};
+
+	// On click outside of modal, close modal if user clicks
+	// outside of modal. If user clicks inside modal, do nothing.
+	// Modal box is located in another div with class name "modal-cover"
+	// when user clicks modal container, we close modal.
+	const onClickOutside = (event) => {
+		if (event.target.className === "modal-container") {
+      closeModal();
+		}
+	};
+
+	const toggleScrollLock = () => {
+		document.querySelector("html").classList.toggle("scroll-lock");
+	};
+
+	return (
+		<>
+			{listingId ? (
+				popup.isShown ? (
+					<Modal
+						closeModal={showModal}
+						onClickOutside={onClickOutside}
+						modalAreaStyling={modalAreaStyling}
+					>
+						{children}
+					</Modal>
+				) : null
+			) : (
+				<div>
+					<SessionButton showModal={showModal} triggerText={"Sign in"} />
+					{popup.isShown ? (
+						<Modal
+							closeModal={closeModal}
+							onClickOutside={onClickOutside}
+							modalAreaStyling={modalAreaStyling}
+						>
+							<ModalWelcomeHeader />
+							<ModalTabs closeModal={closeModal} />
+						</Modal>
+					) : null}
+				</div>
+			)}
+		</>
+	);
 };
 
 export default ModalContainer;

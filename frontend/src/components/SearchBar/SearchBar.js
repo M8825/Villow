@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -21,40 +21,15 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const searchRef = useRef(null);
 
-  const isAtListinIndex = location.pathname === "/listings";
+  const isAtListingIndex = location.pathname === "/listings";
 
-  const suggestions = useSelector(getSuggestions());
+  const suggestions = useSelector(getSuggestions);
   const [suggestionsBox, setSuggestionsBox] = useState(false);
   const [term, setTerm] = useState("");
   const [value, setValue] = useState("");
 
   // IndexSearchInput - hide search icon when clicked outside component
-  const [focuseSearch, setFocuseSearch] = useState(false);
-
-  useEffect(() => {
-    const hideSearchIcon = (e) => {
-      if (e.target !== searchRef.current) {
-        setFocuseSearch(false);
-      }
-    };
-
-    document.body.addEventListener("click", hideSearchIcon);
-
-    return () => {
-      document.body.removeEventListener("click", hideSearchIcon);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (suggestionsBox) {
-      dispatch(cleanSearchSuggestions());
-    }
-
-    // clean on unmount
-    return () => {
-      dispatch(cleanSearchSuggestions());
-    };
-  }, [dispatch, suggestionsBox]);
+  const [focusSearch, setFocusSearch] = useState(false);
 
   const handleSearchOnChange = (e) => {
     const searchString = e.target.value;
@@ -105,7 +80,7 @@ const SearchBar = () => {
 
   return (
     <div className="search_bar_container">
-      {isAtListinIndex ? (
+      {isAtListingIndex ? (
         <>
           <IndexSearchInput
             handleSearchOnChange={handleSearchOnChange}
@@ -114,15 +89,14 @@ const SearchBar = () => {
             setSuggestionsBox={setSuggestionsBox}
             suggestionsBox={suggestionsBox}
             suggestions={suggestions}
-            focuseSearch={focuseSearch}
-            setFocuseSearch={setFocuseSearch}
+            focusSearch={focusSearch}
+            setFocusSearch={setFocusSearch}
             searchRef={searchRef}
             setValue={setValue}
           />
         </>
       ) : (
-        <SplashSearchInput
-          handleSearchSubmit={handleSearchSubmit}
+        <SplashSearchInput handleSearchSubmit={handleSearchSubmit}
           handleSearchOnChange={handleSearchOnChange}
           value={value}
           term={term}

@@ -73,7 +73,7 @@ const SplashSearchInput = ({
       </div>
 
       <div className="splash-suggestions-dropdown">
-        {searchBarClicked && suggestions.length === 0 ? (
+        {searchBarClicked && suggestions?.length === 0 ? (
           <SplashSearchHistorySuggestions />
         ) : (
           <ul className="fetched-suggestions-wrapper">

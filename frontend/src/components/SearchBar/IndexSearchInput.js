@@ -94,7 +94,7 @@ const IndexSearch = ({
               className="indexSearchDropdown"
               onClick={handleSuggestionItemClick}
             >
-              {suggestions.length !== 0 ? (
+              {suggestions?.length !== 0 ? (
                 <ul>
                   {suggestions &&
                     suggestions.map((suggestion, idx) => {
