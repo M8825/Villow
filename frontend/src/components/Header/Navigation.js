@@ -17,11 +17,11 @@ const Navigation = ({ isIndex }) => {
   const dispatch = useDispatch();
   const activeUser = useSelector(getActiveUser());
 
-  useEffect(() => {
-    if (!activeUser) {
-      dispatch(fetchCurrentUser());
-    }
-  }, [activeUser]);
+  // useEffect(() => {
+  //   if (!activeUser) {
+  //     dispatch(fetchCurrentUser());
+  //   }
+  // }, [dispatch, activeUser]);
 
   const modalAreaStyling = {
     display: "flex",
@@ -31,6 +31,7 @@ const Navigation = ({ isIndex }) => {
     width: "456px",
     backgroundColor: "rgb(255 255 255)",
   };
+
 
   return (
     <>

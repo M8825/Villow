@@ -77,7 +77,7 @@ export const cleanLocalStorageSearchCredentials = () => {
 
   const encodedSearchValue = encodeURIComponent(parsedSearchWord);
 
-  // TODO: use camel key to snake key in rails and delete this function 
+  // TODO: use camel key to snake key in rails and delete this function
   let queryObject = {
     expected_response: "listings", // Flag for back-end. Rails may rqueryStringeceive suggestions flag
     [term]: encodedSearchValue,

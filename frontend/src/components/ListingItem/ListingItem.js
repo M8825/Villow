@@ -22,11 +22,11 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling}) => {
 		minimumFractionDigits: 0,
 	});
 
-	useEffect(() => {
-		if (!currentUser) {
-			dispatch(fetchCurrentUser());
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (!currentUser) {
+	// 		dispatch(fetchCurrentUser());
+	// 	}
+	// }, []);
 
 	const price = formatter.format(listing.price);
 

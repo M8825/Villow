@@ -25,11 +25,6 @@ let initialState = {
 
 const store = configureStore(initialState);
 
-window.createUser = createUser;
-window.loginUser = loginUser;
-window.logoutUser = logoutUser;
-window.createLIsting = createListing;
-
 root.render(
   <React.StrictMode>
     <ChakraBaseProvider>
