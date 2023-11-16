@@ -13,7 +13,8 @@ const Favorites = ({ currentUser }) => {
 		if (currentUser) {
 			dispatch(fetchUserFavorites(currentUser.id));
 		}
-	}, [dispatch, currentUser, listings]);
+	}, [dispatch, currentUser]);
+
 
 	return (
 		listings && (
