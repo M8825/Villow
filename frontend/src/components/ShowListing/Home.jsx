@@ -106,7 +106,7 @@ const Home = ({ listing }) => {
 					</div>
 				</div>
 				<div className="show-page-map-container">
-					<Map />
+					<Map listingId={listing.id}/>
 				</div>
 			</div>
 			<div className="right-side-container">

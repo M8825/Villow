@@ -1,24 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GoogleMap, LoadScriptNext, Marker } from "@react-google-maps/api";
 import { getLatLngByAddress } from "../../store/geocodeReducer";
 import IndexMapConfig from "./IndexMapConfig.json";
 
-import { getListings } from "../../store/listingsReducer";
+import { getListing, getListings } from "../../store/listingsReducer";
 import { formatNumberToK, containerStyle } from "./mapsUtils";
 import createMarkerIcon from "./marker";
 
 import "./map.scss";
 
-const Map = () => {
+const Map = ({ listingId }) => {
 	const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 	const dispatch = useDispatch();
-	const listings = useSelector(getListings);
+	const allListings = useSelector(getListings);
+	const singleListing = useSelector(getListing(listingId));
+
+	// determine which listing to render on the map
+	// if listingId is present, we assume that render the single listing
+	const listings = useMemo(() => {
+		return listingId ? [singleListing] : allListings;
+	}, [listingId, singleListing, allListings]);
 
 	const [center, setCenter] = useState();
 	const [hoveredMarkerId, setHoveredMarkerId] = useState(null); // track hovered marker
 	const [mapsApiLoaded, setMapsApiLoaded] = useState(false); // state to track if the google maps api has loaded
-
 
 	useEffect(() => {
 		if (listings.length > 0) {
@@ -45,7 +51,7 @@ const Map = () => {
 
 	const onMapLoad = () => {
 		setMapsApiLoaded(true);
-	}
+	};
 
 	return (
 		<div className="map_container">
@@ -60,7 +66,8 @@ const Map = () => {
 						draggable: true,
 					}}
 				>
-					{mapsApiLoaded && listings &&
+					{mapsApiLoaded &&
+						listings &&
 						listings.map((listing) => {
 							return (
 								<Marker
@@ -77,8 +84,7 @@ const Map = () => {
 									onMouseOut={handleMouseOut}
 								/>
 							);
-						})
-					}
+						})}
 				</GoogleMap>
 			</LoadScriptNext>
 		</div>

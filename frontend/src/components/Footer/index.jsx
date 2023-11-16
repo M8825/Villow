@@ -5,7 +5,7 @@ import "./index.scss";
 
 const Footer = () => {
 	return (
-		<>
+		<div className="footer-container">
 			<div className="your-right-container">
 				<h1>You have a right to fair housing.</h1>
 				<a href="https://www.dos.ny.gov/licensing/docs/FairHousingNotice_new.pdf">
@@ -110,7 +110,7 @@ const Footer = () => {
 
 				<img src="https://s.zillowstatic.com/pfs/static/footer-art.svg" />
 			</div>
-		</>
+		</div>
 	);
 };
 
