@@ -1,0 +1,16 @@
+.more-recommended-homes {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4%;
+  color: #1F4494;
+  font-weight: 600;
+  font-family: 'Open Sans';
+  font-size: 16px;
+  margin: 16px 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

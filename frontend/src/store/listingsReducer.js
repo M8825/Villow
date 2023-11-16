@@ -152,16 +152,13 @@ export const removeFavorite = (userId, listingId) => async (dispatch) => {
   });
 
   if (res.ok) {
-    // const listing = await res.json(); - DELETE IT?
     dispatch(removeFavorites(listingId));
   }
 };
 
 export const fetchSearchListings =
-  (expected_response, extraParams = {}) =>
+  (extraParams = {}) =>
   async (dispatch) => {
-    // Make sure to encode for URL safe character like #
-    // prevent params from being cut off
 
     const baseParams = cleanLocalStorageSearchCredentials();
 
