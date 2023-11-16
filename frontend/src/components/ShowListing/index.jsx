@@ -21,7 +21,11 @@ const ShowListing = ({ listing, handleClickItem }) => {
 	return (
 		listing && (
 			<>
-				<ModalContainer modalAreaStyling={modalAreaStyling} listingId={listing.id} handleClickItem={handleClickItem}>
+				<ModalContainer
+					modalAreaStyling={modalAreaStyling}
+					listingId={listing.id}
+					handleClickItem={handleClickItem}
+				>
 					<ListingHeader />
 					<Gallery listing={listing} />
 					<Home listing={listing} />

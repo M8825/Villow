@@ -10,7 +10,6 @@ import "./style/home.scss";
 
 const Home = ({ listing }) => {
 	const formatter = useCurrencyFormatter();
-	const history = useHistory();
 
 	const listingPrice = formatter.format(listing?.price);
 

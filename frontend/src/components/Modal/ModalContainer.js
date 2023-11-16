@@ -28,9 +28,9 @@ const ModalContainer = ({
 
 	const closeModal = () => {
 		setPopup({ isShown: false });
-		window.history.pushState({}, "", `/listings`);
 		if (handleClickItem) {
-    	handleClickItem();
+		  handleClickItem();
+			window.history.pushState({}, "", "/listings");
 		}
 		toggleScrollLock();
 	};
