@@ -35,6 +35,11 @@ const clearListings = () => ({
   type: CLEAR_LISTINGS,
 });
 
+const removeListings = (listingIds) => ({
+  type: REMOVE_LISTINGS,
+  listingIds,
+});
+
 export const getListings = createSelector([listingSelector], listings => {
   if (listings) {
     return Object.values(listings);
@@ -109,7 +114,7 @@ export const deleteListing = (listingIds) => async (dispatch) => {
   });
 
   if (res.ok) {
-    dispatch(listingIds);
+    dispatch(removeListings(listingIds));
   }
 };
 

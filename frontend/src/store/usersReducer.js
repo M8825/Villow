@@ -23,21 +23,37 @@ export const getActiveUser = () => (state) => {
 };
 
 export const loginUser = (userCredentials) => async (dispatch) => {
-	let res = await csrfFetch("/api/session", {
-		method: "POST",
-		body: JSON.stringify(userCredentials),
-	});
+  try {
+    let res = await fetch("/api/session", {
+      method: "POST",
+      body: JSON.stringify(userCredentials),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-	if (res.ok) {
-		const  user  = await res.json();
-		sessionStorage.setItem("currentUser", JSON.stringify(user));
+    if (res.ok) {
+      const user = await res.json();
+      // Store only non-sensitive user information, if necessary
+			debugger
+      sessionStorage.setItem("currentUser", JSON.stringify({ id: user.id, name: user.email}));
 
-		dispatch(receiveUser(user));
-	} else {
-		const { errors } = await res.json();
-		throw new Error(errors);
-	}
+      dispatch(receiveUser(user));
+    } else {
+      // Handle non-OK responses, could be client or server error
+      try {
+        const { errors } = await res.json();
+        throw new Error(errors.join(', '));
+      } catch (jsonError) {
+        // If the response is not JSON, use the status text
+        throw new Error(res.statusText);
+      }
+    }
+  } catch (error) {
+    throw error;
+  }
 };
+
 
 export const logoutUser = () => async (dispatch) => {
 	await csrfFetch("/api/session", {
@@ -81,7 +97,8 @@ const userReducer = (state = {}, action) => {
 			nextState.user = action.user;
 			return nextState;
 		case REMOVE_USER:
-			delete nextState["user"];
+			nextState["user"] = null;
+			debugger
 			return nextState;
 		default:
 			return state;

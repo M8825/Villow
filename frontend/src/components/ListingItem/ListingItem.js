@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ListingIndexItemHeart from "./ListingHeart";
 import ShowListing from "../ShowListing/index";
 
 import { addFavorite, removeFavorite } from "../../store/listingsReducer";
-import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
+import { getActiveUser } from "../../store/usersReducer";
 
 import "./ListingItem.scss";
 
@@ -21,12 +21,6 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling}) => {
 		currency: "USD",
 		minimumFractionDigits: 0,
 	});
-
-	// useEffect(() => {
-	// 	if (!currentUser) {
-	// 		dispatch(fetchCurrentUser());
-	// 	}
-	// }, []);
 
 	const price = formatter.format(listing.price);
 
@@ -45,7 +39,6 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling}) => {
 
 		window.history.pushState({}, '', `/listing/${listing.id}`);
 		setIsListingClicked(!isListingClicked);
-		console.log(isListingClicked);
 	}
 
 	return (

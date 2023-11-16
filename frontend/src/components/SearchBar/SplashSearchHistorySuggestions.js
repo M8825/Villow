@@ -38,10 +38,9 @@ const SplashSearchHistorySuggestions = () => {
         </div>
         <ul>
           {searchHistory.map((searchHistoryObj, idx) => (
-            <li className="splash-search-history-list-item">
+            <li key={idx} className="splash-search-history-list-item">
               <SplashSearchHistorySuggestionIcon />
               <SuggestionItem
-                key={idx}
                 term={searchHistoryObj.term}
                 suggestion={searchHistoryObj.suggestion}
                 value={""}
