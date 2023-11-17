@@ -10,9 +10,6 @@ export const Modal = (props) => {
 		<FocusTrap>
 			<aside className="modal-container" onClick={props.onClickOutside}>
 				<div className="modal-area" style={props.modalAreaStyling}>
-					<div className="close-button-container">
-						<ModalCloseButton closeModal={props.closeModal} />
-					</div>
 					{props.children}
 				</div>
 			</aside>
