@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
 import { Building, Calendar, Info, HOA, SQFT, SQFTLOT, ZESTIMATE } from "./assets/svgs";
-import { useHistory } from "react-router-dom";
-import ShowMore from "./ShowMore";
 
+import ShowMore from "./ShowMore";
 import Map from "../Map/map";
 
 import "./style/home.scss";

@@ -16,9 +16,9 @@ const ListingHeader = () => {
 			</div>
 			<div
 				className="grid-item middle"
-				style={{ width: "125px", height: "45px", paddingTop: "0px"}}
+				style={{ width: "125px", height: "45px" }}
 			>
-				<img src={villow} alt="villow" style={{ marginTop: "10px" }} />
+				<img src={villow} alt="villow" style={{ marginTop: "5px" }} />
 			</div>
 			<ul>
 				<li>

@@ -14,7 +14,7 @@ export const SearchInputContainer = ({
 	value,
 	handleSearchOnChange,
 	setSuggestionsBox,
-	focuseSearch,
+	focusSearch,
 }) => {
 	const dispatch = useDispatch();
 
@@ -45,7 +45,7 @@ export const SearchInputContainer = ({
 						</div>
 					</div>
 				)}
-				{!focuseSearch && searchWord && (
+				{!focusSearch && searchWord && (
 					<>
 						<div className="add-another-container">
 							<p>Add another location</p>

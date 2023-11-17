@@ -4,11 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import SuggestionItem from "./SuggestionItem";
 
 import { SearchInputContainer } from "./SearchInputContainer";
-import { getSearchWord, setSearchWord } from "../../store/searchFilters";
+import { getSearchWord } from "../../store/searchFilters";
 import { cleanSearchSuggestions } from "../../store/search";
-
-import { getLocation, getUserCity } from "./utils/userLocation";
-import { fetchSearchListings } from "../../store/listingsReducer";
 
 import FilterButtons from "./FilterButtons/FilterButtons";
 import IndexSearchHistorySuggestions from "./IndexSearchHistorySuggestions";
@@ -23,8 +20,8 @@ const IndexSearch = ({
   term,
   setSuggestionsBox,
   suggestions,
-  focuseSearch,
-  setFocuseSearch,
+  focusSearch,
+  setFocusSearch,
   searchRef,
   setValue,
 }) => {
@@ -36,16 +33,35 @@ const IndexSearch = ({
 
   useEffect(() => {
     dispatch(cleanSearchSuggestions());
-  }, [closeDropDown]);
+  }, [dispatch, closeDropDown]);
 
   function handleInputContainerClick(e) {
     e.preventDefault();
     e.stopPropagation();
 
     if (inputRef.current) inputRef.current.focus();
-
-    setFocuseSearch(true);
+    setFocusSearch(true);
   }
+
+  useEffect(() => {
+    // Function to handle outside click
+    const handleOutsideClick = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setFocusSearch(false);
+      }
+    };
+
+    // Add event listener when the component mounts or focusSearch changes
+    if (focusSearch) {
+      document.addEventListener("click", handleOutsideClick);
+    }
+
+    // Remove event listener on cleanup
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [focusSearch, searchRef]);
+
 
   function handleSuggestionItemClick(e) {
     e.preventDefault();
@@ -54,41 +70,30 @@ const IndexSearch = ({
     setCloseDropDown({ isClosed: true });
   }
 
-  async function handleCurrentLocation(e) {
-    e.preventDefault();
-
-    const userLocation = await getLocation();
-    const userCity = await getUserCity(userLocation);
-
-    dispatch(setSearchWord);
-
-    dispatch(fetchSearchListings("city", userCity));
-  }
-
   return (
     <div className="search-component-wrapper">
       <div
         className={
           "search-input-wrapper " +
-          (focuseSearch && searchWord ? "focused-wrapper" : "")
+          (focusSearch && searchWord ? "focused-wrapper" : "")
         }
       >
         <div
-          className={"search-input " + (focuseSearch ? "focused" : "")}
+          className={"search-input " + (focusSearch ? "focused" : "")}
           onClick={handleInputContainerClick}
           ref={searchRef}
         >
           <SearchInputContainer
             inputRef={inputRef}
             searchWord={searchWord}
-            focuseSearch={focuseSearch}
+            focusSearch={focusSearch}
             value={value}
             handleSearchOnChange={handleSearchOnChange}
             setSuggestionsBox={setSuggestionsBox}
           />
         </div>
 
-        {focuseSearch && (
+        {focusSearch && (
           <>
             <div
               className="indexSearchDropdown"
