@@ -1,6 +1,6 @@
 databases:
   - name: Villow
-    databaseName: Villow
+    databaseName: VillowDB
     user: mlkz
 
 services:
