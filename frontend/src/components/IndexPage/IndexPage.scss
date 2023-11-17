@@ -15,11 +15,11 @@
 }
 
 
-@media only screen and (max-width: 2600px) {
+@media only screen and (min-width: 2251px) {
   div {
     .index-page-content-container{
       display: grid;
-      grid-template-columns: 2.34fr 1fr;
+      grid-template-columns: 3.01fr 1fr;
     }
   }
 }

@@ -22,9 +22,16 @@ const ModalContainer = ({
 		}
 	}, [listingId]);
 
+	useEffect(() => {
+			document.querySelector("html").classList.toggle("scroll-lock");
+
+			return () => {
+				document.querySelector("html").classList.remove("scroll-lock");
+			}
+	}, [popup])
+
 	const showModal = () => {
 		setPopup({ isShown: true });
-		toggleScrollLock();
 	};
 
 	const closeModal = () => {
@@ -33,7 +40,6 @@ const ModalContainer = ({
 			handleClickItem();
 			window.history.pushState({}, "", "/listings");
 		}
-		toggleScrollLock();
 	};
 
 	// On click outside of modal, close modal if user clicks
@@ -46,9 +52,6 @@ const ModalContainer = ({
 		}
 	};
 
-	const toggleScrollLock = () => {
-		document.querySelector("html").classList.toggle("scroll-lock");
-	};
 
 	return (
 		<>

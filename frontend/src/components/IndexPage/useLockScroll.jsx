@@ -4,7 +4,7 @@ const useLockBodyScroll = () => {
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     const preventDefault = (e) => e.preventDefault();
-    
+
     // Disable scrolling
     document.body.style.overflow = 'hidden';
     document.body.addEventListener('touchmove', preventDefault, { passive: false });
@@ -15,6 +15,6 @@ const useLockBodyScroll = () => {
       document.body.removeEventListener('touchmove', preventDefault, { passive: false });
     };
   }, []);
-};
+    };
 
 export default useLockBodyScroll;

@@ -44,19 +44,17 @@ const IndexSearch = ({
   }
 
   useEffect(() => {
-    // Function to handle outside click
+    // Function to handle outside click of search input
     const handleOutsideClick = (e) => {
       if (searchRef.current && !searchRef.current.contains(e.target)) {
         setFocusSearch(false);
       }
     };
 
-    // Add event listener when the component mounts or focusSearch changes
     if (focusSearch) {
       document.addEventListener("click", handleOutsideClick);
     }
 
-    // Remove event listener on cleanup
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
