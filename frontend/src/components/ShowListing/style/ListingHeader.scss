@@ -1,9 +1,17 @@
 .listing_header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  padding: 22px 0;
+  padding: 15px 22px 15px 22px;
   justify-items: center;
   align-items: center;
+
+  .back-to-listing {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   .back-to-listing {
     display: flex;

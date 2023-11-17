@@ -1,25 +1,26 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import SessionButton from "./ProfileButton";
 import Modal from "./Modal";
 
 import "./ModalContainer.scss";
+
+export const CloseModalFunction = createContext();
 
 const ModalContainer = ({
 	modalAreaStyling,
 	ModalWelcomeHeader,
 	ModalTabs,
 	listingId,
-  handleClickItem,
+	handleClickItem,
 	children,
 }) => {
 	let [popup, setPopup] = useState({ isShown: false });
 
-  useEffect(() => {
-    if(listingId) {
-      setPopup({ isShown: true });
-    }
-
-  }, [listingId]);
+	useEffect(() => {
+		if (listingId) {
+			setPopup({ isShown: true });
+		}
+	}, [listingId]);
 
 	const showModal = () => {
 		setPopup({ isShown: true });
@@ -29,7 +30,7 @@ const ModalContainer = ({
 	const closeModal = () => {
 		setPopup({ isShown: false });
 		if (handleClickItem) {
-		  handleClickItem();
+			handleClickItem();
 			window.history.pushState({}, "", "/listings");
 		}
 		toggleScrollLock();
@@ -41,7 +42,7 @@ const ModalContainer = ({
 	// when user clicks modal container, we close modal.
 	const onClickOutside = (event) => {
 		if (event.target.className === "modal-container") {
-      closeModal();
+			closeModal();
 		}
 	};
 
@@ -58,7 +59,9 @@ const ModalContainer = ({
 						onClickOutside={onClickOutside}
 						modalAreaStyling={modalAreaStyling}
 					>
-						{children}
+						<CloseModalFunction.Provider value={ closeModal }>
+							{children}
+						</CloseModalFunction.Provider>
 					</Modal>
 				) : null
 			) : (

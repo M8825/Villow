@@ -13,7 +13,7 @@ const SuggestionItem = ({ term, suggestion, value }) => {
   const history = useHistory();
 
   // returns start and end indecies of the matching substring
-  // of the suggestion and the value. It's beeing used to
+  // of the suggestion and the value. It's being used to
   // highlight the matching substring in the suggestion
   const [start, end] = findMatchingIndices(suggestion, value);
 

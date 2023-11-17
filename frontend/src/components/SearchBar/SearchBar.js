@@ -79,7 +79,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search_bar_container">
+    <div className= { isAtListingIndex ? "search_bar_container" : null}>
       {isAtListingIndex ? (
         <>
           <IndexSearchInput

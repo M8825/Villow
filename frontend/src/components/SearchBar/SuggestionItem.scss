@@ -20,16 +20,6 @@
 .suggestion-item-splash {
   @include shared-styles;
   width: 95%;
-
-  border-bottom: 1px solid #f0f0f0;
-
-  &:hover {
-  }
-
-  &:hover span,
-  &:hover p {
-    color: #fff;
-  }
 }
 
 

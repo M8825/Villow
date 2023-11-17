@@ -3,7 +3,8 @@
 }
 
 #navigation {
-    height: 8vh;
+    height: 5vh;
+    min-height: 80px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -91,7 +92,6 @@
     padding: 22px 0px 24px 22px;
     background-color: #F6F6FA;
     width: 613px;
-    font-weight: 800;
 }
 
 

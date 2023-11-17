@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 413.79 136.85">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke-width: .43px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #0772ba;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        font-size: 110.87px;
+      }
+
+      .cls-3, .cls-2, .cls-4 {
+        fill: #0171ba;
+      }
+
+      .cls-3, .cls-5 {
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        stroke-width: 1px;
+      }
+
+      .cls-4 {
+        font-family: AdelleSansDevanagari-Regular, 'Adelle Sans Devanagari';
+        font-size: 5.22px;
+      }
+
+      .cls-5 {
+        fill: #fff;
+        font-size: 106.65px;
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <rect class="cls-2" x="25.22" y="44.47" width="67.92" height="50.17"/>
+  <polygon class="cls-2" points="59.18 15.88 26.05 43.63 92.32 43.63 59.18 15.88"/>
+  <text class="cls-3" transform="translate(101.64 95.11) scale(.95 1)"><tspan class="cls-6" x="0" y="0">V</tspan><tspan class="cls-7" x="72.06" y="0">illow</tspan></text>
+  <g>
+    <ellipse class="cls-1" cx="410.83" cy="34.83" rx="2.74" ry="2.52"/>
+    <text class="cls-4" transform="translate(409.04 36.62) scale(1.09 1)"><tspan x="0" y="0">R</tspan></text>
+  </g>
+  <text class="cls-5" transform="translate(33.72 74.67) rotate(57.13) scale(.59 1)"><tspan x="0" y="0">v</tspan></text>
+</svg>

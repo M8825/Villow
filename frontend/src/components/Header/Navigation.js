@@ -10,7 +10,7 @@ import SearchBar from "../SearchBar/SearchBar";
 
 import { fetchCurrentUser, getActiveUser } from "../../store/usersReducer";
 
-import villow from "../assets/villow.png";
+import villow from "../assets/Logo-Villow.svg";
 import "./Navigation.scss";
 
 const Navigation = ({ isIndex }) => {
@@ -50,7 +50,7 @@ const Navigation = ({ isIndex }) => {
               className="grid-item middle"
               style={{ width: "200px", height: "10px" }}
             >
-              <img src={villow} alt="villow" style={{ marginTop: "10px" }} />
+              <img src={villow} alt="villow" style={{ marginTop: "20px", height: "55px" }} />
             </div>
           </Link>
           <div className="grid-item right">
@@ -71,7 +71,7 @@ const Navigation = ({ isIndex }) => {
 
         {!isIndex && (
           <div className="search_container">
-            <h1>Find it. Tour it. Own it.</h1>
+            <h1>Agents. Tours. Loans. Homes</h1>
             <SearchBar />
           </div>
         )}

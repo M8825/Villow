@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import useCurrencyFormatter from "../utils/useCurrencyFormatter";
 import { Building, Calendar, Info, HOA, SQFT, SQFTLOT, ZESTIMATE } from "./assets/svgs";
 import { useHistory } from "react-router-dom";

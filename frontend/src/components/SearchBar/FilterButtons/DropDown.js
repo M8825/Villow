@@ -17,7 +17,7 @@ const DropDown = (props) => {
     onClose,
   } = props;
 
-  // Costum hook
+  // Custom hook
   const { dropDown, setDropDown, dropDownWidth, buttonRef } = useDropdown(
     containerWidth,
     minValue,
