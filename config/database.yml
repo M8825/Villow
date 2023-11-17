@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Villow_production
-  username: Villow
-  password: <%= ENV["VILLOW_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
