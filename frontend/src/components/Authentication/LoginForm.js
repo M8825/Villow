@@ -40,7 +40,7 @@ const LoginForm = ({ closeModal }) => {
 	// Sign in as a demo user
 	const demoUserHandleOnClick = (e) => {
 		e.preventDefault();
-		dispatch(loginUser({ email: "mlkz@gmail.com", password: "Ilmangel123!" }));
+		dispatch(loginUser({ email: "mlkz@gmail.com", password: "Password123!" }));
 
 		closeModal();
 	};
