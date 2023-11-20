@@ -33,25 +33,29 @@ export const loginUser = (userCredentials) => async (dispatch) => {
 
     if (res.ok) {
       const user = await res.json();
-      // Store only non-sensitive user information, if necessary
-      sessionStorage.setItem(
-        "currentUser",
-        JSON.stringify({ id: user.id, name: user.email })
-      );
+      const csrfToken = res.headers.get("X-CSRF-Token");
+
+      if (csrfToken) {
+        sessionStorage.setItem("X-CSRF-Token", csrfToken);
+        sessionStorage.setItem(
+          "currentUser",
+          JSON.stringify({
+            id: user.id,
+            name: user.email,
+          })
+        );
+      }
 
       dispatch(receiveUser(user));
     } else {
-      // Handle non-OK responses, could be client or server error
       try {
         const { errors } = await res.json();
         throw new Error(errors.join(", "));
       } catch (jsonError) {
-        // If the response is not JSON, use the status text
         throw new Error(res.statusText);
       }
     }
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
