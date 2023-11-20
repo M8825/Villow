@@ -32,6 +32,8 @@ export const loginUser = (userCredentials) => async (dispatch) => {
       },
     });
 
+   console.log(res)
+
     if (res.ok) {
       const user = await res.json();
       // Store only non-sensitive user information, if necessary
