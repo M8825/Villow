@@ -7,6 +7,7 @@ export const restoreSession = async () => {
 };
 
 export const csrfFetch = async (url, options = {}) => {
+  url = process.env.REACT_APP_BACKEND_URL + url;
   options.method ||= "GET";
   options.headers ||= {};
 
