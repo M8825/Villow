@@ -49,6 +49,7 @@ export const loginUser = (userCredentials) => async (dispatch) => {
       }
     }
   } catch (error) {
+    console.log(error)
     throw error;
   }
 };
