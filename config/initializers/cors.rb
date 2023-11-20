@@ -16,10 +16,10 @@
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "https://villow-fe.onrender.com/"
+    origins "https://villow-fe.onrender.com"
     resource "*",
       headers: :any,
-      methods: %i[get post putpatch delete options head],
+      methods: %i[get post put patch delete options head],
       credentials: false
   end
 end
