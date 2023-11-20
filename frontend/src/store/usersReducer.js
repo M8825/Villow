@@ -92,7 +92,7 @@ export const fetchCurrentUser = () => async (dispatch) => {
   const res = await csrfFetch("/api/session");
 
   if (res.ok) {
-    const user = await res.json();
+    const { user } = await res.json();
     dispatch(receiveUser(user));
   }
 };
