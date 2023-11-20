@@ -35,7 +35,6 @@ export const loginUser = (userCredentials) => async (dispatch) => {
     if (res.ok) {
       const user = await res.json();
       // Store only non-sensitive user information, if necessary
-			debugger
       sessionStorage.setItem("currentUser", JSON.stringify({ id: user.id, name: user.email}));
 
       dispatch(receiveUser(user));

@@ -63,7 +63,7 @@ export const getListing = (id) => (state) => {
 };
 
 export const fetchListings = () => async (dispatch) => {
-  const res = await csrfFetch("/listings");
+  const res = await csrfFetch("/api/listings");
 
   if (res.ok) {
     const listings = await res.json();
