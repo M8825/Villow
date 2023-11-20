@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::API
   include ActionController::RequestForgeryProtection
 
-  protect_from_forgery with: :null_session, unless: -> { action_name == 'create' && controller_name == 'sessions' }
+  protect_from_forgery with: :null_session, unless: -> {
+    action_name == 'create' && controller_name == 'sessions' || controller_name == 'users'
+  }
   before_action :snake_case_params, only: %i[create update]
   before_action :attach_authenticity_token
 
