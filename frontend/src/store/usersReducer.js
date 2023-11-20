@@ -24,7 +24,7 @@ export const getActiveUser = () => (state) => {
 
 export const loginUser = (userCredentials) => async (dispatch) => {
   try {
-    let res = await fetch("/api/session", {
+    let res = await csrfFetch("/api/session", {
       method: "POST",
       body: JSON.stringify(userCredentials),
     });
