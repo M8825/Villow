@@ -35,10 +35,6 @@ export const loginUser = (userCredentials) => async (dispatch) => {
       const { user } = await res.json();
       const csrfToken = res.headers.get("X-CSRF-Token");
 
-      console.log("VALUE OF csrfToken: ", csrfToken);
-      console.log("VALUE OF user: ", user);
-      console.log("VALUE OF res.headers: ", res.headers);
-
       if (csrfToken) {
         sessionStorage.setItem("X-CSRF-Token", csrfToken);
         sessionStorage.setItem(
