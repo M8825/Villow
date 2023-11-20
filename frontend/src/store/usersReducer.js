@@ -27,9 +27,6 @@ export const loginUser = (userCredentials) => async (dispatch) => {
     let res = await fetch("/api/session", {
       method: "POST",
       body: JSON.stringify(userCredentials),
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
 
     console.log(res);
