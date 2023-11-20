@@ -29,7 +29,7 @@ export const loginUser = (userCredentials) => async (dispatch) => {
       body: JSON.stringify(userCredentials),
     });
 
-    console.log(res);
+    console.log("This is form usersReducer.js: ", res);
 
     if (res.ok) {
       const user = await res.json();
