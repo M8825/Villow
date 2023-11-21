@@ -5,8 +5,6 @@ class ApplicationController < ActionController::API
   before_action :attach_authenticity_token, :snake_case_params, only: %i[create update]
 
   def current_user
-    Rails.logger.info "Session>>>>>>>>>:", session[:session_token].inspect
-    Rails.logger.info "Look Up user based on the session_token: #{User.find_by(session_token: session[:session_token])}"
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
