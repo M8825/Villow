@@ -2,8 +2,7 @@ class ApplicationController < ActionController::API
   include ActionController::RequestForgeryProtection
 
   protect_from_forgery with: :exception
-  before_action :snake_case_params, only: %i[create update]
-  before_action :attach_authenticity_token
+  before_action :snake_case_params, :attach_authenticity_token
 
   def current_user
     Rails.logger.info "Session>>>>>>>>>:", session[:session_token].inspect
