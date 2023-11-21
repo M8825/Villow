@@ -40,7 +40,7 @@ module Villow
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
-                          key: '_appname_session',
+                          key: '_villow_session',
                           same_site: :lax,
                           secure: Rails.env.production?
   end
