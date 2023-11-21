@@ -27,6 +27,7 @@ async function csrfFetch(url, options = {}) {
     return res;
   }
 
+
 // export const csrfFetch = async (url, options = {}) => {
 //   options.method ||= "GET";
 //   options.headers ||= {};
