@@ -2,7 +2,6 @@ class Api::SessionsController < ApplicationController
   before_action :require_logged_in, only: %i[destroy]
 
   def show
-    puts ">>>>>>>>>>in sessions_controller.rb at show action<<<<<<<<<<"
     @user = current_user
 
     if @user
