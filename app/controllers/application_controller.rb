@@ -27,6 +27,7 @@ class ApplicationController < ActionController::API
 
   def login(user)
     session[:session_token] = user.reset_session_token!
+    @current_user = user
     Rails.logger.info "Session: #{session.inspect}"
   end
 
@@ -44,6 +45,5 @@ class ApplicationController < ActionController::API
 
   def attach_authenticity_token
     headers['X-CSRF-Token'] = masked_authenticity_token(session)
-    # headers["X-CSRF-Token"] = form_authenticity_token
   end
 end
