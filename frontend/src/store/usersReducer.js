@@ -86,6 +86,7 @@ export const createUser = (user) => async (dispatch) => {
 
 export const fetchCurrentUser = () => async (dispatch) => {
   const res = await csrfFetch("/api/session");
+  console.log("VALUE OF res.ok from fetchCurrentUser: ", res.ok);
 
   if (res.ok) {
     const { user } = await res.json();
