@@ -5,6 +5,8 @@ class ApplicationController < ActionController::API
   before_action :attach_authenticity_token, :snake_case_params, only: %i[create update]
 
   def current_user
+    puts ">>>>>>>>>>in application_controller.rb at current_user<<<<<<<<<<"
+    puts ">>>>>>>>>>session: #{session.inspect}<<<<<<<<<<"
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
 

@@ -4,7 +4,6 @@ class Api::SessionsController < ApplicationController
   def show
     puts ">>>>>>>>>>in sessions_controller.rb at show action<<<<<<<<<<"
     @user = current_user
-    
 
     if @user
       render 'api/users/show'
