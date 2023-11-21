@@ -89,6 +89,7 @@ export const fetchCurrentUser = () => async (dispatch) => {
 
   if (res.ok) {
     const { user } = await res.json();
+    console.log('User:', user); // Add this line
     dispatch(receiveUser(user));
   }
 };
