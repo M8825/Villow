@@ -15,8 +15,8 @@ export const csrfFetch = async (url, options = {}) => {
   options.headers ||= {};
 
   // Modified to accept formData type
+  options.headers["X-CSRF-Token"] = sessionStorage.getItem("X-CSRF-Token");
   if (options.method.toUpperCase() !== "GET") {
-    options.headers["X-CSRF-Token"] = sessionStorage.getItem("X-CSRF-Token");
 
     if (
       !options.headers["Content-Type"] &&
