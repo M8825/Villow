@@ -1,12 +1,14 @@
 export const restoreSession = async () => {
   let res = await csrfFetch("/api/session");
 
-
   let token = res.headers.get("X-CSRF-Token");
-  sessionStorage.setItem("X-CSRF-Token", token);
+  if (token) {
+    localStorage.setItem("X-CSRF-Token", token);
+  }
   let data = await res.json();
-  console.log("VALUE OF data: ", data);
-  sessionStorage.setItem("currentUser", JSON.stringify(data.user));
+  if (data && data.user) {
+    localStorage.setItem("currentUser", JSON.stringify(data.user));
+  }
 };
 
 export const csrfFetch = async (url, options = {}) => {
@@ -15,7 +17,7 @@ export const csrfFetch = async (url, options = {}) => {
   options.headers ||= {};
 
   // Modified to accept formData type
-  options.headers["X-CSRF-Token"] = sessionStorage.getItem("X-CSRF-Token");
+  options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
   if (options.method.toUpperCase() !== "GET") {
 
     if (

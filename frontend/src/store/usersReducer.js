@@ -36,7 +36,7 @@ export const loginUser = (userCredentials) => async (dispatch) => {
       const csrfToken = res.headers.get("X-CSRF-Token");
 
       if (csrfToken) {
-        sessionStorage.setItem("X-CSRF-Token", csrfToken);
+    	localStorage.setItem("X-CSRF-Token", csrfToken);
         sessionStorage.setItem(
           "currentUser",
           JSON.stringify({
@@ -64,7 +64,7 @@ export const logoutUser = () => async (dispatch) => {
   await csrfFetch("/api/session", {
     method: "DELETE",
   });
-  sessionStorage.setItem("currentUser", null);
+  localStorage.removeItem("currentUser");
   dispatch(removeUser());
 };
 
@@ -76,7 +76,7 @@ export const createUser = (user) => async (dispatch) => {
 
   if (res.ok) {
     let data = await res.json();
-    sessionStorage.setItem("currentUser", JSON.stringify(data.user));
+    localStorage.setItem("currentUser", JSON.stringify(data.user));
     dispatch(receiveUser(data.user));
   } else {
     const { errors } = await res.json();
@@ -86,8 +86,6 @@ export const createUser = (user) => async (dispatch) => {
 
 export const fetchCurrentUser = () => async (dispatch) => {
   const res = await csrfFetch("/api/session");
-  console.log("VALUE OF res from fetchCurrentUser: ", res);
-  console.log("VALUE OF res.ok from fetchCurrentUser: ", res.ok);
 
   if (res.ok) {
     const { user } = await res.json();
