@@ -12,22 +12,25 @@ export const restoreSession = async () => {
 };
 
 export async function csrfFetch(url, options = {}) {
-    url = process.env.REACT_APP_BACKEND_URL + url;
-    options.method = options.method || 'GET';
-    options.headers = options.headers || {};
-    options.credentials = 'include';
-  
-    if (options.method.toUpperCase() !== 'GET') {
-      options.headers['Content-Type'] =
-        options.headers['Content-Type'] || 'application/json';
-      options.headers['X-CSRF-Token'] = localStorage.getItem('X-CSRF-Token');
+  url = process.env.REACT_APP_BACKEND_URL + url;
+  options.method = options.method || "GET";
+  options.headers = options.headers || {};
+  options.credentials = "include";
+  options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
+
+  if (options.method.toUpperCase() !== "GET") {
+    if (
+      !options.headers["Content-Type"] &&
+      !(options.body instanceof FormData)
+    ) {
+      options.headers["Content-Type"] = "application/json";
     }
-  
-    const res = await fetch(url, options);
-    if (res.status >= 400) throw res;
-    return res;
   }
 
+  const res = await fetch(url, options);
+  if (res.status >= 400) throw res;
+  return res;
+}
 
 // export const csrfFetch = async (url, options = {}) => {
 //   options.method ||= "GET";
@@ -35,16 +38,13 @@ export async function csrfFetch(url, options = {}) {
 
 //   // Modified to accept formData type
 
-//   if (options.method.toUpperCase() !== "GET") {
-//     options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
-//     options.credentials = "include"; // This line is added to include cookies
-//     if (
-//       !options.headers["Content-Type"] &&
-//       !(options.body instanceof FormData)
-//     ) {
-//       options.headers["Content-Type"] = "application/json";
-//     }
+// if (options.method.toUpperCase() !== "GET") {
+//   options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
+//   options.credentials = "include"; // This line is added to include cookies
+//   if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
+//     options.headers["Content-Type"] = "application/json";
 //   }
+// }
 
 // console.log("Options: ", options)
 //   const res = await fetch(url, options);
