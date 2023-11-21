@@ -16,7 +16,6 @@ class Api::SessionsController < ApplicationController
     password = params[:password]
 
     @user = User.find_by_credentials(email, password)
-    puts "HREERERERERR: "
 
     if @user
       login(@user)
