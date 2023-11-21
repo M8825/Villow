@@ -15,6 +15,7 @@ export async function csrfFetch(url, options = {}) {
     url = process.env.REACT_APP_BACKEND_URL + url;
     options.method = options.method || 'GET';
     options.headers = options.headers || {};
+    options.credentials = 'include';
   
     if (options.method.toUpperCase() !== 'GET') {
       options.headers['Content-Type'] =
