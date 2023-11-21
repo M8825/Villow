@@ -29,14 +29,13 @@ export const loginUser = (userCredentials) => async (dispatch) => {
       body: JSON.stringify(userCredentials),
     });
 
-    console.log("This is form usersReducer.js: ", res);
 
     if (res.ok) {
       const { user } = await res.json();
       const csrfToken = res.headers.get("X-CSRF-Token");
 
       if (csrfToken) {
-    	localStorage.setItem("X-CSRF-Token", csrfToken);
+	localStorage.setItem("X-CSRF-Token", csrfToken);
         sessionStorage.setItem(
           "currentUser",
           JSON.stringify({
