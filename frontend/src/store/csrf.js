@@ -17,10 +17,10 @@ export const csrfFetch = async (url, options = {}) => {
   options.headers ||= {};
 
   // Modified to accept formData type
-  options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
-  options.credentials = "include"; // This line is added to include cookies
 
   if (options.method.toUpperCase() !== "GET") {
+    options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
+    options.credentials = "include"; // This line is added to include cookies
     if (
       !options.headers["Content-Type"] &&
       !(options.body instanceof FormData)

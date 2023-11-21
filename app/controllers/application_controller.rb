@@ -27,7 +27,7 @@ class ApplicationController < ActionController::API
   def login(user)
     session[:session_token] = user.reset_session_token!
     @current_user = user
-    Rails.logger.info "Session: #{session.inspect}"
+    Rails.logger.info "Session: #{session[:session_token].inspect}"
   end
 
   def logout
