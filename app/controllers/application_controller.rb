@@ -6,8 +6,7 @@ class ApplicationController < ActionController::API
   before_action :attach_authenticity_token
 
   def current_user
-    puts 'backend session:', session == nil
-    puts "backend current_user: #{session[:session_token]}"
+    Rails.logger.info "Session>>>>>>>>>: #{session[:session_token].inspect}"
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
