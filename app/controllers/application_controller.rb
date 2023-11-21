@@ -6,8 +6,10 @@ class ApplicationController < ActionController::API
 
   def current_user
     puts ">>>>>>>>>>in application_controller.rb at current_user<<<<<<<<<<"
-    puts ">>>>>>>>>>session: #{session.inspect}<<<<<<<<<<"
-    @current_user ||= User.find_by(session_token: session[:session_token])
+    # Directly access the session_token
+    session_token = session[:session_token]
+    puts ">>>>>>>>>>session[:session_token]: #{session_token}<<<<<<<<<<"
+    @current_user ||= User.find_by(session_token: session_token)
   end
 
   def require_logged_in
