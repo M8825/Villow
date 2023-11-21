@@ -18,8 +18,9 @@ export const csrfFetch = async (url, options = {}) => {
 
   // Modified to accept formData type
   options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
-  if (options.method.toUpperCase() !== "GET") {
+  options.credentials = "include"; // This line is added to include cookies
 
+  if (options.method.toUpperCase() !== "GET") {
     if (
       !options.headers["Content-Type"] &&
       !(options.body instanceof FormData)
