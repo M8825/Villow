@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::API
   include ActionController::RequestForgeryProtection
 
-  protect_from_forgery with: :exception
-  before_action :snake_case_params, :attach_authenticity_token
+  protect_from_forgery with: :null_session, unless: -> { action_name == 'create' && (controller_name == 'sessions' || controller_name == 'users') }
+  before_action :snake_case_params, only: %i[create update]
+  before_action :attach_authenticity_token
 
   def current_user
     Rails.logger.info "Session>>>>>>>>>:", session[:session_token].inspect
@@ -27,7 +28,7 @@ class ApplicationController < ActionController::API
   def login(user)
     session[:session_token] = user.reset_session_token!
     @current_user = user
-    Rails.logger.info "Session: #{session[:session_token].inspect}"
+    Rails.logger.info "Session: #{session.inspect}"
   end
 
   def logout
