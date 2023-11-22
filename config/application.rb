@@ -41,7 +41,7 @@ module Villow
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
                           key: '_villow_session',
-                          same_site: Rails.env.production? ? :lax : :none,
+                          same_site: Rails.env.production? ? :none : :lax,
                           secure: Rails.env.production?
   end
 end
