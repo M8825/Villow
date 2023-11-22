@@ -31,22 +31,3 @@ export async function csrfFetch(url, options = {}) {
   if (res.status >= 400) throw res;
   return res;
 }
-
-// export const csrfFetch = async (url, options = {}) => {
-//   options.method ||= "GET";
-//   options.headers ||= {};
-
-//   // Modified to accept formData type
-
-// if (options.method.toUpperCase() !== "GET") {
-//   options.headers["X-CSRF-Token"] = localStorage.getItem("X-CSRF-Token");
-//   options.credentials = "include"; // This line is added to include cookies
-//   if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
-//     options.headers["Content-Type"] = "application/json";
-//   }
-// }
-
-// console.log("Options: ", options)
-//   const res = await fetch(url, options);
-//   return res;
-// };

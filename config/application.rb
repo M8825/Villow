@@ -2,10 +2,10 @@ require_relative 'boot'
 
 require 'rails'
 # Pick the frameworks you want:
-require 'active_model/railtie'
 require 'active_job/railtie'
-require 'active_record/railtie'
 require 'active_storage/engine'
+require 'active_model/railtie'
+require 'active_record/railtie'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_mailbox/engine'
@@ -41,7 +41,7 @@ module Villow
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
                           key: '_villow_session',
-                          same_site: :none,
+                          same_site: Rails.env.production ? :lax : :none,
                           secure: Rails.env.production?
   end
 end
