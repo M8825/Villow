@@ -88,7 +88,6 @@ export const fetchCurrentUser = () => async (dispatch) => {
 
   if (res.ok) {
     const { user } = await res.json();
-    console.log('User:', user); // Add this line
     dispatch(receiveUser(user));
   }
 };
@@ -103,7 +102,6 @@ const userReducer = (state = {}, action) => {
       return nextState;
     case REMOVE_USER:
       nextState["user"] = null;
-      debugger;
       return nextState;
     default:
       return state;

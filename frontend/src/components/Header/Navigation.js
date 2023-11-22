@@ -19,7 +19,6 @@ const Navigation = ({ isIndex }) => {
 
   useEffect(() => {
     if (!activeUser) {
-      console.log("This is from Navigation.js: ", activeUser)
       dispatch(fetchCurrentUser());
     }
   }, [dispatch, activeUser]);
