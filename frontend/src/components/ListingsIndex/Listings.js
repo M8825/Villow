@@ -6,7 +6,6 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 import ListingItem from "../ListingItem/ListingItem";
 
-import { getActiveUser } from "../../store/usersReducer";
 import { getFilter } from "../../store/searchFilters";
 import {
   getListings,
@@ -19,7 +18,6 @@ import "./Listings.scss";
 const Listings = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter());
-  const currentUser = useSelector(getActiveUser());
   const listings = useSelector(getListings);
 
   const [reversed, setReversed] = useState(false);
@@ -55,7 +53,11 @@ const Listings = () => {
       <div className="index-container">
         <div className="listing-container-header">
           <h1>Real Estate & Homes For Sale</h1>
-            <FontAwesomeIcon className="arrow-icon" icon={faArrowUp} onClick={handleClick}/>
+          <FontAwesomeIcon
+            className="arrow-icon"
+            icon={faArrowUp}
+            onClick={handleClick}
+          />
         </div>
         <div className="listings-container">
           {reversed
@@ -65,20 +67,16 @@ const Listings = () => {
                   <ListingItem
                     key={i}
                     listing={listing}
-                    style
                     listingStyling={listingStyling}
                     thumbnailStyling={thumbnailStyling}
-                    userId={currentUser.id}
                   />
                 ))
             : listings.map((listing, i) => (
                 <ListingItem
                   key={i}
                   listing={listing}
-                  style
                   listingStyling={listingStyling}
                   thumbnailStyling={thumbnailStyling}
-                  userId={currentUser.id}
                 />
               ))}
         </div>
