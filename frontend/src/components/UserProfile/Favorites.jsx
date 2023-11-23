@@ -1,20 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserFavorites, getListings } from "../../store/listingsReducer";
+import { fetchUserFavorites, getFavorites } from "../../store/listingsReducer";
 
 import ProfileCard from "./ProfileCard";
 
 const Favorites = ({ currentUser }) => {
 	const dispatch = useDispatch();
 
-	const listings = useSelector(getListings);
+	const listings = useSelector(getFavorites);
 
 	useEffect(() => {
 		if (currentUser) {
 			dispatch(fetchUserFavorites(currentUser.id));
 		}
 	}, [dispatch, currentUser]);
-
 
 	return (
 		listings && (
