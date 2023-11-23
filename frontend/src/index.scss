@@ -24,6 +24,11 @@ $primary-focus-color: rgb(44 104 246);
   font-family: "Open Sans", sans-serif;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
