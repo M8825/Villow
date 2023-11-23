@@ -4,7 +4,7 @@ const LandingPage = ({ handlePostListing }) => {
 			<div className="header">
 				<h1>Sell your home with confidence</h1>
 				<p>
-					Zillow is making it simpler to sell your home and move
+					Villow is making it simpler to sell your home and move
 					forward.
 				</p>
 			</div>

@@ -256,6 +256,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 							<label>
 								Beds
 								<input
+                  id="bedroom"
 									type="text"
 									placeholder="0"
 									value={bedroom}
@@ -267,6 +268,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 							<label>
 								Bathrooms
 								<input
+                  id="bathroom"
 									type="text"
 									placeholder="0"
 									value={bathroom}
@@ -278,6 +280,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 							<label>
 								Finished square feet
 								<input
+                  id="sqft"
 									type="text"
 									placeholder="0"
 									value={sqft}
@@ -287,6 +290,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 							<label>
 								Year built
 								<input
+                  id="builtIn"
 									type="text"
 									placeholder="0"
 									value={builtIn}
@@ -301,6 +305,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 						<label>
 							Describe your home
 							<textarea
+                id="overview"
 								type="textarea"
 								placeholder="Description"
 								value={overview}
@@ -311,6 +316,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 						<label>
 							What I love about this home
 							<textarea
+                id="keyWords"
 								type="textarea"
 								placeholder="Key Words..."
 								value={keyWords}
@@ -321,6 +327,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 					<div className="checkmarks">
 						<label>
 							<input
+                id="garage"
 								type="checkbox"
 								checked={isGarage}
 								onChange={(e) => setGarage(!isGarage)}
@@ -329,6 +336,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 						</label>
 						<label>
 							<input
+                id="ac"
 								type="checkbox"
 								checked={isAc}
 								onChange={(e) => setAc(!isAc)}
@@ -337,6 +345,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 						</label>
 						<label>
 							<input
+                id="heating"
 								type="checkbox"
 								checked={isHeating}
 								onChange={(e) => setHeating(!isHeating)}
@@ -348,6 +357,7 @@ const ListingForm = ({ resultAddress, coordinates }) => {
 						<label className="terms">
 							<div className="inner-check">
 								<input
+                  id="agreement"
 									type="checkbox"
 									checked={agreement}
 									onChange={(e) => setAgreement(!agreement)}

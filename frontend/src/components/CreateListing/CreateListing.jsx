@@ -32,7 +32,6 @@ const CreateListing = () => {
 		<>
 			<Navigation isIndex={true} />
 			{page}
-			<Footer />
 		</>
 	);
 };
