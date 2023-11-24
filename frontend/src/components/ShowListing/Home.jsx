@@ -79,7 +79,7 @@ const Home = ({ listing }) => {
 					<div className="overview">
 						<h1>What's Special</h1>
 						<div className="keywords">
-							{listing.keyWords.split(" ").map((keyword, idx) => {
+							{listing.length & listing.keyWords.split(" ").map((keyword, idx) => {
 								return <p key={idx}>{keyword}</p>;
 							})}
 						</div>
