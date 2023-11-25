@@ -10,6 +10,7 @@ import { generateRandomString } from "../utils/utils";
 import { fetchListings, clearAllListings } from "../../store/listingsReducer";
 import { DownArrow } from "./SplashPageUtils";
 
+import 'react-loading-skeleton/dist/skeleton.css'
 import "./SplashPage.scss";
 
 const SplashPage = () => {

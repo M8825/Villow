@@ -8,6 +8,7 @@ import ListingItem from "../ListingItem/ListingItem";
 import "./Carousel.scss";
 
 import "swiper/css";
+import ListingItemSkeleton from "./LisitngItemSkeleton";
 
 const Carousel = ({
   sampleListings,
@@ -45,16 +46,22 @@ const Carousel = ({
             nextEl: `.${nextButtonClassName}`,
           }}
         >
-          {sampleListings.map((listing) => {
-            return (
-              <SwiperSlide key={listing.id}>
-                <ListingItem
-                  listing={listing}
-                  listingStyling={listingStyling}
-                />
-              </SwiperSlide>
-            );
-          })}
+          {sampleListings.length
+            ? sampleListings.map((listing) => {
+                return (
+                  <SwiperSlide key={listing.id}>
+                    <ListingItem
+                      listing={listing}
+                      listingStyling={listingStyling}
+                    />
+                  </SwiperSlide>
+                );
+              })
+            : [1, 2, 3, 4, 5].map((_, idx) => (
+                <SwiperSlide key={idx.id}>
+                  <ListingItemSkeleton key={idx} />
+                </SwiperSlide>
+              ))}
         </Swiper>
       </div>
     </div>

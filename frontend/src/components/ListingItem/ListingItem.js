@@ -45,7 +45,6 @@ const ListingItem = ({ listing, listingStyling, thumbnailStyling}) => {
 		<>
 			{ isListingClicked ? <ShowListing listing={listing} handleClickItem={handleClickItem}/> : null }
 			<li className="listing_item" style={listingStyling} onClick={handleClickItem}>
-				{/* <Link to={`/listings/${listing.id}`}> */}
 				<div className="listing_item__content_box">
 					<div
 						className="listing_item__thumbnail"

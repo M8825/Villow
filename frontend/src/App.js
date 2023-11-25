@@ -9,29 +9,32 @@ import IndexPage from "./components/IndexPage/IndexPage";
 import CreateListing from "./components/CreateListing/CreateListing";
 
 import "./index.scss";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const App = () => {
   return (
     <>
-      <ScrollToTop />
-      <Switch>
-        <Route exec path="/listings/new" component={CreateListing} />
-        <Route
-          exec
-          path="/listings/:listingId/edit"
-          component={CreateListing}
-        />
-        <Route exact path="/user/:id" component={UserProfile} />
-        <Route exact path="/" component={SplashPage} />
+      <SkeletonTheme baseColor="#eaeaea" highlightColor="#d9d9d9">
+        <ScrollToTop />
+        <Switch>
+          <Route exec path="/listings/new" component={CreateListing} />
+          <Route
+            exec
+            path="/listings/:listingId/edit"
+            component={CreateListing}
+          />
+          <Route exact path="/user/:id" component={UserProfile} />
+          <Route exact path="/" component={SplashPage} />
 
-        <Route exact path="/listings">
-          <Navigation isIndex={true} />
-          <IndexPage />
-        </Route>
-        <Route path="/listings/:listingId/edit" component={CreateListing} />
-        <Route exact path="/listings/new" component={CreateListing} />
-        <Route exact path="/listings/:listingId" component={ShowListing} />
-      </Switch>
+          <Route exact path="/listings">
+            <Navigation isIndex={true} />
+            <IndexPage />
+          </Route>
+          <Route path="/listings/:listingId/edit" component={CreateListing} />
+          <Route exact path="/listings/new" component={CreateListing} />
+          <Route exact path="/listings/:listingId" component={ShowListing} />
+        </Switch>
+      </SkeletonTheme>
     </>
   );
 };
