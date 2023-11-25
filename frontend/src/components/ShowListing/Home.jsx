@@ -89,7 +89,9 @@ const Home = ({ listing }) => {
             <div className="keywords">
               {listing.keyWords.length > 0 &&
                 listing.keyWords.split(" ").map((keyword, idx) => {
-                  return <p key={idx}>{keyword}</p>;
+                  if (keyword) {
+                    return <p key={idx}>{keyword}</p>;
+                  }
                 })}
             </div>
 
