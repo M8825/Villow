@@ -31,5 +31,10 @@ navigation cards from scratch.
 
 !["navigation_card"](./frontend/src/components/assets/card.png)
 
+## Instant search
+Search listings based on price, number of bedrooms, home type etc.
+
+!["instant_search"](./frontend/src/components/assets/instant_search.gif)
+
 Villow was created within a 14 day time frame. Thank you for your time and consideration! I hope you enjoy it!
 
