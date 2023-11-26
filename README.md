@@ -2,7 +2,7 @@
 
 Introduction
 
-Villow Clone is a replica of the popular real estate website Zillow. Villow is a platform that allows users to buy, sell, and rent properties. It provides a comprehensive database of real estate listings, including houses, apartments, and land. Users can search for properties by location, price, and other criteria, as well as save their favorite listings and receive notifications when new properties become available. As someone who is passionate about real estate, I wanted to create a similar platform that provides users with an easy-to-use interface and a wealth of real estate information. The technologies used in this project include:
+Villow Clone is a replica of the popular real estate website Zillow. Villow is a platform that allows users to buy, sell, and rent properties. It provides a comprehensive database of real estate listings, including houses, apartments, and land. Users can search for properties by location, price, and other criteria, as well as save their favorite listings. The technologies used in this project include:
 
 
 - Languages: Javascript, Ruby, HTML, and CSS
