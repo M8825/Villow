@@ -24,7 +24,8 @@ Users can browse listings on the index page using Google Maps markers based on t
 !["auth"](./frontend/src/components/assets/index.png)
 
 # Navigation Cards
-The site features convenient navigation cards for major pages.
+The site features convenient navigation cards for major pages. Pixel perfect copy of
+navigation cards from scratch.
 
 !["navigation_card"](./frontend/src/components/assets/card.png)
 
