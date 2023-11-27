@@ -3,7 +3,6 @@ import { useState } from "react";
 import Navigation from "../Header/Navigation";
 import GrabAddress from "./GrabAddress";
 import LandingPage from "./LandingPage";
-import Footer from "../Footer";
 
 import "./CreateListing.scss";
 
